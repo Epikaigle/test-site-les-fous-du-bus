@@ -1,0 +1,8 @@
+allowBuilds:
+  esbuild: set this to true or false
+  sharp: set this to true or false
+# Réglages pnpm (pnpm ≥ 10 lit ses réglages ici, pas dans package.json).
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+strictDepBuilds: false

@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import { lastChapter, siteIdentity } from '../utils/navigation';
+import { chapterEffects } from '../utils/ui';
+
+interface SectionCard {
+  icon: IconName;
+  title: string;
+  text: string;
+  href?: string;
+  note?: string;
+}
+
+const sections: SectionCard[] = [
+  {
+    icon: 'book',
+    title: 'La théorie',
+    text: 'Les sept piliers de l’hypothèse, structurés en articles reliés entre eux.',
+    href: '/la-theorie',
+  },
+  {
+    icon: 'map',
+    title: 'Explorer',
+    text: 'Frises chronologiques, carte du monde, graphe des personnages et schémas temporels.',
+    note: 'Version 2',
+  },
+  {
+    icon: 'activity',
+    title: 'Évolution',
+    text: 'Chapitre par chapitre : renforcement, nouvelle piste, contradiction ou réfutation.',
+    href: '/evolution/chapitre-par-chapitre',
+  },
+  {
+    icon: 'check-circle',
+    title: 'Vérifier',
+    text: 'Pièces du puzzle, citations, objections et contradictions restent visibles.',
+    href: '/verifier/sources',
+  },
+  {
+    icon: 'help',
+    title: 'Aide',
+    text: 'FAQ, glossaire et méthode pour lire la théorie dans de bonnes conditions.',
+    href: '/aide/faq',
+  },
+];
+
+const pillars: { name: string; href?: string }[] = [
+  { name: 'Fondations' },
+  { name: 'Figures et identités', href: '/la-theorie/figures-et-identites' },
+  { name: 'Armes antiques' },
+  { name: 'Science, énergie et pouvoirs' },
+  { name: 'Monde, peuples et témoins' },
+  { name: 'Transmission, voix et mémoire' },
+  { name: 'Gouvernement et guerre finale' },
+];
+
+const effect = chapterEffects[lastChapter.effect];
+---
+
+<BaseLayout
+  title="Le Siècle oublié est le présent | Les Fous du Bus"
+  description="Wiki éditorial et interactif consacré à une théorie sur One Piece : le Siècle oublié ne serait pas un événement ancien qui se répète, mais l'histoire que Luffy et ses alliés sont en train de créer."
+>
+  {/* ---------------------------------- Héro ---------------------------------- */}
+  <section class="relative overflow-hidden">
+    <img
+      src="/images/hero-puzzle.jpg"
+      alt=""
+      width="1376"
+      height="768"
+      loading="eager"
+      class="pointer-events-none absolute left-1/2 top-[46%] w-[1300px] max-w-none -translate-x-1/2 -translate-y-1/2 select-none opacity-60 [mask-image:radial-gradient(58%_58%_at_50%_50%,black_35%,transparent_100%)]"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-abyss/55 via-transparent to-abyss" aria-hidden="true"></div>
+
+    {/* Fragments flottants (décoratifs, désactivés si reduced-motion) */}
+    <svg viewBox="0 0 48 48" aria-hidden="true" class="puzzle-float absolute left-[8%] top-[22%] hidden size-16 text-volt/35 lg:block" style="--rot: -14deg; --dur: 11s;">
+      <use href="#lf-piece" fill="currentColor" opacity="0.35"></use>
+    </svg>
+    <svg viewBox="0 0 48 48" aria-hidden="true" class="puzzle-float absolute right-[10%] top-[58%] hidden size-20 text-magenta/30 lg:block" style="--rot: 18deg; --dur: 13s; --delay: -4s;">
+      <use href="#lf-piece" fill="currentColor" opacity="0.3"></use>
+    </svg>
+    <svg viewBox="0 0 48 48" aria-hidden="true" class="puzzle-float absolute bottom-[14%] left-[16%] hidden size-10 text-cyan/30 md:block" style="--rot: 32deg; --dur: 9s; --delay: -2s;">
+      <use href="#lf-piece" fill="currentColor" opacity="0.3"></use>
+    </svg>
+
+    <div class="relative mx-auto max-w-3xl px-4 pb-24 pt-24 text-center sm:pb-32 sm:pt-32">
+      <p class="rise inline-flex items-center gap-2 rounded-full border border-cyan/25 bg-cyan/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan">
+        Wiki · Théorie One Piece
+      </p>
+
+      <h1 class="rise mt-7 font-display text-4xl font-bold leading-[1.15] text-ink sm:text-6xl" style="--delay: 0.08s;">
+        Le Siècle oublié<br />
+        <span class="text-gradient">est le présent</span>
+      </h1>
+
+      <p class="rise mx-auto mt-6 max-w-xl text-base leading-relaxed text-mist/90 sm:text-lg" style="--delay: 0.16s;">
+        Le Siècle oublié ne serait pas un événement ancien qui se répète, mais
+        l’histoire que Luffy et ses alliés sont en train d’écrire. Ce wiki
+        structure, documente et fait évoluer cette hypothèse chapitre après chapitre.
+      </p>
+
+      <div class="rise mt-9 flex flex-wrap items-center justify-center gap-3" style="--delay: 0.24s;">
+        <a href="/la-theorie/figures-et-identites/luffy-joy-boy" class="btn-primary px-6 py-3 text-sm">
+          Lire la théorie
+          <Icon name="arrow-right" class="size-4" />
+        </a>
+        <a href="/verifier/sources" class="btn-ghost px-6 py-3 text-sm">Vérifier les preuves</a>
+      </div>
+
+      <p class="rise mt-8 text-xs text-mist/55" style="--delay: 0.32s;">
+        Maquette d’interface en construction — les contenus présentés sont des exemples.
+      </p>
+    </div>
+  </section>
+
+  {/* ------------------------------- Les 5 entrées ------------------------------- */}
+  <section class="mx-auto w-full max-w-[1200px] px-4 py-14 sm:px-6" aria-labelledby="sections-title">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-cyan">Naviguer</p>
+        <h2 id="sections-title" class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
+          Cinq portes d’entrée
+        </h2>
+      </div>
+      <p class="hidden max-w-xs text-right text-xs leading-relaxed text-mist/60 md:block">
+        Comprendre, explorer, suivre, vérifier : quatre usages, une seule source de vérité.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-5 xl:gap-3">
+      {sections.map((section, index) =>
+        section.href ? (
+          <a
+            href={section.href}
+            class="group rounded-2xl border border-line bg-depth/60 p-5 transition hover:-translate-y-1 hover:border-cyan/40 hover:bg-surface/40"
+          >
+            <div class="flex items-center justify-between">
+              <Icon name={section.icon} class="size-6 text-cyan/85" />
+              {index === 0 ? (
+                <Icon name="arrow-right" class="size-4 text-mist/40 transition group-hover:translate-x-1 group-hover:text-cyan" />
+              ) : (
+                <Icon name="arrow-right" class="size-4 text-mist/40 opacity-0 transition group-hover:translate-x-1 group-hover:text-cyan group-hover:opacity-100" />
+              )}
+            </div>
+            <h3 class="mt-4 text-base font-semibold text-ink">{section.title}</h3>
+            <p class="mt-1.5 text-[13px] leading-relaxed text-mist/75">{section.text}</p>
+          </a>
+        ) : (
+          <div class="rounded-2xl border border-dashed border-line bg-depth/35 p-5 opacity-75" aria-disabled="true">
+            <div class="flex items-center justify-between">
+              <Icon name={section.icon} class="size-6 text-mist/50" />
+              {section.note && <span class="badge">{section.note}</span>}
+            </div>
+            <h3 class="mt-4 text-base font-semibold text-mist">{section.title}</h3>
+            <p class="mt-1.5 text-[13px] leading-relaxed text-mist/60">{section.text}</p>
+          </div>
+        ),
+      )}
+    </div>
+  </section>
+
+  {/* ------------------------------ Dernier chapitre ----------------------------- */}
+  <section class="mx-auto w-full max-w-[1200px] px-4 pb-14 sm:px-6" aria-labelledby="chapter-title">
+    <a
+      href={lastChapter.href}
+      class="group block rounded-2xl border border-gold/25 bg-gradient-to-r from-gold/[0.07] via-depth/60 to-depth/60 p-6 transition hover:border-gold/45 sm:p-7"
+    >
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="min-w-0">
+          <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-gold">Dernier chapitre analysé</p>
+          <h2 id="chapter-title" class="mt-2 font-display text-xl font-bold text-ink sm:text-2xl">
+            Chapitre {lastChapter.number} — « {lastChapter.title} »
+          </h2>
+          <p class="mt-2 max-w-2xl text-sm leading-relaxed text-mist/75">
+            Chaque nouveau chapitre est passé au crible : articles mis à jour,
+            pièces du puzzle ajoutées, prédictions confirmées ou réfutées.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class={effect.className}>{effect.label}</span>
+          <span class="btn-icon transition group-hover:rotate-45 group-hover:border-gold/50 group-hover:text-gold" aria-hidden="true">
+            <Icon name="arrow-right" class="size-4 -rotate-45" />
+          </span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  {/* ------------------------------ Les 7 piliers -------------------------------- */}
+  <section class="mx-auto w-full max-w-[1200px] px-4 pb-16 sm:px-6" aria-labelledby="pillars-title">
+    <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-cyan">La théorie</p>
+    <h2 id="pillars-title" class="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
+      Sept piliers, un seul puzzle
+    </h2>
+    <p class="mt-3 max-w-2xl text-sm leading-relaxed text-mist/75">
+      Chaque pilier regroupe des articles canoniques : une information n’est
+      enregistrée qu’une fois, puis réutilisée partout où elle est nécessaire.
+    </p>
+
+    <ol class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {pillars.map((pillar, index) => (
+        <li>
+          {pillar.href ? (
+            <a href={pillar.href} class="related-card group">
+              <span class="flex items-baseline gap-3">
+                <span class="font-display text-sm font-bold text-gold">{String(index + 1).padStart(2, '0')}</span>
+                <span>{pillar.name}</span>
+              </span>
+              <Icon name="arrow-right" class="size-4 shrink-0 text-mist/50 transition group-hover:translate-x-1 group-hover:text-cyan" />
+            </a>
+          ) : (
+            <span class="related-card is-soon" aria-disabled="true">
+              <span class="flex items-baseline gap-3">
+                <span class="font-display text-sm font-bold text-mist/40">{String(index + 1).padStart(2, '0')}</span>
+                <span>{pillar.name}</span>
+              </span>
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-mist/50">Bientôt</span>
+            </span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  {/* ------------------------------- Principes ---------------------------------- */}
+  <section class="border-t border-line bg-depth/30">
+    <div class="mx-auto grid w-full max-w-[1200px] gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_1.6fr] md:items-center">
+      <div>
+        <p class="text-[11px] font-bold uppercase tracking-[0.24em] text-cyan">Méthode</p>
+        <h2 class="mt-2 font-display text-2xl font-bold text-ink">Lisibilité d’abord, effets ensuite</h2>
+        <p class="mt-3 text-sm leading-relaxed text-mist/75">
+          Le HTML statique constitue la base : chaque page reste lisible sans
+          animation, sans composant interactif et sans JavaScript.
+        </p>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        <li class="flex gap-3 rounded-xl border border-line bg-depth/50 p-4">
+          <Icon name="check-circle" class="mt-0.5 size-5 shrink-0 text-cyan" />
+          <div>
+            <p class="text-sm font-semibold text-ink">Une seule source de vérité</p>
+            <p class="mt-1 text-xs leading-relaxed text-mist/70">Une information n’est enregistrée qu’une fois, puis réutilisée.</p>
+          </div>
+        </li>
+        <li class="flex gap-3 rounded-xl border border-line bg-depth/50 p-4">
+          <Icon name="eye" class="mt-0.5 size-5 shrink-0 text-cyan" />
+          <div>
+            <p class="text-sm font-semibold text-ink">Transparence</p>
+            <p class="mt-1 text-xs leading-relaxed text-mist/70">Corrections, contradictions et prédictions réfutées restent visibles.</p>
+          </div>
+        </li>
+        <li class="flex gap-3 rounded-xl border border-line bg-depth/50 p-4">
+          <Icon name="quote" class="mt-0.5 size-5 shrink-0 text-cyan" />
+          <div>
+            <p class="text-sm font-semibold text-ink">Fait, interprétation, hypothèse</p>
+            <p class="mt-1 text-xs leading-relaxed text-mist/70">Chaque affirmation est rattachée à un chapitre ou à une source identifiable.</p>
+          </div>
+        </li>
+        <li class="flex gap-3 rounded-xl border border-line bg-depth/50 p-4">
+          <Icon name="users" class="mt-0.5 size-5 shrink-0 text-cyan" />
+          <div>
+            <p class="text-sm font-semibold text-ink">Projet ouvert</p>
+            <p class="mt-1 text-xs leading-relaxed text-mist/70">Issues et Pull Requests pour faire évoluer le site et la théorie.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {/* -------------------------------- Attribution ------------------------------- */}
+  <section class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6">
+    <p class="text-xs leading-relaxed text-mist/60">
+      Site de fans non officiel. La théorie originale est attribuée au
+      <strong class="font-medium text-mist/85"> Mont Corvo</strong> —
+      <a class="text-cyan hover:underline" href={siteIdentity.video} target="_blank" rel="noopener noreferrer">vidéo source</a>.
+      <em> One Piece</em> appartient à Eiichiro Oda, Shueisha et leurs partenaires.
+    </p>
+  </section>
+</BaseLayout>

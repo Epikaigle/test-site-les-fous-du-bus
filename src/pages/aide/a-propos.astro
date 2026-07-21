@@ -1,0 +1,65 @@
+---
+import ListingLayout from '../../layouts/ListingLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { siteIdentity } from '../../utils/navigation';
+---
+
+<ListingLayout
+  title="À propos"
+  description="« Les Fous du Bus » : un wiki éditorial open source consacré à la théorie « Le Siècle oublié est le présent », attribuée au Mont Corvo."
+  breadcrumbs={[
+    { label: 'Accueil', href: '/' },
+    { label: 'Aide' },
+    { label: 'À propos' },
+  ]}
+>
+  <header class="mt-5">
+    <p class="cat-chip">Aide</p>
+    <h1 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">À propos du projet</h1>
+    <p class="lede max-w-2xl">
+      Un wiki éditorial et interactif pour structurer, documenter et faire
+      évoluer une théorie de fan au fil des nouveaux chapitres de <em>One Piece</em>.
+    </p>
+  </header>
+
+  <div class="article-content mt-10">
+    <h2>Origine</h2>
+    <p>
+      La théorie est attribuée au <strong>Mont Corvo</strong> et provient de la vidéo
+      <a href={siteIdentity.video} target="_blank" rel="noopener noreferrer">« Le Siècle oublié est le présent »</a>.
+      Le compte <a href={siteIdentity.x} target="_blank" rel="noopener noreferrer">Fou du Bus TV</a>
+      permet de suivre les échanges et les actualités autour de la théorie.
+    </p>
+
+    <h2>Un projet ouvert</h2>
+    <p>
+      Le code est public : chacun peut le consulter, proposer des changements,
+      créer sa propre version ou réutiliser librement les créations originales
+      du dépôt (licence CC0). Issues et Pull Requests servent à faire évoluer
+      aussi bien le site que la théorie.
+    </p>
+
+    <div class="callout callout--fait">
+      <p class="callout-label"><Icon name="check-circle" class="size-4" />Cadre</p>
+      <p>
+        Site de fans non officiel. <em>One Piece</em>, ses personnages, son univers
+        et ses illustrations appartiennent à leurs auteurs et ayants droit
+        respectifs — notamment Eiichiro Oda, Shueisha et leurs partenaires. Le
+        projet n’est ni affilié, ni approuvé, ni sponsorisé par eux.
+      </p>
+    </div>
+
+    <h2>État du chantier</h2>
+    <ul>
+      <li><strong>V1 — Fondation</strong> : structure, premiers articles, recherche Pagefind, réglage anti-spoilers (site statique déployé sur Cloudflare).</li>
+      <li><strong>V2 — Exploration</strong> : double frise chronologique, carte du monde, graphe des personnages, base de preuves.</li>
+      <li><strong>V3 — Expériences avancées</strong> : globe 3D de Blue Star, fresque d’Elbaf interactive, boucle temporelle des Ponéglyphes.</li>
+    </ul>
+
+    <p>
+      <a class="btn-ghost mt-2 inline-flex px-5 py-2.5 text-sm" href={siteIdentity.repo} target="_blank" rel="noopener noreferrer">
+        Voir le dépôt GitHub <Icon name="external" class="size-4" />
+      </a>
+    </p>
+  </div>
+</ListingLayout>

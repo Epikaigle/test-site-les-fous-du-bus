@@ -1,0 +1,38 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import SidebarLeft from '../components/SidebarLeft.astro';
+import Breadcrumbs, { type Crumb } from '../components/Breadcrumbs.astro';
+
+/**
+ * Layout « section / liste » — deux colonnes (sidebar gauche + contenu large)
+ * pour les pages d'index, chapitres, FAQ, glossaire…
+ */
+
+interface Props {
+  title: string;
+  pageTitle?: string;
+  description: string;
+  breadcrumbs: Crumb[];
+}
+
+const { title, pageTitle, description, breadcrumbs } = Astro.props;
+---
+
+<BaseLayout title={`${pageTitle ?? title} | Les Fous du Bus`} description={description}>
+  <div class="mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8">
+    <div class="gap-10 lg:grid lg:grid-cols-[272px_minmax(0,1fr)]">
+      <aside class="hidden lg:block" aria-label="Navigation du site">
+        <div class="sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto pb-10 pr-2 pt-6">
+          <SidebarLeft />
+        </div>
+      </aside>
+
+      <div class="min-w-0">
+        <main id="contenu" data-pagefind-body class="w-full max-w-[880px] py-8 lg:py-10">
+          <Breadcrumbs trail={breadcrumbs} />
+          <slot />
+        </main>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

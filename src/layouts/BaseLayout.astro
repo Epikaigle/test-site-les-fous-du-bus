@@ -1,0 +1,115 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import SearchDialog from '../components/SearchDialog.astro';
+import SidebarLeft from '../components/SidebarLeft.astro';
+import Icon from '../components/Icon.astro';
+import { siteIdentity } from '../utils/navigation';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? siteIdentity.domain);
+---
+
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#07020A" />
+    <meta name="generator" content={Astro.generator} />
+
+    {/* Aperçus de partage (og-image à venir via Cloudflare R2) */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteIdentity.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    {/* Thème appliqué avant le premier rendu pour éviter tout flash */}
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('lfdb-theme');
+          const theme = stored === 'light' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="flex min-h-screen flex-col antialiased">
+    {/* Pièce de puzzle partagée : logo, décorations héro */}
+    <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="lf-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#6E3BBC"></stop>
+          <stop offset="0.55" stop-color="#AD57A7"></stop>
+          <stop offset="1" stop-color="#4DE7FF"></stop>
+        </linearGradient>
+        <symbol id="lf-piece" viewBox="0 0 48 48">
+          <rect x="11" y="11" width="26" height="26" rx="5"></rect>
+          <circle cx="24" cy="8.5" r="5.5"></circle>
+          <circle cx="39.5" cy="24" r="5.5"></circle>
+        </symbol>
+      </defs>
+    </svg>
+
+    <a href="#contenu" class="skip-link">Aller au contenu</a>
+
+    <Navbar />
+
+    <div class="flex-1 pt-16">
+      <slot />
+    </div>
+
+    <Footer />
+
+    <SearchDialog />
+
+    {/* Navigation mobile : même arborescence que la sidebar gauche */}
+    <div id="nav-drawer" class="drawer invisible lg:hidden" data-drawer>
+      <div class="drawer-backdrop" data-drawer-close></div>
+      <div
+        class="drawer-panel left-0 flex w-[320px] max-w-[86vw] flex-col border-r border-line bg-depth"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation du site"
+      >
+        <div class="flex h-16 items-center justify-between border-b border-line px-4">
+          <span class="font-display text-[13px] font-bold tracking-[0.16em] text-ink">LES FOUS DU BUS</span>
+          <button type="button" class="btn-icon" data-drawer-close aria-label="Fermer la navigation">
+            <Icon name="x" />
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4">
+          <SidebarLeft />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      import '../scripts/global';
+    </script>
+  </body>
+</html>

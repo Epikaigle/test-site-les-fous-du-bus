@@ -1,0 +1,71 @@
+---
+import Icon from './Icon.astro';
+import { navigation } from '../utils/navigation';
+
+/**
+ * Sidebar gauche : arborescence complète du site.
+ * - catégories dépliables (ouvertes automatiquement si elles contiennent la
+ *   page courante) ;
+ * - page active clairement indiquée ;
+ * - entrées sans page affichées « bientôt » et non cliquables ;
+ * - quand une catégorie a sa propre page, un premier lien « Vue d’ensemble »
+ *   y mène (un <summary> ne peut pas contenir de lien de façon fiable).
+ */
+
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+const isActive = (href?: string) => {
+  if (!href) return false;
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+};
+---
+
+<nav aria-label="Navigation du site" class="select-none">
+  <ul class="space-y-1">
+    {navigation.map((section) => {
+      const items = section.href
+        ? [{ label: 'Vue d’ensemble', href: section.href }, ...section.items]
+        : section.items;
+      const hasActiveChild = section.items.some((item) => isActive(item.href));
+      const sectionActive = isActive(section.href);
+      const isOpen = hasActiveChild || (sectionActive && section.href !== '/');
+      return (
+        <li>
+          {items.length === 0 ? (
+            <a href={section.href} aria-current={sectionActive ? 'page' : undefined} class:list={['nav-toplink', sectionActive && 'is-active']}>
+              {section.label}
+            </a>
+          ) : (
+            <details open={isOpen}>
+              <summary class="nav-summary">
+                <span>{section.label}</span>
+                <Icon name="chevron-right" class="nav-chevron size-3.5 text-mist/60" />
+              </summary>
+              <ul class="mb-2 ml-[1.05rem] space-y-0.5 border-l border-line pl-2.5 pt-0.5">
+                {items.map((item) => (
+                  <li>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        aria-current={isActive(item.href) ? 'page' : undefined}
+                        class:list={['nav-link', isActive(item.href) && 'is-active']}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <span class="nav-soon" aria-disabled="true">
+                        {item.label}
+                        <em>Bientôt</em>
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</nav>

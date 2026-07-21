@@ -1,0 +1,86 @@
+---
+import ListingLayout from '../../layouts/ListingLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const pillars = [
+  {
+    name: 'Fondations',
+    text: 'Les bases de la théorie : le Siècle oublié comme histoire en train de s’écrire, et non comme passé qui se répète.',
+  },
+  {
+    name: 'Figures et identités',
+    text: 'Luffy, Joy Boy, Nika, Imu : qui devient qui, et sur quelles preuves.',
+    href: '/la-theorie/figures-et-identites',
+  },
+  {
+    name: 'Armes antiques',
+    text: 'Pluton, Poséidon, Uranus : leur rôle dans la chronologie revisitée.',
+  },
+  {
+    name: 'Science, énergie et pouvoirs',
+    text: 'Mother Flame, énergie antique et fruits du démon sous l’angle de la théorie.',
+  },
+  {
+    name: 'Monde, peuples et témoins',
+    text: 'Îles, peuples et survivants qui recoupent la chronologie.',
+  },
+  {
+    name: 'Transmission, voix et mémoire',
+    text: 'Ponéglyphes, Voix de toutes choses, récits et souvenirs traversant le temps.',
+  },
+  {
+    name: 'Gouvernement et guerre finale',
+    text: 'Le Gouvernement Mondial, Imu et la guerre à venir lus à travers la théorie.',
+  },
+];
+---
+
+<ListingLayout
+  title="La théorie"
+  description="Les sept piliers de la théorie « Le Siècle oublié est le présent » : articles canoniques reliés entre eux."
+  breadcrumbs={[{ label: 'Accueil', href: '/' }, { label: 'La théorie' }]}
+>
+  <header class="mt-5">
+    <p class="cat-chip">Section</p>
+    <h1 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">La théorie</h1>
+    <p class="lede max-w-2xl">
+      Le Siècle oublié ne serait pas un événement ancien qui se répète, mais
+      l’histoire que Luffy et ses alliés sont en train de créer. La théorie se
+      lit en sept piliers.
+    </p>
+    <p class="mt-4"><span class="demo-note"><Icon name="sparkles" class="size-3.5" />Maquette d’interface — seuls les articles d’exemple sont rédigés</span></p>
+  </header>
+
+  <div class="mt-10 grid gap-4 sm:grid-cols-2">
+    {pillars.map((pillar, index) =>
+      pillar.href ? (
+        <a href={pillar.href} class="group rounded-2xl border border-line bg-depth/60 p-5 transition hover:-translate-y-0.5 hover:border-cyan/40 hover:bg-surface/40">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-sm font-bold text-gold">{String(index + 1).padStart(2, '0')}</span>
+            <Icon name="arrow-right" class="size-4 text-mist/40 transition group-hover:translate-x-1 group-hover:text-cyan" />
+          </div>
+          <h2 class="mt-3 text-base font-semibold text-ink">{pillar.name}</h2>
+          <p class="mt-1.5 text-[13px] leading-relaxed text-mist/75">{pillar.text}</p>
+        </a>
+      ) : (
+        <div class="rounded-2xl border border-dashed border-line bg-depth/35 p-5 opacity-70" aria-disabled="true">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-sm font-bold text-mist/40">{String(index + 1).padStart(2, '0')}</span>
+            <span class="badge">Bientôt</span>
+          </div>
+          <h2 class="mt-3 text-base font-semibold text-mist">{pillar.name}</h2>
+          <p class="mt-1.5 text-[13px] leading-relaxed text-mist/60">{pillar.text}</p>
+        </div>
+      ),
+    )}
+  </div>
+
+  <div class="callout callout--interpretation mt-10">
+    <p class="callout-label"><Icon name="compass" class="size-4" />Lecture conseillée</p>
+    <p>
+      Commencez par <strong>Figures et identités</strong> : c’est le pilier qui
+      illustre le mieux la méthode — fait du manga, interprétation et hypothèse
+      y sont distingués dans chaque article.
+    </p>
+  </div>
+</ListingLayout>

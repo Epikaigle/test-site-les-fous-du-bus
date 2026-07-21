@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+import { certaintyBadges, type Certainty } from '../utils/ui';
+
+/**
+ * Sidebar droite : sommaire généré depuis les titres de la page (rempli en
+ * JavaScript), avec métadonnées de lecture.
+ */
+
+interface Props {
+  /** Identifiant de la liste à remplir (le script injecte le sommaire). */
+  listId: string;
+  lastUpdatedChapter?: number;
+  certainty?: Certainty;
+}
+
+const { listId, lastUpdatedChapter, certainty } = Astro.props;
+const badge = certainty ? certaintyBadges[certainty] : undefined;
+---
+
+<div>
+  <p class="toc-heading">Dans cette page</p>
+  <div id={listId}></div>
+
+  <div class="mt-6 space-y-3 border-t border-line pt-4 text-xs text-mist/85">
+    {lastUpdatedChapter !== undefined && (
+      <p class="flex items-center gap-2.5">
+        <Icon name="clock" class="size-4 shrink-0 text-mist/60" />
+        <span>Mis à jour : <strong class="font-semibold text-ink">chapitre {lastUpdatedChapter}</strong></span>
+      </p>
+    )}
+    <p class="items-center gap-2.5" data-reading-time-wrap hidden>
+      <Icon name="book" class="size-4 shrink-0 text-mist/60" />
+      <span data-reading-time>Lecture : …</span>
+    </p>
+    {badge && (
+      <p class="flex items-center gap-2.5">
+        <Icon name="sparkles" class="size-4 shrink-0 text-mist/60" />
+        <span class={badge.className}>{badge.label}</span>
+      </p>
+    )}
+    <p class="border-t border-line pt-3 text-[11px] leading-relaxed text-mist/55">
+      Fait, interprétation et hypothèse sont distingués dans le corps de l’article.
+    </p>
+  </div>
+</div>

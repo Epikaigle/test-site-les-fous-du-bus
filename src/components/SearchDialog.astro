@@ -1,0 +1,41 @@
+---
+import Icon from './Icon.astro';
+---
+
+{/*
+  Recherche globale (Ctrl/⌘ + K).
+  L'index Pagefind est produit après le build : en développement, la boîte de
+  dialogue reste fonctionnelle et affiche un message d'information.
+*/}
+<div id="search-root" class="fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-label="Recherche globale">
+  <div class="absolute inset-0 bg-abyss/75 backdrop-blur-sm" data-search-close></div>
+
+  <div class="relative mx-auto mt-[10vh] w-[min(92vw,620px)] overflow-hidden rounded-2xl border border-line bg-depth shadow-2xl shadow-black/60">
+    <div class="flex items-center gap-3 border-b border-line px-4">
+      <Icon name="search" class="size-4 shrink-0 text-mist/70" />
+      <input
+        data-search-input
+        type="text"
+        placeholder="Rechercher un article, un chapitre, un personnage…"
+        class="h-13 min-w-0 flex-1 bg-transparent py-3.5 text-sm text-ink outline-none placeholder:text-mist/50"
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Rechercher dans le site"
+      />
+      <kbd class="kbd shrink-0">Échap</kbd>
+    </div>
+
+    <div data-search-results class="max-h-[52vh] overflow-y-auto p-2" aria-live="polite" aria-label="Résultats de recherche">
+      <p class="px-3 py-8 text-center text-sm text-mist/70">
+        Saisissez un terme : un personnage, un chapitre, un lieu…
+      </p>
+    </div>
+
+    <div class="flex items-center justify-between gap-3 border-t border-line px-4 py-2.5 text-[11px] text-mist/60">
+      <span>Recherche propulsée par <span class="text-mist/85">Pagefind</span> — index généré au build</span>
+      <span class="hidden items-center gap-1 sm:flex">
+        <kbd class="kbd">⌘</kbd><kbd class="kbd">K</kbd>
+      </span>
+    </div>
+  </div>
+</div>

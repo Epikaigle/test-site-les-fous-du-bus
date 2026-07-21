@@ -1,0 +1,79 @@
+---
+import ListingLayout from '../../layouts/ListingLayout.astro';
+import Icon from '../../components/Icon.astro';
+---
+
+<ListingLayout
+  title="Sources et méthode"
+  description="Comment le site distingue fait du manga, interprétation et hypothèse, et comment chaque affirmation est rattachée à un chapitre ou une source identifiable."
+  breadcrumbs={[
+    { label: 'Accueil', href: '/' },
+    { label: 'Vérifier' },
+    { label: 'Sources et méthode' },
+  ]}
+>
+  <header class="mt-5">
+    <p class="cat-chip">Vérifier</p>
+    <h1 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">Sources et méthode</h1>
+    <p class="lede max-w-2xl">
+      Une théorie ne vaut que par sa traçabilité. Cette page décrit comment les
+      articles citent leurs sources et séparent les niveaux de certitude.
+    </p>
+  </header>
+
+  <div class="article-content mt-10">
+    <h2>Trois niveaux, trois couleurs</h2>
+    <p>
+      Chaque affirmation du site appartient à l’une de ces trois catégories,
+      matérialisée par des encadrés dans les articles :
+    </p>
+  </div>
+
+  <div class="mt-6 space-y-4">
+    <div class="callout callout--fait">
+      <p class="callout-label"><Icon name="check-circle" class="size-4" />Fait du manga</p>
+      <p>
+        Un événement, une réplique ou un détail visuel directement observable,
+        rattaché à un chapitre précis. Exemple : la déclaration de Roger à
+        Laugh Tale (chapitre 968).
+      </p>
+    </div>
+    <div class="callout callout--interpretation">
+      <p class="callout-label"><Icon name="compass" class="size-4" />Interprétation</p>
+      <p>
+        Une lecture construite à partir de plusieurs faits recoupés. Elle est
+        débattue dans les objections et peut évoluer : les versions antérieures
+        restent dans l’historique.
+      </p>
+    </div>
+    <div class="callout callout--hypothese">
+      <p class="callout-label"><Icon name="sparkles" class="size-4" />Hypothèse de travail</p>
+      <p>
+        Une extrapolation falsifiable, formulée avec ses conditions de rejet.
+        Chaque hypothèse est reliée au tableau des prédictions.
+      </p>
+    </div>
+  </div>
+
+  <div class="article-content mt-10">
+    <h2>Rattacher chaque affirmation</h2>
+    <ul>
+      <li>Toute affirmation liée au manga doit pouvoir être rattachée à un <strong>chapitre</strong> ou à une <strong>source identifiable</strong>.</li>
+      <li>Les citations et scènes clés sont consignées comme <strong>pièces du puzzle</strong> avec leur chapitre, leur type (dialogue, dessin, mise en scène…) et leur force.</li>
+      <li>Les <strong>contradictions</strong> et <strong>prédictions réfutées</strong> restent visibles : la transparence prime sur la cohérence d’apparat.</li>
+    </ul>
+
+    <h2>Source de la théorie</h2>
+    <p>
+      La théorie est attribuée au <strong>Mont Corvo</strong> :
+      <a href="https://youtu.be/SgJ25zjMJyo" target="_blank" rel="noopener noreferrer">« Le Siècle oublié est le présent »</a> (vidéo originale).
+      Le site la structure, la documente et la fait évoluer au fil des chapitres,
+      sous le regard critique de ses lecteurs.
+    </p>
+
+    <p class="text-sm text-mist/60">
+      Page de démonstration de l’interface. Le référentiel complet des sources
+      (chapitre, scène, traduction) sera livré en V1.
+    </p>
+  </div>
+</ListingLayout>

@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  trail: Crumb[];
+}
+
+const { trail } = Astro.props;
+---
+
+<nav aria-label="Fil d’Ariane" class="text-xs">
+  <ol class="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-mist/70">
+    {trail.map((crumb, index) => (
+      <li class="flex items-center gap-1.5">
+        {index > 0 && <Icon name="chevron-right" class="size-3 text-mist/40" />}
+        {crumb.href && index < trail.length - 1 ? (
+          <a href={crumb.href} class="transition-colors hover:text-cyan">{crumb.label}</a>
+        ) : (
+          <span class:list={[index === trail.length - 1 && 'font-medium text-mist']} aria-current={index === trail.length - 1 ? 'page' : undefined}>
+            {crumb.label}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

@@ -1,0 +1,71 @@
+---
+import ListingLayout from '../../../layouts/ListingLayout.astro';
+import Icon from '../../../components/Icon.astro';
+import { certaintyBadges } from '../../../utils/ui';
+
+const articles = [
+  {
+    title: 'Luffy deviendra Joy Boy',
+    summary: 'Joy Boy serait le nom légendaire donné au futur Luffy : le « passé » légendaire serait en réalité le présent du manga.',
+    href: '/la-theorie/figures-et-identites/luffy-joy-boy',
+    certainty: 'central' as const,
+    lastUpdatedChapter: 1188,
+  },
+  {
+    title: 'Joy Boy',
+    summary: 'Figure légendaire du Siècle oublié. Si la théorie est juste, ce nom désigne quelqu’un que nous suivons déjà.',
+    href: '/la-theorie/figures-et-identites/joy-boy',
+    certainty: 'central' as const,
+    lastUpdatedChapter: 1188,
+  },
+];
+---
+
+<ListingLayout
+  title="Figures et identités"
+  description="Luffy, Joy Boy, Nika, Imu : qui devient qui dans la théorie « Le Siècle oublié est le présent », et sur quelles preuves."
+  breadcrumbs={[
+    { label: 'Accueil', href: '/' },
+    { label: 'La théorie', href: '/la-theorie' },
+    { label: 'Figures et identités' },
+  ]}
+>
+  <header class="mt-5">
+    <p class="cat-chip">La théorie · Pilier 02</p>
+    <h1 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">Figures et identités</h1>
+    <p class="lede max-w-2xl">
+      Si le Siècle oublié est le présent, alors certaines figures « légendaires »
+      désignent des personnages que nous suivons déjà. Ce pilier examine chaque
+      identité, une par une.
+    </p>
+  </header>
+
+  <ul class="mt-10 space-y-4">
+    {articles.map((article) => (
+      <li>
+        <a href={article.href} class="group block rounded-2xl border border-line bg-depth/60 p-5 transition hover:-translate-y-0.5 hover:border-cyan/40 hover:bg-surface/40 sm:p-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class={certaintyBadges[article.certainty].className}>{certaintyBadges[article.certainty].label}</span>
+            <span class="meta-chip"><Icon name="clock" class="size-3.5 text-mist/60" />Ch. {article.lastUpdatedChapter}</span>
+          </div>
+          <h2 class="mt-3 flex items-center gap-2 text-lg font-semibold text-ink">
+            {article.title}
+            <Icon name="arrow-right" class="size-4 text-mist/40 transition group-hover:translate-x-1 group-hover:text-cyan" />
+          </h2>
+          <p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-mist/75">{article.summary}</p>
+        </a>
+      </li>
+    ))}
+
+    <li class="rounded-2xl border border-dashed border-line bg-depth/35 p-5 opacity-70 sm:p-6" aria-disabled="true">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="badge">Bientôt</span>
+      </div>
+      <h2 class="mt-3 text-lg font-semibold text-mist">Nika, Imu, Shanks…</h2>
+      <p class="mt-1.5 max-w-2xl text-sm leading-relaxed text-mist/60">
+        Les autres fiches de ce pilier seront publiées avec le contenu réel de la V1 :
+        une page canonique par identité, reliée aux preuves et aux chapitres.
+      </p>
+    </li>
+  </ul>
+</ListingLayout>

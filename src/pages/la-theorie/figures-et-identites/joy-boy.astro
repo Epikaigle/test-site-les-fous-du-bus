@@ -1,0 +1,57 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+---
+
+<ArticleLayout
+  title="Joy Boy"
+  description="Figure légendaire du Siècle oublié. Si la théorie est juste, ce nom désigne quelqu'un que nous suivons déjà. Article de démonstration de l'interface."
+  summary="Premier pirate de l’histoire selon la légende, détenteur d’une promesse brisée. Si la théorie est juste, « Joy Boy » désigne quelqu’un que nous suivons déjà."
+  breadcrumbs={[
+    { label: 'Accueil', href: '/' },
+    { label: 'La théorie', href: '/la-theorie' },
+    { label: 'Figures et identités', href: '/la-theorie/figures-et-identites' },
+    { label: 'Joy Boy' },
+  ]}
+  category="Figures et identités"
+  categoryHref="/la-theorie/figures-et-identites"
+  certainty="central"
+  lastUpdatedChapter={1188}
+  demo={true}
+  toc={false}
+  related={[
+    { title: 'Luffy deviendra Joy Boy', note: 'L’article central de ce pilier', href: '/la-theorie/figures-et-identites/luffy-joy-boy' },
+    { title: 'La lettre à Poséidon', note: 'Pilier Transmission, voix et mémoire' },
+  ]}
+>
+  <h2>Qui est Joy Boy&nbsp;?</h2>
+  <p>
+    Dans le récit, Joy Boy est une figure du Siècle oublié : auteur de la lettre
+    d’excuse gravée sur un Ponéglyphe de l’île des Hommes-Poissons, promesse
+    liée à Noah, première apparition du nom révélée lors de la lecture de Roger
+    à Laugh Tale. Cette page est la <strong>page canonique</strong> du sujet :
+    tous les autres articles y renvoient.
+  </p>
+
+  <div class="callout callout--fait">
+    <p class="callout-label"><Icon name="check-circle" class="size-4" />Fait du manga — chapitre 628</p>
+    <p>
+      Néptune mentionne « Joy Boy » comme une figure de la « période du siècle
+      vide » ; Robin lit sa lettre d’excuse sur un Ponéglyphe de la forêt marine.
+    </p>
+  </div>
+
+  <h2>Ce que la théorie en fait</h2>
+  <p>
+    Si le Siècle oublié est le présent, Joy Boy n’est pas seulement un
+    prédécesseur : il est <strong>un nom à venir</strong>, celui sous lequel
+    l’histoire de Luffy sera résumée. L’article central
+    <a href="/la-theorie/figures-et-identites/luffy-joy-boy">« Luffy deviendra Joy Boy »</a>
+    détaille les indices, les objections et les prédictions associées.
+  </p>
+
+  <p class="mt-6 text-sm text-mist/60">
+    Article court de démonstration : la colonne de droite (sommaire) est
+    volontairement masquée, comme prévu pour les articles brefs.
+  </p>
+</ArticleLayout>

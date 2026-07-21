@@ -1,0 +1,130 @@
+---
+import ListingLayout from '../../layouts/ListingLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { chapterEffects, type ChapterEffect } from '../../utils/ui';
+
+interface ChapterCard {
+  number: number;
+  title: string;
+  effect: ChapterEffect;
+  note: string;
+  themes: string[];
+  updatedArticles: { label: string; href?: string }[];
+}
+
+const chapters: ChapterCard[] = [
+  {
+    number: 1188,
+    title: 'Une communication à travers le temps',
+    effect: 'nouvelle-piste',
+    note: 'Premier indice direct d’un canal temporel entre époques, que la théorie postulait indirectement.',
+    themes: ['temporalité', 'imu', 'joy-boy'],
+    updatedArticles: [
+      { label: 'Luffy deviendra Joy Boy', href: '/la-theorie/figures-et-identites/luffy-joy-boy' },
+      { label: 'Joy Boy', href: '/la-theorie/figures-et-identites/joy-boy' },
+      { label: 'Temporalité' },
+    ],
+  },
+  {
+    number: 1187,
+    title: 'Exemple de chapitre au statut « renforcement »',
+    effect: 'renforcement',
+    note: 'Un détail de mise en scène recoupe une prédiction existante sans la confirmer totalement.',
+    themes: ['ponéglyphes', 'voix-de-toutes-choses'],
+    updatedArticles: [{ label: 'Prédictions' }],
+  },
+  {
+    number: 1186,
+    title: 'Exemple de chapitre sans apport majeur',
+    effect: 'aucun-apport',
+    note: 'Aucun élément significatif pour la théorie : le chapitre est consigné et la fiche reste consultable.',
+    themes: [],
+    updatedArticles: [],
+  },
+];
+---
+
+<ListingLayout
+  title="Chapitre par chapitre"
+  description="Chaque nouveau chapitre de One Piece est analysé : renforcement, nouvelle piste, modification, contradiction, réfutation ou absence d'apport pour la théorie."
+  breadcrumbs={[
+    { label: 'Accueil', href: '/' },
+    { label: 'Évolution' },
+    { label: 'Chapitre par chapitre' },
+  ]}
+>
+  <header class="mt-5">
+    <p class="cat-chip">Évolution</p>
+    <h1 class="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">Chapitre par chapitre</h1>
+    <p class="lede max-w-2xl">
+      Pour chaque nouveau chapitre : une fiche, un effet sur la théorie, les
+      articles mis à jour et l’historique conservé. Rien n’est effacé.
+    </p>
+    <p class="mt-4"><span class="demo-note"><Icon name="sparkles" class="size-3.5" />Maquette d’interface — données d’exemple</span></p>
+  </header>
+
+  {/* Légende des statuts */}
+  <div class="mt-8 flex flex-wrap gap-2" aria-label="Légende des effets possibles">
+    {Object.values(chapterEffects).map((effect) => (
+      <span class={effect.className}>{effect.label}</span>
+    ))}
+  </div>
+
+  <ol class="mt-8 space-y-4">
+    {chapters.map((chapter) => (
+      <li class="rounded-2xl border border-line bg-depth/60 p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <h2 class="font-display text-lg font-bold text-ink">
+            <span class="text-gold">Ch. {chapter.number}</span>
+            <span class="mx-2 text-mist/40">·</span>
+            <span class="text-base font-semibold">{chapter.title}</span>
+          </h2>
+          <span class={chapterEffects[chapter.effect].className}>
+            {chapterEffects[chapter.effect].label}
+          </span>
+        </div>
+
+        <p class="mt-2.5 max-w-2xl text-sm leading-relaxed text-mist/75">{chapter.note}</p>
+
+        <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-mist/70">
+          {chapter.themes.length > 0 && (
+            <span class="flex flex-wrap items-center gap-1.5">
+              <Icon name="sparkles" class="size-3.5 text-mist/50" />
+              Thèmes :
+              {chapter.themes.map((theme) => (
+                <span class="rounded-full border border-line px-2 py-0.5 text-mist/85">{theme}</span>
+              ))}
+            </span>
+          )}
+          <span class="flex flex-wrap items-center gap-1.5">
+            <Icon name="book" class="size-3.5 text-mist/50" />
+            Articles mis à jour :
+            {chapter.updatedArticles.length > 0 ? (
+              chapter.updatedArticles.map((article, index) => (
+                <span>
+                  {article.href ? (
+                    <a href={article.href} class="text-cyan hover:underline">{article.label}</a>
+                  ) : (
+                    <span class="text-mist/50" title="Page à venir">{article.label}</span>
+                  )}
+                  {index < chapter.updatedArticles.length - 1 && <span class="text-mist/40">, </span>}
+                </span>
+              ))
+            ) : (
+              <span class="text-mist/50">aucun</span>
+            )}
+          </span>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <div class="callout callout--hypothese mt-10">
+    <p class="callout-label"><Icon name="shield" class="size-4" />Anti-spoilers</p>
+    <p>
+      Les fiches chapitres respecteront le réglage anti-spoilers : leur contenu
+      détaillé sera masqué au-delà du chapitre de votre choix (icône bouclier
+      dans la barre de navigation).
+    </p>
+  </div>
+</ListingLayout>
