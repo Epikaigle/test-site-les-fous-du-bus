@@ -3,31 +3,32 @@
 @tailwind utilities;
 
 @layer base {
-  :root, .dark {
-    --bg-main: #07020A;
-    --bg-secondary: #160B27;
-    --surface: #22124A;
-    --violet: #6E3BBC;
-    --magenta: #AD57A7;
-    --cyan: #4DE7FF;
-    --text-main: #FEFBF8;
-    --text-secondary: #DDE4EA;
-    --accent-gold: #F4B63F;
-    --alert: #9E3244;
+  :root,
+  .dark {
+    --bg-main: #07020a;
+    --bg-secondary: #160b27;
+    --surface: #22124a;
+    --violet: #6e3bbc;
+    --magenta: #ad57a7;
+    --cyan: #4de7ff;
+    --text-main: #fefbf8;
+    --text-secondary: #dde4ea;
+    --accent-gold: #f4b63f;
+    --alert: #9e3244;
     --border-color: rgba(221, 228, 234, 0.1);
   }
 
   .light {
-    --bg-main: #F8F9FA;
-    --bg-secondary: #FFFFFF;
-    --surface: #E9ECEF;
-    --violet: #6E3BBC;
-    --magenta: #AD57A7;
-    --cyan: #15AABF;
+    --bg-main: #f8f9fa;
+    --bg-secondary: #ffffff;
+    --surface: #e9ecef;
+    --violet: #6e3bbc;
+    --magenta: #ad57a7;
+    --cyan: #15aabf;
     --text-main: #212529;
     --text-secondary: #495057;
-    --accent-gold: #F59F00;
-    --alert: #C92A2A;
+    --accent-gold: #f59f00;
+    --alert: #c92a2a;
     --border-color: rgba(33, 37, 41, 0.1);
   }
 
@@ -39,8 +40,12 @@
   body {
     @apply text-textMain font-sans antialiased;
     background-color: var(--bg-main);
-    background-image: 
-      linear-gradient(to bottom, color-mix(in srgb, var(--bg-main) 85%, transparent), color-mix(in srgb, var(--bg-main) 98%, transparent)),
+    background-image:
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--bg-main) 85%, transparent),
+        color-mix(in srgb, var(--bg-main) 98%, transparent)
+      ),
       url('/wallpaper.png');
     background-size: cover;
     background-position: center top;
@@ -118,12 +123,16 @@
   }
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   @apply transition-colors duration-200;
 }
 
 /* Prevent horizontal overflow globally */
-img, video, iframe {
+img,
+video,
+iframe {
   max-width: 100%;
 }
 

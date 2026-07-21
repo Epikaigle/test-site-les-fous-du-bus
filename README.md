@@ -2,7 +2,7 @@
 
 ## Le Siècle oublié est le présent
 
-> Wiki éditorial et interactif consacré à une théorie sur *One Piece* : le Siècle oublié ne serait pas un événement ancien qui se répète, mais l’histoire que Luffy et ses alliés sont en train de créer.
+> Wiki éditorial et interactif consacré à une théorie sur _One Piece_ : le Siècle oublié ne serait pas un événement ancien qui se répète, mais l’histoire que Luffy et ses alliés sont en train de créer.
 
 [Site](https://lesfousdubus.sbs) · [Dépôt GitHub](https://github.com/lesfousdubus-theorie/lesfousdubus) · [Vidéo originale](https://youtu.be/SgJ25zjMJyo) · [Compte X](https://x.com/FoudubusTV_)
 
@@ -36,13 +36,13 @@ Le projet est ouvert : chacun peut consulter le code, proposer des changements, 
 
 ## Identité du projet
 
-| Élément | Valeur |
-|---|---|
-| Nom du site | **Les Fous du Bus** |
-| Titre principal | **Le Siècle oublié est le présent** |
-| Sous-titre | **Une théorie sur la véritable chronologie de One Piece** |
-| Domaine | **https://lesfousdubus.sbs** |
-| Dépôt | **https://github.com/lesfousdubus-theorie/lesfousdubus** |
+| Élément         | Valeur                                                    |
+| --------------- | --------------------------------------------------------- |
+| Nom du site     | **Les Fous du Bus**                                       |
+| Titre principal | **Le Siècle oublié est le présent**                       |
+| Sous-titre      | **Une théorie sur la véritable chronologie de One Piece** |
+| Domaine         | **https://lesfousdubus.sbs**                              |
+| Dépôt           | **https://github.com/lesfousdubus-theorie/lesfousdubus**  |
 
 ### Utilisation du nom
 
@@ -61,7 +61,7 @@ La théorie est attribuée au **Mont Corvo** et provient de la vidéo :
 
 Le compte [Fou du Bus TV](https://x.com/FoudubusTV_) permet de suivre les échanges et les actualités autour de la théorie.
 
-Le site a pour objectif de structurer, documenter, développer et faire évoluer cette théorie au fil des nouveaux chapitres de *One Piece*.
+Le site a pour objectif de structurer, documenter, développer et faire évoluer cette théorie au fil des nouveaux chapitres de _One Piece_.
 
 ---
 
@@ -248,41 +248,41 @@ La miniature sert de **référence artistique**, sans être reproduite littéral
 
 ### Palette de départ
 
-| Rôle | Valeur |
-|---|---|
-| Fond principal | `#07020A` |
-| Fond secondaire | `#160B27` |
-| Surface | `#22124A` |
-| Violet électrique | `#6E3BBC` |
+| Rôle                | Valeur    |
+| ------------------- | --------- |
+| Fond principal      | `#07020A` |
+| Fond secondaire     | `#160B27` |
+| Surface             | `#22124A` |
+| Violet électrique   | `#6E3BBC` |
 | Magenta énergétique | `#AD57A7` |
-| Bleu cyan | `#4DE7FF` |
-| Texte principal | `#FEFBF8` |
-| Texte secondaire | `#DDE4EA` |
-| Accent doré | `#F4B63F` |
-| Alerte | `#9E3244` |
+| Bleu cyan           | `#4DE7FF` |
+| Texte principal     | `#FEFBF8` |
+| Texte secondaire    | `#DDE4EA` |
+| Accent doré         | `#F4B63F` |
+| Alerte              | `#9E3244` |
 
 ---
 
 ## Stack technique
 
-| Besoin | Technologie |
-|---|---|
-| Framework | [Astro](https://astro.build/) |
-| Langage | TypeScript |
-| Contenu | Markdown et MDX |
-| Données | Astro Content Collections |
-| Interactivité | React Islands |
-| Styles | Tailwind CSS + CSS personnalisé |
-| Recherche | [Pagefind](https://pagefind.app/) |
-| Cartes 2D | SVG interactif |
-| 3D | Three.js + React Three Fiber |
-| Tests | Vitest + Playwright |
-| Hébergement | Cloudflare Workers avec Static Assets |
-| Images | Cloudflare R2 |
-| Transformation des images | Cloudflare Images |
-| CI/CD | GitHub + Cloudflare Workers Builds |
-| Analytics | Cloudflare Web Analytics |
-| Base de données | Aucune en V1 |
+| Besoin                    | Technologie                           |
+| ------------------------- | ------------------------------------- |
+| Framework                 | [Astro](https://astro.build/)         |
+| Langage                   | TypeScript                            |
+| Contenu                   | Markdown et MDX                       |
+| Données                   | Astro Content Collections             |
+| Interactivité             | React Islands                         |
+| Styles                    | Tailwind CSS + CSS personnalisé       |
+| Recherche                 | [Pagefind](https://pagefind.app/)     |
+| Cartes 2D                 | SVG interactif                        |
+| 3D                        | Three.js + React Three Fiber          |
+| Tests                     | Vitest + Playwright                   |
+| Hébergement               | Cloudflare Workers avec Static Assets |
+| Images                    | Cloudflare R2                         |
+| Transformation des images | Cloudflare Images                     |
+| CI/CD                     | GitHub + Cloudflare Workers Builds    |
+| Analytics                 | Cloudflare Web Analytics              |
+| Base de données           | Aucune en V1                          |
 
 Le site est **statique par défaut**. Les pages principales doivent rester lisibles lorsque les composants interactifs ne se chargent pas.
 
@@ -396,12 +396,12 @@ Le contenu est stocké dans des collections structurées et validées.
 
 ```yaml
 ---
-title: "Luffy deviendra Joy Boy"
-slug: "luffy-joy-boy"
-summary: "Joy Boy serait le nom légendaire donné au futur Luffy."
-category: "figures-identites"
-status: "published"
-certainty: "central"
+title: 'Luffy deviendra Joy Boy'
+slug: 'luffy-joy-boy'
+summary: 'Joy Boy serait le nom légendaire donné au futur Luffy.'
+category: 'figures-identites'
+status: 'published'
+certainty: 'central'
 lastUpdatedChapter: 1188
 related:
   - luffy
@@ -415,8 +415,8 @@ related:
 ```yaml
 ---
 chapter: 1188
-title: "Une communication à travers le temps"
-effect: "nouvelle-piste"
+title: 'Une communication à travers le temps'
+effect: 'nouvelle-piste'
 themes:
   - temporalite
   - imu
@@ -432,11 +432,11 @@ updatedArticles:
 
 ```yaml
 ---
-id: "roger-trop-tot"
-title: "Nous sommes arrivés trop tôt"
+id: 'roger-trop-tot'
+title: 'Nous sommes arrivés trop tôt'
 chapter: 968
-type: "dialogue"
-strength: "majeure"
+type: 'dialogue'
+strength: 'majeure'
 articles:
   - gol-d-roger
   - laugh-tale
@@ -612,13 +612,12 @@ En proposant une contribution au dépôt, son auteur accepte que les éléments 
 
 ## Attribution et licence
 
-Ce projet est un site de fans non officiel consacré à l’analyse de *One Piece*.
+Ce projet est un site de fans non officiel consacré à l’analyse de _One Piece_.
 
 La théorie originale est attribuée au **Mont Corvo**, à travers [cette vidéo](https://youtu.be/SgJ25zjMJyo).
 
-*One Piece*, ses personnages, son univers, ses illustrations et ses autres éléments protégés appartiennent à leurs auteurs et ayants droit respectifs, notamment Eiichiro Oda, Shueisha et leurs partenaires.
+_One Piece_, ses personnages, son univers, ses illustrations et ses autres éléments protégés appartiennent à leurs auteurs et ayants droit respectifs, notamment Eiichiro Oda, Shueisha et leurs partenaires.
 
 Le projet n’est ni affilié, ni approuvé, ni sponsorisé par les détenteurs de ces droits.
 
-Les contenus, images, extraits, marques et personnages issus de *One Piece* ne sont pas placés sous la licence libre du projet. Ils restent soumis aux droits de leurs propriétaires respectifs.
-
+Les contenus, images, extraits, marques et personnages issus de _One Piece_ ne sont pas placés sous la licence libre du projet. Ils restent soumis aux droits de leurs propriétaires respectifs.

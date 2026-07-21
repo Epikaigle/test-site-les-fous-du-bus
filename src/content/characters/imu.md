@@ -1,9 +1,9 @@
 ---
-name: "Imu"
-era: "moderne"
-aliases: ["Le Souverain Mondial"]
-summary: "Souverain caché du Gouvernement Mondial, détenteur du pouvoir ultime. Dans la théorie, Imu serait le miroir inversé de Joy Boy : celui qui maintient le passé verrouillé pour empêcher le présent de se réécrire."
-articles: ["communication-temps", "signification-d"]
+name: 'Imu'
+era: 'moderne'
+aliases: ['Le Souverain Mondial']
+summary: 'Souverain caché du Gouvernement Mondial, détenteur du pouvoir ultime. Dans la théorie, Imu serait le miroir inversé de Joy Boy : celui qui maintient le passé verrouillé pour empêcher le présent de se réécrire.'
+articles: ['communication-temps', 'signification-d']
 order: 3
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: "Roger qui rit et pleure à Laugh Tale"
+title: 'Roger qui rit et pleure à Laugh Tale'
 chapter: 967
-type: "dialogue"
-strength: "secondaire"
-articles: ["laugh-tale-n-existe-pas-encore", "luffy-deviendra-joy-boy"]
+type: 'dialogue'
+strength: 'secondaire'
+articles: ['laugh-tale-n-existe-pas-encore', 'luffy-deviendra-joy-boy']
 quote: "Joy Boy, j'aurais aimé naître à la même époque que toi."
 ---
 

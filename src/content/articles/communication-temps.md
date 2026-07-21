@@ -1,11 +1,11 @@
 ---
-title: "Une communication à travers le temps"
+title: 'Une communication à travers le temps'
 summary: "Le Siècle oublié ne serait pas un passé clos mais un présent en train de se construire, et les époques communiqueraient par l'intermédiaire des Ponéglyphes."
-category: "transmission-memoire"
-status: "published"
-certainty: "moyenne"
+category: 'transmission-memoire'
+status: 'published'
+certainty: 'moyenne'
 lastUpdatedChapter: 1188
-related: ["signification-d", "laugh-tale-n-existe-pas-encore", "nika-le-dieu-du-soleil"]
+related: ['signification-d', 'laugh-tale-n-existe-pas-encore', 'nika-le-dieu-du-soleil']
 ---
 
 ## L'idée centrale
@@ -14,7 +14,7 @@ La théorie du Siècle oublié repose sur un renversement simple : ce que l'on c
 
 ## La communication à travers le temps
 
-Le chapitre 1188 ouvre une piste nouvelle : les époques ne se contentent pas de se ressembler, elles *communiquent*. Les Ponéglyphes seraient le canal de cette transmission, portant un message du futur vers le passé.
+Le chapitre 1188 ouvre une piste nouvelle : les époques ne se contentent pas de se ressembler, elles _communiquent_. Les Ponéglyphes seraient le canal de cette transmission, portant un message du futur vers le passé.
 
 ## Conséquences
 

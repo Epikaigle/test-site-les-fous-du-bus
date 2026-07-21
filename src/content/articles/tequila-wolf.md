@@ -1,11 +1,11 @@
 ---
-title: "Le rôle du pont de Tequila Wolf"
-summary: "Le pont de Tequila Wolf, construit pendant des siècles sans jamais être achevé, serait une métaphore de la boucle temporelle et du travail sans fin imposé par le pouvoir en place."
-category: "monde-peuples"
-status: "published"
-certainty: "moyenne"
+title: 'Le rôle du pont de Tequila Wolf'
+summary: 'Le pont de Tequila Wolf, construit pendant des siècles sans jamais être achevé, serait une métaphore de la boucle temporelle et du travail sans fin imposé par le pouvoir en place.'
+category: 'monde-peuples'
+status: 'published'
+certainty: 'moyenne'
 lastUpdatedChapter: 1188
-related: ["signification-d", "communication-temps"]
+related: ['signification-d', 'communication-temps']
 ---
 
 ## Un pont qui ne mène nulle part

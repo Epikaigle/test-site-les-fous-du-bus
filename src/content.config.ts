@@ -1,8 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const articles = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
@@ -13,7 +14,7 @@ const articles = defineCollection({
       'science-energie',
       'monde-peuples',
       'gouvernement-guerre',
-      'transmission-memoire'
+      'transmission-memoire',
     ]),
     status: z.enum(['draft', 'published']).default('draft'),
     certainty: z.enum(['central', 'elevee', 'moyenne', 'hypothese']).default('moyenne'),
@@ -25,7 +26,7 @@ const articles = defineCollection({
 });
 
 const chapters = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/chapters" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/chapters' }),
   schema: z.object({
     chapter: z.number(),
     title: z.string(),
@@ -35,7 +36,7 @@ const chapters = defineCollection({
       'modification',
       'contradiction',
       'refutation',
-      'aucun-apport'
+      'aucun-apport',
     ]),
     themes: z.array(z.string()).default([]),
     updatedArticles: z.array(z.string()).default([]),
@@ -44,7 +45,7 @@ const chapters = defineCollection({
 });
 
 const evidence = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/evidence" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/evidence' }),
   schema: z.object({
     title: z.string(),
     chapter: z.number(),
@@ -56,7 +57,7 @@ const evidence = defineCollection({
 });
 
 const glossary = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/glossary" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/glossary' }),
   schema: z.object({
     term: z.string(),
     definition: z.string(),
@@ -65,7 +66,7 @@ const glossary = defineCollection({
 });
 
 const characters = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/characters" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/characters' }),
   schema: z.object({
     name: z.string(),
     era: z.enum(['ancien', 'moderne', 'transversal']).default('transversal'),
@@ -77,7 +78,7 @@ const characters = defineCollection({
 });
 
 const locations = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/locations" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/locations' }),
   schema: z.object({
     name: z.string(),
     region: z.string().default('Inconnu'),
@@ -88,7 +89,7 @@ const locations = defineCollection({
 });
 
 const objections = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/objections" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/objections' }),
   schema: z.object({
     title: z.string(),
     argument: z.string(),
@@ -99,7 +100,7 @@ const objections = defineCollection({
 });
 
 const predictions = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/predictions" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/predictions' }),
   schema: z.object({
     title: z.string(),
     statement: z.string(),
@@ -110,7 +111,7 @@ const predictions = defineCollection({
 });
 
 const timelines = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/timelines" }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/timelines' }),
   schema: z.object({
     title: z.string(),
     period: z.enum(['siecle-oublie', 'present', 'futur', 'boucle']).default('present'),

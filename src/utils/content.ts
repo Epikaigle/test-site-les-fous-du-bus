@@ -6,7 +6,7 @@ export type ArticleEntry = CollectionEntry<'articles'>;
 export async function getPublishedArticles(): Promise<ArticleEntry[]> {
   const articles = await getCollection('articles', ({ data }) => data.status === 'published');
   return articles.sort(
-    (a, b) => (b.data.lastUpdatedChapter ?? 0) - (a.data.lastUpdatedChapter ?? 0)
+    (a, b) => (b.data.lastUpdatedChapter ?? 0) - (a.data.lastUpdatedChapter ?? 0),
   );
 }
 
@@ -14,7 +14,7 @@ export async function getPublishedArticles(): Promise<ArticleEntry[]> {
 export async function getArticlesByCategory(category: string): Promise<ArticleEntry[]> {
   const articles = await getCollection(
     'articles',
-    ({ data }) => data.category === category && data.status === 'published'
+    ({ data }) => data.category === category && data.status === 'published',
   );
   return articles.sort((a, b) => (b.data.order ?? 0) - (a.data.order ?? 0));
 }

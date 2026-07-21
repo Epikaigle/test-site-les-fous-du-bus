@@ -4,276 +4,280 @@ import Footer from '@components/Footer.astro';
 ---
 
 <WikiLayout title="Évolution" currentPath="/evolution">
-    <div class="page-header">
-        <div class="text-accentGold font-semibold tracking-widest uppercase text-sm mb-3">Suivi</div>
-        <h1>Évolution de la théorie</h1>
-        <p class="page-desc">
-            Suivez l'évolution de la théorie chapitre par chapitre. Chaque nouveau chapitre de <em>One Piece</em> peut renforcer, modifier ou contredire les hypothèses existantes.
-        </p>
+  <div class="page-header">
+    <div class="text-accentGold font-semibold tracking-widest uppercase text-sm mb-3">Suivi</div>
+    <h1>Évolution de la théorie</h1>
+    <p class="page-desc">
+      Suivez l'évolution de la théorie chapitre par chapitre. Chaque nouveau chapitre de <em
+        >One Piece</em
+      > peut renforcer, modifier ou contredire les hypothèses existantes.
+    </p>
+  </div>
+
+  <div class="nav-cards">
+    <a href="/evolution/chapitres" class="nav-card">
+      <span class="nav-card__icon">📖</span>
+      <div>
+        <h3>Chapitre par chapitre</h3>
+        <p>Analyse de l'apport de chaque nouveau chapitre à la théorie.</p>
+      </div>
+    </a>
+
+    <a href="/evolution/previsions" class="nav-card">
+      <span class="nav-card__icon">🔮</span>
+      <div>
+        <h3>Prédictions</h3>
+        <p>Tableau des prédictions formulées par la théorie et leur statut actuel.</p>
+      </div>
+    </a>
+
+    <a href="/evolution/historique" class="nav-card">
+      <span class="nav-card__icon">📋</span>
+      <div>
+        <h3>Historique des articles</h3>
+        <p>Historique complet des modifications apportées aux articles.</p>
+      </div>
+    </a>
+
+    <a href="/evolution/abandonnees" class="nav-card">
+      <span class="nav-card__icon">🗑️</span>
+      <div>
+        <h3>Hypothèses abandonnées</h3>
+        <p>Les pistes qui ont été réfutées ou abandonnées en cours de route.</p>
+      </div>
+    </a>
+  </div>
+
+  <h2 class="section-title">Derniers chapitres analysés</h2>
+  <div class="chapter-list">
+    <div class="chapter-item">
+      <div class="chapter-item__badges">
+        <span class="badge-chapter">Chap 1188</span>
+        <span class="badge-effect badge-effect--violet">Nouv. piste</span>
+      </div>
+      <h4>Une communication à travers le temps</h4>
+      <p class="chapter-item__desc">
+        Nouvelles révélations sur la transmission entre le passé et le présent.
+      </p>
     </div>
-
-    <div class="nav-cards">
-        <a href="/evolution/chapitres" class="nav-card">
-            <span class="nav-card__icon">📖</span>
-            <div>
-                <h3>Chapitre par chapitre</h3>
-                <p>Analyse de l'apport de chaque nouveau chapitre à la théorie.</p>
-            </div>
-        </a>
-
-        <a href="/evolution/previsions" class="nav-card">
-            <span class="nav-card__icon">🔮</span>
-            <div>
-                <h3>Prédictions</h3>
-                <p>Tableau des prédictions formulées par la théorie et leur statut actuel.</p>
-            </div>
-        </a>
-
-        <a href="/evolution/historique" class="nav-card">
-            <span class="nav-card__icon">📋</span>
-            <div>
-                <h3>Historique des articles</h3>
-                <p>Historique complet des modifications apportées aux articles.</p>
-            </div>
-        </a>
-
-        <a href="/evolution/abandonnees" class="nav-card">
-            <span class="nav-card__icon">🗑️</span>
-            <div>
-                <h3>Hypothèses abandonnées</h3>
-                <p>Les pistes qui ont été réfutées ou abandonnées en cours de route.</p>
-            </div>
-        </a>
+    <div class="chapter-item">
+      <div class="chapter-item__badges">
+        <span class="badge-chapter">Chap 1187</span>
+        <span class="badge-effect badge-effect--gold">Modification</span>
+      </div>
+      <h4>Énergie antique et Flamme Mère</h4>
+      <p class="chapter-item__desc">Précisions sur le rôle de la Flamme Mère dans la théorie.</p>
     </div>
-
-    <h2 class="section-title">Derniers chapitres analysés</h2>
-    <div class="chapter-list">
-        <div class="chapter-item">
-            <div class="chapter-item__badges">
-                <span class="badge-chapter">Chap 1188</span>
-                <span class="badge-effect badge-effect--violet">Nouv. piste</span>
-            </div>
-            <h4>Une communication à travers le temps</h4>
-            <p class="chapter-item__desc">Nouvelles révélations sur la transmission entre le passé et le présent.</p>
-        </div>
-        <div class="chapter-item">
-            <div class="chapter-item__badges">
-                <span class="badge-chapter">Chap 1187</span>
-                <span class="badge-effect badge-effect--gold">Modification</span>
-            </div>
-            <h4>Énergie antique et Flamme Mère</h4>
-            <p class="chapter-item__desc">Précisions sur le rôle de la Flamme Mère dans la théorie.</p>
-        </div>
-        <div class="chapter-item">
-            <div class="chapter-item__badges">
-                <span class="badge-chapter">Chap 1186</span>
-                <span class="badge-effect badge-effect--gold">Renforcement</span>
-            </div>
-            <h4>Luffy et Joy Boy</h4>
-            <p class="chapter-item__desc">Nouveaux éléments confirmant le lien entre Luffy et Joy Boy.</p>
-        </div>
+    <div class="chapter-item">
+      <div class="chapter-item__badges">
+        <span class="badge-chapter">Chap 1186</span>
+        <span class="badge-effect badge-effect--gold">Renforcement</span>
+      </div>
+      <h4>Luffy et Joy Boy</h4>
+      <p class="chapter-item__desc">Nouveaux éléments confirmant le lien entre Luffy et Joy Boy.</p>
     </div>
+  </div>
 
-    <div class="info-box">
-        <h3>📊 Statistiques</h3>
-        <div class="stats">
-            <div class="stat">
-                <span class="stat__value">3</span>
-                <span class="stat__label">Chapitres analysés</span>
-            </div>
-            <div class="stat">
-                <span class="stat__value">0</span>
-                <span class="stat__label">Prédictions en cours</span>
-            </div>
-            <div class="stat">
-                <span class="stat__value">0</span>
-                <span class="stat__label">Contradictions</span>
-            </div>
-        </div>
+  <div class="info-box">
+    <h3>📊 Statistiques</h3>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat__value">3</span>
+        <span class="stat__label">Chapitres analysés</span>
+      </div>
+      <div class="stat">
+        <span class="stat__value">0</span>
+        <span class="stat__label">Prédictions en cours</span>
+      </div>
+      <div class="stat">
+        <span class="stat__value">0</span>
+        <span class="stat__label">Contradictions</span>
+      </div>
     </div>
+  </div>
 
-    <Footer />
+  <Footer />
 </WikiLayout>
 
 <style>
-    .page-header {
-        margin-bottom: 48px;
-    }
+  .page-header {
+    margin-bottom: 48px;
+  }
 
-    .page-header h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        font-weight: 700;
-        margin-bottom: 16px;
-        line-height: 1.2;
-    }
+  .page-header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
 
-    .page-desc {
-        font-size: 15px;
-        color: var(--text-secondary);
-        max-width: 700px;
-        line-height: 1.6;
-    }
+  .page-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    line-height: 1.6;
+  }
 
-    .nav-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 12px;
-        margin-bottom: 48px;
-    }
+  .nav-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
 
-    .nav-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 18px;
-        background-color: var(--bg-main);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
+  .nav-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
 
-    .nav-card:hover {
-        background-color: var(--bg-secondary);
-        border-color: var(--violet);
-    }
+  .nav-card:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--violet);
+  }
 
-    .nav-card__icon {
-        font-size: 1.3rem;
-        flex-shrink: 0;
-        margin-top: 2px;
-    }
+  .nav-card__icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
 
-    .nav-card h3 {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--text-main);
-        margin-bottom: 4px;
-        transition: color 0.2s;
-    }
+  .nav-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+    transition: color 0.2s;
+  }
 
-    .nav-card:hover h3 {
-        color: var(--cyan);
-    }
+  .nav-card:hover h3 {
+    color: var(--cyan);
+  }
 
-    .nav-card p {
-        font-size: 13px;
-        color: var(--text-secondary);
-        line-height: 1.4;
-        margin: 0;
-    }
+  .nav-card p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin: 0;
+  }
 
-    .section-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 20px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border-color);
-    }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-    .chapter-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 40px;
-    }
+  .chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
 
-    .chapter-item {
-        padding: 16px 20px;
-        background-color: var(--bg-main);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-    }
+  .chapter-item {
+    padding: 16px 20px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+  }
 
-    .chapter-item__badges {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 8px;
-        flex-wrap: wrap;
-    }
+  .chapter-item__badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
 
-    .badge-chapter {
-        font-size: 11px;
-        font-weight: 500;
-        padding: 2px 6px;
-        border-radius: 3px;
-        background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
-        color: var(--cyan);
-        border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+  .badge-chapter {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    color: var(--cyan);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    .badge-effect {
-        font-size: 11px;
-        font-weight: 500;
-        padding: 2px 6px;
-        border-radius: 3px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+  .badge-effect {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    .badge-effect--violet {
-        background-color: color-mix(in srgb, var(--violet) 10%, transparent);
-        color: #D3B3FF;
-        border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
-    }
+  .badge-effect--violet {
+    background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+    color: #d3b3ff;
+    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
+  }
 
-    .badge-effect--gold {
-        background-color: color-mix(in srgb, var(--accent-gold) 10%, transparent);
-        color: var(--accent-gold);
-        border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
-    }
+  .badge-effect--gold {
+    background-color: color-mix(in srgb, var(--accent-gold) 10%, transparent);
+    color: var(--accent-gold);
+    border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
+  }
 
-    .chapter-item h4 {
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--text-main);
-        margin-bottom: 4px;
-    }
+  .chapter-item h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 4px;
+  }
 
-    .chapter-item__desc {
-        font-size: 13px;
-        color: var(--text-secondary);
-        line-height: 1.5;
-        margin: 0;
-    }
+  .chapter-item__desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
 
-    .info-box {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        padding: 24px;
-        border-radius: 4px;
-        margin-top: 48px;
-    }
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    border-radius: 4px;
+    margin-top: 48px;
+  }
 
-    .info-box h3 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 16px;
-    }
+  .info-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
 
-    .stats {
-        display: flex;
-        gap: 32px;
-        flex-wrap: wrap;
-    }
+  .stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
 
-    .stat {
-        display: flex;
-        flex-direction: column;
-    }
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .stat__value {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--cyan);
-        line-height: 1;
-    }
+  .stat__value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cyan);
+    line-height: 1;
+  }
 
-    .stat__label {
-        font-size: 12px;
-        color: var(--text-secondary);
-        margin-top: 4px;
-    }
+  .stat__label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
 </style>

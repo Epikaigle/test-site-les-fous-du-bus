@@ -1,8 +1,8 @@
 ---
-name: "Île des Hommes-Poissons"
-region: "Ciel de la Mer"
+name: 'Île des Hommes-Poissons'
+region: 'Ciel de la Mer'
 summary: "Royaume sous-marin lié à Poséidon et à l'Arme antique de la Mer. Dans la théorie, elle est le relais moderne de l'Arme antique marine."
-articles: ["luffy-deviendra-joy-boy"]
+articles: ['luffy-deviendra-joy-boy']
 order: 4
 ---
 

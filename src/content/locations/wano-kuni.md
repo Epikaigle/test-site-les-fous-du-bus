@@ -1,8 +1,8 @@
 ---
-name: "Wano Kuni"
-region: "Pays des Wa"
+name: 'Wano Kuni'
+region: 'Pays des Wa'
 summary: "Royaume isolé lié à la technologie ancienne, à la Flamme Mère et au sabre légendaire. Dans la théorie, Wano serait un pont entre l'ancienne civilisation et le présent."
-articles: ["energie-antique", "luffy-deviendra-joy-boy"]
+articles: ['energie-antique', 'luffy-deviendra-joy-boy']
 order: 3
 ---
 

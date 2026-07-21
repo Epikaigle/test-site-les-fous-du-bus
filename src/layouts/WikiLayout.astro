@@ -21,195 +21,221 @@ const { title, description, currentPath, headings } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-    <Navbar />
-    
-    <div class="layout">
-        <aside class="sidebar sidebar-left">
-            <SidebarNav currentPath={currentPath} />
-        </aside>
-        
-        <main class="main-content">
-            <slot />
-        </main>
-        
-        <aside class="sidebar sidebar-right">
-            <SidebarToc headings={headings} />
-        </aside>
-    </div>
+  <Navbar />
 
-    <!-- Floating TOC button for tablet/mobile -->
-    <button id="toc-toggle" class="toc-fab" aria-label="Sommaire">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-    </button>
+  <div class="layout">
+    <aside class="sidebar sidebar-left">
+      <SidebarNav currentPath={currentPath} />
+    </aside>
 
-    <!-- TOC mobile drawer -->
-    <div id="toc-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden" style="top: 48px;"></div>
-    <div id="toc-drawer" class="fixed top-[48px] right-0 bottom-0 w-[280px] bg-bgMain border-l border-white/10 z-40 overflow-y-auto hidden transform translate-x-full transition-transform duration-300 ease-in-out p-5">
-        <SidebarToc headings={headings} />
-    </div>
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <aside class="sidebar sidebar-right">
+      <SidebarToc headings={headings} />
+    </aside>
+  </div>
+
+  <!-- Floating TOC button for tablet/mobile -->
+  <button id="toc-toggle" class="toc-fab" aria-label="Sommaire">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line
+        x1="8"
+        y1="18"
+        x2="21"
+        y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line
+        x1="3"
+        y1="12"
+        x2="3.01"
+        y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg
+    >
+  </button>
+
+  <!-- TOC mobile drawer -->
+  <div
+    id="toc-overlay"
+    class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"
+    style="top: 48px;"
+  >
+  </div>
+  <div
+    id="toc-drawer"
+    class="fixed top-[48px] right-0 bottom-0 w-[280px] bg-bgMain border-l border-white/10 z-40 overflow-y-auto hidden transform translate-x-full transition-transform duration-300 ease-in-out p-5"
+  >
+    <SidebarToc headings={headings} />
+  </div>
 </BaseLayout>
 
 <style>
-    .layout {
-        display: grid;
-        grid-template-columns: 240px minmax(0, 820px) 240px;
-        justify-content: center;
-        gap: 24px;
-        flex: 1;
-        max-width: 1440px;
-        margin: 0 auto;
-        width: 100%;
-    }
+  .layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 820px) 240px;
+    justify-content: center;
+    gap: 24px;
+    flex: 1;
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+  }
 
-    .sidebar {
-        padding: 32px 16px;
-        height: calc(100vh - 48px);
-        position: sticky;
-        top: 48px;
-        overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: var(--surface) transparent;
-    }
+  .sidebar {
+    padding: 32px 16px;
+    height: calc(100vh - 48px);
+    position: sticky;
+    top: 48px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--surface) transparent;
+  }
 
-    .sidebar-left {
-        border-right: 1px solid var(--border-color);
-        display: flex;
-        justify-content: flex-end;
-    }
-    
-    .sidebar-left > * {
-        width: 100%;
-        max-width: 220px;
-    }
+  .sidebar-left {
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+  }
 
+  .sidebar-left > * {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .sidebar-right {
+    border-left: 1px solid var(--border-color);
+  }
+
+  .sidebar-right > * {
+    width: 100%;
+    max-width: 220px;
+  }
+
+  .main-content {
+    padding: 48px 32px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Floating TOC button - hidden on desktop where sidebar-right is visible */
+  .toc-fab {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .toc-fab:hover {
+    background-color: var(--surface);
+    color: var(--text-main);
+    border-color: var(--violet);
+  }
+
+  /* Tablet: hide right sidebar, show TOC button */
+  @media (max-width: 1200px) {
     .sidebar-right {
-        border-left: 1px solid var(--border-color);
+      display: none;
     }
-    
-    .sidebar-right > * {
-        width: 100%;
-        max-width: 220px;
+    .layout {
+      grid-template-columns: 240px minmax(0, 1fr);
+      max-width: 1100px;
     }
-
-    .main-content {
-        padding: 48px 32px;
-        width: 100%;
-        min-width: 0;
-    }
-
-    /* Floating TOC button - hidden on desktop where sidebar-right is visible */
     .toc-fab {
-        display: none;
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        color: var(--text-secondary);
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 30;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        transition: all 0.2s ease;
+      display: flex;
     }
+  }
 
-    .toc-fab:hover {
-        background-color: var(--surface);
-        color: var(--text-main);
-        border-color: var(--violet);
+  /* Mobile: hide left sidebar (accessible via hamburger), single column */
+  @media (max-width: 768px) {
+    .sidebar-left {
+      display: none;
     }
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .main-content {
+      padding: 24px 16px;
+    }
+    .toc-fab {
+      bottom: 16px;
+      right: 16px;
+    }
+  }
 
-    /* Tablet: hide right sidebar, show TOC button */
-    @media (max-width: 1200px) {
-        .sidebar-right {
-            display: none;
-        }
-        .layout {
-            grid-template-columns: 240px minmax(0, 1fr);
-            max-width: 1100px;
-        }
-        .toc-fab {
-            display: flex;
-        }
+  /* Small mobile */
+  @media (max-width: 480px) {
+    .main-content {
+      padding: 20px 12px;
     }
-
-    /* Mobile: hide left sidebar (accessible via hamburger), single column */
-    @media (max-width: 768px) {
-        .sidebar-left {
-            display: none;
-        }
-        .layout {
-            grid-template-columns: 1fr;
-        }
-        .main-content {
-            padding: 24px 16px;
-        }
-        .toc-fab {
-            bottom: 16px;
-            right: 16px;
-        }
-    }
-
-    /* Small mobile */
-    @media (max-width: 480px) {
-        .main-content {
-            padding: 20px 12px;
-        }
-    }
+  }
 </style>
 
 <script>
-    const tocToggle = document.getElementById("toc-toggle");
-    const tocOverlay = document.getElementById("toc-overlay");
-    const tocDrawer = document.getElementById("toc-drawer");
+  const tocToggle = document.getElementById('toc-toggle');
+  const tocOverlay = document.getElementById('toc-overlay');
+  const tocDrawer = document.getElementById('toc-drawer');
 
-    const isTocOpen = () => !tocDrawer?.classList.contains("translate-x-full");
+  const isTocOpen = () => !tocDrawer?.classList.contains('translate-x-full');
 
-    const openToc = () => {
-        tocOverlay?.classList.remove("hidden");
-        tocDrawer?.classList.remove("hidden");
-        requestAnimationFrame(() => {
-            tocDrawer?.classList.remove("translate-x-full");
-        });
-        document.body.style.overflow = "hidden";
-    };
-
-    const closeToc = () => {
-        tocDrawer?.classList.add("translate-x-full");
-        tocOverlay?.classList.add("hidden");
-        document.body.style.overflow = "";
-        setTimeout(() => {
-            if (!isTocOpen()) {
-                tocDrawer?.classList.add("hidden");
-            }
-        }, 300);
-    };
-
-    tocToggle?.addEventListener("click", () => {
-        if (isTocOpen()) {
-            closeToc();
-        } else {
-            openToc();
-        }
+  const openToc = () => {
+    tocOverlay?.classList.remove('hidden');
+    tocDrawer?.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      tocDrawer?.classList.remove('translate-x-full');
     });
+    document.body.style.overflow = 'hidden';
+  };
 
-    tocOverlay?.addEventListener("click", closeToc);
+  const closeToc = () => {
+    tocDrawer?.classList.add('translate-x-full');
+    tocOverlay?.classList.add('hidden');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!isTocOpen()) {
+        tocDrawer?.classList.add('hidden');
+      }
+    }, 300);
+  };
 
-    // Close TOC when clicking a link inside
-    document.querySelectorAll("#toc-drawer a").forEach(link => {
-        link.addEventListener("click", () => {
-            closeToc();
-        });
+  tocToggle?.addEventListener('click', () => {
+    if (isTocOpen()) {
+      closeToc();
+    } else {
+      openToc();
+    }
+  });
+
+  tocOverlay?.addEventListener('click', closeToc);
+
+  // Close TOC when clicking a link inside
+  document.querySelectorAll('#toc-drawer a').forEach((link) => {
+    link.addEventListener('click', () => {
+      closeToc();
     });
+  });
 
-    // Close TOC on resize to desktop
-    window.addEventListener("resize", () => {
-        if (window.innerWidth > 1200 && isTocOpen()) {
-            closeToc();
-        }
-    });
+  // Close TOC on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1200 && isTocOpen()) {
+      closeToc();
+    }
+  });
 </script>

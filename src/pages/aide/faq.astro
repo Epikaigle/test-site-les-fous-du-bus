@@ -3,140 +3,184 @@ import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
 
 const faqs = [
-    {
-        q: "Qu'est-ce que la théorie du « Siècle oublié est le présent » ?",
-        a: "Cette théorie propose que le Siècle oublié de One Piece n'est pas un événement ancien qui se répète, mais l'histoire que Luffy et ses alliés sont en train de créer. Les personnages actuels seraient les véritables figures légendaires (Joy Boy, Poséidon, etc.) que l'histoire retiendra."
-    },
-    {
-        q: "D'où vient cette théorie ?",
-        a: "La théorie est attribuée au Mont Corvo et a été présentée dans la vidéo « Le Siècle oublié est le présent ». Ce site a pour objectif de la structurer, la documenter et la faire évoluer au fil des chapitres."
-    },
-    {
-        q: "Les Ponéglyphes raconteraient le futur ?",
-        a: "Selon la théorie, les Ponéglyphes ne raconteraient pas le passé, mais le futur gravé à l'avance puis envoyé 800 ans en arrière. C'est l'un des piliers centraux de l'hypothèse."
-    },
-    {
-        q: "Quelle est la différence entre un fait, une interprétation et une hypothèse ?",
-        a: "Un fait est un événement explicitement montré ou dit dans le manga. Une interprétation est une lecture possible de ces faits. Une hypothèse est une prédiction ou une extension qui n'a pas encore été confirmée par le manga."
-    },
-    {
-        q: "Comment les articles sont-ils mis à jour ?",
-        a: "À chaque nouveau chapitre de One Piece, les articles concernés sont analysés et mis à jour. Le statut de chaque modification est indiqué : renforcement, nouvelle piste, modification, contradiction ou réfutation."
-    },
-    {
-        q: "Puis-je contribuer au site ?",
-        a: "Oui ! Le projet est ouvert. Vous pouvez ouvrir une Issue sur GitHub pour signaler une erreur, proposer une amélioration ou discuter d'un point de la théorie. Vous pouvez aussi soumettre une Pull Request."
-    },
-    {
-        q: "Comment utiliser la recherche ?",
-        a: "Utilisez le raccourci Ctrl+K (ou Cmd+K sur Mac) pour ouvrir la recherche globale. Vous pouvez aussi cliquer sur l'icône de loupe dans la navbar. La recherche couvre l'ensemble des articles du site."
-    },
-    {
-        q: "Le site est-il officiel ?",
-        a: "Non. C'est un projet fan-made non officiel. One Piece et ses éléments appartiennent à Eiichiro Oda, Shueisha et leurs partenaires. Le site n'est ni affilié, ni approuvé, ni sponsorisé par les détenteurs de ces droits."
-    },
+  {
+    q: "Qu'est-ce que la théorie du « Siècle oublié est le présent » ?",
+    a: "Cette théorie propose que le Siècle oublié de One Piece n'est pas un événement ancien qui se répète, mais l'histoire que Luffy et ses alliés sont en train de créer. Les personnages actuels seraient les véritables figures légendaires (Joy Boy, Poséidon, etc.) que l'histoire retiendra.",
+  },
+  {
+    q: "D'où vient cette théorie ?",
+    a: 'La théorie est attribuée au Mont Corvo et a été présentée dans la vidéo « Le Siècle oublié est le présent ». Ce site a pour objectif de la structurer, la documenter et la faire évoluer au fil des chapitres.',
+  },
+  {
+    q: 'Les Ponéglyphes raconteraient le futur ?',
+    a: "Selon la théorie, les Ponéglyphes ne raconteraient pas le passé, mais le futur gravé à l'avance puis envoyé 800 ans en arrière. C'est l'un des piliers centraux de l'hypothèse.",
+  },
+  {
+    q: 'Quelle est la différence entre un fait, une interprétation et une hypothèse ?',
+    a: "Un fait est un événement explicitement montré ou dit dans le manga. Une interprétation est une lecture possible de ces faits. Une hypothèse est une prédiction ou une extension qui n'a pas encore été confirmée par le manga.",
+  },
+  {
+    q: 'Comment les articles sont-ils mis à jour ?',
+    a: 'À chaque nouveau chapitre de One Piece, les articles concernés sont analysés et mis à jour. Le statut de chaque modification est indiqué : renforcement, nouvelle piste, modification, contradiction ou réfutation.',
+  },
+  {
+    q: 'Puis-je contribuer au site ?',
+    a: "Oui ! Le projet est ouvert. Vous pouvez ouvrir une Issue sur GitHub pour signaler une erreur, proposer une amélioration ou discuter d'un point de la théorie. Vous pouvez aussi soumettre une Pull Request.",
+  },
+  {
+    q: 'Comment utiliser la recherche ?',
+    a: "Utilisez le raccourci Ctrl+K (ou Cmd+K sur Mac) pour ouvrir la recherche globale. Vous pouvez aussi cliquer sur l'icône de loupe dans la navbar. La recherche couvre l'ensemble des articles du site.",
+  },
+  {
+    q: 'Le site est-il officiel ?',
+    a: "Non. C'est un projet fan-made non officiel. One Piece et ses éléments appartiennent à Eiichiro Oda, Shueisha et leurs partenaires. Le site n'est ni affilié, ni approuvé, ni sponsorisé par les détenteurs de ces droits.",
+  },
 ];
 ---
 
 <WikiLayout title="FAQ" currentPath="/aide/faq">
-    <div class="page-header">
-        <h1>Foire aux questions</h1>
-        <p class="page-desc">Les réponses aux questions les plus fréquentes sur la théorie et le site.</p>
-    </div>
+  <div class="page-header">
+    <h1>Foire aux questions</h1>
+    <p class="page-desc">
+      Les réponses aux questions les plus fréquentes sur la théorie et le site.
+    </p>
+  </div>
 
-    <div class="faq-list">
-        {faqs.map((faq, i) => (
-            <details class="faq-item" open={i === 0}>
-                <summary class="faq-question">
-                    <span>{faq.q}</span>
-                    <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </summary>
-                <div class="faq-answer">
-                    <p>{faq.a}</p>
-                </div>
-            </details>
-        ))}
-    </div>
+  <div class="faq-list">
+    {
+      faqs.map((faq, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary class="faq-question">
+            <span>{faq.q}</span>
+            <svg
+              class="faq-chevron"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))
+    }
+  </div>
 
-    <div class="info-box">
-        <p>Vous n'avez pas trouvé votre réponse ? <a href="/aide/correction">Proposez une correction</a> ou ouvrez une <a href="https://github.com/Epikaigle/test-site-les-fous-du-bus/issues" target="_blank" rel="noopener">Issue sur GitHub</a>.</p>
-    </div>
+  <div class="info-box">
+    <p>
+      Vous n'avez pas trouvé votre réponse ? <a href="/aide/correction">Proposez une correction</a> ou
+      ouvrez une <a
+        href="https://github.com/Epikaigle/test-site-les-fous-du-bus/issues"
+        target="_blank"
+        rel="noopener">Issue sur GitHub</a
+      >.
+    </p>
+  </div>
 
-    <Footer />
+  <Footer />
 </WikiLayout>
 
 <style>
-    .page-header { margin-bottom: 40px; }
-    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 12px; }
-    .page-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+  .page-header {
+    margin-bottom: 40px;
+  }
+  .page-header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .page-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
 
-    .faq-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
 
-    .faq-item {
-        background-color: var(--bg-main);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        overflow: hidden;
-    }
+  .faq-item {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-    .faq-item[open] {
-        border-color: color-mix(in srgb, var(--violet) 30%, var(--border-color));
-    }
+  .faq-item[open] {
+    border-color: color-mix(in srgb, var(--violet) 30%, var(--border-color));
+  }
 
-    .faq-question {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 20px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--text-main);
-        list-style: none;
-        gap: 12px;
-    }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    list-style: none;
+    gap: 12px;
+  }
 
-    .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
 
-    .faq-question:hover {
-        background-color: var(--bg-secondary);
-    }
+  .faq-question:hover {
+    background-color: var(--bg-secondary);
+  }
 
-    .faq-chevron {
-        flex-shrink: 0;
-        color: var(--text-secondary);
-        transition: transform 0.2s;
-    }
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    transition: transform 0.2s;
+  }
 
-    .faq-item[open] .faq-chevron {
-        transform: rotate(180deg);
-    }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
 
-    .faq-answer {
-        padding: 0 20px 16px;
-    }
+  .faq-answer {
+    padding: 0 20px 16px;
+  }
 
-    .faq-answer p {
-        font-size: 14px;
-        color: var(--text-secondary);
-        line-height: 1.7;
-        margin: 0;
-        padding-top: 4px;
-        border-top: 1px solid var(--border-color);
-        padding-top: 12px;
-    }
+  .faq-answer p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    padding-top: 4px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+  }
 
-    .info-box {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        padding: 16px 20px;
-        border-radius: 4px;
-    }
-    .info-box p {
-        color: var(--text-secondary);
-        font-size: 14px;
-        margin: 0;
-        line-height: 1.6;
-    }
-    .info-box a { color: var(--cyan); text-decoration: underline; text-underline-offset: 2px; }
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 16px 20px;
+    border-radius: 4px;
+  }
+  .info-box p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .info-box a {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 </style>

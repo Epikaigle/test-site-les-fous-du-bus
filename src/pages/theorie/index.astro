@@ -5,128 +5,132 @@ import Footer from '@components/Footer.astro';
 ---
 
 <WikiLayout title="La théorie" currentPath="/theorie">
-    <div class="hero">
-        <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Explorer</div>
-        <h1>La théorie</h1>
-        <p class="subtitle">
-            Plongez dans l'analyse complète du Siècle oublié et découvrez comment les événements actuels de <em>One Piece</em> pourraient être la réécriture de l'histoire ancienne.
-        </p>
-    </div>
+  <div class="hero">
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Explorer</div>
+    <h1>La théorie</h1>
+    <p class="subtitle">
+      Plongez dans l'analyse complète du Siècle oublié et découvrez comment les événements actuels
+      de <em>One Piece</em> pourraient être la réécriture de l'histoire ancienne.
+    </p>
+  </div>
 
-    <h2 class="section-title">Catégories</h2>
-    <div class="grid">
-        <CategoryCard 
-            icon="🏗️" 
-            title="Fondations" 
-            description="Les piliers de la théorie, la nature de la boucle temporelle et les grands principes du Siècle oublié." 
-            href="/theorie/fondations" 
-        />
-        <CategoryCard 
-            icon="🎭" 
-            title="Figures et identités" 
-            description="Joy Boy, Nika, Imu. Les parallèles et véritables identités des acteurs majeurs." 
-            href="/theorie/figures-identites" 
-        />
-        <CategoryCard 
-            icon="🔱" 
-            title="Armes antiques" 
-            description="Pluton, Poséidon, Uranus : leur véritable fonction et leur lien avec la boucle temporelle." 
-            href="/theorie/armes-antiques" 
-        />
-        <CategoryCard 
-            icon="⚡" 
-            title="Science, énergie et pouvoirs" 
-            description="L'ancienne technologie, la Flamme Mère, l'origine des Fruits du Démon et le Haki." 
-            href="/theorie/science-energie" 
-        />
-        <CategoryCard 
-            icon="🗺️" 
-            title="Monde, peuples et témoins" 
-            description="Les D., les Lunarias, les géants d'Elbaf, Wano Kuni et les témoins de l'histoire." 
-            href="/theorie/monde-peuples" 
-        />
-        <CategoryCard 
-            icon="⚖️" 
-            title="Gouvernement et guerre finale" 
-            description="La création du Gouvernement Mondial, le rôle du Gorosei et l'issue du grand conflit." 
-            href="/theorie/gouvernement-guerre" 
-        />
-        <CategoryCard 
-            icon="📜" 
-            title="Chronologie" 
-            description="La frise chronologique complète des événements passés, présents et futurs." 
-            href="/theorie/chronologie" 
-        />
-    </div>
+  <h2 class="section-title">Catégories</h2>
+  <div class="grid">
+    <CategoryCard
+      icon="🏗️"
+      title="Fondations"
+      description="Les piliers de la théorie, la nature de la boucle temporelle et les grands principes du Siècle oublié."
+      href="/theorie/fondations"
+    />
+    <CategoryCard
+      icon="🎭"
+      title="Figures et identités"
+      description="Joy Boy, Nika, Imu. Les parallèles et véritables identités des acteurs majeurs."
+      href="/theorie/figures-identites"
+    />
+    <CategoryCard
+      icon="🔱"
+      title="Armes antiques"
+      description="Pluton, Poséidon, Uranus : leur véritable fonction et leur lien avec la boucle temporelle."
+      href="/theorie/armes-antiques"
+    />
+    <CategoryCard
+      icon="⚡"
+      title="Science, énergie et pouvoirs"
+      description="L'ancienne technologie, la Flamme Mère, l'origine des Fruits du Démon et le Haki."
+      href="/theorie/science-energie"
+    />
+    <CategoryCard
+      icon="🗺️"
+      title="Monde, peuples et témoins"
+      description="Les D., les Lunarias, les géants d'Elbaf, Wano Kuni et les témoins de l'histoire."
+      href="/theorie/monde-peuples"
+    />
+    <CategoryCard
+      icon="⚖️"
+      title="Gouvernement et guerre finale"
+      description="La création du Gouvernement Mondial, le rôle du Gorosei et l'issue du grand conflit."
+      href="/theorie/gouvernement-guerre"
+    />
+    <CategoryCard
+      icon="📜"
+      title="Chronologie"
+      description="La frise chronologique complète des événements passés, présents et futurs."
+      href="/theorie/chronologie"
+    />
+  </div>
 
-    <h2 class="section-title">Articles récents</h2>
-    <div class="info-box">
-        <p>Consultez la page d'accueil pour voir les derniers articles publiés et les analyses des chapitres récents.</p>
-    </div>
+  <h2 class="section-title">Articles récents</h2>
+  <div class="info-box">
+    <p>
+      Consultez la page d'accueil pour voir les derniers articles publiés et les analyses des
+      chapitres récents.
+    </p>
+  </div>
 
-    <Footer />
+  <Footer />
 </WikiLayout>
 
 <style>
+  .hero {
+    margin-bottom: 48px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 56px;
+  }
+
+  .section-title:first-of-type {
+    margin-top: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--cyan);
+    padding: 16px 20px;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .info-box p {
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
     .hero {
-        margin-bottom: 48px;
+      margin-bottom: 32px;
     }
-
-    .hero h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        font-weight: 700;
-        margin-bottom: 16px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-    }
-
-    .subtitle {
-        font-size: 16px;
-        color: var(--text-secondary);
-        max-width: 700px;
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
-
     .section-title {
-        font-size: 20px;
-        font-weight: 600;
-        margin-bottom: 24px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border-color);
-        margin-top: 56px;
+      margin-top: 40px;
     }
-
-    .section-title:first-of-type {
-        margin-top: 0;
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 16px;
-    }
-
-    .info-box {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-left: 3px solid var(--cyan);
-        padding: 16px 20px;
-        border-radius: 4px;
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
-
-    .info-box p {
-        margin: 0;
-    }
-
-    @media (max-width: 640px) {
-        .hero {
-            margin-bottom: 32px;
-        }
-        .section-title {
-            margin-top: 40px;
-        }
-    }
+  }
 </style>
