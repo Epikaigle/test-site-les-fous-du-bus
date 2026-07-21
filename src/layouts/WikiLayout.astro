@@ -32,8 +32,45 @@ const { title, description, currentPath, headings } = Astro.props;
       <slot />
     </main>
 
-    <aside class="sidebar sidebar-right">
-      <SidebarToc headings={headings} />
+    <aside class="sidebar sidebar-right" id="sidebar-right">
+      <button
+        class="sidebar-right-toggle"
+        id="sidebar-right-toggle"
+        aria-label="Replier le sommaire"
+        title="Replier le sommaire"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="toggle-icon toggle-icon-close"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="toggle-icon toggle-icon-open hidden"
+        >
+          <line x1="6" y1="18" x2="18" y2="6"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="sidebar-right-content" id="sidebar-right-content">
+        <SidebarToc headings={headings} />
+      </div>
     </aside>
   </div>
 
@@ -100,7 +137,7 @@ const { title, description, currentPath, headings } = Astro.props;
   .sidebar-left {
     border-right: 1px solid var(--border-color);
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .sidebar-left > * {
@@ -110,11 +147,57 @@ const { title, description, currentPath, headings } = Astro.props;
 
   .sidebar-right {
     border-left: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
 
-  .sidebar-right > * {
+  .sidebar-right-content {
     width: 100%;
     max-width: 220px;
+    flex: 1;
+    overflow-y: auto;
+    transition: opacity 0.2s ease, max-width 0.3s ease, padding 0.3s ease;
+  }
+
+  .sidebar-right.collapsed .sidebar-right-content {
+    max-width: 0;
+    opacity: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-right-toggle {
+    position: absolute;
+    top: 16px;
+    right: -12px;
+    z-index: 10;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-right-toggle:hover {
+    background-color: var(--surface);
+    color: var(--text-main);
+    border-color: var(--violet);
+  }
+
+  .sidebar-right.collapsed .toggle-icon-close {
+    display: none;
+  }
+
+  .sidebar-right.collapsed .toggle-icon-open {
+    display: block;
   }
 
   .main-content {
@@ -189,6 +272,37 @@ const { title, description, currentPath, headings } = Astro.props;
 </style>
 
 <script>
+  // Right sidebar (TOC) collapse/expand
+  const sidebarRight = document.getElementById('sidebar-right');
+  const sidebarRightToggle = document.getElementById('sidebar-right-toggle');
+
+  const isSidebarRightCollapsed = () => sidebarRight?.classList.contains('collapsed');
+
+  const toggleSidebarRight = () => {
+    sidebarRight?.classList.toggle('collapsed');
+    // Update aria-label and title
+    if (isSidebarRightCollapsed()) {
+      sidebarRightToggle?.setAttribute('aria-label', 'Déplier le sommaire');
+      sidebarRightToggle?.setAttribute('title', 'Déplier le sommaire');
+    } else {
+      sidebarRightToggle?.setAttribute('aria-label', 'Replier le sommaire');
+      sidebarRightToggle?.setAttribute('title', 'Replier le sommaire');
+    }
+    // Persist state
+    localStorage.setItem('sidebarRightCollapsed', isSidebarRightCollapsed().toString());
+  };
+
+  sidebarRightToggle?.addEventListener('click', toggleSidebarRight);
+
+  // Restore collapsed state on load
+  const savedCollapsed = localStorage.getItem('sidebarRightCollapsed');
+  if (savedCollapsed === 'true' && sidebarRight) {
+    sidebarRight.classList.add('collapsed');
+    sidebarRightToggle?.setAttribute('aria-label', 'Déplier le sommaire');
+    sidebarRightToggle?.setAttribute('title', 'Déplier le sommaire');
+  }
+
+  // Floating TOC button for tablet/mobile
   const tocToggle = document.getElementById('toc-toggle');
   const tocOverlay = document.getElementById('toc-overlay');
   const tocDrawer = document.getElementById('toc-drawer');
