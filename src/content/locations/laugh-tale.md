@@ -1,8 +1,8 @@
 ---
-name: "Laugh Tale"
-region: "Grand Line"
-summary: "Dernière île de la Route Aller, lieu où Roger aurait ri. Dans la théorie, Laugh Tale ne serait pas une île « déjà visitée » mais le point de bascule où le présent rejoint le Siècle oublié."
-articles: ["laugh-tale-n-existe-pas-encore", "luffy-deviendra-joy-boy"]
+name: 'Laugh Tale'
+region: 'Grand Line'
+summary: 'Dernière île de la Route Aller, lieu où Roger aurait ri. Dans la théorie, Laugh Tale ne serait pas une île « déjà visitée » mais le point de bascule où le présent rejoint le Siècle oublié.'
+articles: ['laugh-tale-n-existe-pas-encore', 'luffy-deviendra-joy-boy']
 order: 1
 ---
 

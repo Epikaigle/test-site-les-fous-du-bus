@@ -16,90 +16,93 @@ interface NavSection {
 }
 
 const navSections: NavSection[] = [
-    {
-        title: 'Accueil',
-        links: [
-            { label: 'Le Siècle oublié est le présent', href: '/' }
-        ]
-    },
-    {
-        title: 'La théorie',
-        links: [
-            { label: 'Fondations', href: '/theorie/fondations' },
-            { label: 'Figures et identités', href: '/theorie/figures-identites' },
-            { label: 'Armes antiques', href: '/theorie/armes-antiques' },
-            { label: 'Science, énergie et pouvoirs', href: '/theorie/science-energie' },
-            { label: 'Monde, peuples et témoins', href: '/theorie/monde-peuples' },
-            { label: 'Transmission et mémoire', href: '/theorie/transmission-memoire' },
-            { label: 'Gouvernement et guerre finale', href: '/theorie/gouvernement-guerre' },
-            { label: 'Chronologie', href: '/theorie/chronologie' }
-        ]
-    },
-    {
-        title: 'Explorer',
-        links: [
-            { label: 'Frises chronologiques', href: '/explorer/frises' },
-            { label: 'Carte du monde', href: '/explorer/carte' },
-            { label: 'Carte des personnages', href: '/explorer/personnages' },
-            { label: 'Schémas temporels', href: '/explorer/schemas' }
-        ]
-    },
-    {
-        title: 'Évolution',
-        links: [
-            { label: 'Chapitre par chapitre', href: '/evolution/chapitres' },
-            { label: 'Prédictions', href: '/evolution/previsions' },
-            { label: 'Historique des articles', href: '/evolution/historique' },
-            { label: 'Hypothèses abandonnées', href: '/evolution/abandonnees' }
-        ]
-    },
-    {
-        title: 'Vérifier',
-        links: [
-            { label: 'Pièces du puzzle', href: '/verifier/preuves' },
-            { label: 'Citations et scènes', href: '/verifier/citations' },
-            { label: 'Parallèles visuels', href: '/verifier/paralleles' },
-            { label: 'Objections', href: '/verifier/objections' },
-            { label: 'Contradictions', href: '/verifier/contradictions' },
-            { label: 'Sources et méthode', href: '/verifier/sources' }
-        ]
-    },
-    {
-        title: 'Aide',
-        links: [
-            { label: 'FAQ', href: '/aide/faq' },
-            { label: 'Glossaire', href: '/aide/glossaire' },
-            { label: 'À propos', href: '/aide/a-propos' },
-            { label: 'Crédits', href: '/aide/credits' },
-            { label: 'Proposer une correction', href: '/aide/correction' }
-        ]
-    }
+  {
+    title: 'Accueil',
+    links: [{ label: 'Le Siècle oublié est le présent', href: '/' }],
+  },
+  {
+    title: 'La théorie',
+    links: [
+      { label: 'Fondations', href: '/theorie/fondations' },
+      { label: 'Figures et identités', href: '/theorie/figures-identites' },
+      { label: 'Armes antiques', href: '/theorie/armes-antiques' },
+      { label: 'Science, énergie et pouvoirs', href: '/theorie/science-energie' },
+      { label: 'Monde, peuples et témoins', href: '/theorie/monde-peuples' },
+      { label: 'Transmission et mémoire', href: '/theorie/transmission-memoire' },
+      { label: 'Gouvernement et guerre finale', href: '/theorie/gouvernement-guerre' },
+      { label: 'Chronologie', href: '/theorie/chronologie' },
+    ],
+  },
+  {
+    title: 'Explorer',
+    links: [
+      { label: 'Frises chronologiques', href: '/explorer/frises' },
+      { label: 'Carte du monde', href: '/explorer/carte' },
+      { label: 'Carte des personnages', href: '/explorer/personnages' },
+      { label: 'Schémas temporels', href: '/explorer/schemas' },
+    ],
+  },
+  {
+    title: 'Évolution',
+    links: [
+      { label: 'Chapitre par chapitre', href: '/evolution/chapitres' },
+      { label: 'Prédictions', href: '/evolution/previsions' },
+      { label: 'Historique des articles', href: '/evolution/historique' },
+      { label: 'Hypothèses abandonnées', href: '/evolution/abandonnees' },
+    ],
+  },
+  {
+    title: 'Vérifier',
+    links: [
+      { label: 'Pièces du puzzle', href: '/verifier/preuves' },
+      { label: 'Citations et scènes', href: '/verifier/citations' },
+      { label: 'Parallèles visuels', href: '/verifier/paralleles' },
+      { label: 'Objections', href: '/verifier/objections' },
+      { label: 'Contradictions', href: '/verifier/contradictions' },
+      { label: 'Sources et méthode', href: '/verifier/sources' },
+    ],
+  },
+  {
+    title: 'Aide',
+    links: [
+      { label: 'FAQ', href: '/aide/faq' },
+      { label: 'Glossaire', href: '/aide/glossaire' },
+      { label: 'À propos', href: '/aide/a-propos' },
+      { label: 'Crédits', href: '/aide/credits' },
+      { label: 'Proposer une correction', href: '/aide/correction' },
+    ],
+  },
 ];
 ---
+
 <nav>
-    {navSections.map((section, index) => (
-        <div class={index > 0 ? "mt-6" : ""}>
-            <h3 class="text-[12px] uppercase tracking-[0.5px] text-textMain mb-3 font-semibold">{section.title}</h3>
-            <ul class="list-none space-y-1">
-                {section.links.map(link => {
-                    const isActive = currentPath === link.href || currentPath === link.href + '/';
-                    const isParentActive = link.href !== '/' && currentPath.startsWith(link.href + '/');
-                    return (
-                        <li>
-                            <a 
-                                href={link.href} 
-                                class={`sidebar-link block px-3 py-1.5 -ml-3 rounded text-[13px] transition-colors ${
-                                    isActive || isParentActive 
-                                        ? 'text-cyan font-medium bg-cyan/10' 
-                                        : 'text-textSecondary hover:bg-surface hover:text-textMain'
-                                }`}
-                            >
-                                {link.label}
-                            </a>
-                        </li>
-                    )
-                })}
-            </ul>
-        </div>
-    ))}
+  {
+    navSections.map((section, index) => (
+      <div class={index > 0 ? 'mt-6' : ''}>
+        <h3 class="text-[12px] uppercase tracking-[0.5px] text-textMain mb-3 font-semibold">
+          {section.title}
+        </h3>
+        <ul class="list-none space-y-1">
+          {section.links.map((link) => {
+            const isActive = currentPath === link.href || currentPath === link.href + '/';
+            const isParentActive = link.href !== '/' && currentPath.startsWith(link.href + '/');
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class={`sidebar-link block px-3 py-1.5 -ml-3 rounded text-[13px] transition-colors ${
+                    isActive || isParentActive
+                      ? 'text-cyan font-medium bg-cyan/10'
+                      : 'text-textSecondary hover:bg-surface hover:text-textMain'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))
+  }
 </nav>

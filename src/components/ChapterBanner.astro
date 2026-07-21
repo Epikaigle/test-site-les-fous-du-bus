@@ -8,99 +8,98 @@ interface Props {
 
 const { chapter, title, effect, href } = Astro.props;
 ---
+
 <div class="chapter-banner">
-    <div class="chapter-banner__info">
-        <span class="chapter-banner__badge-chapter">
-            Chap {chapter}
-        </span>
-        <span class="chapter-banner__title">{title}</span>
-        <span class="chapter-banner__badge-effect">
-            {effect}
-        </span>
-    </div>
-    <a href={href} class="chapter-banner__link">
-        Voir l'analyse →
-    </a>
+  <div class="chapter-banner__info">
+    <span class="chapter-banner__badge-chapter">
+      Chap {chapter}
+    </span>
+    <span class="chapter-banner__title">{title}</span>
+    <span class="chapter-banner__badge-effect">
+      {effect}
+    </span>
+  </div>
+  <a href={href} class="chapter-banner__link"> Voir l'analyse → </a>
 </div>
 
 <style>
+  .chapter-banner {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--cyan);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .chapter-banner__info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .chapter-banner__badge-chapter {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+
+  .chapter-banner__title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  .chapter-banner__badge-effect {
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+    color: #d3b3ff;
+    white-space: nowrap;
+  }
+
+  .chapter-banner__link {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .chapter-banner__link:hover {
+    color: var(--cyan);
+  }
+
+  @media (max-width: 480px) {
     .chapter-banner {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-left: 3px solid var(--cyan);
-        border-radius: 4px;
-        padding: 12px 16px;
-        margin-bottom: 48px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 12px;
+      padding: 10px 12px;
+      gap: 8px;
     }
-
-    .chapter-banner__info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-
-    .chapter-banner__badge-chapter {
-        font-size: 11px;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-weight: 500;
-        border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
-        color: var(--cyan);
-        white-space: nowrap;
-    }
-
     .chapter-banner__title {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--text-main);
+      font-size: 12px;
     }
-
-    .chapter-banner__badge-effect {
-        font-size: 11px;
-        padding: 2px 6px;
-        border-radius: 3px;
-        font-weight: 500;
-        border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        background-color: color-mix(in srgb, var(--violet) 10%, transparent);
-        color: #D3B3FF;
-        white-space: nowrap;
-    }
-
     .chapter-banner__link {
-        font-size: 13px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        white-space: nowrap;
-        transition: color 0.2s;
+      font-size: 12px;
+      width: 100%;
+      text-align: right;
     }
-
-    .chapter-banner__link:hover {
-        color: var(--cyan);
-    }
-
-    @media (max-width: 480px) {
-        .chapter-banner {
-            padding: 10px 12px;
-            gap: 8px;
-        }
-        .chapter-banner__title {
-            font-size: 12px;
-        }
-        .chapter-banner__link {
-            font-size: 12px;
-            width: 100%;
-            text-align: right;
-        }
-    }
+  }
 </style>

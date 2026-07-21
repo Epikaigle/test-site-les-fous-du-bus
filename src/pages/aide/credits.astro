@@ -4,107 +4,138 @@ import Footer from '@components/Footer.astro';
 ---
 
 <WikiLayout title="Crédits" currentPath="/aide/credits">
-    <div class="page-header">
-        <h1>Crédits</h1>
-    </div>
+  <div class="page-header">
+    <h1>Crédits</h1>
+  </div>
 
-    <div class="content">
-        <section class="section">
-            <h2>Théorie originale</h2>
-            <p>
-                La théorie du « Siècle oublié est le présent » est attribuée au <strong>Mont Corvo</strong>.
-            </p>
-            <p>
-                Vidéo source : <a href="https://youtu.be/SgJ25zjMJyo" target="_blank" rel="noopener noreferrer">Le Siècle oublié est le présent</a>
-            </p>
-        </section>
+  <div class="content">
+    <section class="section">
+      <h2>Théorie originale</h2>
+      <p>
+        La théorie du « Siècle oublié est le présent » est attribuée au <strong>Mont Corvo</strong>.
+      </p>
+      <p>
+        Vidéo source : <a
+          href="https://youtu.be/SgJ25zjMJyo"
+          target="_blank"
+          rel="noopener noreferrer">Le Siècle oublié est le présent</a
+        >
+      </p>
+    </section>
 
-        <section class="section">
-            <h2>Droits d'auteur</h2>
-            <p>
-                Ce projet est un site de fans non officiel consacré à l'analyse de <em>One Piece</em>.
-            </p>
-            <p>
-                <em>One Piece</em>, ses personnages, son univers, ses illustrations et ses autres éléments protégés appartiennent 
-                à leurs auteurs et ayants droit respectifs, notamment <strong>Eiichiro Oda</strong>, <strong>Shueisha</strong> et leurs partenaires.
-            </p>
-            <p>
-                Le projet n'est ni affilié, ni approuvé, ni sponsorisé par les détenteurs de ces droits.
-            </p>
-        </section>
+    <section class="section">
+      <h2>Droits d'auteur</h2>
+      <p>
+        Ce projet est un site de fans non officiel consacré à l'analyse de <em>One Piece</em>.
+      </p>
+      <p>
+        <em>One Piece</em>, ses personnages, son univers, ses illustrations et ses autres éléments
+        protégés appartiennent à leurs auteurs et ayants droit respectifs, notamment <strong
+          >Eiichiro Oda</strong
+        >, <strong>Shueisha</strong> et leurs partenaires.
+      </p>
+      <p>
+        Le projet n'est ni affilié, ni approuvé, ni sponsorisé par les détenteurs de ces droits.
+      </p>
+    </section>
 
-        <section class="section">
-            <h2>Technologies</h2>
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <h4>Astro</h4>
-                    <p>Framework web statique</p>
-                </div>
-                <div class="tech-item">
-                    <h4>Tailwind CSS</h4>
-                    <p>Framework CSS</p>
-                </div>
-                <div class="tech-item">
-                    <h4>React</h4>
-                    <p>Composants interactifs (Islands)</p>
-                </div>
-                <div class="tech-item">
-                    <h4>Pagefind</h4>
-                    <p>Recherche statique</p>
-                </div>
-                <div class="tech-item">
-                    <h4>Cloudflare</h4>
-                    <p>Hébergement et déploiement</p>
-                </div>
-                <div class="tech-item">
-                    <h4>TypeScript</h4>
-                    <p>Typage statique</p>
-                </div>
-            </div>
-        </section>
+    <section class="section">
+      <h2>Technologies</h2>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <h4>Astro</h4>
+          <p>Framework web statique</p>
+        </div>
+        <div class="tech-item">
+          <h4>Tailwind CSS</h4>
+          <p>Framework CSS</p>
+        </div>
+        <div class="tech-item">
+          <h4>React</h4>
+          <p>Composants interactifs (Islands)</p>
+        </div>
+        <div class="tech-item">
+          <h4>Pagefind</h4>
+          <p>Recherche statique</p>
+        </div>
+        <div class="tech-item">
+          <h4>Cloudflare</h4>
+          <p>Hébergement et déploiement</p>
+        </div>
+        <div class="tech-item">
+          <h4>TypeScript</h4>
+          <p>Typage statique</p>
+        </div>
+      </div>
+    </section>
 
-        <section class="section">
-            <h2>Licence</h2>
-            <p>
-                Les contenus originaux du projet sont publiés sous licence <strong>CC0</strong> (domaine public).
-            </p>
-            <p>
-                Les contenus, images, extraits, marques et personnages issus de <em>One Piece</em> ne sont pas placés sous cette licence. 
-                Ils restent soumis aux droits de leurs propriétaires respectifs.
-            </p>
-        </section>
-    </div>
+    <section class="section">
+      <h2>Licence</h2>
+      <p>
+        Les contenus originaux du projet sont publiés sous licence <strong>CC0</strong> (domaine public).
+      </p>
+      <p>
+        Les contenus, images, extraits, marques et personnages issus de <em>One Piece</em> ne sont pas
+        placés sous cette licence. Ils restent soumis aux droits de leurs propriétaires respectifs.
+      </p>
+    </section>
+  </div>
 
-    <Footer />
+  <Footer />
 </WikiLayout>
 
 <style>
-    .page-header { margin-bottom: 40px; }
-    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; }
+  .page-header {
+    margin-bottom: 40px;
+  }
+  .page-header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+  }
 
-    .content { line-height: 1.7; }
-    .section { margin-bottom: 40px; }
-    .section h2 {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 16px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border-color);
-    }
-    .section p { color: var(--text-secondary); font-size: 15px; margin-bottom: 12px; }
-    .section a { color: var(--cyan); text-decoration: underline; text-underline-offset: 2px; }
+  .content {
+    line-height: 1.7;
+  }
+  .section {
+    margin-bottom: 40px;
+  }
+  .section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .section p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .section a {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 
-    .tech-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 12px;
-    }
-    .tech-item {
-        padding: 16px;
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-    }
-    .tech-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .tech-item p { font-size: 12px; color: var(--text-secondary); margin: 0; }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .tech-item {
+    padding: 16px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+  }
+  .tech-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .tech-item p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
 </style>

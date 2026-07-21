@@ -1,11 +1,11 @@
 ---
-title: "La véritable signification du D."
-summary: "Le « D. » ne serait pas une simple initiale mais un serment de liberté lié à Davy Jones, reliant les porteurs à la coalition originelle de Joy Boy."
-category: "figures-identites"
-status: "published"
-certainty: "elevee"
+title: 'La véritable signification du D.'
+summary: 'Le « D. » ne serait pas une simple initiale mais un serment de liberté lié à Davy Jones, reliant les porteurs à la coalition originelle de Joy Boy.'
+category: 'figures-identites'
+status: 'published'
+certainty: 'elevee'
 lastUpdatedChapter: 1188
-related: ["luffy-deviendra-joy-boy", "communication-temps", "tequila-wolf"]
+related: ['luffy-deviendra-joy-boy', 'communication-temps', 'tequila-wolf']
 ---
 
 ## Le D. comme serment

@@ -7,114 +7,199 @@ import Footer from '@components/Footer.astro';
 ---
 
 <WikiLayout title="Accueil" currentPath="/">
-    <div class="hero">
-        <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">La théorie</div>
-        <h1>Le Siècle oublié est le présent</h1>
-        
-        <div class="subtitle space-y-4">
-            <p>Le Siècle oublié, ce n'est pas une vieille histoire enterrée il y a 800 ans. C'est ce qui est en train de se passer maintenant, sous nos yeux, depuis le tout début de <em>One Piece</em>. La grande guerre, la chute du Gouvernement mondial, l'apparition de Joy Boy et la naissance d'un nouveau monde ne seraient pas des événements du passé : ce seraient ceux que Luffy et ses alliés sont en train de provoquer.</p>
-            
-            <p>Luffy, Vivi, Shirahoshi, Teach et les autres ne suivraient donc pas simplement les traces de personnages légendaires. Ce sont eux qui vont devenir ces légendes. Joy Boy, Lili, Poséidon ou encore Davy Jones ne seraient pas des figures anciennes à retrouver, mais les noms que l'Histoire donnera plus tard aux personnages que nous connaissons aujourd'hui.</p>
-            
-            <p>Les Ponéglyphes ne raconteraient alors pas le passé, mais le futur gravé à l'avance puis envoyé 800 ans en arrière. En gros, depuis le chapitre 1, on ne cherche pas à comprendre le Siècle oublié : on est en train de le vivre. Et la plus grande révélation de <em>One Piece</em>, ce serait que le passé que tout le monde recherche depuis des siècles est tout simplement le présent.</p>
-        </div>
+  <div class="hero">
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">La théorie</div>
+    <h1>Le Siècle oublié est le présent</h1>
 
-        <div class="mt-8 relative w-full aspect-video rounded overflow-hidden border border-white/10 shadow-lg">
-            <iframe 
-                class="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/SgJ25zjMJyo?si=pXYc71i2i7G5tG5h" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        </div>
+    <div class="subtitle space-y-4">
+      <p>
+        Le Siècle oublié, ce n'est pas une vieille histoire enterrée il y a 800 ans. C'est ce qui
+        est en train de se passer maintenant, sous nos yeux, depuis le tout début de <em
+          >One Piece</em
+        >. La grande guerre, la chute du Gouvernement mondial, l'apparition de Joy Boy et la
+        naissance d'un nouveau monde ne seraient pas des événements du passé : ce seraient ceux que
+        Luffy et ses alliés sont en train de provoquer.
+      </p>
+
+      <p>
+        Luffy, Vivi, Shirahoshi, Teach et les autres ne suivraient donc pas simplement les traces de
+        personnages légendaires. Ce sont eux qui vont devenir ces légendes. Joy Boy, Lili, Poséidon
+        ou encore Davy Jones ne seraient pas des figures anciennes à retrouver, mais les noms que
+        l'Histoire donnera plus tard aux personnages que nous connaissons aujourd'hui.
+      </p>
+
+      <p>
+        Les Ponéglyphes ne raconteraient alors pas le passé, mais le futur gravé à l'avance puis
+        envoyé 800 ans en arrière. En gros, depuis le chapitre 1, on ne cherche pas à comprendre le
+        Siècle oublié : on est en train de le vivre. Et la plus grande révélation de <em
+          >One Piece</em
+        >, ce serait que le passé que tout le monde recherche depuis des siècles est tout simplement
+        le présent.
+      </p>
     </div>
 
-    <ChapterBanner chapter="1188" title="Une communication à travers le temps" effect="Nouv. piste" href="/theorie/communication-temps" />
-
-    <h2 class="section-title">Thèmes principaux</h2>
-    <div class="grid">
-        <CategoryCard icon="🏗️" title="Fondations" description="Les piliers de la théorie, la nature de la boucle temporelle et les grands principes du Siècle oublié." href="/theorie/fondations" />
-        <CategoryCard icon="🎭" title="Figures et identités" description="Joy Boy, Nika, Imu. Les parallèles et véritables identités des acteurs majeurs." href="/theorie/figures-identites" />
-        <CategoryCard icon="🔱" title="Armes antiques" description="Pluton, Poséidon, Uranus : leur véritable fonction et leur lien avec la boucle temporelle." href="/theorie/armes-antiques" />
-        <CategoryCard icon="⚡" title="Science, énergie et pouvoirs" description="L'ancienne technologie, la Flamme Mère, l'origine des Fruits du Démon et le Haki." href="/theorie/science-energie" />
-        <CategoryCard icon="🗺️" title="Monde, peuples et témoins" description="Les D., les Lunarias, les géants d'Elbaf, Wano Kuni et les témoins de l'histoire." href="/theorie/monde-peuples" />
-        <CategoryCard icon="⚖️" title="Gouvernement et guerre finale" description="La création du Gouvernement Mondial, le rôle du Gorosei et l'issue du grand conflit." href="/theorie/gouvernement-guerre" />
+    <div
+      class="mt-8 relative w-full aspect-video rounded overflow-hidden border border-white/10 shadow-lg"
+    >
+      <iframe
+        class="absolute top-0 left-0 w-full h-full"
+        src="https://www.youtube.com/embed/SgJ25zjMJyo?si=pXYc71i2i7G5tG5h"
+        title="YouTube video player"
+        style="border: none;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      >
+      </iframe>
     </div>
+  </div>
 
-    <h2 class="section-title">Articles récents</h2>
-    <div class="article-list">
-        <ArticleListItem badge="Renforcement" badgeColor="gold" title="Le rôle du pont de Tequila Wolf" category="Monde, peuples" chapter="1188" href="/theorie/tequila-wolf" />
-        <ArticleListItem badge="Nouv. piste" badgeColor="violet" title="La véritable signification du D." category="Figures et identités" chapter="1188" href="/theorie/signification-d" />
-        <ArticleListItem badge="Modification" badgeColor="gold" title="L'énergie antique et la Flamme Mère" category="Science et énergie" chapter="1187" href="/theorie/energie-antique" />
-        <ArticleListItem badge="Renforcement" badgeColor="gold" title="Luffy deviendra Joy Boy" category="Figures et identités" chapter="1186" href="/theorie/luffy-joy-boy" />
-    </div>
+  <ChapterBanner
+    chapter="1188"
+    title="Une communication à travers le temps"
+    effect="Nouv. piste"
+    href="/theorie/communication-temps"
+  />
 
-    <Footer />
+  <h2 class="section-title">Thèmes principaux</h2>
+  <div class="grid">
+    <CategoryCard
+      icon="🏗️"
+      title="Fondations"
+      description="Les piliers de la théorie, la nature de la boucle temporelle et les grands principes du Siècle oublié."
+      href="/theorie/fondations"
+    />
+    <CategoryCard
+      icon="🎭"
+      title="Figures et identités"
+      description="Joy Boy, Nika, Imu. Les parallèles et véritables identités des acteurs majeurs."
+      href="/theorie/figures-identites"
+    />
+    <CategoryCard
+      icon="🔱"
+      title="Armes antiques"
+      description="Pluton, Poséidon, Uranus : leur véritable fonction et leur lien avec la boucle temporelle."
+      href="/theorie/armes-antiques"
+    />
+    <CategoryCard
+      icon="⚡"
+      title="Science, énergie et pouvoirs"
+      description="L'ancienne technologie, la Flamme Mère, l'origine des Fruits du Démon et le Haki."
+      href="/theorie/science-energie"
+    />
+    <CategoryCard
+      icon="🗺️"
+      title="Monde, peuples et témoins"
+      description="Les D., les Lunarias, les géants d'Elbaf, Wano Kuni et les témoins de l'histoire."
+      href="/theorie/monde-peuples"
+    />
+    <CategoryCard
+      icon="⚖️"
+      title="Gouvernement et guerre finale"
+      description="La création du Gouvernement Mondial, le rôle du Gorosei et l'issue du grand conflit."
+      href="/theorie/gouvernement-guerre"
+    />
+  </div>
+
+  <h2 class="section-title">Articles récents</h2>
+  <div class="article-list">
+    <ArticleListItem
+      badge="Renforcement"
+      badgeColor="gold"
+      title="Le rôle du pont de Tequila Wolf"
+      category="Monde, peuples"
+      chapter="1188"
+      href="/theorie/tequila-wolf"
+    />
+    <ArticleListItem
+      badge="Nouv. piste"
+      badgeColor="violet"
+      title="La véritable signification du D."
+      category="Figures et identités"
+      chapter="1188"
+      href="/theorie/signification-d"
+    />
+    <ArticleListItem
+      badge="Modification"
+      badgeColor="gold"
+      title="L'énergie antique et la Flamme Mère"
+      category="Science et énergie"
+      chapter="1187"
+      href="/theorie/energie-antique"
+    />
+    <ArticleListItem
+      badge="Renforcement"
+      badgeColor="gold"
+      title="Luffy deviendra Joy Boy"
+      category="Figures et identités"
+      chapter="1186"
+      href="/theorie/luffy-joy-boy"
+    />
+  </div>
+
+  <Footer />
 </WikiLayout>
 
 <style>
-    .hero {
-        margin-bottom: 40px;
-    }
+  .hero {
+    margin-bottom: 40px;
+  }
 
-    .hero h1 {
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
-        font-weight: 700;
-        margin-bottom: 16px;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-    }
+  .hero h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
 
-    .hero .subtitle {
-        font-size: 15px;
-        color: var(--text-secondary);
-        max-width: 700px;
-        line-height: 1.6;
-    }
+  .hero .subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    line-height: 1.6;
+  }
 
-    .section-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 24px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border-color);
-        margin-top: 56px;
-    }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    margin-top: 56px;
+  }
 
-    .section-title:first-of-type {
-        margin-top: 0;
-    }
+  .section-title:first-of-type {
+    margin-top: 0;
+  }
 
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  @media (max-width: 1024px) {
     .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .article-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
     }
-
-    @media (max-width: 1024px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    .hero {
+      margin-bottom: 28px;
     }
-
-    @media (max-width: 640px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
-        .hero {
-            margin-bottom: 28px;
-        }
-        .section-title {
-            margin-top: 40px;
-        }
+    .section-title {
+      margin-top: 40px;
     }
+  }
 </style>

@@ -1,9 +1,9 @@
 ---
-name: "Shirahoshi"
-era: "moderne"
-aliases: ["Poséidon", "L'Arme antique de la Mer"]
+name: 'Shirahoshi'
+era: 'moderne'
+aliases: ['Poséidon', "L'Arme antique de la Mer"]
 summary: "Princesse des Hommes-Poissons et incarnation de l'Arme antique Poséidon. Dans la théorie, elle serait la Poséidon « présente », relais moderne de l'Arme antique ancienne."
-articles: ["luffy-deviendra-joy-boy"]
+articles: ['luffy-deviendra-joy-boy']
 order: 5
 ---
 

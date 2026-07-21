@@ -1,8 +1,8 @@
 ---
-name: "Elbaf"
-region: "Premier Demi-Monde"
+name: 'Elbaf'
+region: 'Premier Demi-Monde'
 summary: "Patrie des géants et siège de la fameuse fresque. Dans la théorie, la fresque d'Elbaf raconterait visuellement la boucle temporelle et le rôle de Joy Boy."
-articles: ["nika-le-dieu-du-soleil"]
+articles: ['nika-le-dieu-du-soleil']
 order: 2
 ---
 

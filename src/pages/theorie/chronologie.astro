@@ -4,203 +4,217 @@ import Footer from '@components/Footer.astro';
 ---
 
 <WikiLayout title="Chronologie" currentPath="/theorie/chronologie">
-    <div class="page-header">
-        <span class="page-icon">📜</span>
-        <h1>Chronologie des événements</h1>
-        <p class="page-desc">
-            Frise chronologique complète reliant les événements du Siècle oublié aux événements actuels de <em>One Piece</em>. Chaque événement est classé par époque et relié aux articles correspondants.
-        </p>
-    </div>
+  <div class="page-header">
+    <span class="page-icon">📜</span>
+    <h1>Chronologie des événements</h1>
+    <p class="page-desc">
+      Frise chronologique complète reliant les événements du Siècle oublié aux événements actuels de <em
+        >One Piece</em
+      >. Chaque événement est classé par époque et relié aux articles correspondants.
+    </p>
+  </div>
 
-    <div class="timeline-section">
-        <h2>Ère antique — Le Siècle oublié</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">~900 ans avant l'histoire</span>
-                    <h4>Le Royaume ancien</h4>
-                    <p>Existence d'une civilisation avancée dont les traces ont été effacées par le Gouvernement Mondial.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">~800 ans avant l'histoire</span>
-                    <h4>La grande guerre et la chute</h4>
-                    <p>Conflit majeur entraînant la disparition du Royaume ancien et la création du Gouvernement Mondial.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">~800 ans avant l'histoire</span>
-                    <h4>Gravure des Ponéglyphes</h4>
-                    <p>Les Ponéglyphes sont créés pour transmettre la vérité à travers les siècles.</p>
-                </div>
-            </div>
+  <div class="timeline-section">
+    <h2>Ère antique — Le Siècle oublié</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">~900 ans avant l'histoire</span>
+          <h4>Le Royaume ancien</h4>
+          <p>
+            Existence d'une civilisation avancée dont les traces ont été effacées par le
+            Gouvernement Mondial.
+          </p>
         </div>
-    </div>
-
-    <div class="timeline-section">
-        <h2>Ère moderne — L'âge des pirates</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot timeline-dot--gold"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">Chap. 968</span>
-                    <h4>Roger atteint Laugh Tale</h4>
-                    <p>« Nous sommes arrivés trop tôt. » — Roger comprend la véritable nature du trésor.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot timeline-dot--cyan"></div>
-                <div class="timeline-content">
-                    <span class="timeline-date">Chap. 1 → présent</span>
-                    <h4>Le voyage de Luffy</h4>
-                    <p>Luffy et son équipage suivent le chemin de Roger, sans savoir qu'ils sont en train de réécrire l'histoire.</p>
-                </div>
-            </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">~800 ans avant l'histoire</span>
+          <h4>La grande guerre et la chute</h4>
+          <p>
+            Conflit majeur entraînant la disparition du Royaume ancien et la création du
+            Gouvernement Mondial.
+          </p>
         </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">~800 ans avant l'histoire</span>
+          <h4>Gravure des Ponéglyphes</h4>
+          <p>Les Ponéglyphes sont créés pour transmettre la vérité à travers les siècles.</p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="info-box">
-        <h3>🔮 En construction</h3>
-        <p>Cette frise chronologique sera enrichie au fur et à mesure de l'avancement de la théorie. La version interactive avec double frise (passé/présent) est prévue pour la V2.</p>
+  <div class="timeline-section">
+    <h2>Ère moderne — L'âge des pirates</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot timeline-dot--gold"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">Chap. 968</span>
+          <h4>Roger atteint Laugh Tale</h4>
+          <p>« Nous sommes arrivés trop tôt. » — Roger comprend la véritable nature du trésor.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot timeline-dot--cyan"></div>
+        <div class="timeline-content">
+          <span class="timeline-date">Chap. 1 → présent</span>
+          <h4>Le voyage de Luffy</h4>
+          <p>
+            Luffy et son équipage suivent le chemin de Roger, sans savoir qu'ils sont en train de
+            réécrire l'histoire.
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <Footer />
+  <div class="info-box">
+    <h3>🔮 En construction</h3>
+    <p>
+      Cette frise chronologique sera enrichie au fur et à mesure de l'avancement de la théorie. La
+      version interactive avec double frise (passé/présent) est prévue pour la V2.
+    </p>
+  </div>
+
+  <Footer />
 </WikiLayout>
 
 <style>
-    .page-header {
-        margin-bottom: 48px;
-    }
+  .page-header {
+    margin-bottom: 48px;
+  }
 
-    .page-icon {
-        font-size: 2rem;
-        display: block;
-        margin-bottom: 12px;
-    }
+  .page-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+  }
 
-    .page-header h1 {
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
-        font-weight: 700;
-        margin-bottom: 12px;
-        line-height: 1.2;
-    }
+  .page-header h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
 
-    .page-desc {
-        font-size: 15px;
-        color: var(--text-secondary);
-        max-width: 700px;
-        line-height: 1.6;
-    }
+  .page-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    line-height: 1.6;
+  }
 
-    .timeline-section {
-        margin-bottom: 48px;
-    }
+  .timeline-section {
+    margin-bottom: 48px;
+  }
 
-    .timeline-section h2 {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 24px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid var(--border-color);
-    }
+  .timeline-section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-    .timeline {
-        position: relative;
-        padding-left: 28px;
-    }
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
 
-    .timeline::before {
-        content: '';
-        position: absolute;
-        left: 6px;
-        top: 4px;
-        bottom: 4px;
-        width: 2px;
-        background-color: var(--border-color);
-    }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background-color: var(--border-color);
+  }
 
-    .timeline-item {
-        position: relative;
-        margin-bottom: 24px;
-    }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
 
-    .timeline-item:last-child {
-        margin-bottom: 0;
-    }
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
 
-    .timeline-dot {
-        position: absolute;
-        left: -25px;
-        top: 4px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: var(--violet);
-        border: 2px solid var(--bg-main);
-    }
+  .timeline-dot {
+    position: absolute;
+    left: -25px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--violet);
+    border: 2px solid var(--bg-main);
+  }
 
-    .timeline-dot--gold {
-        background-color: var(--accent-gold);
-    }
+  .timeline-dot--gold {
+    background-color: var(--accent-gold);
+  }
 
-    .timeline-dot--cyan {
-        background-color: var(--cyan);
-    }
+  .timeline-dot--cyan {
+    background-color: var(--cyan);
+  }
 
-    .timeline-content {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        padding: 16px;
-        border-radius: 4px;
-    }
+  .timeline-content {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: 4px;
+  }
 
-    .timeline-date {
-        font-size: 11px;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        display: block;
-        margin-bottom: 4px;
-    }
+  .timeline-date {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+  }
 
-    .timeline-content h4 {
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--text-main);
-        margin-bottom: 6px;
-    }
+  .timeline-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+  }
 
-    .timeline-content p {
-        font-size: 13px;
-        color: var(--text-secondary);
-        line-height: 1.5;
-        margin: 0;
-    }
+  .timeline-content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
 
-    .info-box {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-left: 3px solid var(--violet);
-        padding: 20px 24px;
-        border-radius: 4px;
-        margin-top: 48px;
-    }
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--violet);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-top: 48px;
+  }
 
-    .info-box h3 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
+  .info-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
 
-    .info-box p {
-        color: var(--text-secondary);
-        font-size: 14px;
-        line-height: 1.6;
-        margin: 0;
-    }
+  .info-box p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
 </style>

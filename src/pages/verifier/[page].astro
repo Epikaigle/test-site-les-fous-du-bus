@@ -4,12 +4,50 @@ import Footer from '@components/Footer.astro';
 
 export async function getStaticPaths() {
   return [
-    { params: { page: 'preuves' }, props: { title: 'Pièces du puzzle', icon: '🧩', desc: 'Base complète des preuves classées par type et par force.' } },
-    { params: { page: 'citations' }, props: { title: 'Citations et scènes', icon: '💬', desc: 'Les dialogues et scènes clés du manga.' } },
-    { params: { page: 'paralleles' }, props: { title: 'Parallèles visuels', icon: '🔍', desc: 'Comparaisons visuelles entre personnages et événements.' } },
-    { params: { page: 'objections' }, props: { title: 'Objections', icon: '⚠️', desc: 'Les arguments contre la théorie.' } },
-    { params: { page: 'contradictions' }, props: { title: 'Contradictions', icon: '❌', desc: 'Les éléments qui contredisent la théorie.' } },
-    { params: { page: 'sources' }, props: { title: 'Sources et méthode', icon: '📚', desc: 'Méthodologie et sources utilisées.' } },
+    {
+      params: { page: 'preuves' },
+      props: {
+        title: 'Pièces du puzzle',
+        icon: '🧩',
+        desc: 'Base complète des preuves classées par type et par force.',
+      },
+    },
+    {
+      params: { page: 'citations' },
+      props: {
+        title: 'Citations et scènes',
+        icon: '💬',
+        desc: 'Les dialogues et scènes clés du manga.',
+      },
+    },
+    {
+      params: { page: 'paralleles' },
+      props: {
+        title: 'Parallèles visuels',
+        icon: '🔍',
+        desc: 'Comparaisons visuelles entre personnages et événements.',
+      },
+    },
+    {
+      params: { page: 'objections' },
+      props: { title: 'Objections', icon: '⚠️', desc: 'Les arguments contre la théorie.' },
+    },
+    {
+      params: { page: 'contradictions' },
+      props: {
+        title: 'Contradictions',
+        icon: '❌',
+        desc: 'Les éléments qui contredisent la théorie.',
+      },
+    },
+    {
+      params: { page: 'sources' },
+      props: {
+        title: 'Sources et méthode',
+        icon: '📚',
+        desc: 'Méthodologie et sources utilisées.',
+      },
+    },
   ];
 }
 
@@ -17,35 +55,87 @@ const { title, icon, desc } = Astro.props;
 ---
 
 <WikiLayout title={title} currentPath={`/verifier/${Astro.params.page}`}>
-    <div class="placeholder-page">
-        <span class="placeholder-icon">{icon}</span>
-        <h1>{title}</h1>
-        <p class="placeholder-desc">{desc}</p>
-        
-        <div class="placeholder-box">
-            <h3>🔎 En construction</h3>
-            <p>
-                Cette section sera enrichie progressivement avec les preuves, citations et analyses tirées du manga.
-            </p>
-        </div>
+  <div class="placeholder-page">
+    <span class="placeholder-icon">{icon}</span>
+    <h1>{title}</h1>
+    <p class="placeholder-desc">{desc}</p>
 
-        <div class="placeholder-links">
-            <a href="/verifier" class="placeholder-link">← Retour à Vérifier</a>
-            <a href="/theorie" class="placeholder-link">📖 La théorie</a>
-        </div>
+    <div class="placeholder-box">
+      <h3>🔎 En construction</h3>
+      <p>
+        Cette section sera enrichie progressivement avec les preuves, citations et analyses tirées
+        du manga.
+      </p>
     </div>
-    <Footer />
+
+    <div class="placeholder-links">
+      <a href="/verifier" class="placeholder-link">← Retour à Vérifier</a>
+      <a href="/theorie" class="placeholder-link">📖 La théorie</a>
+    </div>
+  </div>
+  <Footer />
 </WikiLayout>
 
 <style>
-    .placeholder-page { text-align: center; padding: 48px 0; }
-    .placeholder-icon { font-size: 3rem; display: block; margin-bottom: 16px; }
-    .placeholder-page h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin-bottom: 12px; }
-    .placeholder-desc { font-size: 15px; color: var(--text-secondary); max-width: 500px; margin: 0 auto 32px; line-height: 1.6; }
-    .placeholder-box { background-color: var(--bg-secondary); border: 1px solid var(--border-color); padding: 32px; border-radius: 8px; max-width: 500px; margin: 0 auto 32px; }
-    .placeholder-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-    .placeholder-box p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
-    .placeholder-links { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-    .placeholder-link { display: inline-block; padding: 10px 20px; background-color: var(--surface); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); text-decoration: none; font-size: 14px; transition: all 0.2s; }
-    .placeholder-link:hover { border-color: var(--cyan); color: var(--cyan); }
+  .placeholder-page {
+    text-align: center;
+    padding: 48px 0;
+  }
+  .placeholder-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .placeholder-page h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .placeholder-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .placeholder-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 32px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto 32px;
+  }
+  .placeholder-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .placeholder-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .placeholder-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .placeholder-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .placeholder-link:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
 </style>

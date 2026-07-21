@@ -1,8 +1,8 @@
 ---
-name: "Sainte-Marie (Mary Geoise)"
-region: "Réd Line"
+name: 'Sainte-Marie (Mary Geoise)'
+region: 'Réd Line'
 summary: "Siège du Gouvernement Mondial et résidence d'Imu. Dans la théorie, c'est le verrou qui empêche le Siècle oublié de devenir le présent."
-articles: ["communication-temps", "signification-d"]
+articles: ['communication-temps', 'signification-d']
 order: 5
 ---
 

@@ -4,190 +4,198 @@ import Footer from '@components/Footer.astro';
 ---
 
 <WikiLayout title="Explorer" currentPath="/explorer">
-    <div class="page-header">
-        <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Visualisation</div>
-        <h1>Explorer</h1>
-        <p class="page-desc">
-            Cartes, frises, graphes et schémas pour visualiser les connexions entre personnages, lieux, événements et époques de la théorie.
-        </p>
+  <div class="page-header">
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">
+      Visualisation
     </div>
+    <h1>Explorer</h1>
+    <p class="page-desc">
+      Cartes, frises, graphes et schémas pour visualiser les connexions entre personnages, lieux,
+      événements et époques de la théorie.
+    </p>
+  </div>
 
-    <div class="explorer-grid">
-        <a href="/explorer/frises" class="explorer-card">
-            <div class="explorer-card__icon">📅</div>
-            <div class="explorer-card__content">
-                <h3>Frises chronologiques</h3>
-                <p>Double frise superposant le Siècle oublié et les événements actuels de One Piece.</p>
-                <span class="explorer-card__status">V2</span>
-            </div>
-        </a>
+  <div class="explorer-grid">
+    <a href="/explorer/frises" class="explorer-card">
+      <div class="explorer-card__icon">📅</div>
+      <div class="explorer-card__content">
+        <h3>Frises chronologiques</h3>
+        <p>Double frise superposant le Siècle oublié et les événements actuels de One Piece.</p>
+        <span class="explorer-card__status">V2</span>
+      </div>
+    </a>
 
-        <a href="/explorer/carte" class="explorer-card">
-            <div class="explorer-card__icon">🗺️</div>
-            <div class="explorer-card__content">
-                <h3>Carte du monde</h3>
-                <p>Carte interactive de Blue Star avec les lieux clés de la théorie et leurs connexions.</p>
-                <span class="explorer-card__status">V2</span>
-            </div>
-        </a>
+    <a href="/explorer/carte" class="explorer-card">
+      <div class="explorer-card__icon">🗺️</div>
+      <div class="explorer-card__content">
+        <h3>Carte du monde</h3>
+        <p>Carte interactive de Blue Star avec les lieux clés de la théorie et leurs connexions.</p>
+        <span class="explorer-card__status">V2</span>
+      </div>
+    </a>
 
-        <a href="/explorer/personnages" class="explorer-card">
-            <div class="explorer-card__icon">🎭</div>
-            <div class="explorer-card__content">
-                <h3>Carte des personnages</h3>
-                <p>Graphe des personnages et de leurs identités parallèles à travers les époques.</p>
-                <span class="explorer-card__status">V2</span>
-            </div>
-        </a>
+    <a href="/explorer/personnages" class="explorer-card">
+      <div class="explorer-card__icon">🎭</div>
+      <div class="explorer-card__content">
+        <h3>Carte des personnages</h3>
+        <p>Graphe des personnages et de leurs identités parallèles à travers les époques.</p>
+        <span class="explorer-card__status">V2</span>
+      </div>
+    </a>
 
-        <a href="/explorer/schemas" class="explorer-card">
-            <div class="explorer-card__icon">🔄</div>
-            <div class="explorer-card__content">
-                <h3>Schémas temporels</h3>
-                <p>Schéma de la boucle temporelle des Ponéglyphes et des mécanismes de transmission.</p>
-                <span class="explorer-card__status">V2</span>
-            </div>
-        </a>
+    <a href="/explorer/schemas" class="explorer-card">
+      <div class="explorer-card__icon">🔄</div>
+      <div class="explorer-card__content">
+        <h3>Schémas temporels</h3>
+        <p>Schéma de la boucle temporelle des Ponéglyphes et des mécanismes de transmission.</p>
+        <span class="explorer-card__status">V2</span>
+      </div>
+    </a>
 
-        <a href="/explorer/elbaf" class="explorer-card">
-            <div class="explorer-card__icon">🎨</div>
-            <div class="explorer-card__content">
-                <h3>Fresque d'Elbaf</h3>
-                <p>Exploration interactive de la fresque d'Elbaf et de ses symboles cachés.</p>
-                <span class="explorer-card__status">V3</span>
-            </div>
-        </a>
+    <a href="/explorer/elbaf" class="explorer-card">
+      <div class="explorer-card__icon">🎨</div>
+      <div class="explorer-card__content">
+        <h3>Fresque d'Elbaf</h3>
+        <p>Exploration interactive de la fresque d'Elbaf et de ses symboles cachés.</p>
+        <span class="explorer-card__status">V3</span>
+      </div>
+    </a>
 
-        <a href="/explorer/globe" class="explorer-card">
-            <div class="explorer-card__icon">🌍</div>
-            <div class="explorer-card__content">
-                <h3>Globe 3D</h3>
-                <p>Globe interactif en 3D de Blue Star pour explorer le monde de One Piece.</p>
-                <span class="explorer-card__status">V3</span>
-            </div>
-        </a>
-    </div>
+    <a href="/explorer/globe" class="explorer-card">
+      <div class="explorer-card__icon">🌍</div>
+      <div class="explorer-card__content">
+        <h3>Globe 3D</h3>
+        <p>Globe interactif en 3D de Blue Star pour explorer le monde de One Piece.</p>
+        <span class="explorer-card__status">V3</span>
+      </div>
+    </a>
+  </div>
 
-    <div class="info-box">
-        <h3>🚀 En développement</h3>
-        <p>Les visualisations interactives sont prévues pour les versions V2 et V3 du projet. Les contenus textuels de la théorie sont disponibles dès maintenant dans la section <a href="/theorie">La théorie</a>.</p>
-    </div>
+  <div class="info-box">
+    <h3>🚀 En développement</h3>
+    <p>
+      Les visualisations interactives sont prévues pour les versions V2 et V3 du projet. Les
+      contenus textuels de la théorie sont disponibles dès maintenant dans la section <a
+        href="/theorie">La théorie</a
+      >.
+    </p>
+  </div>
 
-    <Footer />
+  <Footer />
 </WikiLayout>
 
 <style>
-    .page-header {
-        margin-bottom: 48px;
-    }
+  .page-header {
+    margin-bottom: 48px;
+  }
 
-    .page-header h1 {
-        font-size: clamp(1.8rem, 4vw, 2.5rem);
-        font-weight: 700;
-        margin-bottom: 16px;
-        line-height: 1.2;
-    }
+  .page-header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
 
-    .page-desc {
-        font-size: 15px;
-        color: var(--text-secondary);
-        max-width: 700px;
-        line-height: 1.6;
-    }
+  .page-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    line-height: 1.6;
+  }
 
+  .explorer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .explorer-card {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .explorer-card:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--violet);
+  }
+
+  .explorer-card__icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .explorer-card__content {
+    flex: 1;
+  }
+
+  .explorer-card__content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    transition: color 0.2s;
+  }
+
+  .explorer-card:hover .explorer-card__content h3 {
+    color: var(--cyan);
+  }
+
+  .explorer-card__content p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 0 10px;
+  }
+
+  .explorer-card__status {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background-color: var(--surface);
+    color: var(--text-secondary);
+  }
+
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--violet);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-top: 48px;
+  }
+
+  .info-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .info-box p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-box a {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
     .explorer-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 16px;
+      grid-template-columns: 1fr;
     }
-
-    .explorer-card {
-        display: flex;
-        gap: 16px;
-        padding: 20px;
-        background-color: var(--bg-main);
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-
-    .explorer-card:hover {
-        background-color: var(--bg-secondary);
-        border-color: var(--violet);
-    }
-
-    .explorer-card__icon {
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-
-    .explorer-card__content {
-        flex: 1;
-    }
-
-    .explorer-card__content h3 {
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--text-main);
-        margin-bottom: 6px;
-        transition: color 0.2s;
-    }
-
-    .explorer-card:hover .explorer-card__content h3 {
-        color: var(--cyan);
-    }
-
-    .explorer-card__content p {
-        font-size: 13px;
-        color: var(--text-secondary);
-        line-height: 1.5;
-        margin: 0 0 10px;
-    }
-
-    .explorer-card__status {
-        display: inline-block;
-        font-size: 10px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        padding: 2px 8px;
-        border-radius: 3px;
-        background-color: var(--surface);
-        color: var(--text-secondary);
-    }
-
-    .info-box {
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
-        border-left: 3px solid var(--violet);
-        padding: 20px 24px;
-        border-radius: 4px;
-        margin-top: 48px;
-    }
-
-    .info-box h3 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-
-    .info-box p {
-        color: var(--text-secondary);
-        font-size: 14px;
-        line-height: 1.6;
-        margin: 0;
-    }
-
-    .info-box a {
-        color: var(--cyan);
-        text-decoration: underline;
-        text-underline-offset: 2px;
-    }
-
-    @media (max-width: 640px) {
-        .explorer-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>

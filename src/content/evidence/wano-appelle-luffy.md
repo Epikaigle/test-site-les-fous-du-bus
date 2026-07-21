@@ -1,9 +1,9 @@
 ---
-title: "Wano appelle Luffy « Joy Boy »"
+title: 'Wano appelle Luffy « Joy Boy »'
 chapter: 1052
-type: "narratif"
-strength: "secondaire"
-articles: ["luffy-deviendra-joy-boy"]
+type: 'narratif'
+strength: 'secondaire'
+articles: ['luffy-deviendra-joy-boy']
 quote: "C'est lui... c'est Joy Boy !"
 ---
 
