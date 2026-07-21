@@ -1,7 +1,7 @@
 ---
 title: "L'énergie antique et la Flamme Mère"
 summary: "La Flamme Mère et l'énergie antique ne seraient pas de simples armes, mais le relais d'un savoir perdu réutilisé au présent, tissant un lien technique entre le Siècle oublié et One Piece."
-category: 'science-energie'
+category: 'technologies-pouvoirs'
 status: 'published'
 certainty: 'elevee'
 lastUpdatedChapter: 1187

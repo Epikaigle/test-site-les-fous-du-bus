@@ -9,7 +9,7 @@ import SidebarNav from './SidebarNav.astro';
   <!-- Logo -->
   <a
     href="/"
-    class="font-semibold text-[13px] md:text-[14px] flex items-center gap-2 mr-4 md:mr-8 text-textMain shrink-0"
+    class="font-semibold text-[13px] md:text-[14px] flex items-center gap-2 mr-4 md:mr-6 text-textMain shrink-0"
   >
     <svg
       width="18"
@@ -28,16 +28,18 @@ import SidebarNav from './SidebarNav.astro';
   </a>
 
   <!-- Desktop nav links -->
-  <div class="hidden md:flex gap-6 absolute left-1/2 -translate-x-1/2">
+  <div class="hidden md:flex gap-5 absolute left-1/2 -translate-x-1/2">
     <a href="/theorie" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
       >La théorie</a
     >
+    <a href="/dossiers" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
+      >Dossiers</a
+    >
+    <a href="/chapitres" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
+      >Chapitres</a
+    >
     <a href="/explorer" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
       >Explorer</a
-    >
-    <a
-      href="/evolution"
-      class="text-[13px] text-textSecondary hover:text-textMain transition-colors">Évolution</a
     >
     <a href="/verifier" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
       >Vérifier</a
@@ -47,16 +49,23 @@ import SidebarNav from './SidebarNav.astro';
   <!-- Spacer for mobile -->
   <div class="flex-1 md:hidden"></div>
 
-  <!-- Desktop search -->
-  <button
-    onclick="window.dispatchEvent(new Event('openSearch'))"
-    class="hidden md:flex items-center bg-bgSecondary border border-white/10 rounded px-2.5 py-1 text-[13px] text-textSecondary gap-10 cursor-pointer mr-4 hover:border-violet transition-colors md:ml-auto"
-  >
-    <span>Rechercher...</span>
-    <span class="bg-bgMain px-1.5 py-[1px] rounded-[3px] text-[11px] border border-white/10"
-      >Ctrl K</span
+  <!-- Desktop search + dernière analyse -->
+  <div class="hidden md:flex items-center gap-3 ml-auto">
+    <a
+      href="/chapitres/derniere-analyse"
+      class="text-[12px] text-textSecondary hover:text-cyan transition-colors border border-white/10 rounded px-2.5 py-1 hover:border-violet"
+      >Dernière analyse</a
     >
-  </button>
+    <button
+      onclick="window.dispatchEvent(new Event('openSearch'))"
+      class="flex items-center bg-bgSecondary border border-white/10 rounded px-2.5 py-1 text-[13px] text-textSecondary gap-10 cursor-pointer hover:border-violet transition-colors"
+    >
+      <span>Rechercher...</span>
+      <span class="bg-bgMain px-1.5 py-[1px] rounded-[3px] text-[11px] border border-white/10"
+        >Ctrl K</span
+      >
+    </button>
+  </div>
 
   <SearchModal client:load />
 
@@ -75,8 +84,7 @@ import SidebarNav from './SidebarNav.astro';
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      ><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"
-      ></line></svg
+      ><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg
     >
   </button>
 
@@ -190,14 +198,19 @@ import SidebarNav from './SidebarNav.astro';
           >La théorie</a
         >
         <a
+          href="/dossiers"
+          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
+          >Dossiers</a
+        >
+        <a
+          href="/chapitres"
+          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
+          >Chapitres</a
+        >
+        <a
           href="/explorer"
           class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
           >Explorer</a
-        >
-        <a
-          href="/evolution"
-          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-          >Évolution</a
         >
         <a
           href="/verifier"

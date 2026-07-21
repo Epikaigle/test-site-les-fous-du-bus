@@ -1,0 +1,177 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<WikiLayout title="Résumé de la théorie" currentPath="/theorie/resume">
+  <div class="resume-page">
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">La théorie</div>
+    <h1>Résumé de la théorie</h1>
+
+    <div class="content">
+      <div class="summary-box">
+        <p>
+          Le Siècle oublié ne serait pas un passé clos survenu il y a 800 ans. Il serait le présent
+          lui-même — ce que Luffy et ses alliés sont en train de vivre et de provoquer. La grande
+          guerre, la chute du Royaume antique, l'apparition de Joy Boy ne seraient pas des événements
+          du passé, mais ceux que l'histoire est en train d'écrire.
+        </p>
+      </div>
+
+      <h2>L'argument en dix points</h2>
+      <ol>
+        <li>
+          <strong>Laugh Tale n'existe pas encore.</strong> Roger a dû voyager dans le futur pour
+          l'atteindre. Laugh Tale serait Lodestar, une île qui n'existe pas encore dans le temps.
+        </li>
+        <li>
+          <strong>Joy Boy n'est pas un personnage du passé.</strong> C'est le nom que le monde
+          donnera à Luffy après qu'il aura libéré le monde.
+        </li>
+        <li>
+          <strong>Nika est le nom divin de la même figure.</strong> Pour les croyants : Nika. Pour
+          le monde : Joy Boy. Pour l'équipage : Luffy.
+        </li>
+        <li>
+          <strong>Les Ponéglyphes ne racontent pas le passé.</strong> Ils seraient une « mémoire de
+          l'avenir » adressée au passé — le futur gravé à l'avance puis envoyé 800 ans en arrière.
+        </li>
+        <li>
+          <strong>Le D. est un serment.</strong> Il relie les porteurs à la coalition originelle de
+          Joy Boy et à la promesse de liberté.
+        </li>
+        <li>
+          <strong>Les personnages modernes sont les figures anciennes.</strong> Vivi est Lili. Teach
+          est Davy Jones. Zoro est Ryuma. Shirahoshi est Poséidon.
+        </li>
+        <li>
+          <strong>Chaque royaume a une mission.</strong> Elbaf, Alabasta, Wa no Kuni, Zou,
+          l'île des Hommes-Poissons : chaque peuple conserve une pièce jusqu'au jour final.
+        </li>
+        <li>
+          <strong>Imu est lié à la création des Fruits du Démon.</strong> La Mother Flame et
+          l'énergie antique sont les relais d'un savoir perdu.
+        </li>
+        <li>
+          <strong>Le déluge et la destruction de Red Line</strong> recréeront All Blue et
+          accompliront la prophétie.
+        </li>
+        <li>
+          <strong>La guerre finale est la Grande Guerre.</strong> Ce n'est pas une nouvelle guerre :
+          c'est la même qui n'a jamais fini de se jouer.
+        </li>
+      </ol>
+
+      <div class="info-box">
+        <p>
+          Pour l'argumentation complète, consultez la <a href="/theorie/theorie-complete">théorie
+          complète</a>. Pour vérifier chaque point, consultez la section <a
+            href="/verifier">Vérifier</a
+          >.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</WikiLayout>
+
+<style>
+  .resume-page {
+    max-width: 700px;
+  }
+
+  .resume-page h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  .summary-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--cyan);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+
+  .summary-box p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .content ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: item;
+    margin-bottom: 40px;
+  }
+
+  .content ol li {
+    counter-increment: item;
+    padding: 16px 20px 16px 52px;
+    position: relative;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .content ol li::before {
+    content: counter(item);
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cyan);
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    border-radius: 50%;
+  }
+
+  .content ol li strong {
+    color: var(--text-main);
+  }
+
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--violet);
+    padding: 16px 20px;
+    border-radius: 4px;
+    margin-top: 32px;
+  }
+
+  .info-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-box a {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

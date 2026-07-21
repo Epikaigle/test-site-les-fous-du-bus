@@ -1,7 +1,7 @@
 ---
 title: 'Luffy deviendra Joy Boy'
 summary: "Joy Boy n'est pas un personnage du passé mais le nom que le monde donnera à Luffy après qu'il aura libéré le monde. Tout comme 'One Piece' est un nom donné par le monde, 'Joy Boy' sera le titre donné à Luffy."
-category: 'figures-identites'
+category: 'figures-principales'
 status: 'published'
 certainty: 'central'
 lastUpdatedChapter: 1188

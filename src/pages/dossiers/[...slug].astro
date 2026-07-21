@@ -1,0 +1,199 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+
+export async function getStaticPaths() {
+  const topics = [
+    // Monde et destinations
+    'blue-star', 'grand-line', 'red-line', 'calm-belt', 'reverse-mountain',
+    'lodestar', 'laugh-tale', 'raftel', 'one-piece', 'all-blue',
+    // Histoire et temporalité
+    'siecle-oublie', 'royaume-antique', 'grande-guerre', 'chronologie-monde',
+    'ponelyphes', 'road-ponelyphes', 'rio-ponelyphe', 'ponelyphe-shandora',
+    'ponelyphe-hommes-poissons', 'voyage-temporel', 'kozuki-toki', 'madame-shirley',
+    // Figures principales
+    'luffy', 'joy-boy', 'nika', 'gol-d-roger', 'shanks', 'kaido', 'kuma', 'imu',
+    // Personnages et identités
+    'shirahoshi', 'poseidon', 'vivi', 'lili', 'teach', 'davy-jones', 'rocks',
+    'zoro', 'ryuma', 'brook', 'dozan', 'loki', 'nidhogg', 'ratatoskr',
+    // Armes antiques
+    'armes-antiques', 'pluton', 'uranus', 'noah', 'wano-kuni', 'lulusia', 'mother-flame',
+    // Technologies et pouvoirs
+    'vegapunk', 'fruits-du-demon', 'zoans', 'hito-hito-nika', 'toki-toki-no-mi',
+    'emeth', 'galley-la', 'omen', 'domie-reversi', 'chapeau-geant',
+    // Peuples, royaumes et témoins
+    'elbaf', 'geants', 'harley', 'fresque-elbaf', 'royaume-ryugu', 'hommes-poissons',
+    'alabasta', 'zou', 'minks', 'shandora', 'shandias', 'boucaniers', 'lunariens',
+    'zunesha', 'equipage-roger', 'rayleigh', 'gaban', 'crocus',
+    // Dieux et croyances
+    'dieux-one-piece', 'zaza', 'dieu-foret', 'dieu-terre', 'dieu-guerre', 'dieu-lames',
+    'divinites-shandias', 'gorosei', 'dieux-guerriers', 'dragons-celestes', 'ener', 'skypiea',
+    'foi', 'peur', 'espoir', 'divinisation',
+    // Transmission et mémoire
+    'volonte-heritee', 'promesses', 'propheties', 'memoire', 'prescience',
+    'binks-no-sake', 'equipage-rumbar', 'voix-joy-boy', 'urara-takano', 'haki-joy-boy',
+    // Gouvernement mondial
+    'gouvernement-mondial', 'vingt-rois', 'chevaliers-divins', 'mary-geoise', 'chambre-fleurie',
+    // Guerre finale
+    'guerre-finale', 'deluge', 'jour-serment', 'destruction-lulusia',
+    'destruction-red-line', 'creation-all-blue', 'coalition-joy-boy',
+  ];
+
+  return topics.map((slug) => ({
+    params: { slug },
+    props: { slug },
+  }));
+}
+
+const { slug } = Astro.props;
+
+// Format slug into readable title
+const title = slug
+  .split('-')
+  .map((w: string) => {
+    if (['d', 'du', 'de', 'la', 'le', 'l', 'no', 'mi', 'd'].includes(w)) return w;
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  })
+  .join(' ');
+
+// Find which section this topic belongs to
+const sectionMap: Record<string, { section: string; description: string }> = {
+  'blue-star': { section: 'Monde et destinations', description: 'La géographie globale du monde de One Piece.' },
+  'grand-line': { section: 'Monde et destinations', description: 'La Grand Line, la route des pirates.' },
+  'red-line': { section: 'Monde et destinations', description: 'La Red Line, le continent rouge qui divise le monde.' },
+  'calm-belt': { section: 'Monde et destinations', description: 'Les Calm Belts, les ceintures de calme autour de Grand Line.' },
+  'reverse-mountain': { section: 'Monde et destinations', description: 'Reverse Mountain, l\'entrée de la Grand Line.' },
+  'lodestar': { section: 'Monde et destinations', description: 'Lodestar, l\'étoile polaire et la quatrième coordonnée.' },
+  'laugh-tale': { section: 'Monde et destinations', description: 'Laugh Tale, l\'île finale et le cœur du problème temporel.' },
+  'raftel': { section: 'Monde et destinations', description: 'Raftel, l\'ancien nom de Laugh Tale et son usage.' },
+  'one-piece': { section: 'Monde et destinations', description: 'Le One Piece, le trésor de Roger et son interprétation.' },
+  'all-blue': { section: 'Monde et destinations', description: 'All Blue, le rêve de Sanji et sa place dans la théorie.' },
+  'siecle-oublie': { section: 'Histoire et temporalité', description: 'Le Siècle oublié, le cœur de la théorie.' },
+  'royaume-antique': { section: 'Histoire et temporalité', description: 'Le Royaume antique, la civilisation disparue.' },
+  'luffy': { section: 'Figures principales', description: 'Monkey D. Luffy, le protagoniste et futur Joy Boy.' },
+  'joy-boy': { section: 'Figures principales', description: 'Joy Boy, la figure centrale de la théorie.' },
+  'nika': { section: 'Figures principales', description: 'Nika, le dieu du soleil et son lien avec Luffy.' },
+  'imu': { section: 'Figures principales', description: 'Imu Nerona, le souverain secret du Gouvernement mondial.' },
+  'gouvernement-mondial': { section: 'Gouvernement mondial', description: 'Le Gouvernement mondial et sa structure.' },
+  'guerre-finale': { section: 'Guerre finale', description: 'La guerre finale et ses enjeux.' },
+  'mother-flame': { section: 'Armes antiques', description: 'La Mother Flame, l\'énergie antique réutilisée.' },
+  'elbaf': { section: 'Peuples, royaumes et témoins', description: 'Elbaf, l\'île des géants et son rôle dans la théorie.' },
+  'gorosei': { section: 'Gouvernement mondial', description: 'Le Gorosei, les cinq plus grands sabreurs du monde.' },
+  'dragons-celestes': { section: 'Gouvernement mondial', description: 'Les Dragons Célestes, les nobles du Gouvernement mondial.' },
+};
+
+const sectionInfo = sectionMap[slug] || { section: 'Dossier', description: `Article sur ${title}.` };
+---
+
+<WikiLayout title={title} currentPath={`/dossiers/${slug}`}>
+  <div class="dossier-placeholder">
+    <span class="dossier-icon">📝</span>
+    <div class="dossier-section-tag">{sectionInfo.section}</div>
+    <h1>{title}</h1>
+    <p class="dossier-desc">{sectionInfo.description}</p>
+
+    <div class="dossier-box">
+      <h3>📖 Dossier en cours de rédaction</h3>
+      <p>
+        Ce dossier est prévu dans la structure du site mais n'est pas encore rédigé.
+        Les éléments disponibles dans les articles existants et les transcriptions
+        seront progressivement intégrés ici.
+      </p>
+    </div>
+
+    <div class="dossier-links">
+      <a href="/dossiers" class="dossier-link">← Retour aux dossiers</a>
+      <a href="/theorie" class="dossier-link">📖 La théorie</a>
+    </div>
+  </div>
+  <Footer />
+</WikiLayout>
+
+<style>
+  .dossier-placeholder {
+    text-align: center;
+    padding: 48px 0;
+  }
+
+  .dossier-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .dossier-section-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+    color: var(--violet);
+    border: 1px solid color-mix(in srgb, var(--violet) 20%, transparent);
+    margin-bottom: 16px;
+  }
+
+  .dossier-placeholder h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .dossier-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .dossier-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 32px;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+
+  .dossier-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .dossier-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .dossier-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .dossier-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .dossier-link:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+</style>

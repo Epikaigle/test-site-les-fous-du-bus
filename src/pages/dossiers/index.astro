@@ -1,26 +1,23 @@
 ---
 import WikiLayout from '@layouts/WikiLayout.astro';
+import CategoryCard from '@components/CategoryCard.astro';
 import Footer from '@components/Footer.astro';
 
-interface SidebarSection {
+interface DossierSection {
+  id: string;
+  icon: string;
   title: string;
-  items: { label: string; href: string; desc?: string }[];
+  description: string;
+  links: { label: string; href: string }[];
 }
 
-const sidebarSections: SidebarSection[] = [
+const sections: DossierSection[] = [
   {
-    title: 'COMMENCER',
-    items: [
-      { label: 'Présentation', href: '/', desc: 'La théorie en une page.' },
-      { label: 'Résumé de la théorie', href: '/theorie/resume', desc: 'Synthèse condensée.' },
-      { label: 'Théorie complète', href: '/theorie/theorie-complete', desc: "L'argumentation entière." },
-      { label: 'Carte mentale', href: '/explorer/carte-mentale', desc: "Vue d'ensemble visuelle." },
-      { label: 'Lexique essentiel', href: '/aide/glossaire', desc: 'Termes et définitions.' },
-    ],
-  },
-  {
-    title: 'MONDE ET DESTINATIONS',
-    items: [
+    id: 'monde-destinations',
+    icon: '🌍',
+    title: 'Monde et destinations',
+    description: 'La géographie du monde et les lieux qui fondent la théorie.',
+    links: [
       { label: 'Blue Star', href: '/dossiers/blue-star' },
       { label: 'Grand Line', href: '/dossiers/grand-line' },
       { label: 'Red Line', href: '/dossiers/red-line' },
@@ -34,51 +31,54 @@ const sidebarSections: SidebarSection[] = [
     ],
   },
   {
-    title: 'HISTOIRE, TEMPS ET PONÉGLYPHES',
-    items: [
+    id: 'histoire-temporalite',
+    icon: '📜',
+    title: 'Histoire et temporalité',
+    description: 'Le mécanisme temporel, les Ponéglyphes et la communication entre les époques.',
+    links: [
       { label: 'Siècle oublié', href: '/dossiers/siecle-oublie' },
       { label: 'Royaume antique', href: '/dossiers/royaume-antique' },
       { label: 'Grande Guerre', href: '/dossiers/grande-guerre' },
-      { label: 'Chronologie du monde', href: '/dossiers/chronologie-monde' },
       { label: 'Ponéglyphes', href: '/dossiers/ponelyphes' },
       { label: 'Road Ponéglyphes', href: '/dossiers/road-ponelyphes' },
       { label: 'Rio Ponéglyphe', href: '/dossiers/rio-ponelyphe' },
       { label: 'Voyage temporel', href: '/dossiers/voyage-temporel' },
-      { label: 'Communication temporelle', href: '/theorie/communication-temps' },
       { label: 'Kozuki Toki', href: '/dossiers/kozuki-toki' },
-      { label: 'Madame Shirley', href: '/dossiers/madame-shirley' },
     ],
   },
   {
-    title: 'FIGURES PRINCIPALES',
-    items: [
+    id: 'figures-principales',
+    icon: '🎭',
+    title: 'Figures principales',
+    description: 'Les acteurs centraux de la théorie : Luffy, Joy Boy, Nika et leurs liens.',
+    links: [
       { label: 'Monkey D. Luffy', href: '/dossiers/luffy' },
       { label: 'Joy Boy', href: '/dossiers/joy-boy' },
       { label: 'Nika', href: '/dossiers/nika' },
       { label: 'Gol D. Roger', href: '/dossiers/gol-d-roger' },
-      { label: 'Shanks', href: '/dossiers/shanks' },
-      { label: 'Kaido', href: '/dossiers/kaido' },
-      { label: 'Bartholomew Kuma', href: '/dossiers/kuma' },
       { label: 'Imu Nerona', href: '/dossiers/imu' },
     ],
   },
   {
-    title: 'PERSONNAGES ET IDENTITÉS',
-    items: [
-      { label: 'Shirahoshi / Poséidon', href: '/dossiers/shirahoshi' },
+    id: 'personnages-identites',
+    icon: '👥',
+    title: 'Personnages et identités',
+    description: 'Les parallèles et les liens entre personnages anciens et modernes.',
+    links: [
+      { label: 'Shirahoshi', href: '/dossiers/shirahoshi' },
       { label: 'Nefertari Vivi', href: '/dossiers/vivi' },
       { label: 'Marshall D. Teach', href: '/dossiers/teach' },
-      { label: 'Davy Jones', href: '/dossiers/davy-jones' },
-      { label: 'Rocks D. Xebec', href: '/dossiers/rocks' },
       { label: 'Roronoa Zoro', href: '/dossiers/zoro' },
-      { label: 'Shimotsuki Ryuma', href: '/dossiers/ryuma' },
-      { label: 'Brook / Dōzan', href: '/dossiers/brook' },
+      { label: 'Brook', href: '/dossiers/brook' },
       { label: 'Loki', href: '/dossiers/loki' },
     ],
   },
   {
-    title: 'ARMES ANTIQUES',
-    items: [
+    id: 'armes-antiques',
+    icon: '🔱',
+    title: 'Armes antiques',
+    description: 'Poséidon, Pluton, Uranus et leur rôle dans la guerre finale.',
+    links: [
       { label: 'Armes antiques', href: '/dossiers/armes-antiques' },
       { label: 'Poséidon', href: '/dossiers/poseidon' },
       { label: 'Pluton', href: '/dossiers/pluton' },
@@ -88,20 +88,24 @@ const sidebarSections: SidebarSection[] = [
     ],
   },
   {
-    title: 'TECHNOLOGIES ET POUVOIRS',
-    items: [
+    id: 'technologies-pouvoirs',
+    icon: '⚡',
+    title: 'Technologies et pouvoirs',
+    description: 'Vegapunk, Fruits du Démon, Mother Flame et les technologies perdues.',
+    links: [
       { label: 'Vegapunk', href: '/dossiers/vegapunk' },
       { label: 'Fruits du Démon', href: '/dossiers/fruits-du-demon' },
       { label: 'Mother Flame', href: '/dossiers/mother-flame' },
       { label: 'Emeth', href: '/dossiers/emeth' },
-      { label: 'Galley-La', href: '/dossiers/galley-la' },
       { label: 'Omen', href: '/dossiers/omen' },
-      { label: 'Domi Reversi', href: '/dossiers/domie-reversi' },
     ],
   },
   {
-    title: 'PEUPLES, ROYAUMES ET TÉMOINS',
-    items: [
+    id: 'peuples-royaumes',
+    icon: '🗺️',
+    title: 'Peuples, royaumes et témoins',
+    description: 'Les nations, les peuples et les témoins vivants de l\'histoire.',
+    links: [
       { label: 'Elbaf', href: '/dossiers/elbaf' },
       { label: 'Royaume Ryugu', href: '/dossiers/royaume-ryugu' },
       { label: 'Alabasta', href: '/dossiers/alabasta' },
@@ -113,48 +117,54 @@ const sidebarSections: SidebarSection[] = [
     ],
   },
   {
-    title: 'DIEUX ET CROYANCES',
-    items: [
+    id: 'dieux-croyances',
+    icon: '☀️',
+    title: 'Dieux et croyances',
+    description: 'Comment un être, un pouvoir ou une peur devient un dieu aux yeux des peuples.',
+    links: [
       { label: 'Les dieux de One Piece', href: '/dossiers/dieux-one-piece' },
       { label: 'Nika', href: '/dossiers/nika' },
       { label: 'Gorosei', href: '/dossiers/gorosei' },
       { label: 'Dragons Célestes', href: '/dossiers/dragons-celestes' },
-      { label: 'Ener / Skypiea', href: '/dossiers/ener' },
-      { label: 'Foi, Peur, Espoir', href: '/dossiers/foi' },
+      { label: 'Ener', href: '/dossiers/ener' },
     ],
   },
   {
-    title: 'TRANSMISSION ET MÉMOIRE',
-    items: [
+    id: 'transmission-memoire',
+    icon: '🎵',
+    title: 'Transmission et mémoire',
+    description: 'Volonté héritée, promesses, chants et transmission à travers les époques.',
+    links: [
       { label: 'Volonté héritée', href: '/dossiers/volonte-heritee' },
       { label: 'Promesses', href: '/dossiers/promesses' },
       { label: 'Prophéties', href: '/dossiers/propheties' },
       { label: 'Binks no Sake', href: '/dossiers/binks-no-sake' },
       { label: 'Voix de Joy Boy', href: '/dossiers/voix-joy-boy' },
-      { label: 'Haki de Joy Boy', href: '/dossiers/haki-joy-boy' },
     ],
   },
   {
-    title: 'GOUVERNEMENT MONDIAL',
-    items: [
+    id: 'gouvernement-mondial',
+    icon: '🏛️',
+    title: 'Gouvernement mondial',
+    description: 'Imu, Gorosei, Dragons Célestes et la structure du pouvoir mondial.',
+    links: [
       { label: 'Gouvernement mondial', href: '/dossiers/gouvernement-mondial' },
       { label: 'Imu Nerona', href: '/dossiers/imu' },
       { label: 'Vingt Rois', href: '/dossiers/vingt-rois' },
       { label: 'Gorosei', href: '/dossiers/gorosei' },
-      { label: 'Chevaliers Divins', href: '/dossiers/chevaliers-divins' },
       { label: 'Mary Geoise', href: '/dossiers/mary-geoise' },
-      { label: 'Chambre Fleurie', href: '/dossiers/chambre-fleurie' },
     ],
   },
   {
-    title: 'GUERRE FINALE',
-    items: [
+    id: 'guerre-finale',
+    icon: '⚔️',
+    title: 'Guerre finale',
+    description: 'La Grande Guerre, le Déluge, la destruction de Red Line et la coalition finale.',
+    links: [
       { label: 'Grande Guerre', href: '/dossiers/grande-guerre' },
       { label: 'Guerre finale', href: '/dossiers/guerre-finale' },
       { label: 'Déluge', href: '/dossiers/deluge' },
-      { label: 'Jour du serment', href: '/dossiers/jour-serment' },
       { label: 'Destruction de Lulusia', href: '/dossiers/destruction-lulusia' },
-      { label: 'Destruction de Red Line', href: '/dossiers/destruction-red-line' },
       { label: "Création d'All Blue", href: '/dossiers/creation-all-blue' },
       { label: 'Coalition de Joy Boy', href: '/dossiers/coalition-joy-boy' },
     ],
@@ -162,44 +172,37 @@ const sidebarSections: SidebarSection[] = [
 ];
 ---
 
-<WikiLayout title="La théorie" currentPath="/theorie">
+<WikiLayout title="Dossiers" currentPath="/dossiers">
   <div class="hero">
-    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Sommaire</div>
-    <h1>La théorie</h1>
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Dossiers</div>
+    <h1>Dossiers</h1>
     <p class="subtitle">
-      Pour découvrir et lire l'argumentation principale dans son ensemble. Suivez l'ordre de lecture
-      ci-dessous pour comprendre le raisonnement étape par étape.
+      Pour atteindre directement un sujet précis. Chaque dossier explore un thème de la théorie
+      de manière autonome, avec ses preuves, ses objections et ses liens vers les autres articles.
     </p>
   </div>
 
-  <div class="sidebar-preview">
+  <div class="sections">
     {
-      sidebarSections.map((section) => (
-        <div class="sidebar-preview__section">
-          <h2 class="sidebar-preview__title">{section.title}</h2>
-          <ul class="sidebar-preview__list">
-            {section.items.map((item) => (
-              <li>
-                <a href={item.href} class="sidebar-preview__link">
-                  {item.label}
-                </a>
-              </li>
+      sections.map((section) => (
+        <div class="section-block" id={section.id}>
+          <div class="section-header">
+            <span class="section-icon">{section.icon}</span>
+            <div>
+              <h2>{section.title}</h2>
+              <p>{section.description}</p>
+            </div>
+          </div>
+          <div class="section-links">
+            {section.links.map((link) => (
+              <a href={link.href} class="section-link">
+                {link.label}
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
       ))
     }
-  </div>
-
-  <div class="info-box">
-    <h3>📖 Ordre de lecture recommandé</h3>
-    <p>
-      1. Blue Star → 2. Lodestar et Laugh Tale → 3. One Piece → 4. Siècle oublié → 5. Royaume antique
-      → 6. Ponéglyphes → 7. Joy Boy → 8. Nika → 9. Luffy → 10. Poséidon et les Armes antiques →
-      11. Les figures secondaires → 12. Emeth, Zunesha et Toki → 13. Vegapunk et Mother Flame →
-      14. Peuples et missions → 15. Dieux et foi → 16. Imu et le Gouvernement mondial → 17. Déluge →
-      18. Guerre finale → 19. Red Line, All Blue et One Piece → 20. Preuves et objections.
-    </p>
   </div>
 
   <Footer />
@@ -225,76 +228,75 @@ const sidebarSections: SidebarSection[] = [
     line-height: 1.6;
   }
 
-  .sidebar-preview {
+  .sections {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    margin-bottom: 48px;
   }
 
-  .sidebar-preview__section {
-    border-left: 2px solid var(--border-color);
-    padding-left: 20px;
+  .section-block {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 24px;
   }
 
-  .sidebar-preview__title {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--text-main);
-    margin-bottom: 12px;
-  }
-
-  .sidebar-preview__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .section-header {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
   }
 
-  .sidebar-preview__link {
-    display: block;
-    padding: 6px 12px;
+  .section-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .section-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .section-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .section-link {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 12px;
     border-radius: 4px;
-    font-size: 14px;
+    background-color: var(--surface);
     color: var(--text-secondary);
     text-decoration: none;
+    border: 1px solid var(--border-color);
     transition: all 0.15s;
   }
 
-  .sidebar-preview__link:hover {
-    background-color: var(--surface);
+  .section-link:hover {
+    border-color: var(--violet);
     color: var(--cyan);
-  }
-
-  .info-box {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-left: 3px solid var(--violet);
-    padding: 20px 24px;
-    border-radius: 4px;
-    margin-top: 48px;
-  }
-
-  .info-box h3 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-
-  .info-box p {
-    color: var(--text-secondary);
-    font-size: 13px;
-    line-height: 1.7;
-    margin: 0;
+    background-color: var(--bg-main);
   }
 
   @media (max-width: 640px) {
-    .hero {
-      margin-bottom: 32px;
+    .section-block {
+      padding: 16px;
+    }
+    .section-header {
+      flex-direction: column;
+      gap: 8px;
     }
   }
 </style>

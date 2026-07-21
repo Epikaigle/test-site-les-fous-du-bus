@@ -1,7 +1,7 @@
 ---
 title: 'Nika, le dieu du soleil'
 summary: "Nika est une figure divine vénérée par les esclaves, transmise par les boucaniers et issue d'Elbaf. Il n'est pas qu'un mythe, mais un pouvoir bien réel éveillé par Luffy."
-category: 'figures-identites'
+category: 'figures-principales'
 status: 'published'
 certainty: 'elevee'
 lastUpdatedChapter: 1188

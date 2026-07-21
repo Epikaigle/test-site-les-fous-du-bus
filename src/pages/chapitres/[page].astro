@@ -5,35 +5,51 @@ import Footer from '@components/Footer.astro';
 export async function getStaticPaths() {
   return [
     {
-      params: { page: 'chapitres' },
+      params: { page: 'derniere-analyse' },
       props: {
-        title: 'Chapitre par chapitre',
+        title: 'Dernière analyse',
         icon: '📖',
-        desc: "Analyse détaillée de l'apport de chaque chapitre à la théorie.",
+        desc: "L'analyse du chapitre le plus récent et son apport à la théorie.",
       },
     },
     {
-      params: { page: 'previsions' },
+      params: { page: 'toutes-les-analyses' },
+      props: {
+        title: 'Toutes les analyses',
+        icon: '📚',
+        desc: 'Liste complète des analyses chapitre par chapitre.',
+      },
+    },
+    {
+      params: { page: 'predictions' },
       props: {
         title: 'Prédictions',
         icon: '🔮',
-        desc: 'Tableau des prédictions formulées par la théorie.',
+        desc: 'Prédictions formulées par la théorie et leur statut actuel.',
       },
     },
     {
-      params: { page: 'historique' },
+      params: { page: 'modifications' },
       props: {
-        title: 'Historique des articles',
+        title: 'Modifications',
         icon: '📋',
-        desc: 'Historique des modifications apportées aux articles de la théorie.',
+        desc: 'Modifications apportées aux articles suite aux nouveaux chapitres.',
       },
     },
     {
-      params: { page: 'abandonnees' },
+      params: { page: 'contradictions' },
+      props: {
+        title: 'Contradictions',
+        icon: '❌',
+        desc: 'Les éléments du manga qui contredisent ou fragilisent la théorie.',
+      },
+    },
+    {
+      params: { page: 'hypotheses-abandonnees' },
       props: {
         title: 'Hypothèses abandonnées',
         icon: '🗑️',
-        desc: 'Les pistes réfutées ou abandonnées en cours de route.',
+        desc: 'Les pistes qui ont été réfutées ou abandonnées en cours de route.',
       },
     },
   ];
@@ -42,7 +58,7 @@ export async function getStaticPaths() {
 const { title, icon, desc } = Astro.props;
 ---
 
-<WikiLayout title={title} currentPath={`/evolution/${Astro.params.page}`}>
+<WikiLayout title={title} currentPath={`/chapitres/${Astro.params.page}`}>
   <div class="placeholder-page">
     <span class="placeholder-icon">{icon}</span>
     <h1>{title}</h1>
@@ -57,7 +73,7 @@ const { title, icon, desc } = Astro.props;
     </div>
 
     <div class="placeholder-links">
-      <a href="/evolution" class="placeholder-link">← Retour à Évolution</a>
+      <a href="/chapitres" class="placeholder-link">← Retour à Chapitres</a>
       <a href="/theorie" class="placeholder-link">📖 La théorie</a>
     </div>
   </div>

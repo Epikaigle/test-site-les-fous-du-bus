@@ -1,7 +1,7 @@
 ---
 title: "Laugh Tale n'existe pas encore"
 summary: "Laugh Tale n'est pas une île cachée dans l'espace, mais une île qui n'existe pas encore dans le temps. Roger a dû voyager dans le futur pour atteindre Laugh Tale, qui serait en réalité Lodestar."
-category: 'fondations'
+category: 'monde-destinations'
 status: 'published'
 certainty: 'central'
 lastUpdatedChapter: 1188
