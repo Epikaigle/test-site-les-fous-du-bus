@@ -1,7 +1,5 @@
 ---
-term: 'Ponéglyphe'
-definition: "Pierres de l'Histoire gravées en langage ancien, racontant le Siècle oublié. Dans la théorie, elles ne relateraient pas le passé mais le futur, gravé à rebours et envoyé 800 ans en arrière."
-relatedArticles: ['communication-temps', 'laugh-tale-n-existe-pas-encore']
+term: "Ponéglyphes"
+definition: "Blocs de pierre indestructibles gravés avec une langue ancienne. Selon la théorie, ils ont été créés dans le futur par Robin et Momonosuke, puis envoyés dans le passé. Ils racontent l'histoire de Luffy/Joy Boy, pas un passé oublié."
+relatedArticles: ["ponelyphes-futur", "theorie-complete"]
 ---
-
-Support de la boucle temporelle : leur contenu serait adressé du futur vers le passé.

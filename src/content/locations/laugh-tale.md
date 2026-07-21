@@ -1,9 +1,7 @@
 ---
-name: 'Laugh Tale'
-region: 'Grand Line'
-summary: 'Dernière île de la Route Aller, lieu où Roger aurait ri. Dans la théorie, Laugh Tale ne serait pas une île « déjà visitée » mais le point de bascule où le présent rejoint le Siècle oublié.'
-articles: ['laugh-tale-n-existe-pas-encore', 'luffy-deviendra-joy-boy']
+name: "Laugh Tale"
+region: "Grand Line (fin)"
+summary: "La dernière île de Grand Line. Selon la théorie, c'est Lodestar à l'époque de Joy Boy. Roger y est arrivé 25 ans trop tôt et l'a nommé 'conte du rire'."
+articles: ["laugh-tale", "theorie-complete"]
 order: 1
 ---
-
-Laugh Tale est le pivot de la boucle : c'est là que Roger a accèdé au One Piece et a ri, comprenant que le trésor est une prophétie sur le présent. La théorie avance que l'île elle-même n'existe « pas encore » sous sa forme finale.

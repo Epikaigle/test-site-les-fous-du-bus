@@ -1,8 +1,7 @@
 ---
-title: "Le Gouvernement Mondial tombera pendant l'histoire présente"
-statement: 'La « grande guerre » et la chute du Gouvernement ne sont pas un événement du passé mais ce que Luffy et ses alliés provoquent maintenant.'
-status: 'en-attente'
-articles: ['communication-temps', 'signification-d']
+title: "Le Gouvernement Mondial tombera"
+statement: "La destruction de Red Line et l'augmentation du niveau de la mer de 200m mettront fin au Gouvernement Mondial et créeront All Blue."
+status: "en-cours"
+chapter: 1188
+articles: ["deluge-all-blue"]
 ---
-
-Prédiction macro : le Siècle oublié _est_ la période actuelle de l'histoire, et non une époque révolue.

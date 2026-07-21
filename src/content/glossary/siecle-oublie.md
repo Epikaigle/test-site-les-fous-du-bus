@@ -1,7 +1,5 @@
 ---
-term: 'Siècle oublié'
-definition: "Période de 100 ans effacée de l'histoire officielle, située il y a environ 800 ans, incluant la première grande guerre et la fondation du Gouvernement Mondial. Dans la théorie, elle ne serait pas close mais en train de se rejouer au présent."
-relatedArticles: ['laugh-tale-n-existe-pas-encore', 'communication-temps']
+term: "Siècle oublié"
+definition: "Période de 100 ans (900-800 ans avant l'ère actuelle) dont l'histoire a été effacée par le Gouvernement Mondial. Selon la théorie, le Siècle oublié n'a pas encore eu lieu : c'est l'histoire que nous lisons depuis le chapitre 1."
+relatedArticles: ["theorie-complete", "siecle-oublie-present"]
 ---
-
-Terme central : le « passé » que tout le monde cherche serait en réalité le présent en train de se construire.

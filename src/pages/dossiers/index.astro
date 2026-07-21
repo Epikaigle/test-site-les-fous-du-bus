@@ -1,14 +1,16 @@
 ---
 import WikiLayout from '@layouts/WikiLayout.astro';
-import CategoryCard from '@components/CategoryCard.astro';
 import Footer from '@components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles');
+const publishedArticles = articles.filter(a => a.data.status === 'published');
 
 interface DossierSection {
   id: string;
   icon: string;
   title: string;
   description: string;
-  links: { label: string; href: string }[];
 }
 
 const sections: DossierSection[] = [
@@ -17,157 +19,66 @@ const sections: DossierSection[] = [
     icon: '🌍',
     title: 'Monde et destinations',
     description: 'La géographie du monde et les lieux qui fondent la théorie.',
-    links: [
-      { label: 'Blue Star', href: '/dossiers/blue-star' },
-      { label: 'Grand Line', href: '/dossiers/grand-line' },
-      { label: 'Red Line', href: '/dossiers/red-line' },
-      { label: 'Calm Belt', href: '/dossiers/calm-belt' },
-      { label: 'Reverse Mountain', href: '/dossiers/reverse-mountain' },
-      { label: 'Lodestar', href: '/dossiers/lodestar' },
-      { label: 'Laugh Tale', href: '/dossiers/laugh-tale' },
-      { label: 'Raftel', href: '/dossiers/raftel' },
-      { label: 'One Piece', href: '/dossiers/one-piece' },
-      { label: 'All Blue', href: '/dossiers/all-blue' },
-    ],
   },
   {
     id: 'histoire-temporalite',
     icon: '📜',
     title: 'Histoire et temporalité',
     description: 'Le mécanisme temporel, les Ponéglyphes et la communication entre les époques.',
-    links: [
-      { label: 'Siècle oublié', href: '/dossiers/siecle-oublie' },
-      { label: 'Royaume antique', href: '/dossiers/royaume-antique' },
-      { label: 'Grande Guerre', href: '/dossiers/grande-guerre' },
-      { label: 'Ponéglyphes', href: '/dossiers/ponelyphes' },
-      { label: 'Road Ponéglyphes', href: '/dossiers/road-ponelyphes' },
-      { label: 'Rio Ponéglyphe', href: '/dossiers/rio-ponelyphe' },
-      { label: 'Voyage temporel', href: '/dossiers/voyage-temporel' },
-      { label: 'Kozuki Toki', href: '/dossiers/kozuki-toki' },
-    ],
   },
   {
     id: 'figures-principales',
     icon: '🎭',
     title: 'Figures principales',
-    description: 'Les acteurs centraux de la théorie : Luffy, Joy Boy, Nika et leurs liens.',
-    links: [
-      { label: 'Monkey D. Luffy', href: '/dossiers/luffy' },
-      { label: 'Joy Boy', href: '/dossiers/joy-boy' },
-      { label: 'Nika', href: '/dossiers/nika' },
-      { label: 'Gol D. Roger', href: '/dossiers/gol-d-roger' },
-      { label: 'Imu Nerona', href: '/dossiers/imu' },
-    ],
+    description: 'Luffy, Joy Boy, Nika : les acteurs centraux de la théorie.',
   },
   {
     id: 'personnages-identites',
     icon: '👥',
     title: 'Personnages et identités',
     description: 'Les parallèles et les liens entre personnages anciens et modernes.',
-    links: [
-      { label: 'Shirahoshi', href: '/dossiers/shirahoshi' },
-      { label: 'Nefertari Vivi', href: '/dossiers/vivi' },
-      { label: 'Marshall D. Teach', href: '/dossiers/teach' },
-      { label: 'Roronoa Zoro', href: '/dossiers/zoro' },
-      { label: 'Brook', href: '/dossiers/brook' },
-      { label: 'Loki', href: '/dossiers/loki' },
-    ],
   },
   {
     id: 'armes-antiques',
     icon: '🔱',
     title: 'Armes antiques',
     description: 'Poséidon, Pluton, Uranus et leur rôle dans la guerre finale.',
-    links: [
-      { label: 'Armes antiques', href: '/dossiers/armes-antiques' },
-      { label: 'Poséidon', href: '/dossiers/poseidon' },
-      { label: 'Pluton', href: '/dossiers/pluton' },
-      { label: 'Uranus', href: '/dossiers/uranus' },
-      { label: 'Noah', href: '/dossiers/noah' },
-      { label: 'Mother Flame', href: '/dossiers/mother-flame' },
-    ],
   },
   {
     id: 'technologies-pouvoirs',
     icon: '⚡',
     title: 'Technologies et pouvoirs',
-    description: 'Vegapunk, Fruits du Démon, Mother Flame et les technologies perdues.',
-    links: [
-      { label: 'Vegapunk', href: '/dossiers/vegapunk' },
-      { label: 'Fruits du Démon', href: '/dossiers/fruits-du-demon' },
-      { label: 'Mother Flame', href: '/dossiers/mother-flame' },
-      { label: 'Emeth', href: '/dossiers/emeth' },
-      { label: 'Omen', href: '/dossiers/omen' },
-    ],
+    description: 'Vegapunk, Mother Flame, Fruits du Démon et les technologies perdues.',
   },
   {
     id: 'peuples-royaumes',
     icon: '🗺️',
     title: 'Peuples, royaumes et témoins',
     description: 'Les nations, les peuples et les témoins vivants de l\'histoire.',
-    links: [
-      { label: 'Elbaf', href: '/dossiers/elbaf' },
-      { label: 'Royaume Ryugu', href: '/dossiers/royaume-ryugu' },
-      { label: 'Alabasta', href: '/dossiers/alabasta' },
-      { label: 'Wa no Kuni', href: '/dossiers/wano-kuni' },
-      { label: 'Zou', href: '/dossiers/zou' },
-      { label: 'Shandora', href: '/dossiers/shandora' },
-      { label: 'Zunesha', href: '/dossiers/zunesha' },
-      { label: 'Équipage de Roger', href: '/dossiers/equipage-roger' },
-    ],
   },
   {
     id: 'dieux-croyances',
     icon: '☀️',
     title: 'Dieux et croyances',
     description: 'Comment un être, un pouvoir ou une peur devient un dieu aux yeux des peuples.',
-    links: [
-      { label: 'Les dieux de One Piece', href: '/dossiers/dieux-one-piece' },
-      { label: 'Nika', href: '/dossiers/nika' },
-      { label: 'Gorosei', href: '/dossiers/gorosei' },
-      { label: 'Dragons Célestes', href: '/dossiers/dragons-celestes' },
-      { label: 'Ener', href: '/dossiers/ener' },
-    ],
   },
   {
     id: 'transmission-memoire',
     icon: '🎵',
     title: 'Transmission et mémoire',
     description: 'Volonté héritée, promesses, chants et transmission à travers les époques.',
-    links: [
-      { label: 'Volonté héritée', href: '/dossiers/volonte-heritee' },
-      { label: 'Promesses', href: '/dossiers/promesses' },
-      { label: 'Prophéties', href: '/dossiers/propheties' },
-      { label: 'Binks no Sake', href: '/dossiers/binks-no-sake' },
-      { label: 'Voix de Joy Boy', href: '/dossiers/voix-joy-boy' },
-    ],
   },
   {
     id: 'gouvernement-mondial',
     icon: '🏛️',
     title: 'Gouvernement mondial',
     description: 'Imu, Gorosei, Dragons Célestes et la structure du pouvoir mondial.',
-    links: [
-      { label: 'Gouvernement mondial', href: '/dossiers/gouvernement-mondial' },
-      { label: 'Imu Nerona', href: '/dossiers/imu' },
-      { label: 'Vingt Rois', href: '/dossiers/vingt-rois' },
-      { label: 'Gorosei', href: '/dossiers/gorosei' },
-      { label: 'Mary Geoise', href: '/dossiers/mary-geoise' },
-    ],
   },
   {
     id: 'guerre-finale',
     icon: '⚔️',
     title: 'Guerre finale',
     description: 'La Grande Guerre, le Déluge, la destruction de Red Line et la coalition finale.',
-    links: [
-      { label: 'Grande Guerre', href: '/dossiers/grande-guerre' },
-      { label: 'Guerre finale', href: '/dossiers/guerre-finale' },
-      { label: 'Déluge', href: '/dossiers/deluge' },
-      { label: 'Destruction de Lulusia', href: '/dossiers/destruction-lulusia' },
-      { label: "Création d'All Blue", href: '/dossiers/creation-all-blue' },
-      { label: 'Coalition de Joy Boy', href: '/dossiers/coalition-joy-boy' },
-    ],
   },
 ];
 ---
@@ -183,26 +94,35 @@ const sections: DossierSection[] = [
   </div>
 
   <div class="sections">
-    {
-      sections.map((section) => (
+    {sections.map((section) => {
+      const sectionArticles = publishedArticles.filter(a => a.data.category === section.id);
+      return (
         <div class="section-block" id={section.id}>
           <div class="section-header">
             <span class="section-icon">{section.icon}</span>
             <div>
               <h2>{section.title}</h2>
               <p>{section.description}</p>
+              <p class="article-count">{sectionArticles.length} article{sectionArticles.length > 1 ? 's' : ''}</p>
             </div>
           </div>
-          <div class="section-links">
-            {section.links.map((link) => (
-              <a href={link.href} class="section-link">
-                {link.label}
-              </a>
-            ))}
-          </div>
+          {sectionArticles.length > 0 ? (
+            <div class="article-list">
+              {sectionArticles.sort((a, b) => a.data.order - b.data.order).map((article) => (
+                <a href={`/theorie/${article.id}`} class="article-link">
+                  <span class="article-title">{article.data.title}</span>
+                  {article.data.lastUpdatedChapter && (
+                    <span class="article-chapter">Chap. {article.data.lastUpdatedChapter}</span>
+                  )}
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p class="no-articles">Dossier en cours de rédaction</p>
+          )}
         </div>
-      ))
-    }
+      );
+    })}
   </div>
 
   <Footer />
@@ -266,28 +186,58 @@ const sections: DossierSection[] = [
     margin: 0;
   }
 
-  .section-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+  .article-count {
+    font-size: 11px !important;
+    color: var(--violet) !important;
+    margin-top: 4px !important;
   }
 
-  .section-link {
-    display: inline-block;
-    padding: 5px 12px;
-    font-size: 12px;
-    border-radius: 4px;
-    background-color: var(--surface);
-    color: var(--text-secondary);
-    text-decoration: none;
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .article-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background-color: var(--bg-main);
     border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-decoration: none;
     transition: all 0.15s;
   }
 
-  .section-link:hover {
+  .article-link:hover {
     border-color: var(--violet);
+    background-color: var(--surface);
+  }
+
+  .article-title {
+    font-size: 13px;
+    color: var(--text-main);
+    font-weight: 500;
+  }
+
+  .article-link:hover .article-title {
     color: var(--cyan);
-    background-color: var(--bg-main);
+  }
+
+  .article-chapter {
+    font-size: 11px;
+    color: var(--text-secondary);
+    background-color: var(--surface);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .no-articles {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 12px;
   }
 
   @media (max-width: 640px) {

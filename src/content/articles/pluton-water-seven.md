@@ -1,0 +1,34 @@
+---
+title: "Pluton est Water Seven dans le futur"
+summary: "L'arme antique Pluton n'a jamais existé il y a 800 ans. C'est Water Seven transformée en navire géant par les géants de la Galley-La (l'équipage de Loki)."
+category: "armes-antiques"
+status: "published"
+certainty: "moyenne"
+lastUpdatedChapter: 1188
+order: 31
+---
+
+## Le rêve d'Iceberg
+
+Au chapitre 431, Iceberg veut transformer Water Seven en un gigantesque navire pour protéger l'île d'Aqua Laguna. Franky s'étonne : « Tu veux transformer Water Seven en un gigantesque navire ? »
+
+Ironiquement, c'est exactement ce que Pluton est censé être : un navire gigantesque capable de détruire des îles.
+
+## La Galley-La légendaire
+
+La Galley-La est aussi le nom de la brigade au grand marteau, l'escouade de géants charpentiers d'Elbaf. Ces géants sont les mêmes que ceux congelés à Punk Hazard.
+
+Cet équipage serait en réalité l'équipage de Loki, cryogénisé par Ragnir pour les protéger. Ils rejoindront Water Seven et la transformeront en Pluton.
+
+## Le Poneglyphe d'Alabasta
+
+Le Poneglyphe indique Pluton à Wa no Kuni. Mais Roger ne comprenait pas pourquoi Poséidon n'était pas sur l'île des Hommes-Poissons alors que la pierre le disait.
+
+C'est la même mécanique : Pluton n'est pas encore à Wa no Kuni. Il y sera envoyé plus tard.
+
+## Zunesha et l'ouverture de Wano
+
+Water Seven (devenue Pluton) se rendra à Wa no Kuni avec Zunesha. L'éléphant videra la cuvette de Wano avec sa trompe, permettant de libérer Kaido et Big Mom de la chambre magmatique.
+
+La fusion de tout cela créera « le plus terrible monstre de l'histoire de la construction navale » : l'arme Pluton.
+

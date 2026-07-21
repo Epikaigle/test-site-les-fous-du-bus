@@ -1,8 +1,7 @@
 ---
-title: 'Shirahoshi activera Poséidon lors de la guerre finale'
-statement: "L'Arme antique de la Mer s'éveillera par l'intermédiaire de Shirahoshi au moment décisif, reliant les Seigneurs des Mers à Joy Boy."
-status: 'en-cours'
-articles: ['luffy-deviendra-joy-boy']
+title: "Shirahoshi deviendra Poséidon"
+statement: "Shirahoshi est l'arme antique Poséidon. Elle commandera les rois des mers pour détruire Red Line avec l'île des Hommes-Poissons."
+status: "en-cours"
+chapter: 1188
+articles: ["poseidon-shirahoshi"]
 ---
-
-Prédiction liée à l'arc final : la coalition des anciens alliés de Joy Boy se reformerait au présent.
