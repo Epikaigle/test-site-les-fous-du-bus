@@ -46,7 +46,7 @@
         color-mix(in srgb, var(--bg-main) 85%, transparent),
         color-mix(in srgb, var(--bg-main) 98%, transparent)
       ),
-      url('/wallpaper.png');
+      url('/wallpaper.webp');
     background-size: cover;
     background-position: center top;
     background-attachment: fixed;
