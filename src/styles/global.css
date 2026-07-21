@@ -31,6 +31,11 @@
     --border-color: rgba(33, 37, 41, 0.1);
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     @apply text-textMain font-sans antialiased;
     background-color: var(--bg-main);
@@ -42,6 +47,15 @@
     background-attachment: fixed;
     box-sizing: border-box;
     margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* On mobile, fixed background can cause jank */
+  @media (max-width: 768px) {
+    body {
+      background-attachment: scroll;
+    }
   }
 }
 
@@ -69,6 +83,15 @@
     color: var(--alert);
     border-color: color-mix(in srgb, var(--alert) 20%, transparent);
   }
+
+  /* Tap target helper - ensure minimum 44px touch targets on mobile */
+  @media (max-width: 768px) {
+    .tap-target {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+  }
 }
 
 ::-webkit-scrollbar {
@@ -88,6 +111,25 @@
   background-color: var(--violet);
 }
 
+/* Slimmer scrollbar on mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
 *, *::before, *::after {
   @apply transition-colors duration-200;
+}
+
+/* Prevent horizontal overflow globally */
+img, video, iframe {
+  max-width: 100%;
+}
+
+/* Better focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 2px;
 }

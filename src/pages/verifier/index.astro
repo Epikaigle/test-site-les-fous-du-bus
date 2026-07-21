@@ -1,0 +1,199 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<WikiLayout title="Vérifier" currentPath="/verifier">
+    <div class="page-header">
+        <div class="text-alert font-semibold tracking-widest uppercase text-sm mb-3">Rigueur</div>
+        <h1>Vérifier</h1>
+        <p class="page-desc">
+            Toutes les preuves, citations, parallèles visuels, objections et contradictions de la théorie. 
+            La transparence est un principe fondamental : chaque élément peut être vérifié, contesté et discuté.
+        </p>
+    </div>
+
+    <div class="nav-cards">
+        <a href="/verifier/preuves" class="nav-card">
+            <span class="nav-card__icon">🧩</span>
+            <div>
+                <h3>Pièces du puzzle</h3>
+                <p>Base complète des preuves classées par type et par force.</p>
+            </div>
+        </a>
+
+        <a href="/verifier/citations" class="nav-card">
+            <span class="nav-card__icon">💬</span>
+            <div>
+                <h3>Citations et scènes</h3>
+                <p>Les dialogues et scènes clés du manga qui alimentent la théorie.</p>
+            </div>
+        </a>
+
+        <a href="/verifier/paralleles" class="nav-card">
+            <span class="nav-card__icon">🔍</span>
+            <div>
+                <h3>Parallèles visuels</h3>
+                <p>Comparaisons visuelles entre personnages, lieux et événements.</p>
+            </div>
+        </a>
+
+        <a href="/verifier/objections" class="nav-card">
+            <span class="nav-card__icon">⚠️</span>
+            <div>
+                <h3>Objections</h3>
+                <p>Les arguments contre la théorie et les réponses apportées.</p>
+            </div>
+        </a>
+
+        <a href="/verifier/contradictions" class="nav-card">
+            <span class="nav-card__icon">❌</span>
+            <div>
+                <h3>Contradictions</h3>
+                <p>Les éléments du manga qui contredisent ou fragilisent la théorie.</p>
+            </div>
+        </a>
+
+        <a href="/verifier/sources" class="nav-card">
+            <span class="nav-card__icon">📚</span>
+            <div>
+                <h3>Sources et méthode</h3>
+                <p>Méthodologie d'analyse et sources utilisées dans la théorie.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="principles">
+        <h2 class="section-title">Principes de vérification</h2>
+        <div class="principle-list">
+            <div class="principle">
+                <span class="principle__num">1</span>
+                <div>
+                    <h4>Transparence</h4>
+                    <p>Les contradictions, corrections et prédictions réfutées restent visibles.</p>
+                </div>
+            </div>
+            <div class="principle">
+                <span class="principle__num">2</span>
+                <div>
+                    <h4>Distinction</h4>
+                    <p>Fait du manga, interprétation et hypothèse sont clairement distingués.</p>
+                </div>
+            </div>
+            <div class="principle">
+                <span class="principle__num">3</span>
+                <div>
+                    <h4>Sources</h4>
+                    <p>Toute affirmation liée au manga est rattachée à un chapitre ou une source identifiable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <Footer />
+</WikiLayout>
+
+<style>
+    .page-header {
+        margin-bottom: 48px;
+    }
+    .page-header h1 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+    .page-desc {
+        font-size: 15px;
+        color: var(--text-secondary);
+        max-width: 700px;
+        line-height: 1.6;
+    }
+    .nav-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 12px;
+        margin-bottom: 48px;
+    }
+    .nav-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px;
+        background-color: var(--bg-main);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    .nav-card:hover {
+        background-color: var(--bg-secondary);
+        border-color: var(--violet);
+    }
+    .nav-card__icon {
+        font-size: 1.3rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+    .nav-card h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 4px;
+        transition: color 0.2s;
+    }
+    .nav-card:hover h3 {
+        color: var(--cyan);
+    }
+    .nav-card p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.4;
+        margin: 0;
+    }
+    .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .principle-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .principle {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 16px 20px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+    .principle__num {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--violet);
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+        border-radius: 50%;
+    }
+    .principle h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .principle p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        margin: 0;
+    }
+</style>

@@ -6,8 +6,11 @@ import RelatedArticles from '@components/RelatedArticles.astro';
 import EvidenceSection from '@components/EvidenceSection.astro';
 import ChapterReferences from '@components/ChapterReferences.astro';
 import Footer from '@components/Footer.astro';
+import { certaintyToFrench } from '@utils/format';
 
-const { title, description, currentPath, headings, frontmatter } = Astro.props;
+const { title, description, currentPath, headings, frontmatter, readingTime = '1 min' } = Astro.props;
+const certainty = certaintyToFrench(frontmatter.certainty);
+const lastUpdatedChapter = String(frontmatter.lastUpdatedChapter ?? '?');
 
 const breadcrumbItems = [
   { label: 'Accueil', href: '/' },
@@ -21,7 +24,7 @@ const breadcrumbItems = [
     
     <main data-pagefind-body>
         <h1 class="article-title">{title}</h1>
-        <ArticleMeta frontmatter={frontmatter} />
+        <ArticleMeta certainty={certainty} lastUpdatedChapter={lastUpdatedChapter} readingTime={readingTime} />
         
         <div class="content">
             <slot />
@@ -37,7 +40,7 @@ const breadcrumbItems = [
 
 <style>
     .article-title {
-        font-size: 2.2rem;
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
         font-weight: 700;
         margin-bottom: 16px;
         line-height: 1.2;
@@ -51,7 +54,7 @@ const breadcrumbItems = [
 
     /* Minimal default styles for markdown content */
     .content :global(h2) {
-        font-size: 1.5rem;
+        font-size: clamp(1.2rem, 3vw, 1.5rem);
         margin-top: 2rem;
         margin-bottom: 1rem;
         border-bottom: 1px solid var(--border-color);
@@ -59,7 +62,7 @@ const breadcrumbItems = [
     }
     
     .content :global(h3) {
-        font-size: 1.25rem;
+        font-size: clamp(1.05rem, 2.5vw, 1.25rem);
         margin-top: 1.5rem;
         margin-bottom: 0.75rem;
     }
@@ -72,5 +75,55 @@ const breadcrumbItems = [
         color: var(--cyan);
         text-decoration: underline;
         text-underline-offset: 2px;
+    }
+
+    .content :global(img) {
+        border-radius: 8px;
+        margin: 1rem 0;
+    }
+
+    .content :global(blockquote) {
+        border-left: 3px solid var(--violet);
+        padding-left: 1rem;
+        margin: 1rem 0;
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+    .content :global(ul),
+    .content :global(ol) {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content :global(li) {
+        margin-bottom: 0.25rem;
+    }
+
+    .content :global(table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+        font-size: 14px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    .content :global(th),
+    .content :global(td) {
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        text-align: left;
+    }
+
+    .content :global(th) {
+        background-color: var(--surface);
+        font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+        .content {
+            margin-top: 24px;
+        }
     }
 </style>

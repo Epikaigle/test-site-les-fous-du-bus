@@ -1,0 +1,118 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { page: 'frises' }, props: { title: 'Frises chronologiques', icon: '📅', desc: 'Double frise superposant le Siècle oublié et les événements actuels.' } },
+    { params: { page: 'carte' }, props: { title: 'Carte du monde', icon: '🗺️', desc: 'Carte interactive de Blue Star avec les lieux clés de la théorie.' } },
+    { params: { page: 'personnages' }, props: { title: 'Carte des personnages', icon: '🎭', desc: 'Graphe des personnages et de leurs identités parallèles.' } },
+    { params: { page: 'schemas' }, props: { title: 'Schémas temporels', icon: '🔄', desc: 'Boucle temporelle des Ponéglyphes et mécanismes de transmission.' } },
+    { params: { page: 'elbaf' }, props: { title: "Fresque d'Elbaf", icon: '🎨', desc: 'Exploration interactive de la fresque d\'Elbaf.' } },
+    { params: { page: 'globe' }, props: { title: 'Globe 3D', icon: '🌍', desc: 'Globe interactif en 3D de Blue Star.' } },
+  ];
+}
+
+const { title, icon, desc } = Astro.props;
+---
+
+<WikiLayout title={title} currentPath={`/explorer/${Astro.params.page}`}>
+    <div class="placeholder-page">
+        <span class="placeholder-icon">{icon}</span>
+        <h1>{title}</h1>
+        <p class="placeholder-desc">{desc}</p>
+        
+        <div class="placeholder-box">
+            <h3>🚀 Fonctionnalité en développement</h3>
+            <p>
+                Cette visualisation interactive fait partie de la feuille de route V2/V3 du projet.
+                Elle sera disponible après le lancement de la version fondation.
+            </p>
+        </div>
+
+        <div class="placeholder-links">
+            <p>En attendant, explorez la théorie :</p>
+            <a href="/theorie" class="placeholder-link">📖 La théorie</a>
+            <a href="/explorer" class="placeholder-link">← Retour à Explorer</a>
+        </div>
+    </div>
+    <Footer />
+</WikiLayout>
+
+<style>
+    .placeholder-page {
+        text-align: center;
+        padding: 48px 0;
+    }
+
+    .placeholder-icon {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .placeholder-page h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .placeholder-desc {
+        font-size: 15px;
+        color: var(--text-secondary);
+        max-width: 500px;
+        margin: 0 auto 32px;
+        line-height: 1.6;
+    }
+
+    .placeholder-box {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        padding: 32px;
+        border-radius: 8px;
+        max-width: 500px;
+        margin: 0 auto 32px;
+    }
+
+    .placeholder-box h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .placeholder-box p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .placeholder-links {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .placeholder-links p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+    }
+
+    .placeholder-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-main);
+        text-decoration: none;
+        font-size: 14px;
+        margin: 4px;
+        transition: all 0.2s;
+    }
+
+    .placeholder-link:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+    }
+</style>

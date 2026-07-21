@@ -1,0 +1,145 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const glossaryEntries = await getCollection('glossary');
+
+// Fallback static entries if no content files exist
+const staticEntries = [
+    { term: "Siècle oublié", definition: "Période de 100 ans effacée de l'histoire officielle par le Gouvernement Mondial, survenue il y a environ 800 ans." },
+    { term: "Joy Boy", definition: "Figure légendaire associée au Siècle oublié. Selon la théorie, ce serait le nom que l'histoire donnera à Luffy." },
+    { term: "Ponéglyphe", definition: "Pierre indestructible gravée d'un texte ancien. Selon la théorie, ils contiendraient le futur gravé à l'avance." },
+    { term: "Nika", definition: "Dieu du Soleil, figure de libération. Lié au Fruit du Démon de Luffy (Hito Hito no Mi, modèle Nika)." },
+    { term: "D.", definition: "Initiale mystérieuse portée par certains personnages. Selon la théorie, les D. seraient des témoins ou acteurs de la boucle temporelle." },
+    { term: "Flamme Mère", definition: "Source d'énergie antique utilisée par la civilisation du Siècle oublié." },
+    { term: "Laugh Tale", definition: "Dernière île de Grand Line, atteinte par Roger. Son véritable nom et sa nature sont au cœur de la théorie." },
+    { term: "Poséidon", definition: "Arme antique capable de contrôler les Rois des Mers. Selon le manga, Shirahoshi est Poséidon." },
+    { term: "Pluton", definition: "Arme antique décrite comme un navire de guerre capable de détruire des îles." },
+    { term: "Uranus", definition: "Arme antique dont la nature reste inconnue dans le manga." },
+    { term: "Boucle temporelle", definition: "Concept central de la théorie : les événements du présent seraient une réécriture du Siècle oublié." },
+    { term: "Imu", definition: "Souverain secret du Gouvernement Mondial. Selon la théorie, Imu serait lié aux figures du Siècle oublié." },
+    { term: "Gorosei", definition: "Les Cinq Étoiles, dirigeants apparents du Gouvernement Mondial, en réalité soumis à Imu." },
+    { term: "Royaume ancien", definition: "Civilisation avancée ayant existé pendant le Siècle oublié, détruite par les Vingt Royaumes." },
+    { term: "Volonté du D.", definition: "Concept selon lequel une volonté se transmet à travers les générations chez les porteurs du D." },
+    { term: "Void Century", definition: "Nom anglais du Siècle oublié." },
+];
+
+const entries = glossaryEntries.length > 0 
+    ? glossaryEntries.map(e => ({ term: e.data.term, definition: e.data.definition }))
+    : staticEntries;
+
+// Sort alphabetically
+entries.sort((a, b) => a.term.localeCompare(b.term, 'fr'));
+
+// Group by first letter
+const grouped: Record<string, typeof entries> = {};
+entries.forEach(entry => {
+    const letter = entry.term.charAt(0).toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(entry);
+});
+const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr'));
+---
+
+<WikiLayout title="Glossaire" currentPath="/aide/glossaire">
+    <div class="page-header">
+        <h1>Glossaire</h1>
+        <p class="page-desc">Définitions des termes clés utilisés dans la théorie du Siècle oublié.</p>
+    </div>
+
+    <!-- Alphabet navigation -->
+    <div class="alpha-nav">
+        {sortedLetters.map(letter => (
+            <a href={`#letter-${letter}`} class="alpha-link">{letter}</a>
+        ))}
+    </div>
+
+    <!-- Glossary entries -->
+    {sortedLetters.map(letter => (
+        <div class="letter-section" id={`letter-${letter}`}>
+            <h2 class="letter-title">{letter}</h2>
+            <div class="entries">
+                {grouped[letter].map(entry => (
+                    <div class="entry">
+                        <dt class="entry-term">{entry.term}</dt>
+                        <dd class="entry-def">{entry.definition}</dd>
+                    </div>
+                ))}
+            </div>
+        </div>
+    ))}
+
+    <Footer />
+</WikiLayout>
+
+<style>
+    .page-header { margin-bottom: 32px; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 12px; }
+    .page-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+    .alpha-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 32px;
+        padding: 12px 16px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+
+    .alpha-link {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+
+    .alpha-link:hover {
+        background-color: var(--surface);
+        color: var(--cyan);
+    }
+
+    .letter-section { margin-bottom: 32px; }
+
+    .letter-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--violet);
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .entries { display: flex; flex-direction: column; gap: 12px; }
+
+    .entry {
+        padding: 12px 16px;
+        background-color: var(--bg-main);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+
+    .entry-term {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 4px;
+    }
+
+    .entry-def {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
+        padding-left: 0;
+    }
+</style>

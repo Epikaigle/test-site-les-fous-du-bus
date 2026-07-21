@@ -1,0 +1,100 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { page: 'chapitres' }, props: { title: 'Chapitre par chapitre', icon: '📖', desc: 'Analyse détaillée de l\'apport de chaque chapitre à la théorie.' } },
+    { params: { page: 'previsions' }, props: { title: 'Prédictions', icon: '🔮', desc: 'Tableau des prédictions formulées par la théorie.' } },
+    { params: { page: 'historique' }, props: { title: 'Historique des articles', icon: '📋', desc: 'Historique des modifications apportées aux articles de la théorie.' } },
+    { params: { page: 'abandonnees' }, props: { title: 'Hypothèses abandonnées', icon: '🗑️', desc: 'Les pistes réfutées ou abandonnées en cours de route.' } },
+  ];
+}
+
+const { title, icon, desc } = Astro.props;
+---
+
+<WikiLayout title={title} currentPath={`/evolution/${Astro.params.page}`}>
+    <div class="placeholder-page">
+        <span class="placeholder-icon">{icon}</span>
+        <h1>{title}</h1>
+        <p class="placeholder-desc">{desc}</p>
+        
+        <div class="placeholder-box">
+            <h3>📊 En construction</h3>
+            <p>
+                Cette section sera alimentée au fur et à mesure de l'avancement de la théorie et de la publication des nouveaux chapitres.
+            </p>
+        </div>
+
+        <div class="placeholder-links">
+            <a href="/evolution" class="placeholder-link">← Retour à Évolution</a>
+            <a href="/theorie" class="placeholder-link">📖 La théorie</a>
+        </div>
+    </div>
+    <Footer />
+</WikiLayout>
+
+<style>
+    .placeholder-page {
+        text-align: center;
+        padding: 48px 0;
+    }
+    .placeholder-icon {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 16px;
+    }
+    .placeholder-page h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    .placeholder-desc {
+        font-size: 15px;
+        color: var(--text-secondary);
+        max-width: 500px;
+        margin: 0 auto 32px;
+        line-height: 1.6;
+    }
+    .placeholder-box {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        padding: 32px;
+        border-radius: 8px;
+        max-width: 500px;
+        margin: 0 auto 32px;
+    }
+    .placeholder-box h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+    .placeholder-box p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
+    }
+    .placeholder-links {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .placeholder-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-main);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.2s;
+    }
+    .placeholder-link:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+    }
+</style>
