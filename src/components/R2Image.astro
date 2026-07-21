@@ -1,0 +1,32 @@
+---
+interface Props {
+    src: string;
+    alt: string;
+    class?: string;
+    caption?: string;
+}
+
+const { src, alt, class: className = "", caption } = Astro.props;
+
+// L'URL de base de votre bucket R2.
+// Si vous utilisez l'adresse .r2.dev, remplacez-la ci-dessous.
+const R2_BASE_URL = "https://media.lesfousdubus.sbs";
+
+// On s'assure de ne pas avoir de double slash si src commence par un /
+const imagePath = src.startsWith('/') ? src : `/${src}`;
+const fullUrl = `${R2_BASE_URL}${imagePath}`;
+---
+
+<figure class="my-6">
+    <img 
+        src={fullUrl} 
+        alt={alt} 
+        class={`rounded-lg border border-white/10 shadow-lg object-cover w-full ${className}`}
+        loading="lazy"
+    />
+    {caption && (
+        <figcaption class="text-center text-[13px] text-textSecondary mt-2 italic">
+            {caption}
+        </figcaption>
+    )}
+</figure>
