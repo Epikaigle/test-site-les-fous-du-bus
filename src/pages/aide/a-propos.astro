@@ -1,0 +1,122 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<WikiLayout title="À propos" currentPath="/aide/a-propos">
+    <div class="page-header">
+        <h1>À propos</h1>
+    </div>
+
+    <div class="content">
+        <section class="section">
+            <h2>Le projet</h2>
+            <p>
+                <strong>Les Fous du Bus</strong> est un wiki éditorial et interactif consacré à une théorie sur <em>One Piece</em> : 
+                le Siècle oublié ne serait pas un événement ancien qui se répète, mais l'histoire que Luffy et ses alliés sont en train de créer.
+            </p>
+            <p>
+                Le site a pour objectif de structurer, documenter, développer et faire évoluer cette théorie au fil des nouveaux chapitres de <em>One Piece</em>.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Origine de la théorie</h2>
+            <p>
+                La théorie est attribuée au <strong>Mont Corvo</strong> et provient de la vidéo 
+                <a href="https://youtu.be/SgJ25zjMJyo" target="_blank" rel="noopener noreferrer">Le Siècle oublié est le présent</a>.
+            </p>
+            <p>
+                Le compte <a href="https://x.com/FoudubusTV_" target="_blank" rel="noopener noreferrer">Fou du Bus TV</a> 
+                permet de suivre les échanges et les actualités autour de la théorie.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Objectifs</h2>
+            <ul>
+                <li><strong>Comprendre</strong> la version actuelle de la théorie</li>
+                <li><strong>Explorer</strong> les liens entre personnages, lieux, événements et époques</li>
+                <li><strong>Suivre</strong> l'apport de chaque nouveau chapitre</li>
+                <li><strong>Vérifier</strong> les preuves, citations, objections et contradictions</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Principes</h2>
+            <div class="principles">
+                <div class="principle-item">
+                    <h4>Transparence</h4>
+                    <p>Les contradictions, corrections et prédictions réfutées restent visibles.</p>
+                </div>
+                <div class="principle-item">
+                    <h4>Progressivité</h4>
+                    <p>Le HTML statique constitue la base ; l'interactivité est chargée uniquement lorsqu'elle apporte une réelle valeur.</p>
+                </div>
+                <div class="principle-item">
+                    <h4>Ouverture</h4>
+                    <p>Le projet est ouvert : chacun peut consulter le code, proposer des changements ou réutiliser les créations originales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Open source</h2>
+            <p>
+                Le code source est disponible sur <a href="https://github.com/Epikaigle/test-site-les-fous-du-bus" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                Les contributions sont les bienvenues sous forme d'Issues et de Pull Requests.
+            </p>
+        </section>
+    </div>
+
+    <Footer />
+</WikiLayout>
+
+<style>
+    .page-header { margin-bottom: 40px; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 700; }
+
+    .content { line-height: 1.7; }
+
+    .section { margin-bottom: 40px; }
+    .section h2 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .section p {
+        color: var(--text-secondary);
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    .section ul {
+        padding-left: 20px;
+        color: var(--text-secondary);
+        font-size: 15px;
+    }
+    .section li { margin-bottom: 8px; }
+    .section a { color: var(--cyan); text-decoration: underline; text-underline-offset: 2px; }
+
+    .principles {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+    }
+    .principle-item {
+        padding: 16px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+    }
+    .principle-item h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+    .principle-item p {
+        font-size: 13px;
+        margin: 0;
+    }
+</style>

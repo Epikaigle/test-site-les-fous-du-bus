@@ -1,0 +1,159 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import ArticleListItem from '@components/ArticleListItem.astro';
+import Footer from '@components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = [
+    { 
+      id: 'fondations', 
+      title: 'Fondations', 
+      icon: '🏗️', 
+      description: 'Les piliers de la théorie : la nature de la boucle temporelle, les grands principes du Siècle oublié et les mécanismes qui relient le passé au présent.' 
+    },
+    { 
+      id: 'figures-identites', 
+      title: 'Figures et identités', 
+      icon: '🎭', 
+      description: 'Joy Boy, Nika, Imu, Davy Jones. Les parallèles entre personnages anciens et modernes, et leurs véritables identités.' 
+    },
+    { 
+      id: 'armes-antiques', 
+      title: 'Armes antiques', 
+      icon: '🔱', 
+      description: 'Pluton, Poséidon et Uranus : leur véritable fonction, leur lien avec la boucle temporelle et leur rôle dans la guerre finale.' 
+    },
+    { 
+      id: 'science-energie', 
+      title: 'Science, énergie et pouvoirs', 
+      icon: '⚡', 
+      description: "L'ancienne technologie, la Flamme Mère, l'origine des Fruits du Démon, le Haki et les connaissances perdues." 
+    },
+    { 
+      id: 'monde-peuples', 
+      title: 'Monde, peuples et témoins', 
+      icon: '🗺️', 
+      description: "Les D., les Lunaria, les géants d'Elbaf, Wano Kuni, les Hommes-Poissons et tous les témoins de l'histoire." 
+    },
+    { 
+      id: 'gouvernement-guerre', 
+      title: 'Gouvernement et guerre finale', 
+      icon: '⚖️', 
+      description: 'La création du Gouvernement Mondial, le rôle du Gorosei et d\'Imu, et l\'issue du grand conflit à venir.' 
+    },
+    { 
+      id: 'transmission-memoire', 
+      title: 'Transmission, voix et mémoire', 
+      icon: '📖', 
+      description: 'Les Ponéglyphes, la Volonté du D., les chansons, les prophéties et les mécanismes de transmission à travers les siècles.' 
+    },
+  ];
+
+  return categories.map(cat => ({
+    params: { category: cat.id },
+    props: { categoryData: cat }
+  }));
+}
+
+const { categoryData } = Astro.props;
+const allArticles = await getCollection('articles');
+const categoryArticles = allArticles
+  .filter(a => a.data.category === categoryData.id && a.data.status === 'published')
+  .sort((a, b) => (b.data.order || 0) - (a.data.order || 0));
+---
+
+<WikiLayout title={categoryData.title} currentPath={`/theorie/${categoryData.id}`}>
+    <div class="category-header">
+        <span class="category-icon">{categoryData.icon}</span>
+        <h1>{categoryData.title}</h1>
+        <p class="category-desc">{categoryData.description}</p>
+    </div>
+
+    {categoryArticles.length > 0 ? (
+        <div class="article-list">
+            {categoryArticles.map(article => (
+                <ArticleListItem 
+                    badge={article.data.certainty === 'central' ? 'Central' : article.data.certainty === 'elevee' ? 'Élevée' : article.data.certainty === 'moyenne' ? 'Moyenne' : 'Hypothèse'}
+                    badgeColor={article.data.certainty === 'central' ? 'cyan' : article.data.certainty === 'elevee' ? 'gold' : 'violet'}
+                    title={article.data.title}
+                    category={categoryData.title}
+                    chapter={String(article.data.lastUpdatedChapter || '?')}
+                    href={`/theorie/${article.id}`}
+                />
+            ))}
+        </div>
+    ) : (
+        <div class="empty-state">
+            <div class="empty-state__icon">📝</div>
+            <h3 class="empty-state__title">Catégorie en construction</h3>
+            <p class="empty-state__text">
+                Les articles de cette catégorie sont en cours de rédaction. 
+                Revenez bientôt pour découvrir les analyses complètes.
+            </p>
+        </div>
+    )}
+
+    <Footer />
+</WikiLayout>
+
+<style>
+    .category-header {
+        margin-bottom: 40px;
+    }
+
+    .category-icon {
+        font-size: 2rem;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .category-header h1 {
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+    .category-desc {
+        font-size: 15px;
+        color: var(--text-secondary);
+        max-width: 700px;
+        line-height: 1.6;
+    }
+
+    .article-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .empty-state {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        padding: 48px 32px;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .empty-state__icon {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+    }
+
+    .empty-state__title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-main);
+        margin-bottom: 8px;
+    }
+
+    .empty-state__text {
+        color: var(--text-secondary);
+        font-size: 14px;
+        max-width: 400px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+</style>

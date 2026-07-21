@@ -1,0 +1,71 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<WikiLayout title="Aide" currentPath="/aide">
+    <div class="page-header">
+        <div class="text-cyan font-semibold tracking-widest uppercase text-sm mb-3">Ressources</div>
+        <h1>Aide</h1>
+        <p class="page-desc">
+            Tout ce qu'il faut savoir pour naviguer sur le site, comprendre la théorie et contribuer au projet.
+        </p>
+    </div>
+
+    <div class="nav-cards">
+        <a href="/aide/faq" class="nav-card">
+            <span class="nav-card__icon">❓</span>
+            <div>
+                <h3>FAQ</h3>
+                <p>Questions fréquemment posées sur la théorie et le site.</p>
+            </div>
+        </a>
+
+        <a href="/aide/glossaire" class="nav-card">
+            <span class="nav-card__icon">📖</span>
+            <div>
+                <h3>Glossaire</h3>
+                <p>Définitions des termes clés utilisés dans la théorie.</p>
+            </div>
+        </a>
+
+        <a href="/aide/a-propos" class="nav-card">
+            <span class="nav-card__icon">ℹ️</span>
+            <div>
+                <h3>À propos</h3>
+                <p>Le projet, son origine et ses objectifs.</p>
+            </div>
+        </a>
+
+        <a href="/aide/credits" class="nav-card">
+            <span class="nav-card__icon">🙏</span>
+            <div>
+                <h3>Crédits</h3>
+                <p>Attributions et remerciements.</p>
+            </div>
+        </a>
+
+        <a href="/aide/correction" class="nav-card">
+            <span class="nav-card__icon">✏️</span>
+            <div>
+                <h3>Proposer une correction</h3>
+                <p>Signaler une erreur ou proposer une amélioration.</p>
+            </div>
+        </a>
+    </div>
+
+    <Footer />
+</WikiLayout>
+
+<style>
+    .page-header { margin-bottom: 48px; }
+    .page-header h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 16px; line-height: 1.2; }
+    .page-desc { font-size: 15px; color: var(--text-secondary); max-width: 700px; line-height: 1.6; }
+    .nav-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+    .nav-card { display: flex; align-items: flex-start; gap: 14px; padding: 18px; background-color: var(--bg-main); border: 1px solid var(--border-color); border-radius: 4px; text-decoration: none; transition: all 0.2s; }
+    .nav-card:hover { background-color: var(--bg-secondary); border-color: var(--violet); }
+    .nav-card__icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .nav-card h3 { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; transition: color 0.2s; }
+    .nav-card:hover h3 { color: var(--cyan); }
+    .nav-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.4; margin: 0; }
+</style>
