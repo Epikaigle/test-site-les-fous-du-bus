@@ -1,0 +1,24 @@
+---
+interface Props {
+  chapter: string;
+  title: string;
+  effect: string;
+  href: string;
+}
+
+const { chapter, title, effect, href } = Astro.props;
+---
+<div class="bg-bgSecondary border border-white/10 border-l-[3px] border-l-cyan rounded py-3 px-4 mb-12 flex justify-between items-center flex-wrap gap-4">
+    <div class="flex items-center gap-3 flex-wrap">
+        <span class="text-[11px] px-1.5 py-0.5 rounded-[3px] font-medium border uppercase tracking-[0.5px] bg-cyan/10 text-cyan border-cyan/20">
+            Chap {chapter}
+        </span>
+        <span class="text-[13px] font-medium text-textMain">{title}</span>
+        <span class="text-[11px] px-1.5 py-0.5 rounded-[3px] font-medium border uppercase tracking-[0.5px] bg-violet/10 text-[#D3B3FF] border-violet/30">
+            {effect}
+        </span>
+    </div>
+    <a href={href} class="text-[13px] text-textSecondary hover:text-cyan transition-colors">
+        Voir l'analyse →
+    </a>
+</div>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  chapter: string;
+  strength: 'Faible' | 'Modérée' | 'Forte';
+  quote?: string;
+  href?: string;
+}
+
+const { title, chapter, strength, quote, href } = Astro.props;
+
+let strengthColor = 'bg-white/10 text-textSecondary border-white/20';
+if (strength === 'Forte') strengthColor = 'bg-accentGold/10 text-accentGold border-accentGold/20';
+else if (strength === 'Modérée') strengthColor = 'bg-violet/10 text-[#D3B3FF] border-violet/30';
+---
+<div class="bg-surface/50 border border-white/10 rounded p-4 my-4 flex flex-col gap-3">
+    <div class="flex justify-between items-start gap-4">
+        <div>
+            <h4 class="text-[14px] font-medium text-textMain mb-1">
+                {href ? (
+                    <a href={href} class="hover:text-cyan transition-colors">{title}</a>
+                ) : (
+                    title
+                )}
+            </h4>
+            <div class="text-[12px] text-textSecondary">Chapitre {chapter}</div>
+        </div>
+        <span class={`text-[11px] px-1.5 py-0.5 rounded-[3px] font-medium border uppercase tracking-[0.5px] shrink-0 ${strengthColor}`}>
+            Preuve {strength}
+        </span>
+    </div>
+    
+    {quote && (
+        <blockquote class="text-[13px] text-textSecondary italic border-l-2 border-white/20 pl-3 m-0">
+            "{quote}"
+        </blockquote>
+    )}
+</div>

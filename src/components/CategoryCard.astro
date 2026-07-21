@@ -1,0 +1,23 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  href: string;
+  count?: number;
+}
+
+const { icon, title, description, href, count } = Astro.props;
+---
+<a href={href} class="bg-bgMain border border-white/10 rounded flex flex-col p-5 transition-colors hover:bg-bgSecondary hover:border-violet group">
+    <div class="flex justify-between items-start mb-3">
+        <span class="text-[18px] inline-block">{icon}</span>
+        {count !== undefined && (
+            <span class="text-[11px] text-textSecondary bg-surface px-1.5 py-0.5 rounded-[3px]">
+                {count} articles
+            </span>
+        )}
+    </div>
+    <h3 class="text-[15px] font-semibold mb-1.5 text-textMain group-hover:text-cyan transition-colors">{title}</h3>
+    <p class="text-[13px] text-textSecondary leading-relaxed">{description}</p>
+</a>

@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root, .dark {
+    --bg-main: #07020A;
+    --bg-secondary: #160B27;
+    --surface: #22124A;
+    --violet: #6E3BBC;
+    --magenta: #AD57A7;
+    --cyan: #4DE7FF;
+    --text-main: #FEFBF8;
+    --text-secondary: #DDE4EA;
+    --accent-gold: #F4B63F;
+    --alert: #9E3244;
+    --border-color: rgba(221, 228, 234, 0.1);
+  }
+
+  .light {
+    --bg-main: #F8F9FA;
+    --bg-secondary: #FFFFFF;
+    --surface: #E9ECEF;
+    --violet: #6E3BBC;
+    --magenta: #AD57A7;
+    --cyan: #15AABF;
+    --text-main: #212529;
+    --text-secondary: #495057;
+    --accent-gold: #F59F00;
+    --alert: #C92A2A;
+    --border-color: rgba(33, 37, 41, 0.1);
+  }
+
+  body {
+    @apply text-textMain font-sans antialiased;
+    background-color: var(--bg-main);
+    background-image: 
+      linear-gradient(to bottom, color-mix(in srgb, var(--bg-main) 85%, transparent), color-mix(in srgb, var(--bg-main) 98%, transparent)),
+      url('/wallpaper.png');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    box-sizing: border-box;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border;
+  }
+  .badge-cyan {
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    color: var(--cyan);
+    border-color: color-mix(in srgb, var(--cyan) 20%, transparent);
+  }
+  .badge-violet {
+    background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+    color: var(--violet);
+    border-color: color-mix(in srgb, var(--violet) 20%, transparent);
+  }
+  .badge-gold {
+    background-color: color-mix(in srgb, var(--accent-gold) 10%, transparent);
+    color: var(--accent-gold);
+    border-color: color-mix(in srgb, var(--accent-gold) 20%, transparent);
+  }
+  .badge-alert {
+    background-color: color-mix(in srgb, var(--alert) 10%, transparent);
+    color: var(--alert);
+    border-color: color-mix(in srgb, var(--alert) 20%, transparent);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-surface rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--violet);
+}
+
+*, *::before, *::after {
+  @apply transition-colors duration-200;
+}

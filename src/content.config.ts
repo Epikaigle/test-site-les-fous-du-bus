@@ -1,0 +1,72 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const articles = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/articles" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    category: z.enum([
+      'fondations',
+      'figures-identites',
+      'armes-antiques',
+      'science-energie',
+      'monde-peuples',
+      'gouvernement-guerre',
+      'transmission-memoire'
+    ]),
+    status: z.enum(['draft', 'published']).default('draft'),
+    certainty: z.enum(['central', 'elevee', 'moyenne', 'hypothese']).default('moyenne'),
+    spoilerChapter: z.number().optional(),
+    lastUpdatedChapter: z.number().optional(),
+    related: z.array(z.string()).default([]),
+    order: z.number().default(0),
+  }),
+});
+
+const chapters = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/chapters" }),
+  schema: z.object({
+    chapter: z.number(),
+    title: z.string(),
+    effect: z.enum([
+      'renforcement',
+      'nouvelle-piste',
+      'modification',
+      'contradiction',
+      'refutation',
+      'aucun-apport'
+    ]),
+    themes: z.array(z.string()).default([]),
+    updatedArticles: z.array(z.string()).default([]),
+    summary: z.string().optional(),
+  }),
+});
+
+const evidence = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/evidence" }),
+  schema: z.object({
+    title: z.string(),
+    chapter: z.number(),
+    type: z.enum(['dialogue', 'visuel', 'narratif', 'structure']),
+    strength: z.enum(['majeure', 'secondaire']),
+    articles: z.array(z.string()).default([]),
+    quote: z.string().optional(),
+  }),
+});
+
+const glossary = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/glossary" }),
+  schema: z.object({
+    term: z.string(),
+    definition: z.string(),
+    relatedArticles: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = {
+  articles,
+  chapters,
+  evidence,
+  glossary,
+};

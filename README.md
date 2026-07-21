@@ -620,3 +620,4 @@ La théorie originale est attribuée au **Mont Corvo**, à travers [cette vidéo
 Le projet n’est ni affilié, ni approuvé, ni sponsorisé par les détenteurs de ces droits.
 
 Les contenus, images, extraits, marques et personnages issus de *One Piece* ne sont pas placés sous la licence libre du projet. Ils restent soumis aux droits de leurs propriétaires respectifs.
+

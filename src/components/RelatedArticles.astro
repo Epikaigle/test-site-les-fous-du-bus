@@ -1,0 +1,24 @@
+---
+interface Article {
+  title: string;
+  href: string;
+  category: string;
+}
+
+interface Props {
+  articles: Article[];
+}
+
+const { articles } = Astro.props;
+---
+<div class="my-10">
+    <h3 class="text-[18px] font-semibold text-textMain mb-6 pb-2 border-b border-white/10">Articles liés</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {articles.map(article => (
+            <a href={article.href} class="bg-bgMain border border-white/10 rounded p-4 hover:bg-bgSecondary hover:border-violet transition-colors group">
+                <div class="text-[12px] text-textSecondary mb-1">{article.category}</div>
+                <h4 class="text-[14px] font-medium text-textMain group-hover:text-cyan transition-colors">{article.title}</h4>
+            </a>
+        ))}
+    </div>
+</div>

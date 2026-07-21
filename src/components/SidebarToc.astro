@@ -1,0 +1,25 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings = [] } = Astro.props;
+---
+<nav>
+    <h3 class="text-[12px] uppercase tracking-[0.5px] text-textMain mb-3 font-semibold">Sur cette page</h3>
+    <ul class="list-none text-[13px] space-y-2">
+        {headings.filter(h => h.depth <= 3).map(heading => (
+            <li class={heading.depth === 3 ? "ml-3" : ""}>
+                <a href={`#${heading.slug}`} class="text-textSecondary hover:text-textMain transition-colors">
+                    {heading.text}
+                </a>
+            </li>
+        ))}
+    </ul>
+</nav>

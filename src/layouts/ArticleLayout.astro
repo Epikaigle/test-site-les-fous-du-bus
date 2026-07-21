@@ -1,0 +1,76 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Breadcrumb from '@components/Breadcrumb.astro';
+import ArticleMeta from '@components/ArticleMeta.astro';
+import RelatedArticles from '@components/RelatedArticles.astro';
+import EvidenceSection from '@components/EvidenceSection.astro';
+import ChapterReferences from '@components/ChapterReferences.astro';
+import Footer from '@components/Footer.astro';
+
+const { title, description, currentPath, headings, frontmatter } = Astro.props;
+
+const breadcrumbItems = [
+  { label: 'Accueil', href: '/' },
+  { label: 'La théorie', href: '/theorie' },
+  { label: title }
+];
+---
+
+<WikiLayout title={title} description={description} currentPath={currentPath} headings={headings}>
+    <Breadcrumb items={breadcrumbItems} />
+    
+    <main data-pagefind-body>
+        <h1 class="article-title">{title}</h1>
+        <ArticleMeta frontmatter={frontmatter} />
+        
+        <div class="content">
+            <slot />
+        </div>
+    </main>
+
+    <EvidenceSection />
+    <ChapterReferences />
+    <RelatedArticles articles={[]} />
+    
+    <Footer />
+</WikiLayout>
+
+<style>
+    .article-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+    .content {
+        margin-top: 32px;
+        line-height: 1.7;
+    }
+
+    /* Minimal default styles for markdown content */
+    .content :global(h2) {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+    }
+    
+    .content :global(h3) {
+        font-size: 1.25rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .content :global(p) {
+        margin-bottom: 1rem;
+    }
+    
+    .content :global(a) {
+        color: var(--cyan);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+</style>

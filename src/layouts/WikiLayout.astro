@@ -1,0 +1,108 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SidebarNav from '@components/SidebarNav.astro';
+import SidebarToc from '@components/SidebarToc.astro';
+import Navbar from '@components/Navbar.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath: string;
+  headings?: Heading[];
+}
+
+const { title, description, currentPath, headings } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+    <Navbar />
+    
+    <div class="layout">
+        <aside class="sidebar sidebar-left">
+            <SidebarNav currentPath={currentPath} />
+        </aside>
+        
+        <main class="main-content">
+            <slot />
+        </main>
+        
+        <aside class="sidebar sidebar-right">
+            <SidebarToc headings={headings} />
+        </aside>
+    </div>
+</BaseLayout>
+
+<style>
+    .layout {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 820px) 240px;
+        justify-content: center;
+        gap: 24px;
+        flex: 1;
+        max-width: 1440px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .sidebar {
+        padding: 32px 16px;
+        height: calc(100vh - 48px);
+        position: sticky;
+        top: 48px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: var(--surface) transparent;
+    }
+
+    .sidebar-left {
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .sidebar-left > * {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .sidebar-right {
+        border-left: 1px solid var(--border-color);
+    }
+    
+    .sidebar-right > * {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .main-content {
+        padding: 48px 32px;
+        width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+        .sidebar-right {
+            display: none;
+        }
+        .layout {
+            grid-template-columns: 240px 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sidebar-left {
+            display: none;
+        }
+        .layout {
+            grid-template-columns: 1fr;
+        }
+        .main-content {
+            padding: 32px 24px;
+        }
+    }
+</style>

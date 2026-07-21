@@ -1,0 +1,26 @@
+---
+interface Props {
+  certainty: 'Basse' | 'Moyenne' | 'Haute' | 'Confirmée';
+  lastUpdatedChapter: string;
+  readingTime: string;
+}
+
+const { certainty, lastUpdatedChapter, readingTime } = Astro.props;
+
+let badgeColor = 'bg-white/10 text-textSecondary border-white/20';
+if (certainty === 'Confirmée') badgeColor = 'bg-cyan/10 text-cyan border-cyan/20';
+else if (certainty === 'Haute') badgeColor = 'bg-accentGold/10 text-accentGold border-accentGold/20';
+else if (certainty === 'Moyenne') badgeColor = 'bg-violet/10 text-[#D3B3FF] border-violet/30';
+---
+<div class="flex flex-wrap items-center gap-4 text-[13px] text-textSecondary py-3 border-y border-white/10 my-6">
+    <div class="flex items-center gap-2">
+        <span>Certitude:</span>
+        <span class={`text-[11px] px-1.5 py-0.5 rounded-[3px] font-medium border uppercase tracking-[0.5px] ${badgeColor}`}>
+            {certainty}
+        </span>
+    </div>
+    <span class="text-white/20">•</span>
+    <div>MAJ Chapitre {lastUpdatedChapter}</div>
+    <span class="text-white/20">•</span>
+    <div>{readingTime} de lecture</div>
+</div>
