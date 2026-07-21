@@ -21,12 +21,51 @@ const { title, description, currentPath, headings } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
+  <script is:inline>
+    (function() {
+      const collapsed = localStorage.getItem('sidebar-left-collapsed') === 'true';
+      if (collapsed) {
+        document.documentElement.classList.add('sidebar-left-collapsed');
+      }
+    })();
+  </script>
+
   <Navbar />
 
   <div class="layout">
-    <aside class="sidebar sidebar-left">
-      <SidebarNav currentPath={currentPath} />
-    </aside>
+    <div class="sidebar-left-container" id="sidebar-left-container">
+      <aside class="sidebar sidebar-left">
+        <SidebarNav currentPath={currentPath} />
+      </aside>
+      <button id="sidebar-left-toggle" class="sidebar-left-toggle" aria-label="Replier la barre latérale">
+        <svg
+          class="toggle-icon-close"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <svg
+          class="toggle-icon-open"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
 
     <main class="main-content">
       <slot />
@@ -78,13 +117,66 @@ const { title, description, currentPath, headings } = Astro.props;
 <style>
   .layout {
     display: grid;
-    grid-template-columns: 240px minmax(0, 820px) 240px;
-    justify-content: center;
-    gap: 24px;
+    grid-template-columns: auto minmax(0, 1fr) 240px;
     flex: 1;
-    max-width: 1440px;
-    margin: 0 auto;
     width: 100%;
+  }
+
+  .sidebar-left-container {
+    position: relative;
+    width: var(--sidebar-left-width, 240px);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  .sidebar-left-container.collapsed,
+  :global(.sidebar-left-collapsed) .sidebar-left-container {
+    --sidebar-left-width: 0px;
+  }
+
+  .sidebar-left-toggle {
+    position: absolute;
+    top: 24px;
+    right: -12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease, right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sidebar-left-toggle:hover {
+    background-color: var(--surface);
+    color: var(--text-main);
+    border-color: var(--violet);
+    transform: scale(1.1);
+  }
+
+  .sidebar-left-container.collapsed .sidebar-left-toggle,
+  :global(.sidebar-left-collapsed) .sidebar-left-container .sidebar-left-toggle {
+    right: -32px;
+  }
+
+  .sidebar-left-container.collapsed .toggle-icon-close,
+  :global(.sidebar-left-collapsed) .sidebar-left-container .toggle-icon-close {
+    display: none;
+  }
+
+  .toggle-icon-open {
+    display: none;
+  }
+
+  .sidebar-left-container.collapsed .toggle-icon-open,
+  :global(.sidebar-left-collapsed) .sidebar-left-container .toggle-icon-open {
+    display: block;
   }
 
   .sidebar {
@@ -95,12 +187,22 @@ const { title, description, currentPath, headings } = Astro.props;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--surface) transparent;
+    box-sizing: border-box;
   }
 
   .sidebar-left {
+    width: 240px;
     border-right: 1px solid var(--border-color);
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  }
+
+  .sidebar-left-container.collapsed .sidebar-left,
+  :global(.sidebar-left-collapsed) .sidebar-left-container .sidebar-left {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
   }
 
   .sidebar-left > * {
@@ -110,6 +212,9 @@ const { title, description, currentPath, headings } = Astro.props;
 
   .sidebar-right {
     border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .sidebar-right > * {
@@ -120,6 +225,8 @@ const { title, description, currentPath, headings } = Astro.props;
   .main-content {
     padding: 48px 32px;
     width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
     min-width: 0;
   }
 
@@ -155,8 +262,7 @@ const { title, description, currentPath, headings } = Astro.props;
       display: none;
     }
     .layout {
-      grid-template-columns: 240px minmax(0, 1fr);
-      max-width: 1100px;
+      grid-template-columns: auto minmax(0, 1fr);
     }
     .toc-fab {
       display: flex;
@@ -165,7 +271,7 @@ const { title, description, currentPath, headings } = Astro.props;
 
   /* Mobile: hide left sidebar (accessible via hamburger), single column */
   @media (max-width: 768px) {
-    .sidebar-left {
+    .sidebar-left-container {
       display: none;
     }
     .layout {
@@ -189,6 +295,7 @@ const { title, description, currentPath, headings } = Astro.props;
 </style>
 
 <script>
+  // TOC toggle and drawers
   const tocToggle = document.getElementById('toc-toggle');
   const tocOverlay = document.getElementById('toc-overlay');
   const tocDrawer = document.getElementById('toc-drawer');
@@ -238,4 +345,20 @@ const { title, description, currentPath, headings } = Astro.props;
       closeToc();
     }
   });
+
+  // Left sidebar toggle logic
+  const sidebarLeftToggle = document.getElementById('sidebar-left-toggle');
+  const sidebarLeftContainer = document.getElementById('sidebar-left-container');
+
+  if (sidebarLeftToggle && sidebarLeftContainer) {
+    sidebarLeftToggle.addEventListener('click', () => {
+      const isCollapsed = document.documentElement.classList.toggle('sidebar-left-collapsed');
+      sidebarLeftContainer.classList.toggle('collapsed', isCollapsed);
+      localStorage.setItem('sidebar-left-collapsed', String(isCollapsed));
+    });
+
+    // Synchronize initial state
+    const isInitiallyCollapsed = document.documentElement.classList.contains('sidebar-left-collapsed');
+    sidebarLeftContainer.classList.toggle('collapsed', isInitiallyCollapsed);
+  }
 </script>
