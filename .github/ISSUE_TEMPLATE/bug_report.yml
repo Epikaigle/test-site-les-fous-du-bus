@@ -1,0 +1,37 @@
+name: "Bug"
+description: "Signaler un problème sur le site (affichage, lien cassé, erreur)."
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description du problème"
+      description: "Décrivez ce qui ne fonctionne pas."
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: "URL concernée"
+      placeholder: "https://lesfousdubus.sbs/theorie/..."
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Étapes pour reproduire"
+      description: "Comment faire pour observer le problème ?"
+  - type: dropdown
+    id: device
+    attributes:
+      label: "Appareil"
+      options:
+        - "Ordinateur"
+        - "Mobile"
+        - "Tablette"
+        - "Inconnu"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Comportement attendu"

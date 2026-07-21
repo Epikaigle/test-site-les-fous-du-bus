@@ -64,9 +64,69 @@ const glossary = defineCollection({
   }),
 });
 
+const characters = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/characters" }),
+  schema: z.object({
+    name: z.string(),
+    era: z.enum(['ancien', 'moderne', 'transversal']).default('transversal'),
+    aliases: z.array(z.string()).default([]),
+    summary: z.string(),
+    articles: z.array(z.string()).default([]),
+    order: z.number().default(0),
+  }),
+});
+
+const locations = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/locations" }),
+  schema: z.object({
+    name: z.string(),
+    region: z.string().default('Inconnu'),
+    summary: z.string(),
+    articles: z.array(z.string()).default([]),
+    order: z.number().default(0),
+  }),
+});
+
+const objections = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/objections" }),
+  schema: z.object({
+    title: z.string(),
+    argument: z.string(),
+    response: z.string(),
+    strength: z.enum(['mineure', 'moderee', 'majeure']).default('moderee'),
+    articles: z.array(z.string()).default([]),
+  }),
+});
+
+const predictions = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/predictions" }),
+  schema: z.object({
+    title: z.string(),
+    statement: z.string(),
+    status: z.enum(['en-cours', 'confirmee', 'refutee', 'en-attente']).default('en-cours'),
+    chapter: z.number().optional(),
+    articles: z.array(z.string()).default([]),
+  }),
+});
+
+const timelines = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/timelines" }),
+  schema: z.object({
+    title: z.string(),
+    period: z.enum(['siecle-oublie', 'present', 'futur', 'boucle']).default('present'),
+    summary: z.string(),
+    articles: z.array(z.string()).default([]),
+  }),
+});
+
 export const collections = {
   articles,
   chapters,
   evidence,
   glossary,
+  characters,
+  locations,
+  objections,
+  predictions,
+  timelines,
 };

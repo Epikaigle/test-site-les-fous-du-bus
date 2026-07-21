@@ -1,0 +1,30 @@
+name: "Amélioration"
+description: "Proposer une fonctionnalité, une page ou une amélioration du site."
+title: "[Idée] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Problème à résoudre"
+      description: "Quel besoin cette amélioration couvre-t-elle ?"
+  - type: textarea
+    id: solution
+    attributes:
+      label: "Solution proposée"
+      description: "Décrivez l'amélioration souhaitée."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternatives envisagées"
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: "Périmètre"
+      options:
+        - label: "Interface / design"
+        - label: "Contenu éditorial"
+        - label: "Recherche / navigation"
+        - label: "Outiling / CI"

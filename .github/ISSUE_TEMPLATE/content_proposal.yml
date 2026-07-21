@@ -1,0 +1,39 @@
+name: "Contenu / Source"
+description: "Proposer un article, une preuve, une objection, une prédiction ou une source."
+title: "[Contenu] "
+labels: ["content"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: "Type de contribution"
+      options:
+        - "Article"
+        - "Preuve / Citation"
+        - "Objection"
+        - "Prédiction"
+        - "Correction de fait"
+        - "Source"
+    validations:
+      required: true
+  - type: input
+    id: chapter
+    attributes:
+      label: "Chapitre de référence (optionnel)"
+      placeholder: "1188"
+  - type: textarea
+    id: content
+    attributes:
+      label: "Contenu proposé"
+      description: "Collez le texte, la citation ou la preuve. Distinguuez fait, interprétation et hypothèse."
+    validations:
+      required: true
+  - type: checkboxes
+    id: distinction
+    attributes:
+      label: "Rigueur"
+      options:
+        - label: "Je distingue fait du manga, interprétation et hypothèse."
+          required: true
+        - label: "Je rattache toute affirmation à un chapitre ou une source identifiable."
+          required: true

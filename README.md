@@ -6,7 +6,7 @@
 
 [Site](https://lesfousdubus.sbs) · [Dépôt GitHub](https://github.com/lesfousdubus-theorie/lesfousdubus) · [Vidéo originale](https://youtu.be/SgJ25zjMJyo) · [Compte X](https://x.com/FoudubusTV_)
 
-**Statut :** conception et développement de la première version.
+**Statut :** fondation V1 en place — site statique généré avec Astro, collections de contenu, recherche Pagefind, déploiement Cloudflare et outillage (CI, validation du contenu, tests) configurés.
 
 Le projet est ouvert : chacun peut consulter le code, proposer des changements, créer sa propre version ou réutiliser librement les créations originales du dépôt.
 
@@ -306,7 +306,7 @@ Les métadonnées Pagefind permettront ensuite de filtrer les résultats par typ
 
 ## Structure cible du dépôt
 
-Cette arborescence décrit la cible. Certains dossiers et scripts peuvent ne pas encore exister pendant la construction de la première version.
+Cette arborescence est désormais en place dans le dépôt : les dossiers `.github/`, `scripts/` et `src/utils/`, ainsi que les collections de contenu listées ci-dessous, existent.
 
 ```text
 lesfousdubus/
@@ -337,7 +337,7 @@ lesfousdubus/
 ├── .nvmrc
 ├── astro.config.mjs
 ├── package.json
-├── pnpm-lock.yaml
+├── package-lock.json
 ├── tsconfig.json
 ├── wrangler.jsonc
 └── README.md
@@ -352,8 +352,8 @@ Les commandes ci-dessous seront utilisables dès que la structure Astro et les s
 ### Prérequis
 
 - Git ;
-- la version de Node.js indiquée dans `.nvmrc` ;
-- la version de pnpm déclarée dans `package.json`.
+- la version de Node.js indiquée dans `.nvmrc` (>= 22.12) ;
+- npm (>= 10).
 
 ### Installation
 
@@ -361,10 +361,9 @@ Les commandes ci-dessous seront utilisables dès que la structure Astro et les s
 git clone https://github.com/lesfousdubus-theorie/lesfousdubus.git
 cd lesfousdubus
 
-corepack enable
-pnpm install --frozen-lockfile
+npm install
 cp .env.example .env
-pnpm dev
+npm run dev
 ```
 
 Le serveur local utilise généralement :
@@ -376,15 +375,15 @@ http://localhost:4321
 ### Commandes prévues
 
 ```bash
-pnpm dev          # Développement
-pnpm check        # Vérification Astro et TypeScript
-pnpm validate     # Validation du contenu et des liens
-pnpm build        # Build Astro et index Pagefind
-pnpm preview      # Prévisualisation du build
-pnpm format       # Formatage
-pnpm test         # Tests unitaires
-pnpm test:e2e     # Tests de navigation dans un navigateur
-pnpm r2:upload    # Envoi d’images vers R2
+npm run dev          # Développement
+npm run check        # Vérification Astro et TypeScript
+npm run validate     # Validation du contenu et des liens
+npm run build        # Build Astro et index Pagefind
+npm run preview      # Prévisualisation du build
+npm run format       # Formatage
+npm run test         # Tests unitaires
+npm run test:e2e     # Tests de navigation dans un navigateur
+npm run r2:upload    # Envoi d’images vers R2
 ```
 
 ---
@@ -551,9 +550,9 @@ Issue → Branche → Modification → Vérifications → Pull Request → Previ
 ### Avant une Pull Request
 
 ```bash
-pnpm check
-pnpm validate
-pnpm build
+npm run check
+npm run validate
+npm run build
 ```
 
 Une modification est prête à être fusionnée lorsque :
@@ -577,18 +576,20 @@ En proposant une contribution au dépôt, son auteur accepte que les éléments 
 
 ### V1 — Fondation
 
-- [ ] Initialisation Astro et TypeScript.
-- [ ] Layout avec navbar et deux sidebars.
-- [ ] Collections de contenu.
-- [ ] Premiers articles.
-- [ ] Recherche Pagefind.
-- [ ] Chapitre par chapitre.
-- [ ] FAQ, objections et sources.
-- [ ] Métadonnées SEO, sitemap et aperçus de partage.
-- [ ] Page 404 et gestion des liens cassés.
-- [ ] Tests unitaires et tests de navigation essentiels.
-- [ ] Intégration R2.
-- [ ] Déploiement Cloudflare.
+- [x] Initialisation Astro et TypeScript.
+- [x] Layout avec navbar et deux sidebars.
+- [x] Collections de contenu (articles, chapitres, preuves, glossaire, personnages, lieux, objections, prédictions, frises).
+- [x] Premiers articles.
+- [x] Recherche Pagefind.
+- [x] Chapitre par chapitre (fiches par chapitre).
+- [x] FAQ, objections et sources (pages et données).
+- [x] Métadonnées SEO, sitemap et aperçus de partage.
+- [x] Page 404 et gestion des liens cassés.
+- [x] Tests unitaires (Vitest) et tests de navigation (Playwright).
+- [x] Intégration R2 (composant `R2Image` et script `r2:upload`).
+- [x] Déploiement Cloudflare (wrangler + CI).
+- [x] Modèles GitHub (issues / PR) et workflow CI.
+- [x] Scripts de validation du contenu et utilitaires partagés (`src/utils`).
 
 ### V2 — Exploration
 

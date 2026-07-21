@@ -6,8 +6,11 @@ import RelatedArticles from '@components/RelatedArticles.astro';
 import EvidenceSection from '@components/EvidenceSection.astro';
 import ChapterReferences from '@components/ChapterReferences.astro';
 import Footer from '@components/Footer.astro';
+import { certaintyToFrench } from '@utils/format';
 
-const { title, description, currentPath, headings, frontmatter } = Astro.props;
+const { title, description, currentPath, headings, frontmatter, readingTime = '1 min' } = Astro.props;
+const certainty = certaintyToFrench(frontmatter.certainty);
+const lastUpdatedChapter = String(frontmatter.lastUpdatedChapter ?? '?');
 
 const breadcrumbItems = [
   { label: 'Accueil', href: '/' },
@@ -21,7 +24,7 @@ const breadcrumbItems = [
     
     <main data-pagefind-body>
         <h1 class="article-title">{title}</h1>
-        <ArticleMeta frontmatter={frontmatter} />
+        <ArticleMeta certainty={certainty} lastUpdatedChapter={lastUpdatedChapter} readingTime={readingTime} />
         
         <div class="content">
             <slot />
