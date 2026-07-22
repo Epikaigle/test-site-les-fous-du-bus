@@ -1,95 +1,77 @@
 ---
 import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
-import { getCollection } from 'astro:content';
 
-const glossaryEntries = await getCollection('glossary');
+interface GlossaryItem {
+  term: string;
+  canonDef: string;
+  theoryDef: string;
+}
 
-// Fallback static entries if no content files exist
-const staticEntries = [
-  {
-    term: 'Siècle oublié',
-    definition:
-      "Période de 100 ans effacée de l'histoire officielle par le Gouvernement Mondial, survenue il y a environ 800 ans.",
-  },
+const glossaryEntries: GlossaryItem[] = [
   {
     term: 'Joy Boy',
-    definition:
-      "Figure légendaire associée au Siècle oublié. Selon la théorie, ce serait le nom que l'histoire donnera à Luffy.",
-  },
-  {
-    term: 'Ponéglyphe',
-    definition:
-      "Pierre indestructible gravée d'un texte ancien. Selon la théorie, ils contiendraient le futur gravé à l'avance.",
+    canonDef: 'Figure légendaire du Siècle Oublié mentionnée sur le Ponéglyphe du Royaume Ryūgū, ayant fait une promesse non tenue aux Hommes-Poissons il y a 800 ans.',
+    theoryDef: 'Nom ou titre épique que le monde donnera à Monkey D. Luffy après la libération des peuples et l\'accomplissement de la promesse.',
   },
   {
     term: 'Nika',
-    definition:
-      'Dieu du Soleil, figure de libération. Lié au Fruit du Démon de Luffy (Hito Hito no Mi, modèle Nika).',
-  },
-  {
-    term: 'D.',
-    definition:
-      'Initiale mystérieuse portée par certains personnages. Selon la théorie, les D. seraient des témoins ou acteurs de la boucle temporelle.',
-  },
-  {
-    term: 'Flamme Mère',
-    definition: "Source d'énergie antique utilisée par la civilisation du Siècle oublié.",
+    canonDef: 'Le « Guerrier de la Libération », Dieu du Soleil réputé faire rire les esclaves et libérer les opprimés dans le folklore ancien.',
+    theoryDef: 'Divinisation progressive de la forme éveillée de Luffy (Gear 5), perçue à travers les récits et la foi des peuples libérés.',
   },
   {
     term: 'Laugh Tale',
-    definition:
-      'Dernière île de Grand Line, atteinte par Roger. Son véritable nom et sa nature sont au cœur de la théorie.',
+    canonDef: 'Dernière île de Grand Line nommée par Gol D. Roger, abritant le trésor One Piece et la véritable histoire du Siècle Oublié.',
+    theoryDef: 'L\'île ultime n\'est pas séparée dans l\'espace mais dans le temps. C\'est l\'île où la mémoire du monde s\'accomplit.',
+  },
+  {
+    term: 'Flamme Mère (Mother Flame)',
+    canonDef: 'Source d\'énergie synthétique créée par le Dr Vegapunk sur Egghead, capable d\'alimenter l\'Arme Antique Uranus.',
+    theoryDef: 'Le cœur énergétique synthétisé pour reproduire l\'énergie antique, lié au fonctionnement du robot géant Emeth et à la guerre finale.',
+  },
+  {
+    term: 'Ponéglyphes',
+    canonDef: 'Stèles de pierre indestructibles gravées par le clan Kozuki de Wano Kuni pour transmettre l\'histoire oubliée et la localisation de Laugh Tale.',
+    theoryDef: 'Textes rédigés non pas dans le passé lointain mais dans le futur par l\'alliance de Luffy, puis transmis vers les époques antérieures.',
+  },
+  {
+    term: 'Le Déluge',
+    canonDef: 'Montée des eaux de 200 mètres provoquée lors du Siècle Oublié et réactivée récemment par la destruction de Lulusia.',
+    theoryDef: 'Événement cataclysmique ultime qui détruira les frontières naturelles (Red Line) et réunira tous les océans pour former All Blue.',
+  },
+  {
+    term: 'Emeth',
+    canonDef: 'Robot géant vieux de 900 ans découvert sur Egghead, éveillé par le rythme des tambours de la libération (Gear 5).',
+    theoryDef: 'Création technologique issue du futur et envoyée dans le passé pour sceller le pouvoir de Joy Boy et protéger l\'alliance.',
+  },
+  {
+    term: 'Siècle Oublié',
+    canonDef: 'Période de 100 ans effacée de l\'histoire officielle par le Gouvernement Mondial, survenue il y a environ 800 ans.',
+    theoryDef: 'Période qui n\'a pas encore eu lieu historiquement : elle correspond à l\'histoire que l\'équipage de Luffy est en train d\'écrire au présent.',
   },
   {
     term: 'Poséidon',
-    definition:
-      'Arme antique capable de contrôler les Rois des Mers. Selon le manga, Shirahoshi est Poséidon.',
+    canonDef: 'L\'une des trois Armes Antiques, incarnée aujourd\'hui par la princesse Sirène Shirahoshi, capable d\'ordonner aux Rois des Mers.',
+    theoryDef: 'Pouvoir de la princesse des mers dont l\'éveil était prévu pour coïncider avec la venue de Joy Boy (Luffy).',
   },
   {
     term: 'Pluton',
-    definition: 'Arme antique décrite comme un navire de guerre capable de détruire des îles.',
-  },
-  { term: 'Uranus', definition: 'Arme antique dont la nature reste inconnue dans le manga.' },
-  {
-    term: 'Boucle temporelle',
-    definition:
-      'Concept central de la théorie : les événements du présent seraient une réécriture du Siècle oublié.',
+    canonDef: 'Arme Antique décrite comme un navire de guerre dévastateur, actuellement scellée sous les fondations de Wano Kuni.',
+    theoryDef: 'Navire cuirassé gigantesque lié à la transformation de Water Seven et à la réouverture des frontières de Wano.',
   },
   {
-    term: 'Imu',
-    definition:
-      'Souverain secret du Gouvernement Mondial. Selon la théorie, Imu serait lié aux figures du Siècle oublié.',
+    term: 'Imu Nerona',
+    canonDef: 'Souverain occulte siégeant sur le Trône Vacant de Mary Geoise et commandant au Gorosei dans le plus grand secret.',
+    theoryDef: 'L\'antagoniste ultime cherchant à figer le monde dans un statut immuable pour contrer l\'inévitable libération.',
   },
-  {
-    term: 'Gorosei',
-    definition:
-      'Les Cinq Étoiles, dirigeants apparents du Gouvernement Mondial, en réalité soumis à Imu.',
-  },
-  {
-    term: 'Royaume ancien',
-    definition:
-      'Civilisation avancée ayant existé pendant le Siècle oublié, détruite par les Vingt Royaumes.',
-  },
-  {
-    term: 'Volonté du D.',
-    definition:
-      'Concept selon lequel une volonté se transmet à travers les générations chez les porteurs du D.',
-  },
-  { term: 'Void Century', definition: 'Nom anglais du Siècle oublié.' },
 ];
 
-const entries =
-  glossaryEntries.length > 0
-    ? glossaryEntries.map((e) => ({ term: e.data.term, definition: e.data.definition }))
-    : staticEntries;
-
 // Sort alphabetically
-entries.sort((a, b) => a.term.localeCompare(b.term, 'fr'));
+glossaryEntries.sort((a, b) => a.term.localeCompare(b.term, 'fr'));
 
 // Group by first letter
-const grouped: Record<string, typeof entries> = {};
-entries.forEach((entry) => {
+const grouped: Record<string, typeof glossaryEntries> = {};
+glossaryEntries.forEach((entry) => {
   const letter = entry.term.charAt(0).toUpperCase();
   if (!grouped[letter]) grouped[letter] = [];
   grouped[letter].push(entry);
@@ -100,7 +82,9 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
 <WikiLayout title="Glossaire" currentPath="/aide/glossaire">
   <div class="page-header">
     <h1>Glossaire</h1>
-    <p class="page-desc">Définitions des termes clés utilisés dans la théorie du Siècle oublié.</p>
+    <p class="page-desc">
+      Définitions rigoureuses des termes clés. Chaque notion distingue clairement les éléments canons du manga des hypothèses proposées par la théorie.
+    </p>
   </div>
 
   <!-- Alphabet navigation -->
@@ -121,9 +105,18 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
         <h2 class="letter-title">{letter}</h2>
         <div class="entries">
           {grouped[letter].map((entry) => (
-            <div class="entry">
-              <dt class="entry-term">{entry.term}</dt>
-              <dd class="entry-def">{entry.definition}</dd>
+            <div class="entry-card">
+              <h3 class="entry-term">{entry.term}</h3>
+              <div class="entry-blocks">
+                <div class="entry-block entry-block--canon">
+                  <span class="block-label">Dans le manga</span>
+                  <p>{entry.canonDef}</p>
+                </div>
+                <div class="entry-block entry-block--theory">
+                  <span class="block-label">Selon la théorie</span>
+                  <p>{entry.theoryDef}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -147,13 +140,14 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
     font-size: 15px;
     color: var(--text-secondary);
     line-height: 1.6;
+    max-width: 680px;
   }
 
   .alpha-nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
-    margin-bottom: 32px;
+    gap: 6px;
+    margin-bottom: 36px;
     padding: 12px 16px;
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -171,7 +165,7 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
     color: var(--text-secondary);
     text-decoration: none;
     border-radius: 8px;
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
   }
 
   .alpha-link:hover {
@@ -181,7 +175,7 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
   }
 
   .letter-section {
-    margin-bottom: 32px;
+    margin-bottom: 36px;
     scroll-margin-top: calc(var(--nav-h) + 16px);
   }
 
@@ -189,7 +183,7 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
     font-size: 20px;
     font-weight: 700;
     color: var(--violet);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
   }
@@ -197,34 +191,71 @@ const sortedLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'fr
   .entries {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
   }
 
-  .entry {
-    padding: 14px 18px;
-    background-color: var(--bg-main);
+  .entry-card {
+    padding: 20px;
+    background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .entry:hover {
-    border-color: color-mix(in srgb, var(--violet) 30%, var(--border-color));
-    transform: translateX(3px);
+    border-radius: var(--border-radius-lg);
   }
 
   .entry-term {
-    font-size: 14.5px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 700;
     color: var(--text-main);
+    margin-bottom: 14px;
+  }
+
+  .entry-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .entry-blocks {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .entry-block {
+    padding: 12px 14px;
+    border-radius: var(--border-radius);
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+  }
+
+  .entry-block--canon {
+    border-left: 3px solid var(--cyan);
+  }
+
+  .entry-block--theory {
+    border-left: 3px solid var(--violet);
+  }
+
+  .block-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
     margin-bottom: 4px;
   }
 
-  .entry-def {
+  .entry-block--canon .block-label {
+    color: var(--cyan);
+  }
+
+  .entry-block--theory .block-label {
+    color: var(--violet-light);
+  }
+
+  .entry-block p {
     font-size: 13.5px;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
-    padding-left: 0;
   }
 </style>

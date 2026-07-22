@@ -1,15 +1,19 @@
 ---
-title: "Joy Boy est Monkey D. Luffy"
-summary: "Joy Boy n'est pas un personnage du passé mais le nom que le monde donnera à Luffy après avoir libéré le monde. Les preuves sont accablantes : silhouette, voix, pouvoirs, et le paradoxe de Kaido."
+title: "Joy Boy"
+summary: "Fiche consacrée à la figure légendaire de Joy Boy, sa promesse au Royaume Ryūgū, son rôle dans le Siècle Oublié et les analyses de la théorie."
 category: "figures-principales"
 status: "published"
-certainty: "central"
+editorialStatus: "hypothese-centrale"
 lastUpdatedChapter: 1188
 order: 20
-related: ["theorie-complete", "laugh-tale-n-existe-pas-encore", "nika-est-luffy"]
+related: ["theorie-complete", "laugh-tale", "nika-est-luffy"]
 ---
 
-## La naissance de la théorie
+## Présentation générale
+
+Joy Boy est une figure centrale de l'univers de One Piece, mentionnée pour la première fois sur le Poncglyphe de l'île des Hommes-Poissons comme le signataire d'une promesse non tenue il y a 800 ans.
+
+## La lecture des Fous du Bus : Joy Boy pourrait-il être Monkey D. Luffy ?
 
 Au chapitre 967, Roger pleure de rire en atteignant Laugh Tale et dit : « Joy Boy, j'aurais aimé naître à la même époque que toi. » Sans préciser s'il parle du passé ou du futur, Roger s'adresserait en réalité à Monkey D. Luffy.
 

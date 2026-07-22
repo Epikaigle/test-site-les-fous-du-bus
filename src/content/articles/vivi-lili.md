@@ -1,8 +1,9 @@
 ---
-title: "Nefertari Vivi est Nefertari D. Lili"
-summary: "Vivi deviendra Lili, la reine d'Alabasta qui a dispersé les Ponéglyphes il y a 800 ans. Koza deviendra roi et Vivi rejoindra les Mugiwara."
+title: "Nefertari Vivi et Nefertari D. Lili"
+summary: "Fiche d'analyse sur la reine Nefertari D. Lili, la princesse Vivi et leur rôle dans la dispersion des Ponéglyphes."
 category: "personnages-identites"
 status: "published"
+editorialStatus: "hypothese-secondaire"
 certainty: "elevee"
 lastUpdatedChapter: 1188
 order: 41

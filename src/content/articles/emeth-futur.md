@@ -1,8 +1,9 @@
 ---
-title: "Emeth vient du futur : le robot BF-39"
-summary: "Emeth n'a pas été créé il y a 900 ans mais dans le futur par Franky et les satellites de Vegapunk. C'est le Battle Franky 39, alimenté par Mother Flame."
+title: "Emeth"
+summary: "Fiche d'analyse consacrée au robot géant Emeth de l'Ancien Royaume, son rôle sur Egghead et ses liens avec Joy Boy."
 category: "technologies-pouvoirs"
 status: "published"
+editorialStatus: "hypothese-secondaire"
 certainty: "elevee"
 lastUpdatedChapter: 1188
 order: 70

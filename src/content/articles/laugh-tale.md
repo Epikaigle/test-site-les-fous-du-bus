@@ -1,8 +1,9 @@
 ---
-title: "Laugh Tale et Lodestar : la même île à deux époques"
-summary: "Laugh Tale n'existe pas dans l'espace mais dans le temps. C'est Lodestar, mais à l'époque de Joy Boy. Roger est arrivé 25 ans trop tôt."
+title: "Laugh Tale"
+summary: "Fiche d'analyse sur l'île finale de Laugh Tale, le trésor de Joy Boy et son rôle dans la géographie de la mer."
 category: "monde-destinations"
 status: "published"
+editorialStatus: "hypothese-centrale"
 certainty: "central"
 lastUpdatedChapter: 1188
 order: 10

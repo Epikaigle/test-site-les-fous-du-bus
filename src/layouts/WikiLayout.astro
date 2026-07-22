@@ -31,6 +31,10 @@ const hasToc = !!(headings && headings.length > 0);
       if (collapsed) {
         document.documentElement.classList.add('sidebar-left-collapsed');
       }
+      const storedWidth = localStorage.getItem('sidebar-left-width');
+      if (storedWidth && !collapsed) {
+        document.documentElement.style.setProperty('--sidebar-left-width', storedWidth);
+      }
     })();
   </script>
 
@@ -38,37 +42,12 @@ const hasToc = !!(headings && headings.length > 0);
 
   <div class:list={['layout', { 'layout--no-toc': !hasToc }]}>
     <div class="sidebar-left-container" id="sidebar-left-container">
-      <aside class="sidebar sidebar-left">
+      <aside class="sidebar sidebar-left" id="sidebar-left">
         <SidebarNav currentPath={currentPath} />
       </aside>
-      <button id="sidebar-left-toggle" class="sidebar-left-toggle" aria-label="Replier la barre latérale">
-        <svg
-          class="toggle-icon-close"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-        <svg
-          class="toggle-icon-open"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
+
+      <!-- Vertical Resizer Handle for mouse drag width adjustment -->
+      <div id="sidebar-resizer" class="sidebar-resizer" title="Glisser pour redimensionner la barre latérale" aria-label="Redimensionner la barre latérale"></div>
     </div>
 
     <main class="main-content" id="main-content">
@@ -85,64 +64,6 @@ const hasToc = !!(headings && headings.length > 0);
   </div>
 
   {/* Floating TOC button for tablet/mobile (only when a TOC exists) */}
-  {hasToc && (
-  <button id="toc-toggle" class="toc-fab" aria-label="Sommaire">
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      ><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line
-        x1="8"
-        y1="18"
-        x2="21"
-        y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line
-        x1="3"
-        y1="12"
-        x2="3.01"
-        y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg
-    >
-  </button>
-  )}
-
-  <!-- Back to top button -->
-  <button id="back-to-top" class="back-to-top" aria-label="Retour en haut">
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  {/* TOC mobile drawer (only when a TOC exists) */}
-  {hasToc && (
-  <>
-  <div
-    id="toc-overlay"
-    class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"
-    style="top: var(--nav-h);"
-  >
-  </div>
-  <div
-    id="toc-drawer"
-    class="fixed right-0 bottom-0 w-[280px] bg-bgMain border-l border-borderColor z-40 overflow-y-auto hidden transform translate-x-full transition-transform duration-300 ease-in-out p-5"
-    style="top: var(--nav-h);"
-  >
-    <SidebarToc headings={headings} />
-  </div>
-  </>
-  )}
 </BaseLayout>
 
 <style>
@@ -160,76 +81,152 @@ const hasToc = !!(headings && headings.length > 0);
 
   .sidebar-left-container {
     position: relative;
-    width: var(--sidebar-left-width, 240px);
+    width: var(--sidebar-left-width, 260px);
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
   }
 
   .sidebar-left-container.collapsed,
   :global(.sidebar-left-collapsed) .sidebar-left-container {
-    --sidebar-left-width: 0px;
+    --sidebar-left-width: 0px !important;
   }
 
-  .sidebar-left-toggle {
-    position: absolute;
-    top: 24px;
-    right: -12px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background-color: var(--bg-secondary);
+  /* Header inside sidebar containing title & collapse button */
+  .sidebar-left-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-left-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sidebar-collapse-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--surface) 60%, transparent);
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 50;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease, right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
   }
 
-  .sidebar-left-toggle:hover {
-    background-color: var(--surface);
-    color: var(--text-main);
-    border-color: var(--violet);
-    transform: scale(1.1);
+  .sidebar-collapse-btn:hover {
+    background: var(--surface);
+    color: var(--cyan);
+    border-color: var(--cyan);
+    transform: scale(1.08);
   }
 
-  .sidebar-left-container.collapsed .sidebar-left-toggle,
-  :global(.sidebar-left-collapsed) .sidebar-left-container .sidebar-left-toggle {
-    right: -32px;
+  /* Expand button visible on left margin when collapsed */
+  .sidebar-expand-btn {
+    position: fixed;
+    top: calc(var(--nav-h) + 16px);
+    left: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 45;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
   }
 
-  .sidebar-left-container.collapsed .toggle-icon-close,
-  :global(.sidebar-left-collapsed) .sidebar-left-container .toggle-icon-close {
+  .sidebar-expand-btn:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 12px var(--glow-cyan);
+    transform: scale(1.08);
+  }
+
+  :global(.sidebar-left-collapsed) .sidebar-expand-btn {
+    display: flex;
+  }
+
+  /* Resizer handle on the right edge of sidebar-left */
+  .sidebar-resizer {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 40;
+    touch-action: none;
+  }
+
+  .sidebar-resizer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 3px;
+    width: 2px;
+    height: 100%;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  .sidebar-resizer:hover::after,
+  :global(body.is-resizing) .sidebar-resizer::after {
+    background-color: var(--cyan);
+    box-shadow: 0 0 8px var(--glow-cyan);
+  }
+
+  :global(.sidebar-left-collapsed) .sidebar-resizer {
     display: none;
   }
 
-  .toggle-icon-open {
-    display: none;
+  :global(body.is-resizing) {
+    user-select: none !important;
+    cursor: col-resize !important;
   }
 
-  .sidebar-left-container.collapsed .toggle-icon-open,
-  :global(.sidebar-left-collapsed) .sidebar-left-container .toggle-icon-open {
-    display: block;
+  :global(body.is-resizing) .sidebar-left-container,
+  :global(body.is-resizing) .sidebar-left {
+    transition: none !important;
   }
 
   .sidebar {
-    padding: 32px 16px;
+    padding: 24px 16px;
     height: calc(100vh - var(--nav-h));
     position: sticky;
     top: var(--nav-h);
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--surface) transparent;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     box-sizing: border-box;
   }
 
+  .sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
   .sidebar-left {
-    width: 240px;
+    width: var(--sidebar-left-width, 260px);
     border-right: 1px solid var(--border-color);
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     background: linear-gradient(
@@ -246,59 +243,21 @@ const hasToc = !!(headings && headings.length > 0);
     pointer-events: none;
   }
 
-  .sidebar-left > * {
-    width: 100%;
-    max-width: 220px;
-  }
-
   .sidebar-right {
+    width: 240px;
     border-left: 1px solid var(--border-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .sidebar-right > * {
-    width: 100%;
-    max-width: 220px;
   }
 
   .main-content {
-    padding: 48px 32px;
+    padding: 32px 40px;
+    max-width: 860px;
     width: 100%;
-    max-width: 820px;
     margin: 0 auto;
     min-width: 0;
   }
 
   /* Floating TOC button - hidden on desktop where sidebar-right is visible */
-  .toc-fab {
-    display: none;
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 30;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: all 0.25s ease;
-  }
-
-  .toc-fab:hover {
-    background-color: var(--surface);
-    color: var(--cyan);
-    border-color: var(--cyan-dim);
-    box-shadow: 0 4px 16px var(--glow-cyan);
-  }
-
-  /* Tablet: hide right sidebar, show TOC button */
+  /* Tablet: hide right sidebar */
   @media (max-width: 1200px) {
     .sidebar-right {
       display: none;
@@ -306,12 +265,9 @@ const hasToc = !!(headings && headings.length > 0);
     .layout {
       grid-template-columns: auto minmax(0, 1fr);
     }
-    .toc-fab {
-      display: flex;
-    }
   }
 
-  /* Mobile: hide left sidebar (accessible via hamburger), single column */
+  /* Mobile: hide left sidebar, single column */
   @media (max-width: 768px) {
     .sidebar-left-container {
       display: none;
@@ -321,10 +277,6 @@ const hasToc = !!(headings && headings.length > 0);
     }
     .main-content {
       padding: 24px 16px;
-    }
-    .toc-fab {
-      bottom: 16px;
-      right: 16px;
     }
   }
 
@@ -337,49 +289,6 @@ const hasToc = !!(headings && headings.length > 0);
 </style>
 
 <script>
-  // TOC toggle and drawers
-  const tocToggle = document.getElementById('toc-toggle');
-  const tocOverlay = document.getElementById('toc-overlay');
-  const tocDrawer = document.getElementById('toc-drawer');
-
-  const isTocOpen = () => !tocDrawer?.classList.contains('translate-x-full');
-
-  const openToc = () => {
-    tocOverlay?.classList.remove('hidden');
-    tocDrawer?.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      tocDrawer?.classList.remove('translate-x-full');
-    });
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeToc = () => {
-    tocDrawer?.classList.add('translate-x-full');
-    tocOverlay?.classList.add('hidden');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      if (!isTocOpen()) {
-        tocDrawer?.classList.add('hidden');
-      }
-    }, 300);
-  };
-
-  tocToggle?.addEventListener('click', () => {
-    if (isTocOpen()) {
-      closeToc();
-    } else {
-      openToc();
-    }
-  });
-
-  tocOverlay?.addEventListener('click', closeToc);
-
-  // Close TOC when clicking a link inside
-  document.querySelectorAll('#toc-drawer a').forEach((link) => {
-    link.addEventListener('click', () => {
-      closeToc();
-    });
-  });
 
   // Close TOC on resize to desktop
   window.addEventListener('resize', () => {
@@ -388,35 +297,65 @@ const hasToc = !!(headings && headings.length > 0);
     }
   });
 
-  // Left sidebar toggle logic
-  const sidebarLeftToggle = document.getElementById('sidebar-left-toggle');
-  const sidebarLeftContainer = document.getElementById('sidebar-left-container');
+  // Left sidebar collapse / expand logic controlled by the single navbar button
+  const navbarSidebarToggle = document.getElementById('navbar-sidebar-toggle');
+  const sidebarContainer = document.getElementById('sidebar-left-container');
 
-  if (sidebarLeftToggle && sidebarLeftContainer) {
-    sidebarLeftToggle.addEventListener('click', () => {
-      const isCollapsed = document.documentElement.classList.toggle('sidebar-left-collapsed');
-      sidebarLeftContainer.classList.toggle('collapsed', isCollapsed);
-      localStorage.setItem('sidebar-left-collapsed', String(isCollapsed));
-    });
+  const toggleSidebar = () => {
+    const isCollapsed = !document.documentElement.classList.contains('sidebar-left-collapsed');
+    if (isCollapsed) {
+      document.documentElement.classList.add('sidebar-left-collapsed');
+      sidebarContainer?.classList.add('collapsed');
+    } else {
+      document.documentElement.classList.remove('sidebar-left-collapsed');
+      sidebarContainer?.classList.remove('collapsed');
+    }
+    localStorage.setItem('sidebar-left-collapsed', String(isCollapsed));
+  };
 
-    // Synchronize initial state
-    const isInitiallyCollapsed = document.documentElement.classList.contains('sidebar-left-collapsed');
-    sidebarLeftContainer.classList.toggle('collapsed', isInitiallyCollapsed);
-  }
+  navbarSidebarToggle?.addEventListener('click', toggleSidebar);
 
-  // Back-to-top button
-  const backToTop = document.getElementById('back-to-top');
-  if (backToTop) {
-    const onScroll = () => {
-      if (window.scrollY > 300) {
-        backToTop.classList.add('visible');
-      } else {
-        backToTop.classList.remove('visible');
+  // Sidebar drag resizer logic
+  const resizer = document.getElementById('sidebar-resizer');
+  const MIN_WIDTH = 200;
+  const MAX_WIDTH = 480;
+
+  if (resizer) {
+    let isDragging = false;
+
+    const startDragging = (e: MouseEvent | TouchEvent) => {
+      if (document.documentElement.classList.contains('sidebar-left-collapsed')) return;
+      isDragging = true;
+      document.body.classList.add('is-resizing');
+      e.preventDefault();
+    };
+
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const newWidth = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, clientX));
+      document.documentElement.style.setProperty('--sidebar-left-width', `${newWidth}px`);
+    };
+
+    const stopDragging = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      document.body.classList.remove('is-resizing');
+      const currentWidth = getComputedStyle(document.documentElement)
+        .getPropertyValue('--sidebar-left-width')
+        .trim();
+      if (currentWidth && currentWidth !== '0px') {
+        localStorage.setItem('sidebar-left-width', currentWidth);
       }
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+
+    resizer.addEventListener('mousedown', startDragging);
+    resizer.addEventListener('touchstart', startDragging, { passive: false });
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onMove, { passive: false });
+
+    window.addEventListener('mouseup', stopDragging);
+    window.addEventListener('touchend', stopDragging);
   }
 </script>

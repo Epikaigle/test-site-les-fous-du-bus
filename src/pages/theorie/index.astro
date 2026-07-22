@@ -2,6 +2,7 @@
 import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
 import { getCollection } from 'astro:content';
+import { editorialStatusToFrench } from '@utils/format';
 
 const articles = await getCollection('articles');
 const publishedArticles = articles.filter(a => a.data.status === 'published');
@@ -16,7 +17,7 @@ const mainArticles = publishedArticles
     <h1>La théorie</h1>
     <p class="subtitle">
       Pour découvrir et lire l'argumentation principale dans son ensemble. Suivez l'ordre de lecture
-      ci-dessous pour comprendre le raisonnement étape par étape.
+      recommandé ci-dessous pour appréhender les fondations et le raisonnement étape par étape.
     </p>
   </div>
 
@@ -40,7 +41,6 @@ const mainArticles = publishedArticles
       .slice(0, 8)
       .map((article) => (
         <a href={`/theorie/${article.id}`} class="article-row">
-          <span class="article-badge">{article.data.certainty === 'central' ? 'Central' : article.data.certainty === 'elevee' ? 'Élevée' : 'Moyenne'}</span>
           <div class="article-info">
             <span class="article-title">{article.data.title}</span>
             <span class="article-chapter">Mis à jour au chapitre {article.data.lastUpdatedChapter || '?'}</span>
@@ -52,12 +52,16 @@ const mainArticles = publishedArticles
 
   <div class="info-box">
     <h3>📖 Ordre de lecture recommandé</h3>
-    <p>
-      1. Le Siècle oublié est le présent → 2. Laugh Tale et Lodestar → 3. Joy Boy est Luffy →
-      4. Nika est Luffy → 5. Les Ponéglyphes racontent le futur → 6. Poséidon est Shirahoshi →
-      7. Davy Jones est Teach → 8. Vivi est Lili → 9. Emeth vient du futur → 10. Imu Nerona →
-      11. Le Déluge et All Blue → 12. Les Dieux de One Piece
-    </p>
+    <ol class="order-list">
+      <li><strong>1. Blue Star, Grand Line & Red Line</strong> — Les fondations géographiques et le cadre du monde.</li>
+      <li><strong>2. Lodestar & Laugh Tale</strong> — La destination finale et la vraie nature de la dernière île.</li>
+      <li><strong>3. Le One Piece</strong> — Le trésor laissé par Joy Boy et la promesse de Gol D. Roger.</li>
+      <li><strong>4. Siècle oublié & Ancien Royaume</strong> — La véritable chronologie et la grande guerre.</li>
+      <li><strong>5. Les Ponéglyphes</strong> — Le message gravé dans la pierre et la transmission à travers les époques.</li>
+      <li><strong>6. Joy Boy, Nika & Monkey D. Luffy</strong> — Les acteurs centraux et l'héritage du Guerrier de la Libération.</li>
+      <li><strong>7. Armes antiques & Identités</strong> — Poséidon, Pluton, Uranus, et les figures clés.</li>
+      <li><strong>8. Imu & Gouvernement mondial</strong> — L'autorité du trône vacant et les enjeux de la Guerre Finale.</li>
+    </ol>
   </div>
 
   <Footer />
@@ -134,15 +138,34 @@ const mainArticles = publishedArticles
   .article-badge {
     font-size: 11.5px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     padding: 3px 9px;
     border-radius: 6px;
-    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
-    color: var(--cyan);
-    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
     flex-shrink: 0;
     margin-top: 2px;
+  }
+
+  .meta-badge--cyan {
+    background: color-mix(in srgb, var(--cyan) 12%, transparent);
+    color: var(--cyan);
+    border: 1px solid color-mix(in srgb, var(--cyan) 28%, transparent);
+  }
+
+  .meta-badge--gold {
+    background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+    color: var(--accent-gold);
+    border: 1px solid color-mix(in srgb, var(--accent-gold) 28%, transparent);
+  }
+
+  .meta-badge--violet {
+    background: color-mix(in srgb, var(--violet) 14%, transparent);
+    color: var(--violet-light);
+    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
+  }
+
+  .meta-badge--muted {
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
   }
 
   .article-info {
@@ -184,16 +207,24 @@ const mainArticles = publishedArticles
   }
 
   .info-box h3 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 14px;
   }
 
-  .info-box p {
-    color: var(--text-secondary);
-    font-size: 14px;
-    line-height: 1.7;
+  .order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
     margin: 0;
+    list-style: none;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .order-list li strong {
+    color: var(--text-main);
   }
 
   @media (max-width: 640px) {

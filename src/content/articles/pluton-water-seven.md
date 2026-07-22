@@ -1,8 +1,9 @@
 ---
-title: "Pluton est Water Seven dans le futur"
-summary: "L'arme antique Pluton n'a jamais existé il y a 800 ans. C'est Water Seven transformée en navire géant par les géants de la Galley-La (l'équipage de Loki)."
+title: "Pluton et Water Seven"
+summary: "Fiche d'analyse sur le navire de guerre Pluton, scellé sous Wano Kuni, et ses plans conservés par les charpentiers de Water Seven."
 category: "armes-antiques"
 status: "published"
+editorialStatus: "hypothese-secondaire"
 certainty: "moyenne"
 lastUpdatedChapter: 1188
 order: 31

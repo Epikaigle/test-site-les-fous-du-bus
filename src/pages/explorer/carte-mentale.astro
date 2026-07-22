@@ -57,19 +57,7 @@ function certaintyColor(c: string): string {
     </p>
   </div>
 
-  <!-- Legend -->
-  <div class="legend">
-    <span class="legend-title">Certitude :</span>
-    <span class="legend-item">
-      <span class="legend-dot" style="background:#5fb9c2"></span> Centrale
-    </span>
-    <span class="legend-item">
-      <span class="legend-dot" style="background:#e0ab4e"></span> Élevée
-    </span>
-    <span class="legend-item">
-      <span class="legend-dot" style="background:#d98b74"></span> Moyenne
-    </span>
-  </div>
+
 
   <!-- Mind map container -->
   <div class="mindmap-wrapper" id="mindmap-wrapper">
@@ -111,6 +99,61 @@ function certaintyColor(c: string): string {
     <button id="detail-close" class="detail-close" aria-label="Fermer">✕</button>
     <div id="detail-content" class="detail-content"></div>
   </div>
+
+  <!-- Textual Alternative for Accessibility & SEO -->
+  <section class="mt-12 pt-8 border-t border-borderColor" aria-label="Version textuelle de la carte mentale">
+    <h2 class="text-xl font-bold text-textMain mb-6">Version textuelle de la carte mentale</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-12">
+      <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
+        <h3 class="font-bold text-cyan mb-3">⏳ Mécanisme temporel</h3>
+        <ul class="space-y-2 text-sm text-textSecondary">
+          <li>• <a href="/theorie/siecle-oublie-present" class="hover:text-cyan transition-colors">Le Siècle Oublié est le présent</a></li>
+          <li>• <a href="/theorie/laugh-tale" class="hover:text-cyan transition-colors">Laugh Tale</a></li>
+          <li>• <a href="/theorie/one-piece-histoire" class="hover:text-cyan transition-colors">One Piece</a></li>
+          <li>• <a href="/theorie/ponelyphes-futur" class="hover:text-cyan transition-colors">Ponéglyphes</a></li>
+        </ul>
+      </div>
+
+      <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
+        <h3 class="font-bold text-cyan mb-3">🎭 Identités</h3>
+        <ul class="space-y-2 text-sm text-textSecondary">
+          <li>• <a href="/theorie/joy-boy-est-luffy" class="hover:text-cyan transition-colors">Joy Boy & Monkey D. Luffy</a></li>
+          <li>• <a href="/theorie/nika-est-luffy" class="hover:text-cyan transition-colors">Nika & Monkey D. Luffy</a></li>
+          <li>• <a href="/theorie/davy-jones-teach" class="hover:text-cyan transition-colors">Davy Jones & Marshall D. Teach</a></li>
+          <li>• <a href="/theorie/vivi-lili" class="hover:text-cyan transition-colors">Nefertari D. Lili & Vivi</a></li>
+          <li>• <a href="/theorie/ryuma-zoro" class="hover:text-cyan transition-colors">Shimotsuki Ryuma & Zoro</a></li>
+        </ul>
+      </div>
+
+      <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
+        <h3 class="font-bold text-cyan mb-3">🔱 Armes antiques</h3>
+        <ul class="space-y-2 text-sm text-textSecondary">
+          <li>• <a href="/theorie/poseidon-shirahoshi" class="hover:text-cyan transition-colors">Poséidon & Shirahoshi</a></li>
+          <li>• <a href="/theorie/pluton-water-seven" class="hover:text-cyan transition-colors">Pluton & Water Seven</a></li>
+          <li>• <a href="/theorie/uranus" class="hover:text-cyan transition-colors">Uranus</a></li>
+        </ul>
+      </div>
+
+      <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
+        <h3 class="font-bold text-cyan mb-3">⚡ Technologie & transmission</h3>
+        <ul class="space-y-2 text-sm text-textSecondary">
+          <li>• <a href="/theorie/emeth-futur" class="hover:text-cyan transition-colors">Emeth</a></li>
+          <li>• <a href="/theorie/energie-antique" class="hover:text-cyan transition-colors">Énergie antique</a></li>
+          <li>• <a href="/theorie/binks-no-sake" class="hover:text-cyan transition-colors">Binks no Sake</a></li>
+          <li>• <a href="/theorie/volonte-heritee" class="hover:text-cyan transition-colors">Volonté héritée</a></li>
+        </ul>
+      </div>
+
+      <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
+        <h3 class="font-bold text-cyan mb-3">👑 Gouvernement & Antagonistes</h3>
+        <ul class="space-y-2 text-sm text-textSecondary">
+          <li>• <a href="/theorie/imu-nerona" class="hover:text-cyan transition-colors">Imu Nerona</a></li>
+          <li>• <a href="/theorie/vingt-rois-chevaliers-divins" class="hover:text-cyan transition-colors">Les Vingt Rois</a></li>
+          <li>• <a href="/theorie/deluge-all-blue" class="hover:text-cyan transition-colors">Le Déluge et All Blue</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <Footer />
 </WikiLayout>

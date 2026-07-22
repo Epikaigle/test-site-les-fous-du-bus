@@ -1,8 +1,9 @@
 ---
-title: "Ryuma est Roronoa Zoro"
-summary: "Le dieu des lames n'a jamais existé il y a 800 ans. C'est Zoro qui deviendra Ryuma après être devenu le plus grand sabreur du monde."
+title: "Shimotsuki Ryuma et Roronoa Zoro"
+summary: "Fiche d'analyse sur Shimotsuki Ryuma, le Dieu de la Lame de Wano, et ses parallèles avec Roronoa Zoro."
 category: "personnages-identites"
 status: "published"
+editorialStatus: "hypothese-secondaire"
 certainty: "elevee"
 lastUpdatedChapter: 1188
 order: 42

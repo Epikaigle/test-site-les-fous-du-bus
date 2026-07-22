@@ -21,7 +21,7 @@ const articles = defineCollection({
       'guerre-finale',
     ]),
     status: z.enum(['draft', 'published']).default('draft'),
-    certainty: z.enum(['central', 'elevee', 'moyenne', 'hypothese']).default('moyenne'),
+    certainty: z.enum(['central', 'elevee', 'moyenne', 'hypothese']).optional(),
     spoilerChapter: z.number().optional(),
     lastUpdatedChapter: z.number().optional(),
     related: z.array(z.string()).default([]),

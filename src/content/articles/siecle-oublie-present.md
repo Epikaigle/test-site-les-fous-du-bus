@@ -28,7 +28,7 @@ Oda ne nous montrerait pas une copie de ce que nous lisons depuis 30 ans. Ce ser
 6. **Emeth** ne connaît pas le Gorosei — il vient du futur
 7. **Les prophéties** sont trop précises pour être du passé
 8. **Les Ponéglyphes** sont indestructibles — matière futuriste
-9. **Oda** dit que Joy Boy a vécu les mêmes aventures que Luffy
+9. **Parallèles** : Les aventures attribuées à Joy Boy présentent de nombreux parallèles avec celles de Luffy.
 
 ## Joy Boy n'est pas une origine, c'est une conséquence
 

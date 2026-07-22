@@ -1,8 +1,9 @@
 ---
-title: "Nika est Monkey D. Luffy"
-summary: "Nika n'est pas un dieu ancien mais le nom divin donné à Luffy par ceux qui croient en lui. La foi de Kuma l'a fait exister."
-category: "figures-principales"
+title: "Nika"
+summary: "Fiche d'analyse sur Nika, le Dieu du Soleil, son rôle dans les croyances de la mer et les interprétations de la théorie."
+category: "dieux-croyances"
 status: "published"
+editorialStatus: "hypothese-centrale"
 certainty: "central"
 lastUpdatedChapter: 1188
 order: 21

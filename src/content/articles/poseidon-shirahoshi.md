@@ -1,8 +1,9 @@
 ---
-title: "Poséidon est Shirahoshi"
-summary: "L'arme antique Poséidon n'existait pas il y a 800 ans. Shirahoshi est née pour la faire apparaître. La promesse de Joy Boy est celle de Luffy à Shirahoshi."
+title: "Poséidon et Shirahoshi"
+summary: "Fiche d'analyse sur Poséidon, l'Arme Antique capable d'invoquer les Rois des Mers, et la princesse Shirahoshi."
 category: "armes-antiques"
 status: "published"
+editorialStatus: "fait-observe"
 certainty: "elevee"
 lastUpdatedChapter: 1188
 order: 30

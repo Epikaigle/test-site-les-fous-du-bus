@@ -3,83 +3,124 @@ import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
 ---
 
-<WikiLayout title="Chronologie" currentPath="/explorer/chronologie">
+<WikiLayout title="Chronologie" currentPath="/theorie/chronologie">
   <div class="page-header">
     <span class="page-icon">📜</span>
-    <h1>Chronologie des événements</h1>
+    <h1>Chronologie comparative</h1>
     <p class="page-desc">
-      Frise chronologique complète reliant les événements du Siècle oublié aux événements actuels de <em
-        >One Piece</em
-      >. Chaque événement est classé par époque et relié aux articles correspondants.
+      Confrontation entre la chronologie officielle perçue dans l'univers de <em>One Piece</em> et l'interprétation proposée par la théorie des Fous du Bus.
     </p>
   </div>
 
-  <div class="timeline-section">
-    <h2>Ère antique — Le Siècle oublié</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">~900 ans avant l'histoire</span>
-          <h4>Le Royaume ancien</h4>
-          <p>
-            Existence d'une civilisation avancée dont les traces ont été effacées par le
-            Gouvernement Mondial.
-          </p>
+  <div class="chrono-grid">
+    <!-- Column 1: Chronologie Canon connue du Manga -->
+    <div class="chrono-col">
+      <h2 class="col-title col-title--manga">
+        <span class="badge-manga">Canon</span>
+        Chronologie connue du manga
+      </h2>
+      <p class="col-desc">L'histoire telle qu'elle est racontée et transmise par les mythes de la mer et le Gouvernement Mondial.</p>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--manga"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">~900 ans avant le présent</span>
+            <h4>Le Royaume antique</h4>
+            <p>Existence d'une civilisation scientifiquement très avancée dont les traces ont été effacées après la guerre.</p>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">~800 ans avant l'histoire</span>
-          <h4>La grande guerre et la chute</h4>
-          <p>
-            Conflit majeur entraînant la disparition du Royaume ancien et la création du
-            Gouvernement Mondial.
-          </p>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--manga"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">~800 ans avant le présent</span>
+            <h4>La Grande Guerre & Chute du Royaume</h4>
+            <p>Conflit majeur opposant le Royaume antique à une alliance de 20 Rois, menant à la fondation du Gouvernement Mondial.</p>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">~800 ans avant l'histoire</span>
-          <h4>Gravure des Ponéglyphes</h4>
-          <p>Les Ponéglyphes sont créés pour transmettre la vérité à travers les siècles.</p>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--manga"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">~800 ans avant le présent</span>
+            <h4>Création du Gouvernement Mondial</h4>
+            <p>Les 20 familles fondatrices s'installent à Mary Geoise et scellent le Trône Vacant.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--manga"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">~800 ans avant le présent</span>
+            <h4>Gravure des Ponéglyphes</h4>
+            <p>Les pierres indestructibles sont gravées par le clan Kozuki de Wano Kuni pour transmettre l'histoire à la postérité.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--manga"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Il y a 25 ans</span>
+            <h4>Le voyage de Gol D. Roger</h4>
+            <p>L'équipage du Seigneurs des Pirates atteint Laugh Tale mais réalise qu'il est « arrivé trop tôt ».</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="timeline-section">
-    <h2>Ère moderne — L'âge des pirates</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot timeline-dot--gold"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">Chap. 968</span>
-          <h4>Roger atteint Laugh Tale</h4>
-          <p>« Nous sommes arrivés trop tôt. » — Roger comprend la véritable nature du trésor.</p>
+    <!-- Column 2: Lecture des Fous du Bus -->
+    <div class="chrono-col">
+      <h2 class="col-title col-title--theory">
+        <span class="badge-theory">Théorie</span>
+        Lecture des Fous du Bus
+      </h2>
+      <p class="col-desc">L'hypothèse d'une boucle ou résonance temporelle où les événements actuels constituent l'origine des légendes.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--theory"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Présent</span>
+            <h4>L'écriture de l'histoire</h4>
+            <p>Selon la théorie, Luffy est en train d’écrire pour la première fois l’histoire que le monde attribue au Siècle oublié.</p>
+          </div>
         </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot timeline-dot--cyan"></div>
-        <div class="timeline-content">
-          <span class="timeline-date">Chap. 1 → présent</span>
-          <h4>Le voyage de Luffy</h4>
-          <p>
-            Luffy et son équipage suivent le chemin de Roger, sans savoir qu'ils sont en train de
-            réécrire l'histoire.
-          </p>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--theory"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Futur proche</span>
+            <h4>La Guerre Finale & le Déluge</h4>
+            <p>L'affrontement contre Imu provoque la chute de Red Line, la création d'All Blue et l'accomplissement des promesses.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--theory"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Futur</span>
+            <h4>Rédaction des Ponéglyphes</h4>
+            <p>Création des pierres pour conserver la mémoire des exploits accomplis et préserver la vérité pour les générations futures.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot timeline-dot--theory"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Passé (Transmission)</span>
+            <h4>Transmission des informations</h4>
+            <p>Envoi de reliques et de messages vers les époques antérieures pour sceller l'alliance et la continuité du monde.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <div class="info-box">
-    <h3>🔮 En construction</h3>
+    <h3>💡 Note de synthèse</h3>
     <p>
-      Cette frise chronologique sera enrichie au fur et à mesure de l'avancement de la théorie. La
-      version interactive avec double frise (passé/présent) est prévue pour la V2.
+      Cette présentation en deux colonnes permet de séparer clairement les faits explicitement racontés dans le manga d'un côté, et l'interprétation spécifique proposée par la théorie de l'autre.
     </p>
   </div>
 
@@ -88,7 +129,7 @@ import Footer from '@components/Footer.astro';
 
 <style>
   .page-header {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
 
   .page-icon {
@@ -111,27 +152,74 @@ import Footer from '@components/Footer.astro';
     line-height: 1.6;
   }
 
-  .timeline-section {
+  .chrono-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
     margin-bottom: 48px;
   }
 
-  .timeline-section h2 {
+  @media (max-width: 860px) {
+    .chrono-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .chrono-col {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-xl);
+    padding: 24px;
+  }
+
+  .col-title {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .badge-manga {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--cyan) 14%, transparent);
+    color: var(--cyan);
+    border: 1px solid color-mix(in srgb, var(--cyan) 28%, transparent);
+  }
+
+  .badge-theory {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--violet) 16%, transparent);
+    color: var(--violet-light);
+    border: 1px solid color-mix(in srgb, var(--violet) 32%, transparent);
+  }
+
+  .col-desc {
+    font-size: 13.5px;
+    color: var(--text-secondary);
     margin-bottom: 24px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border-color);
+    line-height: 1.5;
   }
 
   .timeline {
     position: relative;
-    padding-left: 28px;
+    padding-left: 24px;
   }
 
   .timeline::before {
     content: '';
     position: absolute;
-    left: 6px;
+    left: 5px;
     top: 4px;
     bottom: 4px;
     width: 2px;
@@ -140,7 +228,7 @@ import Footer from '@components/Footer.astro';
 
   .timeline-item {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .timeline-item:last-child {
@@ -149,48 +237,41 @@ import Footer from '@components/Footer.astro';
 
   .timeline-dot {
     position: absolute;
-    left: -25px;
+    left: -24px;
     top: 4px;
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: var(--violet);
-    border: 2px solid var(--bg-main);
+    border: 2px solid var(--bg-secondary);
   }
 
-  .timeline-dot--gold {
-    background-color: var(--accent-gold);
-  }
-
-  .timeline-dot--cyan {
+  .timeline-dot--manga {
     background-color: var(--cyan);
   }
 
-  .timeline-content {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    padding: 16px 18px;
-    border-radius: var(--border-radius-lg);
-    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  .timeline-dot--theory {
+    background-color: var(--violet);
   }
 
-  .timeline-item:hover .timeline-content {
-    border-color: color-mix(in srgb, var(--violet) 35%, var(--border-color));
-    transform: translateX(3px);
-    box-shadow: 0 6px 20px color-mix(in srgb, var(--bg-main) 35%, transparent);
+  .timeline-content {
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    padding: 14px 16px;
+    border-radius: var(--border-radius-lg);
   }
 
   .timeline-date {
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-weight: 600;
     display: block;
     margin-bottom: 4px;
   }
 
   .timeline-content h4 {
-    font-size: 15.5px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-main);
     margin-bottom: 6px;
@@ -209,11 +290,10 @@ import Footer from '@components/Footer.astro';
     border-left: 3px solid var(--violet);
     padding: 20px 24px;
     border-radius: var(--border-radius-lg);
-    margin-top: 48px;
   }
 
   .info-box h3 {
-    font-size: 16px;
+    font-size: 15.5px;
     font-weight: 600;
     margin-bottom: 8px;
   }

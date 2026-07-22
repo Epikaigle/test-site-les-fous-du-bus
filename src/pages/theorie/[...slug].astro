@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '@layouts/ArticleLayout.astro';
-import { readingTime } from '@utils/format';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -13,7 +12,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const readTime = readingTime(entry.body ?? '');
 ---
 
 <ArticleLayout
@@ -22,7 +20,6 @@ const readTime = readingTime(entry.body ?? '');
   currentPath={`/theorie/${entry.id}`}
   headings={headings}
   frontmatter={entry.data}
-  readingTime={readTime}
 >
   <Content />
 </ArticleLayout>

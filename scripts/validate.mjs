@@ -17,13 +17,17 @@ import { join, relative, sep } from 'node:path';
 const CONTENT_DIR = join(process.cwd(), 'src', 'content');
 
 const CATEGORIES = [
-  'fondations',
-  'figures-identites',
+  'monde-destinations',
+  'histoire-temporalite',
+  'figures-principales',
+  'personnages-identites',
   'armes-antiques',
-  'science-energie',
-  'monde-peuples',
-  'gouvernement-guerre',
+  'technologies-pouvoirs',
+  'peuples-royaumes',
+  'dieux-croyances',
   'transmission-memoire',
+  'gouvernement-mondial',
+  'guerre-finale',
 ];
 
 const ENUMS = {

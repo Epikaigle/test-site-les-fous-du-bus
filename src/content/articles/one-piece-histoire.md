@@ -1,8 +1,9 @@
 ---
-title: "Le One Piece est l'histoire que nous lisons"
-summary: "Le One Piece serait littéralement l'histoire que nous lisons depuis le tome 1. Quand les Mugiwara atteindront Laugh Tale, ils découvriront que le trésor raconte leurs propres aventures."
+title: "One Piece"
+summary: "Fiche d'analyse consacrée à la nature du One Piece, la promesse de Gol D. Roger et les hypothèses entourant le trésor."
 category: "monde-destinations"
 status: "published"
+editorialStatus: "hypothese-centrale"
 certainty: "moyenne"
 lastUpdatedChapter: 1188
 order: 11

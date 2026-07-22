@@ -1,8 +1,9 @@
 ---
-title: "Davy Jones est Marshall D. Teach"
-summary: "Barbe Noire est le dernier descendant du clan Davy. Il deviendra Davy Jones, le roi du monde, en plantant son épée devant le trône vacant."
+title: "Davy Jones et Marshall D. Teach"
+summary: "Fiche d'analyse sur le mythe de Davy Jones, Marshall D. Teach et le clan Davy."
 category: "personnages-identites"
 status: "published"
+editorialStatus: "hypothese-secondaire"
 certainty: "elevee"
 lastUpdatedChapter: 1188
 order: 40

@@ -5,7 +5,7 @@ category: 'technologies-pouvoirs'
 status: 'published'
 certainty: 'elevee'
 lastUpdatedChapter: 1187
-related: ['nika-le-dieu-du-soleil', 'communication-temps']
+related: ['nika-est-luffy', 'communication-temps']
 ---
 
 ## La Flamme Mère

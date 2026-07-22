@@ -5,7 +5,7 @@ category: 'transmission-memoire'
 status: 'published'
 certainty: 'moyenne'
 lastUpdatedChapter: 1188
-related: ['signification-d', 'laugh-tale-n-existe-pas-encore', 'nika-le-dieu-du-soleil']
+related: ['signification-d', 'laugh-tale', 'nika-est-luffy']
 ---
 
 ## L'idée centrale
