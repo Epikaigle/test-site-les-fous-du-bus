@@ -96,17 +96,17 @@ const { title, icon, desc } = Astro.props;
     margin-bottom: 12px;
   }
   .placeholder-desc {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-secondary);
     max-width: 500px;
     margin: 0 auto 32px;
     line-height: 1.6;
   }
   .placeholder-box {
-    background-color: var(--bg-secondary);
+    background: var(--gradient-card);
     border: 1px solid var(--border-color);
     padding: 32px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-xl);
     max-width: 500px;
     margin: 0 auto 32px;
   }
@@ -116,7 +116,7 @@ const { title, icon, desc } = Astro.props;
     margin-bottom: 8px;
   }
   .placeholder-box p {
-    font-size: 14px;
+    font-size: 14.5px;
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
@@ -132,14 +132,20 @@ const { title, icon, desc } = Astro.props;
     padding: 10px 20px;
     background-color: var(--surface);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 8px;
     color: var(--text-main);
     text-decoration: none;
     font-size: 14px;
     transition: all 0.2s;
   }
+  .placeholder-link {
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
   .placeholder-link:hover {
     border-color: var(--cyan);
     color: var(--cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--bg-main) 45%, transparent);
   }
 </style>

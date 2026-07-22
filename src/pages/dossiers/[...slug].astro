@@ -123,12 +123,12 @@ const sectionInfo = sectionMap[slug] || { section: 'Dossier', description: `Arti
 
   .dossier-section-tag {
     display: inline-block;
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     padding: 3px 10px;
-    border-radius: 3px;
+    border-radius: 6px;
     background-color: color-mix(in srgb, var(--violet) 10%, transparent);
     color: var(--violet);
     border: 1px solid color-mix(in srgb, var(--violet) 20%, transparent);
@@ -151,10 +151,10 @@ const sectionInfo = sectionMap[slug] || { section: 'Dossier', description: `Arti
   }
 
   .dossier-box {
-    background-color: var(--bg-secondary);
+    background: var(--gradient-card);
     border: 1px solid var(--border-color);
     padding: 32px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-xl);
     max-width: 500px;
     margin: 0 auto 32px;
     text-align: left;
@@ -185,7 +185,7 @@ const sectionInfo = sectionMap[slug] || { section: 'Dossier', description: `Arti
     padding: 10px 20px;
     background-color: var(--surface);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 8px;
     color: var(--text-main);
     text-decoration: none;
     font-size: 14px;

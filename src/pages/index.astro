@@ -197,7 +197,7 @@ import Footer from '@components/Footer.astro';
       title="Luffy deviendra Joy Boy"
       category="Figures et identités"
       chapter="1186"
-      href="/theorie/luffy-joy-boy"
+      href="/theorie/joy-boy-est-luffy"
     />
   </div>
 
@@ -205,10 +205,33 @@ import Footer from '@components/Footer.astro';
 </WikiLayout>
 
 <style>
-  /* ===== HERO ===== */
+  /* ===== HERO (contained block) ===== */
   .hero {
-    margin-bottom: 48px;
     position: relative;
+    margin-bottom: 48px;
+    padding: 40px 40px 36px;
+    border-radius: var(--border-radius-xl);
+    border: 1px solid var(--border-color);
+    background:
+      linear-gradient(
+        150deg,
+        color-mix(in srgb, var(--bg-secondary) 92%, transparent),
+        color-mix(in srgb, var(--surface) 60%, transparent)
+      );
+    box-shadow: 0 20px 60px color-mix(in srgb, var(--bg-main) 45%, transparent);
+    overflow: hidden;
+  }
+
+  /* Thin gradient line crowning the hero block */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--gradient-hero);
+    opacity: 0.55;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .hero-sun {
@@ -231,7 +254,27 @@ import Footer from '@components/Footer.astro';
   .hero > *:not(.hero-sun) {
     position: relative;
     z-index: 1;
+    /* Staggered entrance */
+    animation: hero-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .hero-badge { animation-delay: 0.05s; }
+  .hero-title { animation-delay: 0.12s; }
+  .hero-wave { animation-delay: 0.18s; }
+  .hero-text { animation-delay: 0.24s; }
+  .hero-cta { animation-delay: 0.3s; }
+  .video-facade { animation-delay: 0.38s; }
 
   .hero-wave {
     max-width: 300px;
@@ -242,13 +285,13 @@ import Footer from '@components/Footer.astro';
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 12.5px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--violet-light);
     margin-bottom: 16px;
-    padding: 6px 14px;
+    padding: 7px 15px;
     border-radius: 100px;
     background: color-mix(in srgb, var(--violet) 12%, transparent);
     border: 1px solid color-mix(in srgb, var(--violet) 20%, transparent);
@@ -276,10 +319,10 @@ import Footer from '@components/Footer.astro';
   }
 
   .hero-text {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-secondary);
     max-width: 700px;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   .hero-text p + p {
@@ -308,11 +351,11 @@ import Footer from '@components/Footer.astro';
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
+    padding: 12px 22px;
     background: var(--gradient-border);
     color: white;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 10px;
+    font-size: 15px;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.25s ease;
@@ -320,29 +363,45 @@ import Footer from '@components/Footer.astro';
   }
 
   .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 24px var(--glow-violet);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 26px var(--glow-violet);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 20px;
+    padding: 12px 22px;
     background-color: transparent;
     color: var(--text-main);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 10px;
+    font-size: 15px;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.25s ease;
+  }
+
+  .btn-secondary svg {
+    transition: transform 0.25s ease;
   }
 
   .btn-secondary:hover {
     border-color: var(--cyan-dim);
     color: var(--cyan);
     box-shadow: 0 0 16px var(--glow-cyan);
+  }
+
+  .btn-secondary:hover svg {
+    transform: translateX(3px);
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.98);
   }
 
   /* ===== VIDEO FACADE ===== */
@@ -417,14 +476,14 @@ import Footer from '@components/Footer.astro';
   }
 
   .video-facade__label {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
   }
 
   /* ===== SECTION TITLES ===== */
   .section-title {
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 700;
     margin-bottom: 24px;
     padding-bottom: 12px;
@@ -473,9 +532,11 @@ import Footer from '@components/Footer.astro';
     }
     .hero {
       margin-bottom: 32px;
+      padding: 28px 20px 24px;
     }
     .section-title {
       margin-top: 40px;
+      font-size: 17.5px;
     }
     .video-facade__play {
       width: 52px;

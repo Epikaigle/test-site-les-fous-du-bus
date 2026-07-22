@@ -18,6 +18,10 @@ interface Props {
 }
 
 const { title, description, currentPath, headings } = Astro.props;
+
+// Pages without headings must not reserve an empty 240px gutter
+// or show a "Sommaire" drawer with no entries.
+const hasToc = !!(headings && headings.length > 0);
 ---
 
 <BaseLayout title={title} description={description}>
@@ -32,7 +36,7 @@ const { title, description, currentPath, headings } = Astro.props;
 
   <Navbar />
 
-  <div class="layout">
+  <div class:list={['layout', { 'layout--no-toc': !hasToc }]}>
     <div class="sidebar-left-container" id="sidebar-left-container">
       <aside class="sidebar sidebar-left">
         <SidebarNav currentPath={currentPath} />
@@ -71,12 +75,17 @@ const { title, description, currentPath, headings } = Astro.props;
       <slot />
     </main>
 
-    <aside class="sidebar sidebar-right">
-      <SidebarToc headings={headings} />
-    </aside>
+    {
+      hasToc && (
+        <aside class="sidebar sidebar-right">
+          <SidebarToc headings={headings} />
+        </aside>
+      )
+    }
   </div>
 
-  <!-- Floating TOC button for tablet/mobile -->
+  {/* Floating TOC button for tablet/mobile (only when a TOC exists) */}
+  {hasToc && (
   <button id="toc-toggle" class="toc-fab" aria-label="Sommaire">
     <svg
       width="18"
@@ -98,6 +107,7 @@ const { title, description, currentPath, headings } = Astro.props;
         y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg
     >
   </button>
+  )}
 
   <!-- Back to top button -->
   <button id="back-to-top" class="back-to-top" aria-label="Retour en haut">
@@ -115,7 +125,9 @@ const { title, description, currentPath, headings } = Astro.props;
     </svg>
   </button>
 
-  <!-- TOC mobile drawer -->
+  {/* TOC mobile drawer (only when a TOC exists) */}
+  {hasToc && (
+  <>
   <div
     id="toc-overlay"
     class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"
@@ -129,6 +141,8 @@ const { title, description, currentPath, headings } = Astro.props;
   >
     <SidebarToc headings={headings} />
   </div>
+  </>
+  )}
 </BaseLayout>
 
 <style>
@@ -137,6 +151,11 @@ const { title, description, currentPath, headings } = Astro.props;
     grid-template-columns: auto minmax(0, 1fr) 240px;
     flex: 1;
     width: 100%;
+  }
+
+  /* Pages without a table of contents: no empty 240px gutter */
+  .layout--no-toc {
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .sidebar-left-container {

@@ -113,8 +113,9 @@ const faqs = [
   .faq-item {
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
+    transition: border-color 0.25s ease;
   }
 
   .faq-item[open] {
@@ -125,9 +126,9 @@ const faqs = [
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 20px;
+    padding: 17px 20px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--text-main);
     list-style: none;
@@ -157,11 +158,10 @@ const faqs = [
   }
 
   .faq-answer p {
-    font-size: 14px;
+    font-size: 14.5px;
     color: var(--text-secondary);
     line-height: 1.7;
     margin: 0;
-    padding-top: 4px;
     border-top: 1px solid var(--border-color);
     padding-top: 12px;
   }
@@ -170,7 +170,7 @@ const faqs = [
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
     padding: 16px 20px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
   }
   .info-box p {
     color: var(--text-secondary);

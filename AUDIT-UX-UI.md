@@ -297,3 +297,47 @@ Pour équilibrer l'audit, voici les points forts du site :
 ---
 
 *Audit réalisé par analyse statique du code source. Un test utilisateur complémentaire sur le site déployé est recommandé pour valider les problèmes d'interaction et de performance perçue.*
+
+---
+
+## 🛠️ Correctifs appliqués — correctif UI/UX du 22 juillet 2026
+
+Suite à une nouvelle revue complète du code (analyse statique + inspection du HTML généré), les correctifs suivants ont été appliqués :
+
+### Bugs corrigés
+- **Modale de recherche cassée** : `<SearchModal />` était rendu *à l'intérieur* de la `<nav>` ; le `backdrop-filter` de la navbar créait un *containing block* pour l'overlay `position: fixed` → le voile sombre ne couvrait que la barre de 56 px au lieu du viewport entier. La modale est désormais rendue **hors de la `<nav>`**.
+- **Lien mort en page d'accueil** : `/theorie/luffy-joy-boy` → corrigé vers `/theorie/joy-boy-est-luffy` (vérifié par scan automatique : **0 lien interne mort** sur 195 pages).
+- **Ancres masquées sous la navbar sticky** : ajout de `scroll-padding-top` global + `scroll-margin-top` sur les sections de `/dossiers` et du glossaire.
+- **Sidebar droite & FAB « Sommaire » affichés vides** sur toutes les pages sans table des matières (accueil, index, aides…) : 240 px de gouttière perdue et un drawer vide. La colonne TOC, le FAB et le drawer ne sont plus rendus que si des `headings` existent.
+
+### Navbar
+- **Liens centrés** : la barre passe en grille `1fr auto 1fr` sur desktop (logo à gauche, liens centrés, actions à droite).
+- **État actif** : la section courante est mise en évidence (`aria-current`) avec soulignement dégradé, résolue au build.
+- **Animations** : apparition fondu de la barre, soulignement animé au survol, micro-glisse des liens de dropdown, glow sur le bouton de recherche.
+- Typographies : liens 13.5→14.5 px, dropdown 13→14 px.
+
+### Lisibilité (texte assez grand)
+- Corps des articles : 15→**16 px** (line-height 1.8) ; 14→15 px sur mobile.
+- Texte hero accueil : 15→16 px.
+- Badges 10–11 px → **11.5–12.5 px** partout ; méta 11–12 px → 12–13 px ; footer 11/12 → 12/13 px ; sidebars 13→13.5 px.
+
+### Blocs & cohérence visuelle
+- **Hero d'accueil transformé en bloc conteneur** : fond dégradé, bordure arrondie 16 px, ligne dégradée en couronnement, ombre portée.
+- `border-radius: 3–4 px` (ancien style) harmonisés vers les tokens (`8 / 12 / 16 px`) sur ~15 pages (listes d'articles, cartes nav, FAQ, glossaire, frise, placeholders, méthodes, guidelines…).
+- Suppression des `!important` dans `dossiers/index.astro` (correction de spécificité CSS).
+- Icônes des cartes placées dans des pastilles arrondies (blocs) avec glow au survol.
+
+### Animations ajoutées
+- Entrée en cascade (stagger 55 ms) des cartes sœurs au scroll (IntersectionObserver), délai nettoyé après révélation pour garder les hovers réactifs.
+- Entrée séquencée du hero (badge → titre → vague → texte → CTA → vidéo).
+- Levée des cartes (`translateY(-2/-3px)`) + ombre teintée + lueur au survol, glisse horizontale des lignes de liens, rebonds des flèches CTA, états `:active` avec `scale(0.98)`.
+- Animation d'ouverture de la modale de recherche (fondu + glissade légère), surlignage `<mark>` des termes stylé aux couleurs du thème.
+- Le tout respecte `prefers-reduced-motion` (désactivation globale déjà en place).
+
+### Accessibilité
+- `role="dialog"` + `aria-modal` + `aria-label` sur la modale de recherche.
+- `aria-current` sur le lien actif de navigation.
+
+### Non traité (dette existante, hors scope de ce correctif)
+- `npm run validate` : 33 erreurs **préexistantes** de taxonomie du contenu (les articles utilisent l'ancien jeu de catégories `monde-destinations`, `technologies-pouvoirs`… alors que `scripts/validate.mjs` attend `fondations`, `figures-identites`…) et références croisées orphelines. À traiter dans un lot dédié.
+- 6 erreurs TS préexistantes dans `Navbar.astro`, `SidebarNav.astro` et `carte-mentale.astro` (non introduites par ce correctif).

@@ -76,7 +76,7 @@ import Footer from '@components/Footer.astro';
   }
 
   .intro {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text-secondary);
     line-height: 1.6;
     max-width: 600px;
@@ -103,15 +103,18 @@ import Footer from '@components/Footer.astro';
 
   .toc ol li {
     counter-increment: toc-item;
-    padding: 10px 16px 10px 44px;
+    padding: 11px 16px 11px 48px;
     position: relative;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: background-color 0.15s;
+    border-radius: var(--border-radius);
+    font-size: 15px;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
 
   .toc ol li:hover {
     background-color: var(--surface);
+    border-color: var(--border-color);
+    transform: translateX(3px);
   }
 
   .toc ol li::before {
@@ -138,7 +141,7 @@ import Footer from '@components/Footer.astro';
     border: 1px solid var(--border-color);
     border-left: 3px solid var(--violet);
     padding: 20px 24px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
     margin-bottom: 40px;
   }
 
@@ -164,10 +167,10 @@ import Footer from '@components/Footer.astro';
   }
 
   .placeholder-box {
-    background-color: var(--bg-secondary);
+    background: var(--gradient-card);
     border: 1px solid var(--border-color);
     padding: 32px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-xl);
     text-align: center;
   }
 
