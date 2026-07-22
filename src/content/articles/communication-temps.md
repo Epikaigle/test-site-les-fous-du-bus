@@ -5,7 +5,7 @@ category: 'transmission-memoire'
 status: 'published'
 certainty: 'moyenne'
 lastUpdatedChapter: 1188
-related: ['signification-d', 'laugh-tale', 'nika-est-luffy']
+related: ['signification-d', 'laugh-tale', 'nika']
 ---
 
 ## L'idée centrale

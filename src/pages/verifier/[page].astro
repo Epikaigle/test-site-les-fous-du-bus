@@ -1,7 +1,6 @@
 ---
 import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
-import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   return [
@@ -40,9 +39,9 @@ export async function getStaticPaths() {
     {
       params: { page: 'contradictions' },
       props: {
-        title: 'Contradictions',
+        title: 'Contradictions & Tensions',
         icon: '❌',
-        desc: 'Les éléments du manga qui contredisent ou fragilisent la théorie.',
+        desc: 'Les éléments du manga qui fragilisent ou nuancent la théorie.',
       },
     },
     {
@@ -56,9 +55,9 @@ export async function getStaticPaths() {
     {
       params: { page: 'sources' },
       props: {
-        title: 'Sources',
+        title: 'Sources & Références',
         icon: '📚',
-        desc: "Méthodologie d'analyse et sources utilisées.",
+        desc: "Méthodologie d'analyse, transcriptions et vidéos sources.",
       },
     },
   ];
@@ -67,9 +66,77 @@ export async function getStaticPaths() {
 const { title, icon, desc } = Astro.props;
 const page = Astro.params.page;
 
-// Fetch collection items according to page type
-const evidenceItems = page === 'preuves' || page === 'citations' ? await getCollection('evidence') : [];
-const objectionItems = page === 'objections' || page === 'contradictions' ? await getCollection('objections') : [];
+// Sample tailored proofs with exact nuances
+const detailedProofs = [
+  {
+    chapter: '967',
+    title: 'La réaction de Roger sur Laugh Tale',
+    quote: '« Joy Boy, j\'aurais aimé naître à la même époque que toi. »',
+    established: 'Roger ne pouvait pas agir immédiatement et déclare être arrivé trop tôt.',
+    theory: 'Le problème rencontré par Roger serait temporel : la dernière île s\'inscrit dans l\'époque où l\'histoire s\'accomplit au présent.',
+    limit: 'La réplique ne prouve pas à elle seule que Laugh Tale se situe dans le futur ; elle peut refléter l\'absence de Poséidon à son époque.',
+  },
+  {
+    chapter: '1122',
+    title: 'La voix originelle de Joy Boy (Urara Takano)',
+    quote: 'Émission du Haki suprême scellé dans le robot Emeth.',
+    established: 'Dans l\'adaptation animée du chapitre 1122, la voix de Joy Boy est interprétée par Urara Takano.',
+    theory: 'Oda utilise le premier doublage de Luffy (1998) pour créer une résonance sonore directe entre Luffy et la figure de Joy Boy.',
+    limit: 'Il s\'agit d\'un choix de réalisation et de casting qui constitue un indice symbolique, non une preuve diégétique explicite.',
+  },
+  {
+    chapter: '1043',
+    title: 'La déclaration de Zunesha à Momonosuke',
+    quote: '« Les tambours de la libération... Joy Boy est de retour ! »',
+    established: 'L\'éveil du Fruit du Démon de Luffy réactive le rythme des tambours perçus par Zunesha.',
+    theory: 'La signature de Joy Boy réside dans l\'état d\'esprit et le pouvoir d\'Éveil manifestés par Luffy.',
+    limit: 'Zunesha peut reconnaître le Fruit du Démon ou la volonté héritée plutôt qu\'une réincarnation physique.',
+  },
+  {
+    chapter: '968',
+    title: 'La prophétie des deux souverains',
+    quote: '« Notre souverain va bientôt naître... et un autre dans une mer lointaine. »',
+    established: 'Les Rois des Mers prédisent la naissance simultanée de Shirahoshi et de l\'autre souverain.',
+    theory: 'La prophétie annonce la convergence au présent des acteurs clés de la libération du monde.',
+    limit: 'La prophétie s\'inscrit dans une ligne temporelle classique de prédiction du futur.',
+  },
+];
+
+const detailedObjections = [
+  {
+    title: 'La rédaction et le rôle des Ponéglyphes',
+    argument: 'Les Ponéglyphes sont présentés comme des stèles sculptées il y a 800 ans par le clan Kozuki.',
+    response: 'Dans la théorie, les Ponéglyphes contiendraient les connaissances du futur. Une version étendue suggère que Momonosuke et Robin pourraient participer à leur transmission.',
+  },
+  {
+    title: 'Le voyage temporel de Kozuki Toki',
+    argument: 'Toki affirme être née il y a 800 ans et avoir voyagé dans le temps vers le futur grâce au Toki Toki no Mi.',
+    response: 'La théorie examine si Toki est un témoin de la boucle ou si le pouvoir du Toki Toki no Mi permet la circulation des reliques.',
+  },
+  {
+    title: 'L\'existence séculaire du Gouvernement Mondial',
+    argument: 'Les Vingt Rois ont fondé le Gouvernement Mondial il y a 800 ans à la fin du Siècle Oublié.',
+    response: 'La théorie propose que l\'autorité d\'Imu repose sur le maintien d\'un statu quo artificiel cherchant à figer le cours du temps.',
+  },
+];
+
+const detailedContradictions = [
+  {
+    title: 'La recherche des Fruits du Démon depuis 800 ans',
+    argument: 'Plusieurs textes et récits indiquent que le Gouvernement cherche le Gomu Gomu no Mi depuis 800 ans.',
+    nuance: 'Cette ancienneté affirmée dans le manga nuance l\'hypothèse d\'une création uniquement récente des Fruits.',
+  },
+  {
+    title: 'L\'âge originel déclaré de Kozuki Toki',
+    argument: 'Toki affirme venir d\'une époque située 800 ans dans le passé.',
+    nuance: 'Cela implique l\'existence d\'un passé structuré avant son premier saut temporel.',
+  },
+  {
+    title: 'La nature physique des reliques (Emeth, Zunesha)',
+    argument: 'Le robot Emeth et l\'éléphant Zunesha portent des marques d\'usure séculaire et des souvenirs précis.',
+    nuance: 'Si seules les informations voyageaient dans le temps, la présence d\'entités physiques géantes constitue une tension à résoudre.',
+  },
+];
 ---
 
 <WikiLayout title={title} currentPath={`/verifier/${page}`}>
@@ -81,62 +148,53 @@ const objectionItems = page === 'objections' || page === 'contradictions' ? awai
 
   {page === 'preuves' && (
     <div class="verify-grid">
-      {evidenceItems.map((item) => (
+      {detailedProofs.map((item) => (
         <div class="proof-card">
           <div class="proof-header">
-            <span class="proof-badge proof-badge--type">{item.data.type}</span>
-            <span class="proof-chapter">Chapitre {item.data.chapter}</span>
+            <span class="proof-badge proof-badge--type">Fait & Interprétation</span>
+            <span class="proof-chapter">Chapitre {item.chapter}</span>
           </div>
-          <h3 class="proof-title">{item.data.title}</h3>
-          {item.data.quote && (
+          <h3 class="proof-title">{item.title}</h3>
+          {item.quote && (
             <blockquote class="proof-quote">
-              « {item.data.quote} »
+              {item.quote}
             </blockquote>
           )}
           <div class="proof-body">
-            <div class="proof-label">Interprétation :</div>
-            <p>Ce passage illustre la correspondance temporelle directe et la résonance du héros dans le récit.</p>
-          </div>
-        </div>
-      ))}
-
-      {evidenceItems.length === 0 && (
-        <div class="proof-card">
-          <div class="proof-header">
-            <span class="proof-badge proof-badge--type">Dialogue</span>
-            <span class="proof-chapter">Chapitre 967</span>
-          </div>
-          <h3 class="proof-title">La réaction de Roger sur Laugh Tale</h3>
-          <blockquote class="proof-quote">
-            « Joy Boy, j'aurais aimé naître à la même époque que toi. »
-          </blockquote>
-          <div class="proof-body">
-            <div class="proof-label">Interprétation des Fous du Bus :</div>
-            <p>Roger ne s'adresse pas nécessairement à un fantôme d'il y a 800 ans, mais au futur héros qui accomplira la promesse qu'il était venu trop tôt pour réaliser.</p>
-            <div class="proof-counter">
-              <span class="proof-label">Contre-argument :</span>
-              <p>La lecture traditionnelle considère Joy Boy comme un roi de l'Ancien Royaume mort depuis des siècles.</p>
+            <div class="proof-section">
+              <span class="proof-label proof-label--established">Ce que la scène établit :</span>
+              <p>{item.established}</p>
+            </div>
+            <div class="proof-section">
+              <span class="proof-label proof-label--theory">Lecture de la théorie :</span>
+              <p>{item.theory}</p>
+            </div>
+            <div class="proof-section proof-section--limit">
+              <span class="proof-label proof-label--limit">Limite / Nuance :</span>
+              <p>{item.limit}</p>
             </div>
           </div>
         </div>
-      )}
+      ))}
     </div>
   )}
 
   {page === 'objections' && (
     <div class="verify-grid">
-      {objectionItems.map((obj) => (
+      {detailedObjections.map((obj) => (
         <div class="proof-card">
           <div class="proof-header">
-            <span class="proof-badge proof-badge--alert">{obj.data.strength}</span>
+            <span class="proof-badge proof-badge--alert">Objection majeure</span>
           </div>
-          <h3 class="proof-title">{obj.data.title}</h3>
+          <h3 class="proof-title">{obj.title}</h3>
           <div class="proof-body">
-            <div class="proof-label">Argument adverse :</div>
-            <p>{obj.data.argument}</p>
-            <div class="proof-counter">
-              <span class="proof-label">Réponse de la théorie :</span>
-              <p>{obj.data.response}</p>
+            <div class="proof-section">
+              <span class="proof-label">Argument adverse :</span>
+              <p>{obj.argument}</p>
+            </div>
+            <div class="proof-section">
+              <span class="proof-label proof-label--theory">Réponse de la théorie :</span>
+              <p>{obj.response}</p>
             </div>
           </div>
         </div>
@@ -144,11 +202,34 @@ const objectionItems = page === 'objections' || page === 'contradictions' ? awai
     </div>
   )}
 
-  {page !== 'preuves' && page !== 'objections' && (
+  {page === 'contradictions' && (
+    <div class="verify-grid">
+      {detailedContradictions.map((c) => (
+        <div class="proof-card border-alert/30">
+          <div class="proof-header">
+            <span class="proof-badge proof-badge--alert">Tension narrative</span>
+          </div>
+          <h3 class="proof-title">{c.title}</h3>
+          <div class="proof-body">
+            <div class="proof-section">
+              <span class="proof-label">Élément du manga :</span>
+              <p>{c.argument}</p>
+            </div>
+            <div class="proof-section">
+              <span class="proof-label proof-label--limit">Nuance pour la théorie :</span>
+              <p>{c.nuance}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {page !== 'preuves' && page !== 'objections' && page !== 'contradictions' && (
     <div class="verify-box">
       <h3>📚 Dossier de vérification ({title})</h3>
       <p>
-        Cette section répertorie la rigueur d'analyse du projet : distinction claire entre faits observés dans le manga, interprétations narratives et contre-hypothèses.
+        Cette section répertorie la rigueur d'analyse du projet : distinction claire entre faits observés dans le manga, interprétations narratives, contre-arguments et tensions scientifiques.
       </p>
     </div>
   )}
@@ -247,22 +328,43 @@ const objectionItems = page === 'objections' || page === 'contradictions' ? awai
   }
 
   .proof-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     font-size: 14px;
     line-height: 1.6;
     color: var(--text-secondary);
   }
 
+  .proof-section {
+    background: var(--surface);
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+  }
+
+  .proof-section--limit {
+    border-left: 3px solid var(--accent-gold);
+  }
+
   .proof-label {
     font-weight: 600;
     color: var(--text-main);
-    font-size: 13px;
-    margin-bottom: 4px;
+    font-size: 12.5px;
+    display: block;
+    margin-bottom: 2px;
   }
 
-  .proof-counter {
-    margin-top: 14px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--border-color);
+  .proof-label--established {
+    color: var(--cyan);
+  }
+
+  .proof-label--theory {
+    color: var(--violet-light);
+  }
+
+  .proof-label--limit {
+    color: var(--accent-gold);
   }
 
   .verify-box {

@@ -1,31 +1,23 @@
 ---
 title: "Laugh Tale"
-summary: "Fiche d'analyse sur l'île finale de Laugh Tale, le trésor de Joy Boy et son rôle dans la géographie de la mer."
+summary: "Fiche d'analyse sur l'île finale de Laugh Tale, le trésor de Joy Boy et les hypothèses entourant sa nature."
 category: "monde-destinations"
 status: "published"
 editorialStatus: "hypothese-centrale"
-certainty: "central"
 lastUpdatedChapter: 1188
 order: 10
 ---
 
-## Le problème géographique
+## Présentation canonique
 
-Blue Star est divisée par Red Line en quatre mers. Pour traverser Grand Line, il faut rencontrer Red Line trois fois. À la fin du voyage, après Lodestar, Red Line bloque le passage. Comment faire le tour du monde ?
+Laugh Tale est la dernière île connue de Grand Line, atteinte par l'équipage de Gol D. Roger il y a 25 ans. C'est là que se trouvent le trésor One Piece et les révélations sur le Siècle Oublié.
 
-## Laugh Tale = Lodestar dans le futur
+## Ce que le manga établit
 
-Roger a atteint Lodestar à l'époque de Joy Boy, c'est-à-dire dans le futur. C'est pourquoi il dit « Nous sommes arrivés trop tôt » (chapitre 968).
+- Roger et son équipage découvrent l'histoire du monde et la promesse de Joy Boy, déclenchant leur fou rire mémorable.
+- Roger déclare être arrivé « trop tôt » car les acteurs de la prophétie (notamment Poséidon) ne sont pas encore nés.
+- L'accès à l'île nécessite le décryptage des quatre Road Ponéglyphes.
 
-Les Log Pose s'affolent sur place : les aiguilles d'une montre qui s'affolent indiquent un dysfonctionnement temporel. Roger était au bon endroit mais pas à la bonne époque.
+## La lecture des Fous du Bus
 
-## La quatrième dimension
-
-Les quatre Road Ponéglyphes donnent quatre coordonnées : trois spatiales (latitude, longitude, altitude) et une temporelle. Laugh Tale se trouve en 4D, pas en 3D.
-
-Il ne faut pas se demander **où** est le One Piece, mais **quand** est le One Piece.
-
-## L'analogie de Christophe Colomb
-
-Un explorateur du XVe siècle atteint l'emplacement des États-Unis en 1492 mais ne trouve que des plaines. Il est au bon endroit mais 300 ans trop tôt. C'est exactement ce qui est arrivé à Roger à Lodestar.
-
+Selon la théorie des Fous du Bus, Roger aurait atteint Lodestar à une autre époque. Le problème rencontré par Roger ne résiderait pas uniquement dans l'attente biologique de Poséidon, mais dans une dimension temporelle où la dernière île s'inscrit au moment où l'histoire s'accomplit au présent.

@@ -86,7 +86,9 @@ navSections.push({
   label: 'Chapitres récents',
   icon: '📖',
   links: sortedChapters.slice(0, 10).map((chapter) => ({
-    label: `Chapitre ${chapter.data.chapter} — ${chapter.data.title}`,
+    label: chapter.data.title.startsWith('Chapitre')
+      ? chapter.data.title
+      : `Chapitre ${chapter.data.chapter} — ${chapter.data.title}`,
     href: `/chapitres/${chapter.data.chapter}`,
   })),
 });

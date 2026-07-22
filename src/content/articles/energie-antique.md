@@ -5,7 +5,7 @@ category: 'technologies-pouvoirs'
 status: 'published'
 certainty: 'elevee'
 lastUpdatedChapter: 1187
-related: ['nika-est-luffy', 'communication-temps']
+related: ['nika', 'communication-temps']
 ---
 
 ## La Flamme Mère

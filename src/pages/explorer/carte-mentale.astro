@@ -11,14 +11,14 @@ const mainArticles = [
   { slug: 'siecle-oublie-present', title: 'Le Siècle oublié est le présent', branch: 'center' },
   { slug: 'laugh-tale', title: 'Laugh Tale = Lodestar', branch: 'temps' },
   { slug: 'one-piece-histoire', title: 'Le One Piece est notre histoire', branch: 'temps' },
-  { slug: 'joy-boy-est-luffy', title: 'Joy Boy = Luffy', branch: 'identites' },
-  { slug: 'nika-est-luffy', title: 'Nika = Luffy', branch: 'identites' },
+  { slug: 'joy-boy', title: 'Joy Boy = Luffy', branch: 'identites' },
+  { slug: 'nika', title: 'Nika = Luffy', branch: 'identites' },
   { slug: 'ponelyphes-futur', title: 'Les Ponéglyphes racontent le futur', branch: 'temps' },
-  { slug: 'poseidon-shirahoshi', title: 'Poséidon = Shirahoshi', branch: 'armes' },
-  { slug: 'pluton-water-seven', title: 'Pluton = Water Seven', branch: 'armes' },
+  { slug: 'poseidon', title: 'Poséidon = Shirahoshi', branch: 'armes' },
+  { slug: 'pluton', title: 'Pluton = Water Seven', branch: 'armes' },
   { slug: 'uranus', title: 'Uranus', branch: 'armes' },
-  { slug: 'davy-jones-teach', title: 'Davy Jones = Teach', branch: 'identites' },
-  { slug: 'vivi-lili', title: 'Vivi = Lili', branch: 'identites' },
+  { slug: 'davy-jones', title: 'Davy Jones = Teach', branch: 'identites' },
+  { slug: 'vivi', title: 'Vivi = Lili', branch: 'identites' },
   { slug: 'emeth-futur', title: 'Emeth = BF-39', branch: 'tech' },
   { slug: 'mother-flame', title: 'Mother Flame', branch: 'tech' },
   { slug: 'imu-nerona', title: 'Imu Nerona', branch: 'antagoniste' },
@@ -26,7 +26,7 @@ const mainArticles = [
   { slug: 'deluge-all-blue', title: 'Le Déluge & All Blue', branch: 'fin' },
   { slug: 'dieux-one-piece', title: 'Les Dieux', branch: 'fin' },
   { slug: 'volonte-heritee', title: 'Volonté héritée', branch: 'tech' },
-  { slug: 'ryuma-zoro', title: 'Ryuma = Zoro', branch: 'identites' },
+  { slug: 'ryuma', title: 'Ryuma = Zoro', branch: 'identites' },
   { slug: 'kuma-foi-nika', title: 'Kuma & la foi en Nika', branch: 'identites' },
 ];
 
@@ -117,19 +117,19 @@ function certaintyColor(c: string): string {
       <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
         <h3 class="font-bold text-cyan mb-3">🎭 Identités</h3>
         <ul class="space-y-2 text-sm text-textSecondary">
-          <li>• <a href="/theorie/joy-boy-est-luffy" class="hover:text-cyan transition-colors">Joy Boy & Monkey D. Luffy</a></li>
-          <li>• <a href="/theorie/nika-est-luffy" class="hover:text-cyan transition-colors">Nika & Monkey D. Luffy</a></li>
-          <li>• <a href="/theorie/davy-jones-teach" class="hover:text-cyan transition-colors">Davy Jones & Marshall D. Teach</a></li>
-          <li>• <a href="/theorie/vivi-lili" class="hover:text-cyan transition-colors">Nefertari D. Lili & Vivi</a></li>
-          <li>• <a href="/theorie/ryuma-zoro" class="hover:text-cyan transition-colors">Shimotsuki Ryuma & Zoro</a></li>
+          <li>• <a href="/theorie/joy-boy" class="hover:text-cyan transition-colors">Joy Boy & Monkey D. Luffy</a></li>
+          <li>• <a href="/theorie/nika" class="hover:text-cyan transition-colors">Nika & Monkey D. Luffy</a></li>
+          <li>• <a href="/theorie/davy-jones" class="hover:text-cyan transition-colors">Davy Jones & Marshall D. Teach</a></li>
+          <li>• <a href="/theorie/vivi" class="hover:text-cyan transition-colors">Nefertari D. Lili & Vivi</a></li>
+          <li>• <a href="/theorie/ryuma" class="hover:text-cyan transition-colors">Shimotsuki Ryuma & Zoro</a></li>
         </ul>
       </div>
 
       <div class="bg-bgSecondary border border-borderColor p-5 rounded-xl">
         <h3 class="font-bold text-cyan mb-3">🔱 Armes antiques</h3>
         <ul class="space-y-2 text-sm text-textSecondary">
-          <li>• <a href="/theorie/poseidon-shirahoshi" class="hover:text-cyan transition-colors">Poséidon & Shirahoshi</a></li>
-          <li>• <a href="/theorie/pluton-water-seven" class="hover:text-cyan transition-colors">Pluton & Water Seven</a></li>
+          <li>• <a href="/theorie/poseidon" class="hover:text-cyan transition-colors">Poséidon & Shirahoshi</a></li>
+          <li>• <a href="/theorie/pluton" class="hover:text-cyan transition-colors">Pluton & Water Seven</a></li>
           <li>• <a href="/theorie/uranus" class="hover:text-cyan transition-colors">Uranus</a></li>
         </ul>
       </div>
@@ -217,16 +217,16 @@ function certaintyColor(c: string): string {
     { slug: 'ponelyphes-futur', title: 'Les Ponéglyphes\nracontent le futur', branch: 'temps', certainty: 'central', order: 50 },
 
     // Identités
-    { slug: 'joy-boy-est-luffy', title: 'Joy Boy\n= Luffy', branch: 'identites', certainty: 'central', order: 20 },
-    { slug: 'nika-est-luffy', title: 'Nika\n= Luffy', branch: 'identites', certainty: 'central', order: 21 },
-    { slug: 'davy-jones-teach', title: 'Davy Jones\n= Teach', branch: 'identites', certainty: 'elevee', order: 40 },
-    { slug: 'vivi-lili', title: 'Vivi = Lili', branch: 'identites', certainty: 'elevee', order: 41 },
-    { slug: 'ryuma-zoro', title: 'Ryuma = Zoro', branch: 'identites', certainty: 'elevee', order: 42 },
+    { slug: 'joy-boy', title: 'Joy Boy\n= Luffy', branch: 'identites', certainty: 'central', order: 20 },
+    { slug: 'nika', title: 'Nika\n= Luffy', branch: 'identites', certainty: 'central', order: 21 },
+    { slug: 'davy-jones', title: 'Davy Jones\n= Teach', branch: 'identites', certainty: 'elevee', order: 40 },
+    { slug: 'vivi', title: 'Vivi = Lili', branch: 'identites', certainty: 'elevee', order: 41 },
+    { slug: 'ryuma', title: 'Ryuma = Zoro', branch: 'identites', certainty: 'elevee', order: 42 },
     { slug: 'kuma-foi-nika', title: 'Kuma &\nla foi en Nika', branch: 'identites', certainty: 'elevee', order: 22 },
 
     // Armes
-    { slug: 'poseidon-shirahoshi', title: 'Poséidon =\nShirahoshi', branch: 'armes', certainty: 'elevee', order: 30 },
-    { slug: 'pluton-water-seven', title: 'Pluton =\nWater Seven', branch: 'armes', certainty: 'moyenne', order: 31 },
+    { slug: 'poseidon', title: 'Poséidon =\nShirahoshi', branch: 'armes', certainty: 'elevee', order: 30 },
+    { slug: 'pluton', title: 'Pluton =\nWater Seven', branch: 'armes', certainty: 'moyenne', order: 31 },
     { slug: 'uranus', title: 'Uranus', branch: 'armes', certainty: 'moyenne', order: 32 },
 
     // Tech
@@ -245,14 +245,14 @@ function certaintyColor(c: string): string {
 
   // Cross-connections (extra links beyond parent-child)
   const crossLinks = [
-    { from: 'joy-boy-est-luffy', to: 'nika-est-luffy', label: 'même personne' },
+    { from: 'joy-boy', to: 'nika', label: 'même personne' },
     { from: 'ponelyphes-futur', to: 'one-piece-histoire', label: 'écrit par Robin' },
-    { from: 'deluge-all-blue', to: 'poseidon-shirahoshi', label: 'destruction Red Line' },
+    { from: 'deluge-all-blue', to: 'poseidon', label: 'destruction Red Line' },
     { from: 'imu-nerona', to: 'ponelyphes-futur', label: 'a lu les Ponéglyphes' },
-    { from: 'emeth-futur', to: 'joy-boy-est-luffy', label: 'reconnaît Joy Boy' },
-    { from: 'kuma-foi-nika', to: 'nika-est-luffy', label: 'a fait exister Nika' },
-    { from: 'dieux-one-piece', to: 'joy-boy-est-luffy', label: 'Nika = dieu du soleil' },
-    { from: 'dieux-one-piece', to: 'ryuma-zoro', label: 'dieu des lames' },
+    { from: 'emeth-futur', to: 'joy-boy', label: 'reconnaît Joy Boy' },
+    { from: 'kuma-foi-nika', to: 'nika', label: 'a fait exister Nika' },
+    { from: 'dieux-one-piece', to: 'joy-boy', label: 'Nika = dieu du soleil' },
+    { from: 'dieux-one-piece', to: 'ryuma', label: 'dieu des lames' },
   ];
 
   const certaintyColors: Record<string, string> = {

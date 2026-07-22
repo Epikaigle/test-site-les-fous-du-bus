@@ -3,7 +3,7 @@ title: 'La silhouette de Joy Boy'
 chapter: 1115
 type: 'visuel'
 strength: 'majeure'
-articles: ['joy-boy-est-luffy', 'nika-est-luffy']
+articles: ['joy-boy', 'nika']
 quote: 'La silhouette ressemble trait pour trait à Luffy en Gear 5.'
 ---
 

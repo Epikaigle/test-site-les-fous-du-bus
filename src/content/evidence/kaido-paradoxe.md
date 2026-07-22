@@ -3,7 +3,7 @@ title: "Le paradoxe de Kaido"
 chapter: 1049
 type: "narratif"
 strength: "majeure"
-articles: ["joy-boy-est-luffy", "theorie-complete"]
+articles: ["joy-boy", "theorie-complete"]
 quote: "Si les Lunariens attendent Joy Boy, alors Joy Boy est forcément celui qui me vaincra."
 ---
 

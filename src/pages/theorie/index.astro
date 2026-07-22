@@ -2,66 +2,67 @@
 import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
 import { getCollection } from 'astro:content';
-import { editorialStatusToFrench } from '@utils/format';
 
 const articles = await getCollection('articles');
 const publishedArticles = articles.filter(a => a.data.status === 'published');
-const mainArticles = publishedArticles
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 12);
+
+// Recommended 16-step reading order
+const orderedSteps = [
+  { step: 1, title: 'Présentation de la théorie', href: '/theorie/siecle-oublie-present', summary: 'Le cadre général : pourquoi le Siècle Oublié ne s\'est pas produit dans le passé mais s\'écrit au présent.' },
+  { step: 2, title: 'Blue Star, Grand Line et Red Line', href: '/theorie/fondations', summary: 'Les fondations géographiques de la planète et le découpage du monde.' },
+  { step: 3, title: 'Lodestar', href: '/theorie/laugh-tale', summary: 'L\'île ultime de la navigation conventionnelle sur Grand Line.' },
+  { step: 4, title: 'Laugh Tale', href: '/theorie/laugh-tale', summary: 'La destination finale, le secret du trésor et l\'énigme temporelle.' },
+  { step: 5, title: 'One Piece', href: '/theorie/one-piece-histoire', summary: 'La nature du trésor laissé par Joy Boy et la promesse de Gol D. Roger.' },
+  { step: 6, title: 'Siècle Oublié', href: '/theorie/siecle-oublie-present', summary: 'La période effacée de l\'histoire et la boucle de transmission.' },
+  { step: 7, title: 'Royaume antique', href: '/theorie/theorie-complete', summary: 'La grande guerre originelle et la véritable civilisation des pionniers.' },
+  { step: 8, title: 'Ponéglyphes', href: '/theorie/ponelyphes-futur', summary: 'Les stèles indestructibles gravées pour transmettre le futur aux époques antérieures.' },
+  { step: 9, title: 'Joy Boy', href: '/theorie/joy-boy', summary: 'La figure légendaire, sa promesse au Royaume Ryūgū et la résonance du héros.' },
+  { step: 10, title: 'Nika', href: '/theorie/nika', summary: 'Le Dieu du Soleil, le Guerrier de la Libération et le culte transmis à travers les époques.' },
+  { step: 11, title: 'Monkey D. Luffy', href: '/theorie/luffy', summary: 'Le capitaine au Chapeau de Paille comme créateur originel de l\'histoire.' },
+  { step: 12, title: 'Armes antiques', href: '/theorie/poseidon', summary: 'Poséidon, Pluton et Uranus : les trois forces majeures qui remodèleront le monde.' },
+  { step: 13, title: 'Figures et identités', href: '/theorie/davy-jones', summary: 'Les miroirs et correspondances (Davy Jones, Teach, Ryuma, Zoro, Vivi, Lili).' },
+  { step: 14, title: 'Peuples et témoins', href: '/theorie/elbaf-halley', summary: 'Les Géants d\'Elbaf, les Hommes-Poissons, les Shandias et les gardiens de la mémoire.' },
+  { step: 15, title: 'Imu et le Gouvernement mondial', href: '/theorie/imu-nerona', summary: 'L\'autorité du Trône Vacant et la résistance face à l\'inévitable libération.' },
+  { step: 16, title: 'Déluge et guerre finale', href: '/theorie/deluge-all-blue', summary: 'Le cataclysme final, la destruction de Red Line et l\'avènement d\'All Blue.' },
+];
+
+const recentUpdates = publishedArticles
+  .sort((a, b) => (b.data.lastUpdatedChapter || 0) - (a.data.lastUpdatedChapter || 0))
+  .slice(0, 6);
 ---
 
 <WikiLayout title="La théorie" currentPath="/theorie">
   <div class="hero">
-    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Sommaire</div>
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Guide de lecture</div>
     <h1>La théorie</h1>
     <p class="subtitle">
-      Pour découvrir et lire l'argumentation principale dans son ensemble. Suivez l'ordre de lecture
-      recommandé ci-dessous pour appréhender les fondations et le raisonnement étape par étape.
+      Suivez l'ordre chronologique et logique ci-dessous (de 1 à 16) pour appréhender le raisonnement et la démonstration globale étape par étape.
     </p>
   </div>
 
-  <h2 class="section-title">Articles principaux</h2>
+  <h2 class="section-title">Ordre de lecture recommandé (16 étapes)</h2>
   <div class="article-list">
-    {mainArticles.map((article, i) => (
-      <a href={`/theorie/${article.id}`} class="article-row">
-        <span class="article-num">{i + 1}</span>
+    {orderedSteps.map((step) => (
+      <a href={step.href} class="article-row">
+        <span class="article-num">{step.step}</span>
         <div class="article-info">
-          <span class="article-title">{article.data.title}</span>
-          <span class="article-summary">{article.data.summary}</span>
+          <span class="article-title">{step.title}</span>
+          <span class="article-summary">{step.summary}</span>
         </div>
       </a>
     ))}
   </div>
 
-  <h2 class="section-title">Articles récents</h2>
+  <h2 class="section-title">Mises à jour récentes</h2>
   <div class="article-list">
-    {publishedArticles
-      .sort((a, b) => (b.data.lastUpdatedChapter || 0) - (a.data.lastUpdatedChapter || 0))
-      .slice(0, 8)
-      .map((article) => (
-        <a href={`/theorie/${article.id}`} class="article-row">
-          <div class="article-info">
-            <span class="article-title">{article.data.title}</span>
-            <span class="article-chapter">Mis à jour au chapitre {article.data.lastUpdatedChapter || '?'}</span>
-          </div>
-        </a>
-      ))
-    }
-  </div>
-
-  <div class="info-box">
-    <h3>📖 Ordre de lecture recommandé</h3>
-    <ol class="order-list">
-      <li><strong>1. Blue Star, Grand Line & Red Line</strong> — Les fondations géographiques et le cadre du monde.</li>
-      <li><strong>2. Lodestar & Laugh Tale</strong> — La destination finale et la vraie nature de la dernière île.</li>
-      <li><strong>3. Le One Piece</strong> — Le trésor laissé par Joy Boy et la promesse de Gol D. Roger.</li>
-      <li><strong>4. Siècle oublié & Ancien Royaume</strong> — La véritable chronologie et la grande guerre.</li>
-      <li><strong>5. Les Ponéglyphes</strong> — Le message gravé dans la pierre et la transmission à travers les époques.</li>
-      <li><strong>6. Joy Boy, Nika & Monkey D. Luffy</strong> — Les acteurs centraux et l'héritage du Guerrier de la Libération.</li>
-      <li><strong>7. Armes antiques & Identités</strong> — Poséidon, Pluton, Uranus, et les figures clés.</li>
-      <li><strong>8. Imu & Gouvernement mondial</strong> — L'autorité du trône vacant et les enjeux de la Guerre Finale.</li>
-    </ol>
+    {recentUpdates.map((article) => (
+      <a href={`/theorie/${article.id}`} class="article-row">
+        <div class="article-info">
+          <span class="article-title">{article.data.title}</span>
+          <span class="article-chapter">Mis à jour au chapitre {article.data.lastUpdatedChapter || '?'}</span>
+        </div>
+      </a>
+    ))}
   </div>
 
   <Footer />
@@ -69,7 +70,7 @@ const mainArticles = publishedArticles
 
 <style>
   .hero {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
 
   .hero h1 {
@@ -93,7 +94,7 @@ const mainArticles = publishedArticles
     margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
-    margin-top: 48px;
+    margin-top: 44px;
   }
 
   .section-title:first-of-type {
@@ -116,56 +117,27 @@ const mainArticles = publishedArticles
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-lg);
     text-decoration: none;
-    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
   }
 
   .article-row:hover {
     border-color: var(--violet);
     background-color: var(--surface);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px color-mix(in srgb, var(--bg-main) 40%, transparent);
   }
 
   .article-num {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
-    color: var(--violet);
-    min-width: 24px;
-    text-align: center;
-    padding-top: 2px;
-  }
-
-  .article-badge {
-    font-size: 11.5px;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 6px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .meta-badge--cyan {
-    background: color-mix(in srgb, var(--cyan) 12%, transparent);
     color: var(--cyan);
-    border: 1px solid color-mix(in srgb, var(--cyan) 28%, transparent);
-  }
-
-  .meta-badge--gold {
-    background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
-    color: var(--accent-gold);
-    border: 1px solid color-mix(in srgb, var(--accent-gold) 28%, transparent);
-  }
-
-  .meta-badge--violet {
-    background: color-mix(in srgb, var(--violet) 14%, transparent);
-    color: var(--violet-light);
-    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
-  }
-
-  .meta-badge--muted {
-    background: color-mix(in srgb, var(--surface) 70%, transparent);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
+    min-width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--cyan) 10%, transparent);
+    border-radius: 50%;
+    margin-top: 2px;
   }
 
   .article-info {
@@ -176,7 +148,7 @@ const mainArticles = publishedArticles
   }
 
   .article-title {
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 600;
     color: var(--text-main);
     transition: color 0.15s;
@@ -187,7 +159,7 @@ const mainArticles = publishedArticles
   }
 
   .article-summary {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--text-secondary);
     line-height: 1.5;
   }
@@ -195,41 +167,5 @@ const mainArticles = publishedArticles
   .article-chapter {
     font-size: 12.5px;
     color: var(--text-secondary);
-  }
-
-  .info-box {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-left: 3px solid var(--violet);
-    padding: 20px 24px;
-    border-radius: var(--border-radius-lg);
-    margin-top: 48px;
-  }
-
-  .info-box h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 14px;
-  }
-
-  .order-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .order-list li strong {
-    color: var(--text-main);
-  }
-
-  @media (max-width: 640px) {
-    .hero {
-      margin-bottom: 32px;
-    }
   }
 </style>

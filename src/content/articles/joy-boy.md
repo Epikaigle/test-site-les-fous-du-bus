@@ -6,7 +6,7 @@ status: "published"
 editorialStatus: "hypothese-centrale"
 lastUpdatedChapter: 1188
 order: 20
-related: ["theorie-complete", "laugh-tale", "nika-est-luffy"]
+related: ["theorie-complete", "laugh-tale", "nika"]
 ---
 
 ## Présentation générale

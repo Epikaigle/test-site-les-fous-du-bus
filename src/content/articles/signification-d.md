@@ -5,7 +5,7 @@ category: 'figures-principales'
 status: 'published'
 certainty: 'elevee'
 lastUpdatedChapter: 1188
-related: ['joy-boy-est-luffy', 'communication-temps', 'tequila-wolf']
+related: ['joy-boy', 'communication-temps', 'tequila-wolf']
 ---
 
 ## Le D. comme serment
