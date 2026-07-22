@@ -1,0 +1,189 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+---
+
+<WikiLayout title="Théorie complète" currentPath="/theorie/theorie-complete">
+  <div class="complete-page">
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">La théorie</div>
+    <h1>Théorie complète</h1>
+    <p class="intro">
+      L'argumentation principale dans son ensemble, présentée dans l'ordre de lecture recommandé.
+      Chaque section renvoie au dossier correspondant pour les détails et les preuves.
+    </p>
+
+    <div class="toc">
+      <h2>Sommaire</h2>
+      <ol>
+        <li><a href="/dossiers/blue-star">Blue Star et la géographie</a></li>
+        <li><a href="/dossiers/lodestar">Lodestar et Laugh Tale</a></li>
+        <li><a href="/dossiers/one-piece">One Piece</a></li>
+        <li><a href="/dossiers/siecle-oublie">Siècle oublié</a></li>
+        <li><a href="/dossiers/royaume-antique">Royaume antique</a></li>
+        <li><a href="/dossiers/ponelyphes">Ponéglyphes</a></li>
+        <li><a href="/dossiers/joy-boy">Joy Boy</a></li>
+        <li><a href="/dossiers/nika">Nika</a></li>
+        <li><a href="/dossiers/luffy">Monkey D. Luffy</a></li>
+        <li><a href="/dossiers/poseidon">Poséidon et les Armes antiques</a></li>
+        <li><a href="/dossiers/vivi">Les figures secondaires</a></li>
+        <li><a href="/dossiers/emeth">Emeth, Zunesha et Toki</a></li>
+        <li><a href="/dossiers/vegapunk">Vegapunk, Mother Flame et les technologies</a></li>
+        <li><a href="/dossiers/elbaf">Peuples, royaumes et missions</a></li>
+        <li><a href="/dossiers/dieux-one-piece">Dieux, foi et volonté</a></li>
+        <li><a href="/dossiers/imu">Imu et le Gouvernement mondial</a></li>
+        <li><a href="/dossiers/deluge">Déluge</a></li>
+        <li><a href="/dossiers/guerre-finale">Guerre finale</a></li>
+        <li><a href="/dossiers/creation-all-blue">Red Line, All Blue et One Piece</a></li>
+        <li><a href="/verifier/preuves">Preuves, objections et contradictions</a></li>
+      </ol>
+    </div>
+
+    <div class="info-box">
+      <h3>📖 Lecture recommandée</h3>
+      <p>
+        Cet ordre n'est pas chronologique dans l'univers. C'est l'ordre nécessaire pour
+        <strong>comprendre le raisonnement</strong> : il commence par le problème géographique
+        (Laugh Tale), explique ensuite le mécanisme temporel (Ponéglyphes), présente les figures
+        et les missions, puis conduit vers Imu, le déluge et la guerre finale.
+      </p>
+    </div>
+
+    <div class="placeholder-content">
+      <div class="placeholder-box">
+        <h3>📝 Contenu en cours de rédaction</h3>
+        <p>
+          La théorie complète sera progressivement assemblée à partir des articles existants et
+          des transcriptions. Chaque section ci-dessus renvoie déjà au dossier correspondant
+          où les éléments disponibles sont regroupés.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</WikiLayout>
+
+<style>
+  .complete-page {
+    max-width: 700px;
+  }
+
+  .complete-page h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .intro {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  .toc {
+    margin-bottom: 48px;
+  }
+
+  .toc h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .toc ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: toc-item;
+  }
+
+  .toc ol li {
+    counter-increment: toc-item;
+    padding: 10px 16px 10px 44px;
+    position: relative;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.15s;
+  }
+
+  .toc ol li:hover {
+    background-color: var(--surface);
+  }
+
+  .toc ol li::before {
+    content: counter(toc-item) '.';
+    position: absolute;
+    left: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--violet);
+  }
+
+  .toc ol li a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .toc ol li:hover a {
+    color: var(--cyan);
+  }
+
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--violet);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+
+  .info-box h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .info-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .info-box strong {
+    color: var(--text-main);
+  }
+
+  .placeholder-content {
+    margin-bottom: 40px;
+  }
+
+  .placeholder-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 32px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .placeholder-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .placeholder-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

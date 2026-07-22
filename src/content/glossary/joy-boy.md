@@ -1,7 +1,5 @@
 ---
-term: 'Joy Boy'
-definition: "Figure légendaire du Royaume de Lumière, liée aux D. et aux Ponéglyphes. Dans la théorie, ce serait le nom que l'Histoire donnera à Luffy après la libération du monde."
-relatedArticles: ['luffy-deviendra-joy-boy', 'nika-le-dieu-du-soleil']
+term: "Joy Boy"
+definition: "Le nom que le monde donnera à Monkey D. Luffy après qu'il aura libéré le monde. C'est un nom de règne, comme Big Mom pour Charlotte Linlin. Joy Boy n'est pas une origine mais une conséquence de 800 ans d'histoire."
+relatedArticles: ["joy-boy-est-luffy", "theorie-complete"]
 ---
-
-Nom de roi donné au libérateur ; complémentaire de Nika (face divine) et de Luffy (identité réelle).

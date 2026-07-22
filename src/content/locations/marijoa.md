@@ -1,9 +1,7 @@
 ---
-name: 'Sainte-Marie (Mary Geoise)'
-region: 'Réd Line'
-summary: "Siège du Gouvernement Mondial et résidence d'Imu. Dans la théorie, c'est le verrou qui empêche le Siècle oublié de devenir le présent."
-articles: ['communication-temps', 'signification-d']
-order: 5
+name: "Mary Geoise"
+region: "Red Line"
+summary: "La Terre Sainte, siège du Gouvernement Mondial au sommet de Red Line. Construite sur les ruines du Pays des Dieux (Kami no Kuni), ancien territoire des Lunariens."
+articles: ["vingt-rois-chevaliers-divins", "imu-nerona"]
+order: 3
 ---
-
-Sainte-Marie est le centre de contrôle du présent par le pouvoir en place. Sa chute marquerait, selon la théorie, le basculement où le passé verrouillé devient enfin le présent.

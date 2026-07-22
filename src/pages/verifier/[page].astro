@@ -7,9 +7,9 @@ export async function getStaticPaths() {
     {
       params: { page: 'preuves' },
       props: {
-        title: 'Pièces du puzzle',
+        title: 'Preuves principales',
         icon: '🧩',
-        desc: 'Base complète des preuves classées par type et par force.',
+        desc: 'Les preuves les plus solides qui soutiennent le cœur de la théorie.',
       },
     },
     {
@@ -17,35 +17,47 @@ export async function getStaticPaths() {
       props: {
         title: 'Citations et scènes',
         icon: '💬',
-        desc: 'Les dialogues et scènes clés du manga.',
+        desc: 'Les dialogues et scènes clés du manga qui alimentent la théorie.',
       },
     },
     {
       params: { page: 'paralleles' },
       props: {
-        title: 'Parallèles visuels',
+        title: 'Parallèles',
         icon: '🔍',
-        desc: 'Comparaisons visuelles entre personnages et événements.',
+        desc: 'Comparaisons entre personnages, lieux et événements à travers les époques.',
       },
     },
     {
       params: { page: 'objections' },
-      props: { title: 'Objections', icon: '⚠️', desc: 'Les arguments contre la théorie.' },
+      props: {
+        title: 'Objections',
+        icon: '⚠️',
+        desc: 'Les arguments contre la théorie et les réponses apportées.',
+      },
     },
     {
       params: { page: 'contradictions' },
       props: {
         title: 'Contradictions',
         icon: '❌',
-        desc: 'Les éléments qui contredisent la théorie.',
+        desc: 'Les éléments du manga qui contredisent ou fragilisent la théorie.',
+      },
+    },
+    {
+      params: { page: 'questions' },
+      props: {
+        title: 'Questions non résolues',
+        icon: '❓',
+        desc: 'Les points qui restent en suspens et nécessitent de nouveaux chapitres.',
       },
     },
     {
       params: { page: 'sources' },
       props: {
-        title: 'Sources et méthode',
+        title: 'Sources',
         icon: '📚',
-        desc: 'Méthodologie et sources utilisées.',
+        desc: "Méthodologie d'analyse et sources utilisées.",
       },
     },
   ];

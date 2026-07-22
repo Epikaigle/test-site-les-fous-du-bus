@@ -24,13 +24,17 @@ export const effectLabels: Record<string, string> = {
 };
 
 export const categoryLabels: Record<string, string> = {
-  fondations: 'Fondations',
-  'figures-identites': 'Figures et identités',
+  'monde-destinations': 'Monde et destinations',
+  'histoire-temporalite': 'Histoire et temporalité',
+  'figures-principales': 'Figures principales',
+  'personnages-identites': 'Personnages et identités',
   'armes-antiques': 'Armes antiques',
-  'science-energie': 'Science, énergie et pouvoirs',
-  'monde-peuples': 'Monde, peuples et témoins',
-  'gouvernement-guerre': 'Gouvernement et guerre finale',
-  'transmission-memoire': 'Transmission, voix et mémoire',
+  'technologies-pouvoirs': 'Technologies et pouvoirs',
+  'peuples-royaumes': 'Peuples, royaumes et témoins',
+  'dieux-croyances': 'Dieux et croyances',
+  'transmission-memoire': 'Transmission et mémoire',
+  'gouvernement-mondial': 'Gouvernement mondial',
+  'guerre-finale': 'Guerre finale',
 };
 
 export const predictionStatusLabels: Record<string, string> = {

@@ -5,9 +5,17 @@ import Footer from '@components/Footer.astro';
 export async function getStaticPaths() {
   return [
     {
-      params: { page: 'frises' },
+      params: { page: 'carte-mentale' },
       props: {
-        title: 'Frises chronologiques',
+        title: 'Carte mentale',
+        icon: '🧠',
+        desc: 'Vue d\'ensemble de la théorie et de ses connexions principales.',
+      },
+    },
+    {
+      params: { page: 'chronologie' },
+      props: {
+        title: 'Chronologie',
         icon: '📅',
         desc: 'Double frise superposant le Siècle oublié et les événements actuels.',
       },
@@ -23,17 +31,25 @@ export async function getStaticPaths() {
     {
       params: { page: 'personnages' },
       props: {
-        title: 'Carte des personnages',
+        title: 'Graphe des personnages',
         icon: '🎭',
-        desc: 'Graphe des personnages et de leurs identités parallèles.',
+        desc: 'Graphe des personnages et de leurs identités parallèles à travers les époques.',
       },
     },
     {
-      params: { page: 'schemas' },
+      params: { page: 'correspondances' },
       props: {
-        title: 'Schémas temporels',
+        title: 'Graphe des correspondances',
         icon: '🔄',
-        desc: 'Boucle temporelle des Ponéglyphes et mécanismes de transmission.',
+        desc: 'Les liens entre personnages, lieux, armes et événements à travers les époques.',
+      },
+    },
+    {
+      params: { page: 'ponelyphes' },
+      props: {
+        title: 'Schéma des Ponéglyphes',
+        icon: '🪨',
+        desc: 'Répartition, contenu et connexions entre tous les Ponéglyphes identifiés.',
       },
     },
     {
@@ -41,12 +57,8 @@ export async function getStaticPaths() {
       props: {
         title: "Fresque d'Elbaf",
         icon: '🎨',
-        desc: "Exploration interactive de la fresque d'Elbaf.",
+        desc: "Exploration interactive de la fresque de l'Arbre d'Adam et de ses symboles cachés.",
       },
-    },
-    {
-      params: { page: 'globe' },
-      props: { title: 'Globe 3D', icon: '🌍', desc: 'Globe interactif en 3D de Blue Star.' },
     },
   ];
 }

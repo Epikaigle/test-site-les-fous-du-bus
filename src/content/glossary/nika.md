@@ -1,7 +1,5 @@
 ---
-term: 'Nika'
-definition: 'Dieu du Soleil libérateur, dont le Fruit du Démon de Luffy serait la réincarnation (Gear 5). Face divine de Joy Boy dans la théorie.'
-relatedArticles: ['nika-le-dieu-du-soleil', 'luffy-deviendra-joy-boy']
+term: "Nika"
+definition: "Le dieu du soleil, nom divin de Monkey D. Luffy. Nika existe parce que les gens y croient — la foi de Kuma l'a fait exister. Pour les civils : Joy Boy. Pour les croyants : Nika. Pour l'équipage : Luffy."
+relatedArticles: ["nika-est-luffy", "kuma-foi-nika"]
 ---
-
-Divinité solaire associée à la liberté et à la danse, echoant le caractère de Luffy.

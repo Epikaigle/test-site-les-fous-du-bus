@@ -8,9 +8,9 @@ import Footer from '@components/Footer.astro';
     <div class="text-alert font-semibold tracking-widest uppercase text-sm mb-3">Rigueur</div>
     <h1>Vérifier</h1>
     <p class="page-desc">
-      Toutes les preuves, citations, parallèles visuels, objections et contradictions de la théorie.
-      La transparence est un principe fondamental : chaque élément peut être vérifié, contesté et
-      discuté.
+      Examiner la solidité de la théorie. Chaque élément peut être vérifié, contesté et
+      discuté. Les transcriptions elles-mêmes examinent des contre-arguments et distinguent les
+      certitudes des hypothèses.
     </p>
   </div>
 
@@ -18,8 +18,8 @@ import Footer from '@components/Footer.astro';
     <a href="/verifier/preuves" class="nav-card">
       <span class="nav-card__icon">🧩</span>
       <div>
-        <h3>Pièces du puzzle</h3>
-        <p>Base complète des preuves classées par type et par force.</p>
+        <h3>Preuves principales</h3>
+        <p>Les preuves les plus solides qui soutiennent le cœur de la théorie.</p>
       </div>
     </a>
 
@@ -34,8 +34,8 @@ import Footer from '@components/Footer.astro';
     <a href="/verifier/paralleles" class="nav-card">
       <span class="nav-card__icon">🔍</span>
       <div>
-        <h3>Parallèles visuels</h3>
-        <p>Comparaisons visuelles entre personnages, lieux et événements.</p>
+        <h3>Parallèles</h3>
+        <p>Comparaisons entre personnages, lieux et événements à travers les époques.</p>
       </div>
     </a>
 
@@ -55,10 +55,18 @@ import Footer from '@components/Footer.astro';
       </div>
     </a>
 
+    <a href="/verifier/questions" class="nav-card">
+      <span class="nav-card__icon">❓</span>
+      <div>
+        <h3>Questions non résolues</h3>
+        <p>Les points de la théorie qui restent en suspens et nécessitent de nouveaux chapitres.</p>
+      </div>
+    </a>
+
     <a href="/verifier/sources" class="nav-card">
       <span class="nav-card__icon">📚</span>
       <div>
-        <h3>Sources et méthode</h3>
+        <h3>Sources</h3>
         <p>Méthodologie d'analyse et sources utilisées dans la théorie.</p>
       </div>
     </a>
@@ -91,6 +99,15 @@ import Footer from '@components/Footer.astro';
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="info-box">
+    <h3>💡 À noter</h3>
+    <p>
+      La théorie repose sur l'idée que Joy Boy ne doit pas être un second Luffy ancien, mais la
+      conséquence de huit siècles d'histoire. Chaque page de cette section examine cette idée à la
+      lumière des faits du manga.
+    </p>
   </div>
 
   <Footer />
@@ -165,6 +182,7 @@ import Footer from '@components/Footer.astro';
     display: flex;
     flex-direction: column;
     gap: 16px;
+    margin-bottom: 40px;
   }
   .principle {
     display: flex;
@@ -197,6 +215,25 @@ import Footer from '@components/Footer.astro';
     font-size: 13px;
     color: var(--text-secondary);
     line-height: 1.5;
+    margin: 0;
+  }
+  .info-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-gold);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-top: 48px;
+  }
+  .info-box h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .info-box p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
     margin: 0;
   }
 </style>

@@ -1,70 +1,62 @@
 ---
 import WikiLayout from '@layouts/WikiLayout.astro';
-import CategoryCard from '@components/CategoryCard.astro';
 import Footer from '@components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles');
+const publishedArticles = articles.filter(a => a.data.status === 'published');
+const mainArticles = publishedArticles
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 12);
 ---
 
 <WikiLayout title="La théorie" currentPath="/theorie">
   <div class="hero">
-    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Explorer</div>
+    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">Sommaire</div>
     <h1>La théorie</h1>
     <p class="subtitle">
-      Plongez dans l'analyse complète du Siècle oublié et découvrez comment les événements actuels
-      de <em>One Piece</em> pourraient être la réécriture de l'histoire ancienne.
+      Pour découvrir et lire l'argumentation principale dans son ensemble. Suivez l'ordre de lecture
+      ci-dessous pour comprendre le raisonnement étape par étape.
     </p>
   </div>
 
-  <h2 class="section-title">Catégories</h2>
-  <div class="grid">
-    <CategoryCard
-      icon="🏗️"
-      title="Fondations"
-      description="Les piliers de la théorie, la nature de la boucle temporelle et les grands principes du Siècle oublié."
-      href="/theorie/fondations"
-    />
-    <CategoryCard
-      icon="🎭"
-      title="Figures et identités"
-      description="Joy Boy, Nika, Imu. Les parallèles et véritables identités des acteurs majeurs."
-      href="/theorie/figures-identites"
-    />
-    <CategoryCard
-      icon="🔱"
-      title="Armes antiques"
-      description="Pluton, Poséidon, Uranus : leur véritable fonction et leur lien avec la boucle temporelle."
-      href="/theorie/armes-antiques"
-    />
-    <CategoryCard
-      icon="⚡"
-      title="Science, énergie et pouvoirs"
-      description="L'ancienne technologie, la Flamme Mère, l'origine des Fruits du Démon et le Haki."
-      href="/theorie/science-energie"
-    />
-    <CategoryCard
-      icon="🗺️"
-      title="Monde, peuples et témoins"
-      description="Les D., les Lunarias, les géants d'Elbaf, Wano Kuni et les témoins de l'histoire."
-      href="/theorie/monde-peuples"
-    />
-    <CategoryCard
-      icon="⚖️"
-      title="Gouvernement et guerre finale"
-      description="La création du Gouvernement Mondial, le rôle du Gorosei et l'issue du grand conflit."
-      href="/theorie/gouvernement-guerre"
-    />
-    <CategoryCard
-      icon="📜"
-      title="Chronologie"
-      description="La frise chronologique complète des événements passés, présents et futurs."
-      href="/theorie/chronologie"
-    />
+  <h2 class="section-title">Articles principaux</h2>
+  <div class="article-list">
+    {mainArticles.map((article, i) => (
+      <a href={`/theorie/${article.id}`} class="article-row">
+        <span class="article-num">{i + 1}</span>
+        <div class="article-info">
+          <span class="article-title">{article.data.title}</span>
+          <span class="article-summary">{article.data.summary}</span>
+        </div>
+      </a>
+    ))}
   </div>
 
   <h2 class="section-title">Articles récents</h2>
+  <div class="article-list">
+    {publishedArticles
+      .sort((a, b) => (b.data.lastUpdatedChapter || 0) - (a.data.lastUpdatedChapter || 0))
+      .slice(0, 8)
+      .map((article) => (
+        <a href={`/theorie/${article.id}`} class="article-row">
+          <span class="article-badge">{article.data.certainty === 'central' ? 'Central' : article.data.certainty === 'elevee' ? 'Élevée' : 'Moyenne'}</span>
+          <div class="article-info">
+            <span class="article-title">{article.data.title}</span>
+            <span class="article-chapter">Mis à jour au chapitre {article.data.lastUpdatedChapter || '?'}</span>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
   <div class="info-box">
+    <h3>📖 Ordre de lecture recommandé</h3>
     <p>
-      Consultez la page d'accueil pour voir les derniers articles publiés et les analyses des
-      chapitres récents.
+      1. Le Siècle oublié est le présent → 2. Laugh Tale et Lodestar → 3. Joy Boy est Luffy →
+      4. Nika est Luffy → 5. Les Ponéglyphes racontent le futur → 6. Poséidon est Shirahoshi →
+      7. Davy Jones est Teach → 8. Vivi est Lili → 9. Emeth vient du futur → 10. Imu Nerona →
+      11. Le Déluge et All Blue → 12. Les Dieux de One Piece
     </p>
   </div>
 
@@ -85,52 +77,126 @@ import Footer from '@components/Footer.astro';
   }
 
   .subtitle {
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-secondary);
     max-width: 700px;
     line-height: 1.6;
-    margin-bottom: 0;
   }
 
   .section-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
-    margin-top: 56px;
+    margin-top: 48px;
   }
 
   .section-title:first-of-type {
     margin-top: 0;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .article-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .article-row:hover {
+    border-color: var(--violet);
+    background-color: var(--surface);
+  }
+
+  .article-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--violet);
+    min-width: 24px;
+    text-align: center;
+    padding-top: 2px;
+  }
+
+  .article-badge {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    color: var(--cyan);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .article-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .article-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    transition: color 0.15s;
+  }
+
+  .article-row:hover .article-title {
+    color: var(--cyan);
+  }
+
+  .article-summary {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .article-chapter {
+    font-size: 11px;
+    color: var(--text-secondary);
   }
 
   .info-box {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-left: 3px solid var(--cyan);
-    padding: 16px 20px;
+    border-left: 3px solid var(--violet);
+    padding: 20px 24px;
     border-radius: 4px;
-    color: var(--text-secondary);
-    line-height: 1.6;
+    margin-top: 48px;
+  }
+
+  .info-box h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
   }
 
   .info-box p {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.7;
     margin: 0;
   }
 
   @media (max-width: 640px) {
     .hero {
       margin-bottom: 32px;
-    }
-    .section-title {
-      margin-top: 40px;
     }
   }
 </style>

@@ -1,9 +1,7 @@
 ---
-title: 'Roger aurait été Joy Boy'
-argument: "Roger a atteint Laugh Tale et aurait pu être Joy Boy. Si quelqu'un incarne la figure, c'est lui, pas Luffy."
-response: "Roger lui-même dit s'être adressé à Joy Boy comme à quelqu'un d'autre (« j'aurais aimé naître à la même époque que toi »). L'équipage de Roger attendait Joy Boy en sachant qu'il n'était « pas encore né ». Roger a *compris* la prophétie, il ne l'a pas incarnée."
-strength: 'mineure'
-articles: ['luffy-deviendra-joy-boy']
+title: "Roger était peut-être Joy Boy"
+argument: "Roger a trouvé le One Piece, il avait le charisme, la puissance. Pourquoi ne serait-il pas Joy Boy ?"
+response: "Le chapitre 968 prouve que l'équipage de Roger savait que Joy Boy n'était pas encore né. Shanks a parié sur Luffy précisément parce que Roger était arrivé trop tôt. Roger a découvert le One Piece mais ne l'a pas créé — il a compris qu'il fallait attendre."
+strength: "moderee"
+articles: ["joy-boy-est-luffy", "laugh-tale"]
 ---
-
-Roger est le témoin, pas l'acteur. Cette distinction soutient que Joy Boy est l'aboutissement, pas le prédécesseur de Luffy.

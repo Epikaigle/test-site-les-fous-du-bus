@@ -10,16 +10,25 @@ import Footer from '@components/Footer.astro';
     </div>
     <h1>Explorer</h1>
     <p class="page-desc">
-      Cartes, frises, graphes et schémas pour visualiser les connexions entre personnages, lieux,
+      Représentations visuelles pour comprendre les connexions entre personnages, lieux,
       événements et époques de la théorie.
     </p>
   </div>
 
   <div class="explorer-grid">
-    <a href="/explorer/frises" class="explorer-card">
+    <a href="/explorer/carte-mentale" class="explorer-card">
+      <div class="explorer-card__icon">🧠</div>
+      <div class="explorer-card__content">
+        <h3>Carte mentale</h3>
+        <p>Vue d'ensemble de la théorie et de ses connexions principales.</p>
+        <span class="explorer-card__status">V2</span>
+      </div>
+    </a>
+
+    <a href="/explorer/chronologie" class="explorer-card">
       <div class="explorer-card__icon">📅</div>
       <div class="explorer-card__content">
-        <h3>Frises chronologiques</h3>
+        <h3>Chronologie</h3>
         <p>Double frise superposant le Siècle oublié et les événements actuels de One Piece.</p>
         <span class="explorer-card__status">V2</span>
       </div>
@@ -37,17 +46,26 @@ import Footer from '@components/Footer.astro';
     <a href="/explorer/personnages" class="explorer-card">
       <div class="explorer-card__icon">🎭</div>
       <div class="explorer-card__content">
-        <h3>Carte des personnages</h3>
+        <h3>Graphe des personnages</h3>
         <p>Graphe des personnages et de leurs identités parallèles à travers les époques.</p>
         <span class="explorer-card__status">V2</span>
       </div>
     </a>
 
-    <a href="/explorer/schemas" class="explorer-card">
+    <a href="/explorer/correspondances" class="explorer-card">
       <div class="explorer-card__icon">🔄</div>
       <div class="explorer-card__content">
-        <h3>Schémas temporels</h3>
-        <p>Schéma de la boucle temporelle des Ponéglyphes et des mécanismes de transmission.</p>
+        <h3>Graphe des correspondances</h3>
+        <p>Les liens entre personnages, lieux, armes et événements à travers les époques.</p>
+        <span class="explorer-card__status">V3</span>
+      </div>
+    </a>
+
+    <a href="/explorer/ponelyphes" class="explorer-card">
+      <div class="explorer-card__icon">🪨</div>
+      <div class="explorer-card__content">
+        <h3>Schéma des Ponéglyphes</h3>
+        <p>Répartition, contenu et connexions entre tous les Ponéglyphes identifiés.</p>
         <span class="explorer-card__status">V2</span>
       </div>
     </a>
@@ -56,16 +74,7 @@ import Footer from '@components/Footer.astro';
       <div class="explorer-card__icon">🎨</div>
       <div class="explorer-card__content">
         <h3>Fresque d'Elbaf</h3>
-        <p>Exploration interactive de la fresque d'Elbaf et de ses symboles cachés.</p>
-        <span class="explorer-card__status">V3</span>
-      </div>
-    </a>
-
-    <a href="/explorer/globe" class="explorer-card">
-      <div class="explorer-card__icon">🌍</div>
-      <div class="explorer-card__content">
-        <h3>Globe 3D</h3>
-        <p>Globe interactif en 3D de Blue Star pour explorer le monde de One Piece.</p>
+        <p>Exploration interactive de la fresque de l'Arbre d'Adam et de ses symboles cachés.</p>
         <span class="explorer-card__status">V3</span>
       </div>
     </a>

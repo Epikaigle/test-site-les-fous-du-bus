@@ -1,7 +1,7 @@
 ---
 title: 'Le rôle du pont de Tequila Wolf'
 summary: 'Le pont de Tequila Wolf, construit pendant des siècles sans jamais être achevé, serait une métaphore de la boucle temporelle et du travail sans fin imposé par le pouvoir en place.'
-category: 'monde-peuples'
+category: 'peuples-royaumes'
 status: 'published'
 certainty: 'moyenne'
 lastUpdatedChapter: 1188

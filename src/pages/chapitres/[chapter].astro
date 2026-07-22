@@ -1,0 +1,215 @@
+---
+import WikiLayout from '@layouts/WikiLayout.astro';
+import Footer from '@components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+import { effectLabel } from '@utils/labels';
+
+export async function getStaticPaths() {
+  const chapters = await getCollection('chapters');
+  return chapters.map((entry) => ({
+    params: { chapter: String(entry.data.chapter) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<WikiLayout title={`Chapitre ${entry.data.chapter} — ${entry.data.title}`} currentPath={`/chapitres/${entry.data.chapter}`}>
+  <div class="chapter-header">
+    <div class="chapter-badges">
+      <span class="badge-chapter">Chapitre {entry.data.chapter}</span>
+      <span class="badge-effect" class:list={[
+        { 'badge-effect--violet': entry.data.effect === 'nouvelle-piste' },
+        { 'badge-effect--gold': entry.data.effect === 'renforcement' || entry.data.effect === 'modification' },
+        { 'badge-effect--alert': entry.data.effect === 'contradiction' || entry.data.effect === 'refutation' },
+      ]}>{effectLabel(entry.data.effect)}</span>
+    </div>
+    <h1>{entry.data.title}</h1>
+    {entry.data.summary && <p class="chapter-summary">{entry.data.summary}</p>}
+  </div>
+
+  <div class="content">
+    <Content />
+  </div>
+
+  {entry.data.themes.length > 0 && (
+    <div class="themes-box">
+      <h3>Thèmes abordés</h3>
+      <div class="themes-list">
+        {entry.data.themes.map((theme: string) => (
+          <span class="theme-tag">{theme}</span>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <div class="nav-links">
+    <a href="/chapitres" class="nav-link">← Tous les chapitres</a>
+  </div>
+
+  <Footer />
+</WikiLayout>
+
+<style>
+  .chapter-header {
+    margin-bottom: 40px;
+  }
+
+  .chapter-badges {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .badge-chapter {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    color: var(--cyan);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-effect {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-effect--violet {
+    background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+    color: #d3b3ff;
+    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
+  }
+
+  .badge-effect--gold {
+    background-color: color-mix(in srgb, var(--accent-gold) 10%, transparent);
+    color: var(--accent-gold);
+    border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
+  }
+
+  .badge-effect--alert {
+    background-color: color-mix(in srgb, var(--alert) 10%, transparent);
+    color: var(--alert);
+    border: 1px solid color-mix(in srgb, var(--alert) 30%, transparent);
+  }
+
+  .chapter-header h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .chapter-summary {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 700px;
+  }
+
+  .content {
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .content :global(h2) {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .content :global(h3) {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .content :global(blockquote) {
+    border-left: 3px solid var(--violet);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .content :global(a) {
+    color: var(--cyan);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .themes-box {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 40px;
+  }
+
+  .themes-box h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .themes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .theme-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    background-color: var(--surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+</style>

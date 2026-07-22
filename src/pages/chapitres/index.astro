@@ -1,45 +1,65 @@
 ---
 import WikiLayout from '@layouts/WikiLayout.astro';
 import Footer from '@components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { effectLabel } from '@utils/labels';
+
+const chapters = await getCollection('chapters');
+const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
 ---
 
-<WikiLayout title="Évolution" currentPath="/evolution">
+<WikiLayout title="Chapitres" currentPath="/chapitres">
   <div class="page-header">
     <div class="text-accentGold font-semibold tracking-widest uppercase text-sm mb-3">Suivi</div>
-    <h1>Évolution de la théorie</h1>
+    <h1>Chapitres</h1>
     <p class="page-desc">
-      Suivez l'évolution de la théorie chapitre par chapitre. Chaque nouveau chapitre de <em
-        >One Piece</em
-      > peut renforcer, modifier ou contredire les hypothèses existantes.
+      Suivez l'évolution de la théorie avec le manga. Chaque nouveau chapitre peut renforcer,
+      modifier ou contredire les hypothèses existantes.
     </p>
   </div>
 
   <div class="nav-cards">
-    <a href="/evolution/chapitres" class="nav-card">
+    <a href="/chapitres/derniere-analyse" class="nav-card">
       <span class="nav-card__icon">📖</span>
       <div>
-        <h3>Chapitre par chapitre</h3>
-        <p>Analyse de l'apport de chaque nouveau chapitre à la théorie.</p>
+        <h3>Dernière analyse</h3>
+        <p>L'analyse du chapitre le plus récent et son apport à la théorie.</p>
       </div>
     </a>
 
-    <a href="/evolution/previsions" class="nav-card">
+    <a href="/chapitres/toutes-les-analyses" class="nav-card">
+      <span class="nav-card__icon">📚</span>
+      <div>
+        <h3>Toutes les analyses</h3>
+        <p>Liste complète des analyses chapitre par chapitre.</p>
+      </div>
+    </a>
+
+    <a href="/chapitres/predictions" class="nav-card">
       <span class="nav-card__icon">🔮</span>
       <div>
         <h3>Prédictions</h3>
-        <p>Tableau des prédictions formulées par la théorie et leur statut actuel.</p>
+        <p>Prédictions formulées par la théorie et leur statut actuel.</p>
       </div>
     </a>
 
-    <a href="/evolution/historique" class="nav-card">
+    <a href="/chapitres/modifications" class="nav-card">
       <span class="nav-card__icon">📋</span>
       <div>
-        <h3>Historique des articles</h3>
-        <p>Historique complet des modifications apportées aux articles.</p>
+        <h3>Modifications</h3>
+        <p>Modifications apportées aux articles suite aux nouveaux chapitres.</p>
       </div>
     </a>
 
-    <a href="/evolution/abandonnees" class="nav-card">
+    <a href="/chapitres/contradictions" class="nav-card">
+      <span class="nav-card__icon">❌</span>
+      <div>
+        <h3>Contradictions</h3>
+        <p>Les éléments qui contredisent ou fragilisent la théorie.</p>
+      </div>
+    </a>
+
+    <a href="/chapitres/hypotheses-abandonnees" class="nav-card">
       <span class="nav-card__icon">🗑️</span>
       <div>
         <h3>Hypothèses abandonnées</h3>
@@ -50,47 +70,37 @@ import Footer from '@components/Footer.astro';
 
   <h2 class="section-title">Derniers chapitres analysés</h2>
   <div class="chapter-list">
-    <div class="chapter-item">
-      <div class="chapter-item__badges">
-        <span class="badge-chapter">Chap 1188</span>
-        <span class="badge-effect badge-effect--violet">Nouv. piste</span>
-      </div>
-      <h4>Une communication à travers le temps</h4>
-      <p class="chapter-item__desc">
-        Nouvelles révélations sur la transmission entre le passé et le présent.
-      </p>
-    </div>
-    <div class="chapter-item">
-      <div class="chapter-item__badges">
-        <span class="badge-chapter">Chap 1187</span>
-        <span class="badge-effect badge-effect--gold">Modification</span>
-      </div>
-      <h4>Énergie antique et Flamme Mère</h4>
-      <p class="chapter-item__desc">Précisions sur le rôle de la Flamme Mère dans la théorie.</p>
-    </div>
-    <div class="chapter-item">
-      <div class="chapter-item__badges">
-        <span class="badge-chapter">Chap 1186</span>
-        <span class="badge-effect badge-effect--gold">Renforcement</span>
-      </div>
-      <h4>Luffy et Joy Boy</h4>
-      <p class="chapter-item__desc">Nouveaux éléments confirmant le lien entre Luffy et Joy Boy.</p>
-    </div>
+    {
+      sortedChapters.map((ch) => (
+        <a href={`/chapitres/${ch.data.chapter}`} class="chapter-item">
+          <div class="chapter-item__badges">
+            <span class="badge-chapter">Chap {ch.data.chapter}</span>
+            <span class="badge-effect" class:list={[
+              { 'badge-effect--violet': ch.data.effect === 'nouvelle-piste' },
+              { 'badge-effect--gold': ch.data.effect === 'renforcement' || ch.data.effect === 'modification' },
+              { 'badge-effect--alert': ch.data.effect === 'contradiction' || ch.data.effect === 'refutation' },
+            ]}>{effectLabel(ch.data.effect)}</span>
+          </div>
+          <h4>{ch.data.title}</h4>
+          {ch.data.summary && <p class="chapter-item__desc">{ch.data.summary}</p>}
+        </a>
+      ))
+    }
   </div>
 
   <div class="info-box">
     <h3>📊 Statistiques</h3>
     <div class="stats">
       <div class="stat">
-        <span class="stat__value">3</span>
+        <span class="stat__value">{sortedChapters.length}</span>
         <span class="stat__label">Chapitres analysés</span>
       </div>
       <div class="stat">
-        <span class="stat__value">0</span>
-        <span class="stat__label">Prédictions en cours</span>
+        <span class="stat__value">{sortedChapters.filter((c) => c.data.effect === 'nouvelle-piste' || c.data.effect === 'renforcement').length}</span>
+        <span class="stat__label">Apports positifs</span>
       </div>
       <div class="stat">
-        <span class="stat__value">0</span>
+        <span class="stat__value">{sortedChapters.filter((c) => c.data.effect === 'contradiction' || c.data.effect === 'refutation').length}</span>
         <span class="stat__label">Contradictions</span>
       </div>
     </div>
@@ -178,15 +188,23 @@ import Footer from '@components/Footer.astro';
   .chapter-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     margin-bottom: 40px;
   }
 
   .chapter-item {
+    display: block;
     padding: 16px 20px;
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
     border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .chapter-item:hover {
+    border-color: var(--violet);
+    background-color: var(--bg-secondary);
   }
 
   .chapter-item__badges {
@@ -227,6 +245,12 @@ import Footer from '@components/Footer.astro';
     background-color: color-mix(in srgb, var(--accent-gold) 10%, transparent);
     color: var(--accent-gold);
     border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
+  }
+
+  .badge-effect--alert {
+    background-color: color-mix(in srgb, var(--alert) 10%, transparent);
+    color: var(--alert);
+    border: 1px solid color-mix(in srgb, var(--alert) 30%, transparent);
   }
 
   .chapter-item h4 {
