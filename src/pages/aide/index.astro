@@ -84,23 +84,33 @@ import Footer from '@components/Footer.astro';
     align-items: flex-start;
     gap: 14px;
     padding: 18px;
-    background-color: var(--bg-main);
+    background: var(--gradient-card);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
     text-decoration: none;
-    transition: all 0.2s;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
   .nav-card:hover {
-    background-color: var(--bg-secondary);
     border-color: var(--violet);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--bg-main) 40%, transparent),
+      0 0 18px var(--glow-violet);
   }
   .nav-card__icon {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     flex-shrink: 0;
     margin-top: 2px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--cyan) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cyan) 14%, transparent);
   }
   .nav-card h3 {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-main);
     margin-bottom: 4px;
@@ -110,9 +120,9 @@ import Footer from '@components/Footer.astro';
     color: var(--cyan);
   }
   .nav-card p {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--text-secondary);
-    line-height: 1.4;
+    line-height: 1.5;
     margin: 0;
   }
 </style>

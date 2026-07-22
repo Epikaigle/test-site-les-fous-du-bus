@@ -115,7 +115,7 @@ import Footer from '@components/Footer.astro';
     padding: 24px;
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--border-radius-xl);
   }
 
   .method__header {
@@ -170,17 +170,19 @@ import Footer from '@components/Footer.astro';
     padding: 10px 20px;
     background-color: var(--surface);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 8px;
     color: var(--text-main);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.2s;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .method__btn:hover {
     border-color: var(--cyan);
     color: var(--cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--bg-main) 45%, transparent);
   }
 
   .guidelines {
@@ -188,7 +190,7 @@ import Footer from '@components/Footer.astro';
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
     border-left: 3px solid var(--accent-gold);
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
   }
 
   .guidelines h2 {

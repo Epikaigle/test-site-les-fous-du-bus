@@ -99,16 +99,50 @@ export default function SearchModal() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center pt-24"
+      className="fixed inset-0 z-[100] flex items-start justify-center search-modal-overlay"
+      role="presentation"
       style={{ background: 'rgba(7, 2, 10, 0.7)', backdropFilter: 'blur(8px)' }}
       onClick={() => setIsOpen(false)}
     >
+      <style>{`
+        @keyframes search-overlay-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes search-panel-in {
+          from { opacity: 0; transform: translateY(-10px) scale(0.985); }
+          to { opacity: 1; transform: none; }
+        }
+        .search-modal-overlay {
+          padding-top: clamp(64px, 12vh, 120px);
+          animation: search-overlay-in 0.18s ease-out;
+        }
+        .search-modal-panel {
+          animation: search-panel-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+          max-height: min(640px, calc(100vh - 96px));
+        }
+        .search-modal-panel mark {
+          background: color-mix(in srgb, var(--accent-gold) 28%, transparent);
+          color: var(--text-main);
+          border-radius: 3px;
+          padding: 0 1px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .search-modal-overlay,
+          .search-modal-panel {
+            animation: none !important;
+          }
+        }
+      `}</style>
       <div
-        className="w-full max-w-2xl mx-4 overflow-hidden flex flex-col"
+        className="w-full max-w-2xl mx-4 overflow-hidden flex flex-col search-modal-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Recherche dans le site"
         style={{
           background: 'var(--bg-secondary)',
           border: '1px solid var(--border-color)',
-          borderRadius: '12px',
+          borderRadius: '14px',
           boxShadow: '0 24px 64px rgba(0,0,0,0.5), 0 0 40px var(--glow-violet)',
         }}
         onClick={(e) => e.stopPropagation()}

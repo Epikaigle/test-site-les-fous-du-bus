@@ -106,19 +106,82 @@ const ogImage = image || `${siteUrl}/og-default.png`;
     <script>
       // Scroll-reveal: gently fade/slide content blocks into view.
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const targets = document.querySelectorAll(
-        '.card, .article-item, .chapter-banner, .section-title, .ev-card, .meta-row, .content h2, .content h3, .footer, [data-reveal]',
-      );
+
+      const REVEAL_SELECTOR = [
+        '.card',
+        '.article-item',
+        '.chapter-banner',
+        '.section-title',
+        '.ev-card',
+        '.meta-row',
+        '.content h2',
+        '.content h3',
+        '.footer',
+        '[data-reveal]',
+        // Blocks & cards used across index pages
+        '.nav-card',
+        '.explorer-card',
+        '.article-row',
+        '.article-link',
+        '.chapter-item',
+        '.faq-item',
+        '.principle',
+        '.timeline-content',
+        '.empty-state',
+        '.placeholder-box',
+        '.themes-box',
+        '.info-box',
+        '.summary-box',
+      ].join(', ');
+
+      // Sibling card types revealed with a staggered cascade
+      const STAGGER_SELECTOR = [
+        '.card',
+        '.article-item',
+        '.nav-card',
+        '.explorer-card',
+        '.article-row',
+        '.article-link',
+        '.chapter-item',
+        '.faq-item',
+        '.principle',
+        '.timeline-content',
+        '.ev-card',
+      ].join(', ');
+
+      const targets = document.querySelectorAll(REVEAL_SELECTOR);
+
       if (reduce || !('IntersectionObserver' in window)) {
         targets.forEach((el) => el.classList.add('is-visible'));
       } else {
-        targets.forEach((el) => el.classList.add('reveal'));
+        targets.forEach((target) => {
+          const el = target as HTMLElement;
+          el.classList.add('reveal');
+          if (el.matches(STAGGER_SELECTOR) && el.parentElement) {
+            const siblings = Array.from(el.parentElement.children).filter((c) =>
+              c.matches(STAGGER_SELECTOR),
+            );
+            const index = siblings.indexOf(el);
+            if (index > 0) {
+              el.style.transitionDelay = `${Math.min(index, 8) * 55}ms`;
+              el.dataset.staggered = 'true';
+            }
+          }
+        });
         const io = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                io.unobserve(entry.target);
+                const el = entry.target as HTMLElement;
+                el.classList.add('is-visible');
+                io.unobserve(el);
+                if (el.dataset.staggered) {
+                  // Clear the delay once revealed so hover transitions stay snappy
+                  const wait = Number.parseInt(el.style.transitionDelay || '0', 10) + 700;
+                  setTimeout(() => {
+                    el.style.transitionDelay = '';
+                  }, wait);
+                }
               }
             });
           },

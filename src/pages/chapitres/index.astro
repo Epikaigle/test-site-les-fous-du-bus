@@ -140,26 +140,36 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     align-items: flex-start;
     gap: 14px;
     padding: 18px;
-    background-color: var(--bg-main);
+    background: var(--gradient-card);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
     text-decoration: none;
-    transition: all 0.2s;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   }
 
   .nav-card:hover {
-    background-color: var(--bg-secondary);
     border-color: var(--violet);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--bg-main) 40%, transparent),
+      0 0 18px var(--glow-violet);
   }
 
   .nav-card__icon {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     flex-shrink: 0;
     margin-top: 2px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-gold) 15%, transparent);
   }
 
   .nav-card h3 {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--text-main);
     margin-bottom: 4px;
@@ -171,15 +181,15 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   }
 
   .nav-card p {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--text-secondary);
-    line-height: 1.4;
+    line-height: 1.5;
     margin: 0;
   }
 
   .section-title {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 19px;
+    font-weight: 700;
     margin-bottom: 20px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color);
@@ -197,14 +207,16 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     padding: 16px 20px;
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
     text-decoration: none;
-    transition: all 0.15s;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .chapter-item:hover {
     border-color: var(--violet);
     background-color: var(--bg-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--bg-main) 40%, transparent);
   }
 
   .chapter-item__badges {
@@ -215,10 +227,10 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   }
 
   .badge-chapter {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 500;
-    padding: 2px 6px;
-    border-radius: 3px;
+    padding: 3px 8px;
+    border-radius: 6px;
     background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
     color: var(--cyan);
     border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
@@ -227,10 +239,10 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   }
 
   .badge-effect {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 500;
-    padding: 2px 6px;
-    border-radius: 3px;
+    padding: 3px 8px;
+    border-radius: 6px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -254,14 +266,14 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   }
 
   .chapter-item h4 {
-    font-size: 15px;
+    font-size: 15.5px;
     font-weight: 600;
     color: var(--text-main);
     margin-bottom: 4px;
   }
 
   .chapter-item__desc {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--text-secondary);
     line-height: 1.5;
     margin: 0;
@@ -271,7 +283,7 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
     padding: 24px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-lg);
     margin-top: 48px;
   }
 
@@ -300,7 +312,7 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   }
 
   .stat__label {
-    font-size: 12px;
+    font-size: 12.5px;
     color: var(--text-secondary);
     margin-top: 4px;
   }
