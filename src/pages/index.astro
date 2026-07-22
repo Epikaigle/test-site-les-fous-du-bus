@@ -8,50 +8,94 @@ import Footer from '@components/Footer.astro';
 
 <WikiLayout title="Accueil" currentPath="/">
   <div class="hero">
-    <div class="text-violet font-semibold tracking-widest uppercase text-sm mb-3">La théorie</div>
-    <h1>Le Siècle oublié est le présent</h1>
+    <div class="hero-badge">
+      <span class="hero-badge__dot"></span>
+      <span>La théorie</span>
+    </div>
+    <h1 class="hero-title">
+      Le Siècle oublié<br /><span class="text-gradient">est le présent</span>
+    </h1>
 
-    <div class="subtitle space-y-4">
+    <div class="hero-text">
       <p>
         Le Siècle oublié, ce n'est pas une vieille histoire enterrée il y a 800 ans. C'est ce qui
-        est en train de se passer maintenant, sous nos yeux, depuis le tout début de <em
-          >One Piece</em
-        >. La grande guerre, la chute du Gouvernement mondial, l'apparition de Joy Boy et la
-        naissance d'un nouveau monde ne seraient pas des événements du passé : ce seraient ceux que
-        Luffy et ses alliés sont en train de provoquer.
+        est en train de se passer maintenant, sous nos yeux, depuis le tout début de <em>One Piece</em>.
+        La grande guerre, la chute du Gouvernement mondial, l'apparition de Joy Boy et la naissance
+        d'un nouveau monde ne seraient pas des événements du passé : ce seraient ceux que Luffy et ses
+        alliés sont en train de provoquer.
       </p>
 
-      <p>
+      <p class="hero-text__more">
         Luffy, Vivi, Shirahoshi, Teach et les autres ne suivraient donc pas simplement les traces de
-        personnages légendaires. Ce sont eux qui vont devenir ces légendes. Joy Boy, Lili, Poséidon
-        ou encore Davy Jones ne seraient pas des figures anciennes à retrouver, mais les noms que
-        l'Histoire donnera plus tard aux personnages que nous connaissons aujourd'hui.
+        personnages légendaires. Ce sont eux qui vont devenir ces légendes. Les Ponéglyphes ne
+        raconteraient pas le passé, mais le futur gravé à l'avance puis envoyé 800 ans en arrière.
       </p>
+    </div>
 
-      <p>
-        Les Ponéglyphes ne raconteraient pas le passé, mais le futur gravé à l'avance puis
-        envoyé 800 ans en arrière. En gros, depuis le chapitre 1, on ne cherche pas à comprendre le
-        Siècle oublié : on est en train de le vivre. Et la plus grande révélation de <em
-          >One Piece</em
-        >, ce serait que le passé que tout le monde recherche depuis des siècles est tout simplement
-        le présent.
-      </p>
+    <div class="hero-cta">
+      <a href="/theorie/resume" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        Lire le résumé
+      </a>
+      <a href="/theorie/theorie-complete" class="btn-secondary">
+        Théorie complète
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
     </div>
 
     <div
-      class="mt-8 relative w-full aspect-video rounded overflow-hidden border border-white/10 shadow-lg"
+      class="video-facade"
+      id="video-facade"
+      role="button"
+      aria-label="Lire la vidéo de présentation"
+      tabindex="0"
     >
-      <iframe
-        class="absolute top-0 left-0 w-full h-full"
-        src="https://www.youtube.com/embed/SgJ25zjMJyo?si=pXYc71i2i7G5tG5h"
-        title="YouTube video player"
-        style="border: none;"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      >
-      </iframe>
+      <img
+        src="https://img.youtube.com/vi/SgJ25zjMJyo/maxresdefault.jpg"
+        alt="Vidéo de présentation de la théorie"
+        class="video-facade__img"
+        loading="lazy"
+      />
+      <div class="video-facade__overlay">
+        <div class="video-facade__play">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="white"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon points="5,3 19,12 5,21"></polygon>
+          </svg>
+        </div>
+        <span class="video-facade__label">Regarder la présentation</span>
+      </div>
     </div>
+
+    <script>
+      const facade = document.getElementById('video-facade');
+      const loadVideo = () => {
+        if (facade && !facade.dataset.loaded) {
+          facade.dataset.loaded = 'true';
+          facade.innerHTML = `<iframe
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/SgJ25zjMJyo?si=pXYc71i2i7G5tG5h&autoplay=1"
+            title="YouTube video player"
+            style="border: none;"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>`;
+        }
+      };
+      facade?.addEventListener('click', loadVideo);
+      facade?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          loadVideo();
+        }
+      });
+    </script>
   </div>
 
   <ChapterBanner
@@ -61,7 +105,10 @@ import Footer from '@components/Footer.astro';
     href="/chapitres/1188"
   />
 
-  <h2 class="section-title">Dossiers principaux</h2>
+  <h2 class="section-title">
+    <span class="section-title__accent"></span>
+    Dossiers principaux
+  </h2>
   <div class="grid">
     <CategoryCard
       icon="🌍"
@@ -101,7 +148,10 @@ import Footer from '@components/Footer.astro';
     />
   </div>
 
-  <h2 class="section-title">Articles récents</h2>
+  <h2 class="section-title">
+    <span class="section-title__accent"></span>
+    Articles récents
+  </h2>
   <div class="article-list">
     <ArticleListItem
       badge="Renforcement"
@@ -141,38 +191,223 @@ import Footer from '@components/Footer.astro';
 </WikiLayout>
 
 <style>
+  /* ===== HERO ===== */
   .hero {
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    position: relative;
   }
 
-  .hero h1 {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    font-weight: 700;
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--violet-light);
     margin-bottom: 16px;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: color-mix(in srgb, var(--violet) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--violet) 20%, transparent);
   }
 
-  .hero .subtitle {
+  .hero-badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--violet-light);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-text {
     font-size: 15px;
     color: var(--text-secondary);
     max-width: 700px;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
+  .hero-text p + p {
+    margin-top: 12px;
+  }
+
+  .hero-text__more {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-text__more {
+      display: block;
+    }
+  }
+
+  /* ===== CTA BUTTONS ===== */
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--gradient-border);
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 12px var(--glow-violet);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 24px var(--glow-violet);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--cyan-dim);
+    color: var(--cyan);
+    box-shadow: 0 0 16px var(--glow-cyan);
+  }
+
+  /* ===== VIDEO FACADE ===== */
+  .video-facade {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-top: 32px;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .video-facade:hover {
+    border-color: color-mix(in srgb, var(--violet) 40%, var(--border-color));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-violet);
+  }
+
+  .video-facade__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .video-facade__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(7, 2, 10, 0.7) 0%,
+      rgba(7, 2, 10, 0.3) 50%,
+      rgba(7, 2, 10, 0.1) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: background 0.3s ease;
+  }
+
+  .video-facade:hover .video-facade__overlay {
+    background: linear-gradient(
+      to top,
+      rgba(7, 2, 10, 0.8) 0%,
+      rgba(7, 2, 10, 0.4) 50%,
+      rgba(7, 2, 10, 0.15) 100%
+    );
+  }
+
+  .video-facade__play {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--violet);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px var(--glow-violet);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .video-facade:hover .video-facade__play {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px var(--glow-violet);
+  }
+
+  .video-facade__label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+  }
+
+  /* ===== SECTION TITLES ===== */
   .section-title {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 24px;
-    padding-bottom: 8px;
+    padding-bottom: 12px;
     border-bottom: 1px solid var(--border-color);
     margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title__accent {
+    display: inline-block;
+    width: 24px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--gradient-border);
+    flex-shrink: 0;
   }
 
   .section-title:first-of-type {
     margin-top: 0;
   }
 
+  /* ===== GRID & LIST ===== */
   .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -196,10 +431,18 @@ import Footer from '@components/Footer.astro';
       grid-template-columns: 1fr;
     }
     .hero {
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
     .section-title {
       margin-top: 40px;
+    }
+    .video-facade__play {
+      width: 52px;
+      height: 52px;
+    }
+    .video-facade__play svg {
+      width: 20px;
+      height: 20px;
     }
   }
 </style>

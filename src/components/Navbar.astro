@@ -4,75 +4,67 @@ import SidebarNav from './SidebarNav.astro';
 ---
 
 <nav
-  class="h-[52px] md:h-[48px] bg-bgMain border-b border-white/10 flex items-center px-4 md:px-6 sticky top-0 z-50 relative"
+  class="navbar"
 >
   <!-- Logo -->
   <a
     href="/"
-    class="font-semibold text-[13px] md:text-[14px] flex items-center gap-2 mr-4 md:mr-6 text-textMain shrink-0"
+    class="logo"
   >
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="text-cyan"
-      ><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg
-    >
-    <span class="hidden sm:inline">Les Fous du Bus</span>
-    <span class="sm:hidden">LFDB</span>
+    <div class="logo-icon">
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg
+      >
+    </div>
+    <span class="logo-text hidden sm:inline">Les Fous du Bus</span>
+    <span class="logo-text sm:hidden">LFDB</span>
   </a>
 
   <!-- Desktop nav links -->
-  <div class="hidden md:flex gap-5 absolute left-1/2 -translate-x-1/2">
-    <a href="/theorie" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
-      >La théorie</a
-    >
-    <a href="/dossiers" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
-      >Dossiers</a
-    >
-    <a href="/chapitres" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
-      >Chapitres</a
-    >
-    <a href="/explorer" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
-      >Explorer</a
-    >
-    <a href="/verifier" class="text-[13px] text-textSecondary hover:text-textMain transition-colors"
-      >Vérifier</a
-    >
+  <div class="nav-links">
+    <a href="/theorie" class="nav-link">La théorie</a>
+    <a href="/dossiers" class="nav-link">Dossiers</a>
+    <a href="/chapitres" class="nav-link">Chapitres</a>
+    <a href="/explorer" class="nav-link">Explorer</a>
+    <a href="/verifier" class="nav-link">Vérifier</a>
   </div>
 
   <!-- Spacer for mobile -->
   <div class="flex-1 md:hidden"></div>
 
   <!-- Desktop search + dernière analyse -->
-  <div class="hidden md:flex items-center gap-3 ml-auto">
+  <div class="nav-actions">
     <a
       href="/chapitres/derniere-analyse"
-      class="text-[12px] text-textSecondary hover:text-cyan transition-colors border border-white/10 rounded px-2.5 py-1 hover:border-violet"
+      class="nav-cta"
       >Dernière analyse</a
     >
     <button
       onclick="window.dispatchEvent(new Event('openSearch'))"
-      class="flex items-center bg-bgSecondary border border-white/10 rounded px-2.5 py-1 text-[13px] text-textSecondary gap-10 cursor-pointer hover:border-violet transition-colors"
+      class="search-trigger"
     >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
       <span>Rechercher...</span>
-      <span class="bg-bgMain px-1.5 py-[1px] rounded-[3px] text-[11px] border border-white/10"
-        >Ctrl K</span
-      >
+      <span class="search-shortcut">Ctrl K</span>
     </button>
   </div>
 
-  <SearchModal client:load />
+  <SearchModal client:idle />
 
   <!-- Mobile search button -->
   <button
     onclick="window.dispatchEvent(new Event('openSearch'))"
-    class="md:hidden text-textSecondary hover:text-textMain p-2 flex items-center justify-center"
+    class="mobile-btn"
     aria-label="Rechercher"
   >
     <svg
@@ -91,7 +83,7 @@ import SidebarNav from './SidebarNav.astro';
   <!-- Theme toggle -->
   <button
     id="theme-toggle"
-    class="text-textSecondary hover:text-textMain transition-colors p-2 flex items-center justify-center"
+    class="mobile-btn"
     aria-label="Changer le thème"
   >
     <svg
@@ -140,7 +132,7 @@ import SidebarNav from './SidebarNav.astro';
   <!-- Mobile hamburger -->
   <button
     id="mobile-menu-toggle"
-    class="md:hidden text-textSecondary hover:text-textMain p-2 flex items-center justify-center"
+    class="mobile-btn"
     aria-label="Menu"
   >
     <svg
@@ -225,6 +217,193 @@ import SidebarNav from './SidebarNav.astro';
   </div>
 </div>
 
+<style>
+  .navbar {
+    height: 52px;
+    background-color: color-mix(in srgb, var(--bg-main) 80%, transparent);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  @media (min-width: 768px) {
+    .navbar {
+      height: 48px;
+      padding: 0 24px;
+    }
+  }
+
+  /* Logo */
+  .logo {
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 24px;
+    text-decoration: none;
+    color: var(--text-main);
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--cyan) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+    transition: all 0.25s ease;
+  }
+
+  .logo:hover .logo-icon {
+    background: color-mix(in srgb, var(--cyan) 20%, transparent);
+    box-shadow: 0 0 12px var(--glow-cyan);
+    border-color: color-mix(in srgb, var(--cyan) 40%, transparent);
+  }
+
+  .logo-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Desktop nav links */
+  .nav-links {
+    display: none;
+    gap: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 4px 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-border);
+    border-radius: 1px;
+    transition: width 0.25s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--text-main);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Desktop actions */
+  .nav-actions {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+
+  @media (min-width: 768px) {
+    .nav-actions {
+      display: flex;
+    }
+  }
+
+  .nav-cta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 5px 10px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-cta:hover {
+    color: var(--cyan);
+    border-color: var(--cyan-dim);
+    box-shadow: 0 0 12px var(--glow-cyan);
+  }
+
+  .search-trigger {
+    display: flex;
+    align-items: center;
+    background-color: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .search-trigger:hover {
+    border-color: var(--violet);
+    box-shadow: 0 0 12px var(--glow-violet);
+  }
+
+  .search-shortcut {
+    background-color: var(--bg-main);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    border: 1px solid var(--border-color);
+    font-family: monospace;
+  }
+
+  /* Mobile button */
+  .mobile-btn {
+    color: var(--text-secondary);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-btn:hover {
+    color: var(--text-main);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-btn {
+      display: none;
+    }
+  }
+</style>
+
 <script>
   // Theme toggle
   const handleToggleClick = () => {
@@ -273,7 +452,6 @@ import SidebarNav from './SidebarNav.astro';
   const openMenu = () => {
     menuOverlay?.classList.remove('hidden');
     menuDrawer?.classList.remove('hidden');
-    // Force reflow before removing transform
     requestAnimationFrame(() => {
       menuDrawer?.classList.remove('-translate-x-full');
     });
@@ -288,7 +466,6 @@ import SidebarNav from './SidebarNav.astro';
     hamburgerIcon?.classList.remove('hidden');
     closeIcon?.classList.add('hidden');
     document.body.style.overflow = '';
-    // Hide drawer after transition
     setTimeout(() => {
       if (isMenuOpen() === false) {
         menuDrawer?.classList.add('hidden');
@@ -306,12 +483,10 @@ import SidebarNav from './SidebarNav.astro';
 
   menuOverlay?.addEventListener('click', closeMenu);
 
-  // Close menu on navigation
   document.querySelectorAll('#mobile-menu-drawer a').forEach((link) => {
     link.addEventListener('click', closeMenu);
   });
 
-  // Close menu on resize to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 768 && isMenuOpen()) {
       closeMenu();

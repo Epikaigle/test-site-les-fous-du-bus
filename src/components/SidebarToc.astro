@@ -12,19 +12,20 @@ interface Props {
 const { headings = [] } = Astro.props;
 ---
 
-<nav>
-  <h3 class="text-[12px] uppercase tracking-[0.5px] text-textMain mb-3 font-semibold">
+<nav class="toc">
+  <h3 class="toc__title">
+    <span class="toc__title-dot"></span>
     Sur cette page
   </h3>
-  <ul class="list-none text-[13px] space-y-2">
+  <ul class="toc__list">
     {
       headings
         .filter((h) => h.depth < 4)
         .map((heading) => (
-          <li class={heading.depth === 3 ? 'ml-3' : ''}>
+          <li class={`toc__item ${heading.depth === 3 ? 'toc__item--nested' : ''}`}>
             <a
               href={`#${heading.slug}`}
-              class="text-textSecondary hover:text-textMain transition-colors"
+              class="toc__link"
             >
               {heading.text}
             </a>
@@ -33,3 +34,59 @@ const { headings = [] } = Astro.props;
     }
   </ul>
 </nav>
+
+<style>
+  .toc__title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-main);
+    margin-bottom: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .toc__title-dot {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gradient-border);
+  }
+
+  .toc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border-left: 1px solid var(--border-color);
+    padding-left: 12px;
+  }
+
+  .toc__item {
+    margin: 0;
+  }
+
+  .toc__item--nested {
+    margin-left: 12px;
+  }
+
+  .toc__link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+    padding: 1px 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  .toc__link:hover {
+    color: var(--text-main);
+    border-bottom-color: color-mix(in srgb, var(--cyan) 40%, transparent);
+  }
+</style>
