@@ -9,46 +9,69 @@ interface Props {
 }
 
 const { badge, badgeColor, title, category, chapter, href } = Astro.props;
-
-const colorClasses = {
-  cyan: 'bg-cyan/10 text-cyan border-cyan/20',
-  violet: 'bg-violet/10 text-[#D3B3FF] border-violet/30',
-  gold: 'bg-accentGold/10 text-accentGold border-accentGold/20',
-};
 ---
 
 <a href={href} class="article-item">
-  <div class="article-item__main">
-    <span class={`article-item__badge ${colorClasses[badgeColor]}`}>
-      {badge}
-    </span>
-    <span class="article-item__title">{title}</span>
+  <div class="article-item__accent"></div>
+  <div class="article-item__body">
+    <div class="article-item__main">
+      <span class={`article-item__badge article-item__badge--${badgeColor}`}>
+        {badge}
+      </span>
+      <span class="article-item__title">{title}</span>
+    </div>
+    <div class="article-item__meta">
+      <span>{category}</span>
+      <span class="article-item__dot">•</span>
+      <span>Suite au chap. {chapter}</span>
+    </div>
   </div>
-  <div class="article-item__meta">
-    <span>{category}</span>
-    <span class="article-item__dot">•</span>
-    <span>Suite au chap. {chapter}</span>
+  <div class="article-item__arrow">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
   </div>
 </a>
 
 <style>
   .article-item {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    padding: 12px 16px;
+    align-items: stretch;
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 8px;
     text-decoration: none;
-    transition:
-      background-color 0.2s,
-      border-color 0.2s;
-    gap: 8px;
+    transition: all 0.25s ease;
+    overflow: hidden;
   }
 
   .article-item:hover {
     background-color: var(--bg-secondary);
     border-color: color-mix(in srgb, var(--violet) 30%, var(--border-color));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transform: translateX(2px);
+  }
+
+  .article-item__accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gradient-border);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .article-item:hover .article-item__accent {
+    opacity: 1;
+  }
+
+  .article-item__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px 14px 20px;
+    gap: 8px;
   }
 
   .article-item__main {
@@ -59,8 +82,8 @@ const colorClasses = {
 
   .article-item__badge {
     font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 3px;
+    padding: 3px 8px;
+    border-radius: 100px;
     font-weight: 500;
     border: 1px solid;
     text-transform: uppercase;
@@ -69,11 +92,29 @@ const colorClasses = {
     flex-shrink: 0;
   }
 
+  .article-item__badge--cyan {
+    background-color: color-mix(in srgb, var(--cyan) 12%, transparent);
+    color: var(--cyan);
+    border-color: color-mix(in srgb, var(--cyan) 25%, transparent);
+  }
+
+  .article-item__badge--violet {
+    background-color: color-mix(in srgb, var(--violet) 12%, transparent);
+    color: var(--violet-light);
+    border-color: color-mix(in srgb, var(--violet) 25%, transparent);
+  }
+
+  .article-item__badge--gold {
+    background-color: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+    color: var(--accent-gold);
+    border-color: color-mix(in srgb, var(--accent-gold) 25%, transparent);
+  }
+
   .article-item__title {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-main);
-    transition: color 0.2s;
+    transition: color 0.2s ease;
   }
 
   .article-item:hover .article-item__title {
@@ -86,28 +127,39 @@ const colorClasses = {
     display: flex;
     gap: 8px;
     align-items: center;
-    padding-left: 0;
   }
 
   .article-item__dot {
     color: rgba(255, 255, 255, 0.2);
   }
 
+  .article-item__arrow {
+    display: none;
+    align-items: center;
+    padding-right: 16px;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .article-item:hover .article-item__arrow {
+    color: var(--cyan);
+  }
+
   @media (min-width: 768px) {
-    .article-item {
+    .article-item__body {
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       gap: 0;
     }
-    .article-item__meta {
-      padding-left: 0;
+    .article-item__arrow {
+      display: flex;
     }
   }
 
   @media (max-width: 480px) {
-    .article-item {
-      padding: 10px 12px;
+    .article-item__body {
+      padding: 12px 14px 12px 18px;
     }
     .article-item__title {
       font-size: 13px;

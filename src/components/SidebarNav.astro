@@ -238,12 +238,12 @@ const navSections: NavSection[] = [
       return (
         <div class={index > 0 ? 'mt-5' : ''} data-sidebar-section>
           <button
-            class="sidebar-section-toggle flex items-center justify-between w-full text-left text-[11px] uppercase tracking-[0.6px] text-textMain mb-2 font-semibold hover:text-cyan transition-colors cursor-pointer"
+            class="sidebar-section-toggle"
             aria-expanded={isExpanded ? 'true' : 'false'}
           >
             <span>{section.label}</span>
             <svg
-              class="sidebar-chevron w-3 h-3 transition-transform duration-200 shrink-0"
+              class="sidebar-chevron"
               class:list={[{ 'rotate-90': isExpanded }]}
               viewBox="0 0 24 24"
               fill="none"
@@ -251,13 +251,15 @@ const navSections: NavSection[] = [
               stroke-width="2.5"
               stroke-linecap="round"
               stroke-linejoin="round"
+              width="12"
+              height="12"
             >
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
           <ul
-            class="sidebar-section-links list-none space-y-0.5 overflow-hidden transition-all duration-200"
-            class:list={[{ 'max-h-0 opacity-0': !isExpanded }, { 'max-h-[2000px] opacity-100': isExpanded }]}
+            class="sidebar-section-links"
+            class:list={[{ 'collapsed': !isExpanded }, { 'expanded': isExpanded }]}
           >
             {section.links.map((link) => {
               const isActive = currentPath === link.href || currentPath === link.href + '/';
@@ -265,11 +267,7 @@ const navSections: NavSection[] = [
                 <li>
                   <a
                     href={link.href}
-                    class={`sidebar-link block px-3 py-1.5 -ml-1 rounded text-[13px] transition-colors ${
-                      isActive
-                        ? 'text-cyan font-medium bg-cyan/10'
-                        : 'text-textSecondary hover:bg-surface hover:text-textMain'
-                    }`}
+                    class={`sidebar-link ${isActive ? 'sidebar-link--active' : ''}`}
                   >
                     {link.label}
                   </a>
@@ -282,6 +280,92 @@ const navSections: NavSection[] = [
     })
   }
 </nav>
+
+<style>
+  .sidebar-section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+  }
+
+  .sidebar-section-toggle:hover {
+    color: var(--cyan);
+  }
+
+  .sidebar-chevron {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+  }
+
+  .sidebar-section-toggle:hover .sidebar-chevron {
+    opacity: 1;
+  }
+
+  .sidebar-section-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+    transition: max-height 0.25s ease, opacity 0.2s ease;
+  }
+
+  .sidebar-section-links.collapsed {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .sidebar-section-links.expanded {
+    max-height: 2000px;
+    opacity: 1;
+  }
+
+  .sidebar-link {
+    display: block;
+    padding: 5px 12px;
+    margin-left: -4px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    border-left: 2px solid transparent;
+  }
+
+  .sidebar-link:hover {
+    background-color: color-mix(in srgb, var(--surface) 60%, transparent);
+    color: var(--text-main);
+    border-left-color: color-mix(in srgb, var(--violet) 40%, transparent);
+  }
+
+  .sidebar-link--active {
+    color: var(--cyan);
+    font-weight: 500;
+    background: color-mix(in srgb, var(--cyan) 8%, transparent);
+    border-left-color: var(--cyan);
+  }
+
+  .sidebar-link--active:hover {
+    background: color-mix(in srgb, var(--cyan) 12%, transparent);
+    border-left-color: var(--cyan);
+  }
+</style>
 
 <script>
   // Sidebar collapsible sections
