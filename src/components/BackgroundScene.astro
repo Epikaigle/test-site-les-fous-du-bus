@@ -1,0 +1,86 @@
+<!-- Decorative, non-interactive layer: buses & hourglasses drift across the
+     background (a nod to "Les Fous du Bus" + the time-travel theory). -->
+<div class="scene" aria-hidden="true">
+  <span class="scene-obj go-right bus" style="--top:14%; --size:120px; --dur:46s; --delay:-6s; --op:.07; color:var(--accent-gold)">
+    <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="56" height="20" rx="4"/><line x1="4" y1="17" x2="60" y2="17"/><line x1="22" y1="7" x2="22" y2="17"/><line x1="42" y1="7" x2="42" y2="17"/><circle cx="18" cy="30" r="4"/><circle cx="46" cy="30" r="4"/></svg>
+  </span>
+
+  <span class="scene-obj go-left hourglass" style="--top:30%; --size:54px; --dur:60s; --delay:-22s; --op:.06; color:var(--cyan)">
+    <svg viewBox="0 0 32 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h20M6 36h20"/><path d="M8 4c0 9 16 9 16 16S8 27 8 36M24 4c0 9-16 9-16 16s16 7 16 16"/></svg>
+  </span>
+
+  <span class="scene-obj go-right bus" style="--top:52%; --size:84px; --dur:70s; --delay:-40s; --op:.05; color:var(--violet)">
+    <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="56" height="20" rx="4"/><line x1="4" y1="17" x2="60" y2="17"/><line x1="22" y1="7" x2="22" y2="17"/><line x1="42" y1="7" x2="42" y2="17"/><circle cx="18" cy="30" r="4"/><circle cx="46" cy="30" r="4"/></svg>
+  </span>
+
+  <span class="scene-obj go-left hourglass" style="--top:68%; --size:40px; --dur:52s; --delay:-12s; --op:.06; color:var(--magenta)">
+    <svg viewBox="0 0 32 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h20M6 36h20"/><path d="M8 4c0 9 16 9 16 16S8 27 8 36M24 4c0 9-16 9-16 16s16 7 16 16"/></svg>
+  </span>
+
+  <span class="scene-obj go-right hourglass" style="--top:84%; --size:62px; --dur:80s; --delay:-55s; --op:.05; color:var(--accent-gold)">
+    <svg viewBox="0 0 32 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h20M6 36h20"/><path d="M8 4c0 9 16 9 16 16S8 27 8 36M24 4c0 9-16 9-16 16s16 7 16 16"/></svg>
+  </span>
+
+  <span class="scene-obj go-left bus" style="--top:6%; --size:64px; --dur:90s; --delay:-70s; --op:.045; color:var(--cyan-dim)">
+    <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="56" height="20" rx="4"/><line x1="4" y1="17" x2="60" y2="17"/><line x1="22" y1="7" x2="22" y2="17"/><line x1="42" y1="7" x2="42" y2="17"/><circle cx="18" cy="30" r="4"/><circle cx="46" cy="30" r="4"/></svg>
+  </span>
+</div>
+
+<style>
+  .scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .scene-obj {
+    position: absolute;
+    left: 0;
+    top: var(--top, 50%);
+    width: var(--size, 80px);
+    height: auto;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .scene-obj svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    animation: scene-bob 6s ease-in-out infinite alternate;
+  }
+
+  .hourglass svg {
+    animation: scene-bob 5s ease-in-out infinite alternate, scene-tilt 9s ease-in-out infinite alternate;
+  }
+
+  .go-right {
+    animation: scene-right var(--dur, 60s) linear var(--delay, 0s) infinite;
+  }
+  .go-left {
+    animation: scene-left var(--dur, 60s) linear var(--delay, 0s) infinite;
+  }
+
+  @keyframes scene-right {
+    0% { transform: translateX(-18vw); opacity: 0; }
+    6% { opacity: var(--op, 0.06); }
+    94% { opacity: var(--op, 0.06); }
+    100% { transform: translateX(118vw); opacity: 0; }
+  }
+  @keyframes scene-left {
+    0% { transform: translateX(118vw) scaleX(-1); opacity: 0; }
+    6% { opacity: var(--op, 0.06); }
+    94% { opacity: var(--op, 0.06); }
+    100% { transform: translateX(-18vw) scaleX(-1); opacity: 0; }
+  }
+  @keyframes scene-bob {
+    from { transform: translateY(-4px); }
+    to { transform: translateY(4px); }
+  }
+  @keyframes scene-tilt {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(5deg); }
+  }
+</style>

@@ -1,52 +1,158 @@
 ---
 import SearchModal from './SearchModal.tsx';
 import SidebarNav from './SidebarNav.astro';
+
+interface SubLink {
+  label: string;
+  href: string;
+}
+interface SubGroup {
+  title: string;
+  links: SubLink[];
+}
+interface NavItem {
+  label: string;
+  href: string;
+  groups: SubGroup[];
+}
+
+const nav: NavItem[] = [
+  {
+    label: 'La théorie',
+    href: '/theorie',
+    groups: [
+      {
+        title: 'Lire',
+        links: [
+          { label: 'Résumé de la théorie', href: '/theorie/resume' },
+          { label: 'Théorie complète', href: '/theorie/theorie-complete' },
+          { label: 'Chronologie', href: '/theorie/chronologie' },
+        ],
+      },
+      {
+        title: 'Outils',
+        links: [
+          { label: 'Carte mentale', href: '/explorer/carte-mentale' },
+          { label: 'Lexique essentiel', href: '/aide/glossaire' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Dossiers',
+    href: '/dossiers',
+    groups: [
+      {
+        title: 'Thématiques',
+        links: [
+          { label: 'Monde et destinations', href: '/dossiers#monde-destinations' },
+          { label: 'Histoire et temporalité', href: '/dossiers#histoire-temporalite' },
+          { label: 'Figures principales', href: '/dossiers#figures-principales' },
+          { label: 'Armes antiques', href: '/dossiers#armes-antiques' },
+          { label: 'Technologies et pouvoirs', href: '/dossiers#technologies-pouvoirs' },
+          { label: 'Gouvernement & guerre finale', href: '/dossiers#gouvernement-mondial' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Chapitres',
+    href: '/chapitres',
+    groups: [
+      {
+        title: 'Dernières analyses',
+        links: [
+          { label: 'Chapitre 1188', href: '/chapitres/1188' },
+          { label: 'Chapitre 1187', href: '/chapitres/1187' },
+          { label: 'Chapitre 1186', href: '/chapitres/1186' },
+          { label: 'Chapitre 1184', href: '/chapitres/1184' },
+        ],
+      },
+      {
+        title: 'Tout voir',
+        links: [{ label: 'Tous les chapitres', href: '/chapitres' }],
+      },
+    ],
+  },
+  {
+    label: 'Explorer',
+    href: '/explorer',
+    groups: [
+      {
+        title: 'Explorer',
+        links: [
+          { label: 'Vue d’ensemble', href: '/explorer' },
+          { label: 'Carte mentale', href: '/explorer/carte-mentale' },
+          { label: 'Chronologie', href: '/theorie/chronologie' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Vérifier',
+    href: '/verifier',
+    groups: [
+      {
+        title: 'Méthode',
+        links: [
+          { label: 'Preuves', href: '/verifier/preuves' },
+          { label: 'Citations', href: '/verifier/citations' },
+          { label: 'Parallèles', href: '/verifier/paralleles' },
+          { label: 'Objections', href: '/verifier/objections' },
+          { label: 'Contradictions', href: '/verifier/contradictions' },
+          { label: 'Sources', href: '/verifier/sources' },
+        ],
+      },
+    ],
+  },
+];
 ---
 
-<nav
-  class="navbar"
->
+<nav class="navbar">
   <!-- Logo -->
-  <a
-    href="/"
-    class="logo"
-  >
+  <a href="/" class="logo">
     <div class="logo-icon">
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg
-      >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="11" rx="2.5"></rect>
+        <line x1="2" y1="10.5" x2="22" y2="10.5"></line>
+        <line x1="9" y1="5" x2="9" y2="10.5"></line>
+        <line x1="15" y1="5" x2="15" y2="10.5"></line>
+        <circle cx="7" cy="18.5" r="1.6"></circle>
+        <circle cx="17" cy="18.5" r="1.6"></circle>
+      </svg>
     </div>
     <span class="logo-text hidden sm:inline">Les Fous du Bus</span>
     <span class="logo-text sm:hidden">LFDB</span>
   </a>
 
-  <!-- Desktop nav links -->
+  <!-- Desktop nav links with dropdowns -->
   <div class="nav-links">
-    <a href="/theorie" class="nav-link">La théorie</a>
-    <a href="/dossiers" class="nav-link">Dossiers</a>
-    <a href="/chapitres" class="nav-link">Chapitres</a>
-    <a href="/explorer" class="nav-link">Explorer</a>
-    <a href="/verifier" class="nav-link">Vérifier</a>
+    {
+      nav.map((item) => (
+        <div class="nav-item">
+          <a href={item.href} class="nav-link" aria-haspopup="true">
+            {item.label}
+            <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown" role="menu">
+            {item.groups.map((group) => (
+              <div class="nav-dropdown__group">
+                <div class="nav-dropdown__title">{group.title}</div>
+                {group.links.map((link) => (
+                  <a href={link.href} class="nav-dropdown__link" role="menuitem">{link.label}</a>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
   </div>
 
-  <!-- Spacer for mobile -->
-  <div class="flex-1 md:hidden"></div>
+  <div class="flex-1 lg:hidden"></div>
 
-  <!-- Desktop search + dernière analyse -->
+  <!-- Desktop actions -->
   <div class="nav-actions">
-    <a
-      href="/chapitres/derniere-analyse"
-      class="nav-cta"
-      >Dernière analyse</a
-    >
     <button
       onclick="window.dispatchEvent(new Event('openSearch'))"
       class="search-trigger"
@@ -54,302 +160,272 @@ import SidebarNav from './SidebarNav.astro';
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
-      <span>Rechercher...</span>
+      <span>Rechercher…</span>
       <span class="search-shortcut">Ctrl K</span>
+    </button>
+
+    <button data-theme-toggle class="theme-btn theme-btn--desktop" aria-label="Changer le thème">
+      <svg class="ico-sun hidden" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="ico-moon hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </button>
   </div>
 
   <SearchModal client:idle />
 
-  <!-- Mobile search button -->
+  <!-- Mobile: search -->
   <button
     onclick="window.dispatchEvent(new Event('openSearch'))"
-    class="mobile-btn"
+    class="icon-btn"
     aria-label="Rechercher"
   >
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      ><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg
-    >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
   </button>
 
-  <!-- Theme toggle -->
-  <button
-    id="theme-toggle"
-    class="mobile-btn"
-    aria-label="Changer le thème"
-  >
-    <svg
-      id="theme-icon-dark"
-      class="hidden"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg
-    >
-    <svg
-      id="theme-icon-light"
-      class="hidden"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      ><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line
-        x1="12"
-        y1="21"
-        x2="12"
-        y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line
-        x1="18.36"
-        y1="18.36"
-        x2="19.78"
-        y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line
-        x1="21"
-        y1="12"
-        x2="23"
-        y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line
-        x1="18.36"
-        y1="5.64"
-        x2="19.78"
-        y2="4.22"></line></svg
-    >
+  <!-- Mobile: theme toggle -->
+  <button data-theme-toggle class="icon-btn theme-btn--mobile" aria-label="Changer le thème">
+    <svg class="ico-sun hidden" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    <svg class="ico-moon hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
   </button>
 
-  <!-- Mobile hamburger -->
-  <button
-    id="mobile-menu-toggle"
-    class="mobile-btn"
-    aria-label="Menu"
-  >
-    <svg
-      id="hamburger-icon"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      ><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line
-        x1="3"
-        y1="18"
-        x2="21"
-        y2="18"></line></svg
-    >
-    <svg
-      id="close-icon"
-      class="hidden"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      ><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg
-    >
+  <!-- Mobile: hamburger -->
+  <button id="mobile-menu-toggle" class="icon-btn" aria-label="Menu" aria-expanded="false">
+    <svg id="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+    <svg id="close-icon" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
   </button>
 </nav>
 
 <!-- Mobile menu overlay -->
 <div
   id="mobile-menu-overlay"
-  class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden md:hidden"
-  style="top: 52px;"
->
-</div>
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden lg:hidden"
+  style="top: var(--nav-h);"
+></div>
 
 <!-- Mobile menu drawer -->
 <div
   id="mobile-menu-drawer"
-  class="fixed top-[52px] left-0 bottom-0 w-[280px] bg-bgMain border-r border-white/10 z-40 overflow-y-auto hidden md:hidden transform -translate-x-full transition-transform duration-300 ease-in-out"
+  class="fixed left-0 bottom-0 w-[84%] max-w-[320px] bg-bgMain border-r border-borderColor z-40 overflow-y-auto hidden lg:hidden transform -translate-x-full transition-transform duration-300 ease-in-out"
+  style="top: var(--nav-h);"
 >
   <div class="p-5">
-    <!-- Mobile nav links -->
-    <div class="mb-6 pb-4 border-b border-white/10">
+    <div class="mb-5 pb-4 border-b border-borderColor">
       <div class="flex flex-col gap-1">
-        <a
-          href="/theorie"
-          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-          >La théorie</a
-        >
-        <a
-          href="/dossiers"
-          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-          >Dossiers</a
-        >
-        <a
-          href="/chapitres"
-          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-          >Chapitres</a
-        >
-        <a
-          href="/explorer"
-          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-          >Explorer</a
-        >
-        <a
-          href="/verifier"
-          class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-          >Vérifier</a
-        >
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
+              >{item.label}</a
+            >
+          ))
+        }
       </div>
     </div>
-
-    <!-- Sidebar nav content -->
     <SidebarNav currentPath={Astro.url.pathname} />
   </div>
 </div>
 
 <style>
   .navbar {
-    height: 52px;
-    background-color: color-mix(in srgb, var(--bg-main) 80%, transparent);
-    backdrop-filter: blur(16px) saturate(1.4);
-    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    height: var(--nav-h);
+    background-color: color-mix(in srgb, var(--bg-main) 82%, transparent);
+    backdrop-filter: blur(16px) saturate(1.35);
+    -webkit-backdrop-filter: blur(16px) saturate(1.35);
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
+    gap: 8px;
     padding: 0 16px;
     position: sticky;
     top: 0;
     z-index: 50;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .navbar {
-      height: 48px;
-      padding: 0 24px;
+      padding: 0 28px;
+      gap: 12px;
     }
   }
 
   /* Logo */
   .logo {
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 700;
+    font-size: 15px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-right: 24px;
+    gap: 9px;
+    margin-right: 8px;
     text-decoration: none;
     color: var(--text-main);
     flex-shrink: 0;
   }
 
+  @media (min-width: 1024px) {
+    .logo {
+      margin-right: 20px;
+    }
+  }
+
   .logo-icon {
-    color: var(--cyan);
+    color: var(--accent-gold);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 6px;
-    background: color-mix(in srgb, var(--cyan) 12%, transparent);
-    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--accent-gold) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-gold) 24%, transparent);
     transition: all 0.25s ease;
   }
 
   .logo:hover .logo-icon {
-    background: color-mix(in srgb, var(--cyan) 20%, transparent);
-    box-shadow: 0 0 12px var(--glow-cyan);
-    border-color: color-mix(in srgb, var(--cyan) 40%, transparent);
+    background: color-mix(in srgb, var(--accent-gold) 22%, transparent);
+    box-shadow: 0 0 12px var(--glow-violet);
+    transform: translateY(-1px);
   }
 
   .logo-text {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
     background: var(--gradient-hero);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Desktop nav links */
+  /* Desktop nav links + dropdowns */
   .nav-links {
     display: none;
-    gap: 20px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    gap: 4px;
+    align-items: center;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .nav-links {
       display: flex;
     }
   }
 
-  .nav-link {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    padding: 4px 0;
+  .nav-item {
     position: relative;
-    transition: color 0.2s ease;
   }
 
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-border);
-    border-radius: 1px;
-    transition: width 0.25s ease;
+  .nav-link {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 7px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    transition: color 0.2s ease, background-color 0.2s ease;
   }
 
   .nav-link:hover {
     color: var(--text-main);
+    background: color-mix(in srgb, var(--surface) 55%, transparent);
   }
 
-  .nav-link:hover::after {
-    width: 100%;
+  .nav-caret {
+    opacity: 0.6;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-item:hover .nav-caret,
+  .nav-item:focus-within .nav-caret {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 6px;
+    min-width: 240px;
+    display: flex;
+    gap: 20px;
+    padding: 14px 16px;
+    background-color: color-mix(in srgb, var(--bg-secondary) 92%, transparent);
+    backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--bg-main) 50%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease,
+      visibility 0.22s;
+    z-index: 60;
+  }
+
+  /* Invisible bridge so the menu doesn't close when moving the cursor down */
+  .nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+  }
+
+  .nav-item:hover .nav-dropdown,
+  .nav-item:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-dropdown__group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 150px;
+  }
+
+  .nav-dropdown__title {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    padding: 4px 8px 6px;
+    font-family: var(--font-sans);
+  }
+
+  .nav-dropdown__link {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background-color 0.18s ease, color 0.18s ease;
+  }
+
+  .nav-dropdown__link:hover {
+    background: color-mix(in srgb, var(--violet) 14%, transparent);
+    color: var(--text-main);
   }
 
   /* Desktop actions */
   .nav-actions {
     display: none;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin-left: auto;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .nav-actions {
       display: flex;
     }
-  }
-
-  .nav-cta {
-    font-size: 12px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 5px 10px;
-    transition: all 0.2s ease;
-  }
-
-  .nav-cta:hover {
-    color: var(--cyan);
-    border-color: var(--cyan-dim);
-    box-shadow: 0 0 12px var(--glow-cyan);
   }
 
   .search-trigger {
@@ -357,8 +433,8 @@ import SidebarNav from './SidebarNav.astro';
     align-items: center;
     background-color: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 5px 10px;
+    border-radius: 8px;
+    padding: 6px 10px;
     font-size: 13px;
     color: var(--text-secondary);
     gap: 8px;
@@ -367,8 +443,8 @@ import SidebarNav from './SidebarNav.astro';
   }
 
   .search-trigger:hover {
-    border-color: var(--violet);
-    box-shadow: 0 0 12px var(--glow-violet);
+    border-color: var(--cyan-dim);
+    color: var(--text-main);
   }
 
   .search-shortcut {
@@ -380,67 +456,100 @@ import SidebarNav from './SidebarNav.astro';
     font-family: monospace;
   }
 
-  /* Mobile button */
-  .mobile-btn {
+  /* Theme buttons */
+  .theme-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--bg-secondary) 80%, transparent);
+    border: 1px solid var(--border-color);
     color: var(--text-secondary);
-    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .theme-btn:hover {
+    color: var(--accent-gold);
+    border-color: color-mix(in srgb, var(--accent-gold) 40%, var(--border-color));
+  }
+  .theme-btn--desktop {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .theme-btn--desktop {
+      display: flex;
+    }
+  }
+
+  /* Generic icon button (mobile) */
+  .icon-btn {
+    color: var(--text-secondary);
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: none;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, background-color 0.2s ease;
   }
-
-  .mobile-btn:hover {
+  .icon-btn:hover {
     color: var(--text-main);
+    background: color-mix(in srgb, var(--surface) 50%, transparent);
+  }
+  .theme-btn--mobile {
+    display: flex;
+    background: none;
+    border: none;
   }
 
-  @media (min-width: 768px) {
-    .mobile-btn {
+  @media (min-width: 1024px) {
+    .icon-btn {
       display: none;
     }
   }
 </style>
 
 <script>
-  // Theme toggle
-  const handleToggleClick = () => {
-    const element = document.documentElement;
-    const isDark = element.classList.contains('dark');
+  // ---- Theme toggle (desktop + mobile) ----
+  const isDark = () => document.documentElement.classList.contains('dark');
 
-    if (isDark) {
-      element.classList.remove('dark');
-      element.classList.add('light');
+  const updateThemeIcons = () => {
+    const dark = isDark();
+    document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+      const sun = btn.querySelector('.ico-sun');
+      const moon = btn.querySelector('.ico-moon');
+      if (sun && moon) {
+        sun.classList.toggle('hidden', !dark);
+        moon.classList.toggle('hidden', dark);
+      }
+    });
+  };
+
+  const toggleTheme = () => {
+    const el = document.documentElement;
+    if (el.classList.contains('dark')) {
+      el.classList.remove('dark');
+      el.classList.add('light');
       localStorage.setItem('theme', 'light');
     } else {
-      element.classList.remove('light');
-      element.classList.add('dark');
+      el.classList.remove('light');
+      el.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     }
-    updateThemeIcon();
+    updateThemeIcons();
   };
 
-  const updateThemeIcon = () => {
-    const isDark = document.documentElement.classList.contains('dark');
-    const darkIcon = document.getElementById('theme-icon-dark');
-    const lightIcon = document.getElementById('theme-icon-light');
-    if (darkIcon && lightIcon) {
-      if (isDark) {
-        darkIcon.classList.add('hidden');
-        lightIcon.classList.remove('hidden');
-      } else {
-        lightIcon.classList.add('hidden');
-        darkIcon.classList.remove('hidden');
-      }
-    }
-  };
+  document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+    btn.addEventListener('click', toggleTheme);
+  });
+  updateThemeIcons();
 
-  document.getElementById('theme-toggle')?.addEventListener('click', handleToggleClick);
-  updateThemeIcon();
-
-  // Mobile menu toggle
+  // ---- Mobile menu ----
   const menuToggle = document.getElementById('mobile-menu-toggle');
   const menuOverlay = document.getElementById('mobile-menu-overlay');
   const menuDrawer = document.getElementById('mobile-menu-drawer');
@@ -449,47 +558,41 @@ import SidebarNav from './SidebarNav.astro';
 
   const isMenuOpen = () => !menuDrawer?.classList.contains('-translate-x-full');
 
-  const openMenu = () => {
-    menuOverlay?.classList.remove('hidden');
-    menuDrawer?.classList.remove('hidden');
-    requestAnimationFrame(() => {
-      menuDrawer?.classList.remove('-translate-x-full');
-    });
-    hamburgerIcon?.classList.add('hidden');
-    closeIcon?.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeMenu = () => {
-    menuDrawer?.classList.add('-translate-x-full');
-    menuOverlay?.classList.add('hidden');
-    hamburgerIcon?.classList.remove('hidden');
-    closeIcon?.classList.add('hidden');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      if (isMenuOpen() === false) {
-        menuDrawer?.classList.add('hidden');
-      }
-    }, 300);
-  };
-
-  menuToggle?.addEventListener('click', () => {
-    if (isMenuOpen()) {
-      closeMenu();
+  const setMenu = (open) => {
+    if (!menuDrawer || !menuOverlay) return;
+    if (open) {
+      menuOverlay.classList.remove('hidden');
+      menuDrawer.classList.remove('hidden');
+      requestAnimationFrame(() => menuDrawer.classList.remove('-translate-x-full'));
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      menuToggle?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     } else {
-      openMenu();
+      menuDrawer.classList.add('-translate-x-full');
+      menuOverlay.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
-  });
+  };
 
-  menuOverlay?.addEventListener('click', closeMenu);
-
+  menuToggle?.addEventListener('click', () => setMenu(!isMenuOpen()));
+  menuOverlay?.addEventListener('click', () => setMenu(false));
   document.querySelectorAll('#mobile-menu-drawer a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => setMenu(false));
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && isMenuOpen()) setMenu(false);
   });
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768 && isMenuOpen()) {
-      closeMenu();
-    }
+  // ---- Dropdowns: close on Escape (keyboard) ----
+  document.querySelectorAll('.nav-item').forEach((item) => {
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        (document.activeElement as HTMLElement | null)?.blur();
+      }
+    });
   });
 </script>

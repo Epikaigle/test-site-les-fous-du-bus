@@ -376,14 +376,16 @@ const navSections: NavSection[] = [
 
     if (!toggle || !links || !chevron) return;
 
+    const setExpanded = (expanded) => {
+      toggle.setAttribute('aria-expanded', String(expanded));
+      chevron.classList.toggle('rotate-90', expanded);
+      links.classList.toggle('expanded', expanded);
+      links.classList.toggle('collapsed', !expanded);
+    };
+
     toggle.addEventListener('click', () => {
       const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!isExpanded));
-      chevron.classList.toggle('rotate-90', !isExpanded);
-      links.classList.toggle('max-h-0', isExpanded);
-      links.classList.toggle('opacity-0', isExpanded);
-      links.classList.toggle('max-h-[2000px]', !isExpanded);
-      links.classList.toggle('opacity-100', !isExpanded);
+      setExpanded(!isExpanded);
     });
   });
 </script>

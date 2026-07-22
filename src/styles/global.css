@@ -3,47 +3,81 @@
 @tailwind utilities;
 
 @layer base {
+  /* ============================================================
+     DESIGN TOKENS — "Mer & Encre" (Sea & Ink)
+     A calm, editorial, zen palette inspired by One Piece:
+     deep night sea + moonlit straw-gold (dark), warm washi paper
+     + dawn teal (light). Accents: twilight indigo, sea teal,
+     sunset coral. Glows are intentionally soft for a zen feel.
+     ============================================================ */
   :root,
   .dark {
-    --bg-main: #07020a;
-    --bg-secondary: #160b27;
-    --surface: #22124a;
-    --violet: #6e3bbc;
-    --violet-light: #8b5fd4;
-    --magenta: #ad57a7;
-    --cyan: #4de7ff;
-    --cyan-dim: #2cb8d4;
-    --text-main: #fefbf8;
-    --text-secondary: #dde4ea;
-    --accent-gold: #f4b63f;
-    --alert: #9e3244;
-    --border-color: rgba(221, 228, 234, 0.1);
-    --glow-violet: rgba(110, 59, 188, 0.35);
-    --glow-cyan: rgba(77, 231, 255, 0.25);
-    --gradient-hero: linear-gradient(135deg, var(--cyan) 0%, var(--violet-light) 50%, var(--magenta) 100%);
-    --gradient-card: linear-gradient(135deg, rgba(110, 59, 188, 0.08), rgba(77, 231, 255, 0.04));
-    --gradient-border: linear-gradient(135deg, var(--violet), var(--cyan-dim));
+    --bg-main: #0e1722;
+    --bg-secondary: #13202e;
+    --surface: #1c2a3a;
+    --violet: #8091cf; /* twilight indigo  */
+    --violet-light: #9face0;
+    --magenta: #d98b74; /* sunset coral     */
+    --cyan: #5fb9c2; /* sea teal         */
+    --cyan-dim: #3f939c;
+    --text-main: #f3efe6; /* moonlit paper      */
+    --text-secondary: #aeb7c2;
+    --accent-gold: #e0ab4e; /* straw / sun        */
+    --alert: #c25b4f;
+    --border-color: rgba(243, 239, 230, 0.1);
+    --glow-violet: rgba(128, 145, 207, 0.22);
+    --glow-cyan: rgba(95, 185, 194, 0.2);
+    --gradient-hero: linear-gradient(
+      120deg,
+      var(--cyan) 0%,
+      var(--violet-light) 52%,
+      var(--magenta) 100%
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--violet) 7%, transparent),
+      color-mix(in srgb, var(--cyan) 4%, transparent)
+    );
+    --gradient-border: linear-gradient(120deg, var(--violet), var(--cyan-dim));
+    --wave-url: url('/waves-dark.svg');
   }
 
   .light {
-    --bg-main: #f5f6f8;
-    --bg-secondary: #ffffff;
-    --surface: #e2e5ea;
-    --violet: #5e2ea8;
-    --violet-light: #7c48d1;
-    --magenta: #9c3f96;
-    --cyan: #0c8599;
-    --cyan-dim: #0a7182;
-    --text-main: #1a1d21;
-    --text-secondary: #3d434a;
-    --accent-gold: #d98600;
-    --alert: #b51d1d;
-    --border-color: rgba(33, 37, 41, 0.18);
-    --glow-violet: rgba(94, 46, 168, 0.15);
-    --glow-cyan: rgba(12, 133, 153, 0.12);
-    --gradient-hero: linear-gradient(135deg, var(--cyan) 0%, var(--violet-light) 50%, var(--magenta) 100%);
-    --gradient-card: linear-gradient(135deg, rgba(94, 46, 168, 0.05), rgba(12, 133, 153, 0.03));
-    --gradient-border: linear-gradient(135deg, var(--violet), var(--cyan-dim));
+    --bg-main: #f6f1e7;
+    --bg-secondary: #fbf7ef;
+    --surface: #ece4d4;
+    --violet: #4a5694;
+    --violet-light: #5e6bb0;
+    --magenta: #bf5848;
+    --cyan: #0e7d8a;
+    --cyan-dim: #0a6672;
+    --text-main: #23201a;
+    --text-secondary: #5b574c;
+    --accent-gold: #b07612;
+    --alert: #a8392c;
+    --border-color: rgba(35, 32, 26, 0.14);
+    --glow-violet: rgba(74, 86, 148, 0.14);
+    --glow-cyan: rgba(14, 125, 138, 0.12);
+    --gradient-hero: linear-gradient(
+      120deg,
+      var(--cyan) 0%,
+      var(--violet-light) 52%,
+      var(--magenta) 100%
+    );
+    --gradient-card: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--violet) 5%, transparent),
+      color-mix(in srgb, var(--cyan) 3%, transparent)
+    );
+    --gradient-border: linear-gradient(120deg, var(--violet), var(--cyan-dim));
+    --wave-url: url('/waves-light.svg');
+  }
+
+  :root {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+      Roboto, sans-serif;
+    --font-display: 'Fraunces', Georgia, Cambria, 'Times New Roman', serif;
+    --nav-h: 56px;
   }
 
   html {
@@ -52,34 +86,46 @@
   }
 
   body {
-    @apply text-textMain font-sans antialiased;
+    @apply text-textMain antialiased;
+    font-family: var(--font-sans);
     background-color: var(--bg-main);
     background-image:
       radial-gradient(
-        ellipse 80% 50% at 50% -20%,
-        color-mix(in srgb, var(--violet) 15%, transparent),
-        transparent
+        60% 48% at 50% -12%,
+        color-mix(in srgb, var(--violet) 16%, transparent),
+        transparent 72%
       ),
-      linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--bg-main) 80%, transparent),
-        color-mix(in srgb, var(--bg-main) 97%, transparent)
+      radial-gradient(
+        38% 32% at 88% 4%,
+        color-mix(in srgb, var(--accent-gold) 12%, transparent),
+        transparent 72%
       ),
-      url('/wallpaper.webp');
-    background-size: 100% 100%, cover, cover;
+      var(--wave-url);
+    background-repeat: no-repeat, no-repeat, repeat;
     background-position: center top, center top, center top;
-    background-attachment: scroll, fixed, fixed;
+    background-attachment: scroll, scroll, fixed;
+    background-size: auto, auto, 240px 84px;
     box-sizing: border-box;
     margin: 0;
     min-height: 100vh;
     overflow-x: hidden;
+    font-feature-settings: 'ss01', 'cv01';
+  }
+
+  /* Editorial display headings */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+    letter-spacing: -0.012em;
   }
 
   /* On mobile, fixed background can cause jank */
   @media (max-width: 768px) {
     body {
       background-attachment: scroll, scroll, scroll;
-      background-size: 100% 100%, cover, cover;
     }
   }
 }
@@ -118,7 +164,7 @@
     }
   }
 
-  /* Gradient text utility */
+  /* Gradient text utility — calm "horizon" gradient */
   .text-gradient {
     background: var(--gradient-hero);
     -webkit-background-clip: text;
@@ -126,20 +172,24 @@
     -webkit-text-fill-color: transparent;
   }
 
-  /* Glow effect utility */
+  /* Glow effect utility (soft, zen) */
   .glow-violet {
-    box-shadow: 0 0 20px var(--glow-violet), 0 0 40px color-mix(in srgb, var(--glow-violet) 50%, transparent);
+    box-shadow:
+      0 0 18px var(--glow-violet),
+      0 0 36px color-mix(in srgb, var(--glow-violet) 45%, transparent);
   }
 
   .glow-cyan {
-    box-shadow: 0 0 20px var(--glow-cyan), 0 0 40px color-mix(in srgb, var(--glow-cyan) 50%, transparent);
+    box-shadow:
+      0 0 18px var(--glow-cyan),
+      0 0 36px color-mix(in srgb, var(--glow-cyan) 45%, transparent);
   }
 
   /* Glass effect */
   .glass {
-    background-color: color-mix(in srgb, var(--bg-main) 75%, transparent);
-    backdrop-filter: blur(12px) saturate(1.3);
-    -webkit-backdrop-filter: blur(12px) saturate(1.3);
+    background-color: color-mix(in srgb, var(--bg-main) 72%, transparent);
+    backdrop-filter: blur(14px) saturate(1.25);
+    -webkit-backdrop-filter: blur(14px) saturate(1.25);
   }
 
   /* Decorative gradient border */
@@ -154,16 +204,27 @@
     border-radius: inherit;
     padding: 1px;
     background: var(--gradient-border);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: xor;
     pointer-events: none;
   }
+
+  /* A delicate hand-drawn horizon rule (zen ornament) */
+  .wave-rule {
+    display: block;
+    width: 100%;
+    height: 14px;
+    color: var(--cyan-dim);
+    opacity: 0.55;
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
@@ -171,8 +232,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--surface);
-  border-radius: 4px;
+  background-color: color-mix(in srgb, var(--surface) 90%, var(--text-secondary) 10%);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -182,7 +245,7 @@
 /* Slimmer scrollbar on mobile */
 @media (max-width: 768px) {
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 5px;
   }
 }
 
@@ -200,11 +263,17 @@ iframe {
   max-width: 100%;
 }
 
+/* Selection colour — warm and on-theme */
+::selection {
+  background: color-mix(in srgb, var(--accent-gold) 30%, transparent);
+  color: var(--text-main);
+}
+
 /* Better focus styles for accessibility */
 :focus-visible {
   outline: 2px solid var(--cyan);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 /* Respect reduced motion preference */
@@ -224,8 +293,8 @@ iframe {
   position: fixed;
   bottom: 80px;
   right: 24px;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -235,7 +304,7 @@ iframe {
   justify-content: center;
   cursor: pointer;
   z-index: 25;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--bg-main) 40%, transparent);
   opacity: 0;
   pointer-events: none;
   transform: translateY(8px);
@@ -258,7 +327,6 @@ iframe {
   background-color: var(--surface);
   color: var(--cyan);
   border-color: var(--cyan-dim);
-  box-shadow: 0 4px 16px var(--glow-cyan);
 }
 
 @media (max-width: 1200px) {
@@ -272,20 +340,35 @@ iframe {
   .back-to-top {
     bottom: 72px;
     right: 16px;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
   }
 }
 
 /* Animated gradient shimmer for decorative elements */
 @keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient-shift 6s ease infinite;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Gentle drift for the hero horizon ornament */
+@keyframes wave-drift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-240px);
+  }
 }
 
 /* Skip to content link for accessibility */
@@ -306,4 +389,31 @@ iframe {
 
 .skip-link:focus {
   top: 0;
+}
+
+/* App wrapper sits above the decorative background scene */
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scroll-reveal animation for content blocks */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
