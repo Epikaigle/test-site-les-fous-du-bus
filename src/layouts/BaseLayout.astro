@@ -14,7 +14,8 @@ const {
   image,
 } = Astro.props;
 const fullTitle = `${title} | Les Fous du Bus`;
-const siteUrl = 'https://lesfousdubus.sbs';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://lesfousdubus.sbs';
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const ogImage = image || `${siteUrl}/og-default.png`;
 ---
 
@@ -25,10 +26,11 @@ const ogImage = image || `${siteUrl}/og-default.png`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -44,6 +46,24 @@ const ogImage = image || `${siteUrl}/og-default.png`;
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Les Fous du Bus',
+      url: siteUrl,
+      description: 'Wiki éditorial consacré à la théorie du Siècle oublié dans One Piece',
+      inLanguage: 'fr-FR',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${siteUrl}/search?q={search_term_string}`
+        },
+        'query-input': 'required name=search_term_string'
+      }
+    })} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

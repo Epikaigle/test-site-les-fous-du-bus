@@ -47,13 +47,8 @@ else if (certainty === 'Moyenne') badgeClass = 'meta-badge--violet';
     opacity: 0.45;
   }
   .meta-badge {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 5px;
-    font-weight: 600;
-    border: 1px solid;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium border;
+    font-size: 12px;
     line-height: 1.4;
     white-space: nowrap;
   }

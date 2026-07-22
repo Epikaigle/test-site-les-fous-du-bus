@@ -1,25 +1,58 @@
 ---
+import { getCollection } from 'astro:content';
+
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
 
-interface NavLink {
-  label: string;
-  href: string;
+// Fetch all published articles
+const articles = await getCollection('articles', ({ data }) => data.status === 'published');
+
+// Category mapping with French labels and icons
+const categoryConfig: Record<string, { label: string; icon: string; order: number }> = {
+  'monde-destinations': { label: 'Monde et destinations', icon: '🌍', order: 1 },
+  'histoire-temporalite': { label: 'Histoire, temps et Ponéglyphes', icon: '📜', order: 2 },
+  'figures-principales': { label: 'Figures principales', icon: '🎭', order: 3 },
+  'personnages-identites': { label: 'Personnages et identités', icon: '👥', order: 4 },
+  'armes-antiques': { label: 'Armes antiques', icon: '🔱', order: 5 },
+  'technologies-pouvoirs': { label: 'Technologies et pouvoirs', icon: '⚡', order: 6 },
+  'peuples-royaumes': { label: 'Peuples, royaumes et témoins', icon: '🏰', order: 7 },
+  'dieux-croyances': { label: 'Dieux et croyances', icon: '🙏', order: 8 },
+  'transmission-memoire': { label: 'Transmission et mémoire', icon: '🎵', order: 9 },
+  'gouvernement-mondial': { label: 'Gouvernement mondial', icon: '⚖️', order: 10 },
+  'guerre-finale': { label: 'Guerre finale', icon: '⚔️', order: 11 },
+};
+
+// Group articles by category
+const articlesByCategory = new Map<string, typeof articles>();
+for (const article of articles) {
+  const cat = article.data.category;
+  if (!articlesByCategory.has(cat)) {
+    articlesByCategory.set(cat, []);
+  }
+  articlesByCategory.get(cat)!.push(article);
 }
 
+// Sort categories by order
+const sortedCategories = Array.from(articlesByCategory.entries()).sort(
+  ([catA], [catB]) => (categoryConfig[catA]?.order ?? 99) - (categoryConfig[catB]?.order ?? 99)
+);
+
+// Build navigation sections
 interface NavSection {
   title: string;
   label: string;
-  links: NavLink[];
+  icon: string;
+  links: Array<{ label: string; href: string }>;
 }
 
 const navSections: NavSection[] = [
   {
     title: 'COMMENCER',
     label: 'Commencer',
+    icon: '🚀',
     links: [
       { label: 'Présentation', href: '/' },
       { label: 'Résumé de la théorie', href: '/theorie/resume' },
@@ -28,257 +61,102 @@ const navSections: NavSection[] = [
       { label: 'Lexique essentiel', href: '/aide/glossaire' },
     ],
   },
-  {
-    title: 'MONDE ET DESTINATIONS',
-    label: 'Monde et destinations',
-    links: [
-      { label: 'Blue Star', href: '/dossiers/blue-star' },
-      { label: 'Grand Line', href: '/dossiers/grand-line' },
-      { label: 'Red Line', href: '/dossiers/red-line' },
-      { label: 'Calm Belt', href: '/dossiers/calm-belt' },
-      { label: 'Reverse Mountain', href: '/dossiers/reverse-mountain' },
-      { label: 'Lodestar', href: '/dossiers/lodestar' },
-      { label: 'Laugh Tale', href: '/dossiers/laugh-tale' },
-      { label: 'Raftel', href: '/dossiers/raftel' },
-      { label: 'One Piece', href: '/dossiers/one-piece' },
-      { label: 'All Blue', href: '/dossiers/all-blue' },
-    ],
-  },
-  {
-    title: 'HISTOIRE, TEMPS ET PONÉGLYPHES',
-    label: 'Histoire, temps et Ponéglyphes',
-    links: [
-      { label: 'Siècle oublié', href: '/dossiers/siecle-oublie' },
-      { label: 'Royaume antique', href: '/dossiers/royaume-antique' },
-      { label: 'Grande Guerre', href: '/dossiers/grande-guerre' },
-      { label: 'Chronologie du monde', href: '/dossiers/chronologie-monde' },
-      { label: 'Ponéglyphes', href: '/dossiers/ponelyphes' },
-      { label: 'Road Ponéglyphes', href: '/dossiers/road-ponelyphes' },
-      { label: 'Rio Ponéglyphe', href: '/dossiers/rio-ponelyphe' },
-      { label: 'Ponéglyphe de Shandora', href: '/dossiers/ponelyphe-shandora' },
-      { label: 'Ponéglyphe des Hommes-Poissons', href: '/dossiers/ponelyphe-hommes-poissons' },
-      { label: 'Voyage temporel', href: '/dossiers/voyage-temporel' },
-      { label: 'Communication temporelle', href: '/theorie/communication-temps' },
-      { label: 'Kozuki Toki', href: '/dossiers/kozuki-toki' },
-      { label: 'Madame Shirley', href: '/dossiers/madame-shirley' },
-    ],
-  },
-  {
-    title: 'FIGURES PRINCIPALES',
-    label: 'Figures principales',
-    links: [
-      { label: 'Monkey D. Luffy', href: '/dossiers/luffy' },
-      { label: 'Joy Boy', href: '/dossiers/joy-boy' },
-      { label: 'Nika', href: '/dossiers/nika' },
-      { label: 'Gol D. Roger', href: '/dossiers/gol-d-roger' },
-      { label: 'Shanks', href: '/dossiers/shanks' },
-      { label: 'Kaido', href: '/dossiers/kaido' },
-      { label: 'Bartholomew Kuma', href: '/dossiers/kuma' },
-      { label: 'Imu Nerona', href: '/dossiers/imu' },
-    ],
-  },
-  {
-    title: 'PERSONNAGES ET IDENTITÉS',
-    label: 'Personnages et identités',
-    links: [
-      { label: 'Shirahoshi', href: '/dossiers/shirahoshi' },
-      { label: 'Poséidon', href: '/dossiers/poseidon' },
-      { label: 'Nefertari Vivi', href: '/dossiers/vivi' },
-      { label: 'Nefertari D. Lili', href: '/dossiers/lili' },
-      { label: 'Marshall D. Teach', href: '/dossiers/teach' },
-      { label: 'Davy Jones', href: '/dossiers/davy-jones' },
-      { label: 'Rocks D. Xebec', href: '/dossiers/rocks' },
-      { label: 'Roronoa Zoro', href: '/dossiers/zoro' },
-      { label: 'Shimotsuki Ryuma', href: '/dossiers/ryuma' },
-      { label: 'Brook', href: '/dossiers/brook' },
-      { label: 'Dōzan', href: '/dossiers/dozan' },
-      { label: 'Loki', href: '/dossiers/loki' },
-      { label: 'Nidhogg', href: '/dossiers/nidhogg' },
-      { label: 'Ratatoskr', href: '/dossiers/ratatoskr' },
-    ],
-  },
-  {
-    title: 'ARMES ANTIQUES',
-    label: 'Armes antiques',
-    links: [
-      { label: 'Armes antiques', href: '/dossiers/armes-antiques' },
-      { label: 'Poséidon', href: '/dossiers/poseidon' },
-      { label: 'Pluton', href: '/dossiers/pluton' },
-      { label: 'Uranus', href: '/dossiers/uranus' },
-      { label: 'Noah', href: '/dossiers/noah' },
-      { label: 'Wa no Kuni', href: '/dossiers/wano-kuni' },
-      { label: 'Lulusia', href: '/dossiers/lulusia' },
-      { label: 'Mother Flame', href: '/dossiers/mother-flame' },
-    ],
-  },
-  {
-    title: 'TECHNOLOGIES ET POUVOIRS',
-    label: 'Technologies et pouvoirs',
-    links: [
-      { label: 'Vegapunk', href: '/dossiers/vegapunk' },
-      { label: 'Fruits du Démon', href: '/dossiers/fruits-du-demon' },
-      { label: 'Zoans', href: '/dossiers/zoans' },
-      { label: 'Hito Hito no Mi, modèle Nika', href: '/dossiers/hito-hito-nika' },
-      { label: 'Toki Toki no Mi', href: '/dossiers/toki-toki-no-mi' },
-      { label: 'Mother Flame', href: '/dossiers/mother-flame' },
-      { label: 'Emeth', href: '/dossiers/emeth' },
-      { label: 'Galley-La', href: '/dossiers/galley-la' },
-      { label: 'Omen', href: '/dossiers/omen' },
-      { label: 'Domi Reversi', href: '/dossiers/domie-reversi' },
-      { label: 'Chapeau de paille géant', href: '/dossiers/chapeau-geant' },
-    ],
-  },
-  {
-    title: 'PEUPLES, ROYAUMES ET TÉMOINS',
-    label: 'Peuples, royaumes et témoins',
-    links: [
-      { label: 'Elbaf', href: '/dossiers/elbaf' },
-      { label: 'Géants', href: '/dossiers/geants' },
-      { label: 'Harley', href: '/dossiers/harley' },
-      { label: "Fresque de l'Arbre d'Adam", href: '/dossiers/fresque-elbaf' },
-      { label: 'Royaume Ryugu', href: '/dossiers/royaume-ryugu' },
-      { label: 'Hommes-Poissons', href: '/dossiers/hommes-poissons' },
-      { label: 'Noah', href: '/dossiers/noah' },
-      { label: 'Alabasta', href: '/dossiers/alabasta' },
-      { label: 'Wa no Kuni', href: '/dossiers/wano-kuni' },
-      { label: 'Zou', href: '/dossiers/zou' },
-      { label: 'Minks', href: '/dossiers/minks' },
-      { label: 'Shandora', href: '/dossiers/shandora' },
-      { label: 'Shandias', href: '/dossiers/shandias' },
-      { label: 'Boucaniers', href: '/dossiers/boucaniers' },
-      { label: 'Lunariens', href: '/dossiers/lunariens' },
-      { label: 'Zunesha', href: '/dossiers/zunesha' },
-      { label: 'Emeth', href: '/dossiers/emeth' },
-      { label: 'Kozuki Toki', href: '/dossiers/kozuki-toki' },
-      { label: 'Madame Shirley', href: '/dossiers/madame-shirley' },
-      { label: 'Équipage de Roger', href: '/dossiers/equipage-roger' },
-      { label: 'Silvers Rayleigh', href: '/dossiers/rayleigh' },
-      { label: 'Scopper Gaban', href: '/dossiers/gaban' },
-      { label: 'Crocus', href: '/dossiers/crocus' },
-    ],
-  },
-  {
-    title: 'DIEUX ET CROYANCES',
-    label: 'Dieux et croyances',
-    links: [
-      { label: 'Les dieux de One Piece', href: '/dossiers/dieux-one-piece' },
-      { label: 'Nika', href: '/dossiers/nika' },
-      { label: 'Zaza', href: '/dossiers/zaza' },
-      { label: 'Dieu de la forêt', href: '/dossiers/dieu-foret' },
-      { label: 'Dieu de la terre', href: '/dossiers/dieu-terre' },
-      { label: 'Dieu de la guerre', href: '/dossiers/dieu-guerre' },
-      { label: 'Dieu des lames', href: '/dossiers/dieu-lames' },
-      { label: 'Divinités shandias', href: '/dossiers/divinites-shandias' },
-      { label: 'Gorosei', href: '/dossiers/gorosei' },
-      { label: 'Dieux guerriers', href: '/dossiers/dieux-guerriers' },
-      { label: 'Dragons Célestes', href: '/dossiers/dragons-celestes' },
-      { label: 'Ener', href: '/dossiers/ener' },
-      { label: 'Skypiea', href: '/dossiers/skypiea' },
-      { label: 'Foi', href: '/dossiers/foi' },
-      { label: 'Peur', href: '/dossiers/peur' },
-      { label: 'Espoir', href: '/dossiers/espoir' },
-      { label: 'Divinisation', href: '/dossiers/divinisation' },
-    ],
-  },
-  {
-    title: 'TRANSMISSION ET MÉMOIRE',
-    label: 'Transmission et mémoire',
-    links: [
-      { label: 'Volonté héritée', href: '/dossiers/volonte-heritee' },
-      { label: 'Promesses', href: '/dossiers/promesses' },
-      { label: 'Prophéties', href: '/dossiers/propheties' },
-      { label: 'Mémoire', href: '/dossiers/memoire' },
-      { label: 'Préscience', href: '/dossiers/prescience' },
-      { label: 'Binks no Sake', href: '/dossiers/binks-no-sake' },
-      { label: 'Brook', href: '/dossiers/brook' },
-      { label: 'Dōzan', href: '/dossiers/dozan' },
-      { label: 'Équipage Rumbar', href: '/dossiers/equipage-rumbar' },
-      { label: 'Voix de Joy Boy', href: '/dossiers/voix-joy-boy' },
-      { label: 'Urara Takano', href: '/dossiers/urara-takano' },
-      { label: 'Haki de Joy Boy', href: '/dossiers/haki-joy-boy' },
-    ],
-  },
-  {
-    title: 'GOUVERNEMENT MONDIAL',
-    label: 'Gouvernement mondial',
-    links: [
-      { label: 'Gouvernement mondial', href: '/dossiers/gouvernement-mondial' },
-      { label: 'Imu Nerona', href: '/dossiers/imu' },
-      { label: 'Vingt Rois', href: '/dossiers/vingt-rois' },
-      { label: 'Dragons Célestes', href: '/dossiers/dragons-celestes' },
-      { label: 'Gorosei', href: '/dossiers/gorosei' },
-      { label: 'Chevaliers Divins', href: '/dossiers/chevaliers-divins' },
-      { label: 'Mary Geoise', href: '/dossiers/mary-geoise' },
-      { label: 'Chambre Fleurie', href: '/dossiers/chambre-fleurie' },
-    ],
-  },
-  {
-    title: 'GUERRE FINALE',
-    label: 'Guerre finale',
-    links: [
-      { label: 'Grande Guerre', href: '/dossiers/grande-guerre' },
-      { label: 'Guerre finale', href: '/dossiers/guerre-finale' },
-      { label: 'Déluge', href: '/dossiers/deluge' },
-      { label: 'Jour du serment', href: '/dossiers/jour-serment' },
-      { label: 'Destruction de Lulusia', href: '/dossiers/destruction-lulusia' },
-      { label: 'Destruction de Red Line', href: '/dossiers/destruction-red-line' },
-      { label: "Création d'All Blue", href: '/dossiers/creation-all-blue' },
-      { label: 'Coalition de Joy Boy', href: '/dossiers/coalition-joy-boy' },
-    ],
-  },
+  ...sortedCategories.map(([catKey, catArticles]) => {
+    const config = categoryConfig[catKey];
+    return {
+      title: catKey.toUpperCase().replace(/-/g, ' '),
+      label: config?.label ?? catKey,
+      icon: config?.icon ?? '📄',
+      links: catArticles
+        .sort((a, b) => (b.data.lastUpdatedChapter ?? 0) - (a.data.lastUpdatedChapter ?? 0))
+        .map((article) => ({
+          label: article.data.title,
+          href: `/theorie/${article.id}`,
+        })),
+    };
+  }),
 ];
+
+// Add chapters section
+const chapters = await getCollection('chapters');
+const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
+
+navSections.push({
+  title: 'CHAPITRES',
+  label: 'Chapitres récents',
+  icon: '📖',
+  links: sortedChapters.slice(0, 10).map((chapter) => ({
+    label: `Chapitre ${chapter.data.chapter} — ${chapter.data.title}`,
+    href: `/chapitres/${chapter.data.chapter}`,
+  })),
+});
+
+// Add help section
+navSections.push({
+  title: 'AIDE',
+  label: 'Aide & ressources',
+  icon: '❓',
+  links: [
+    { label: 'À propos', href: '/aide/a-propos' },
+    { label: 'FAQ', href: '/aide/faq' },
+    { label: 'Glossaire', href: '/aide/glossaire' },
+    { label: 'Proposer une correction', href: '/aide/correction' },
+    { label: 'Crédits', href: '/aide/credits' },
+  ],
+});
 ---
 
 <nav>
-  {
-    navSections.map((section, index) => {
-      const isExpanded = section.links.some(
-        (link) => currentPath === link.href || currentPath === link.href + '/',
-      );
-      return (
-        <div class={index > 0 ? 'mt-5' : ''} data-sidebar-section>
-          <button
-            class="sidebar-section-toggle"
-            aria-expanded={isExpanded ? 'true' : 'false'}
-          >
+  {navSections.map((section, index) => {
+    const isExpanded = section.links.some(
+      (link) => currentPath === link.href || currentPath === link.href + '/',
+    );
+    return (
+      <div class={index > 0 ? 'mt-5' : ''} data-sidebar-section>
+        <button
+          class="sidebar-section-toggle"
+          aria-expanded={isExpanded ? 'true' : 'false'}
+        >
+          <span class="flex items-center gap-2">
+            <span class="text-base">{section.icon}</span>
             <span>{section.label}</span>
-            <svg
-              class="sidebar-chevron"
-              class:list={[{ 'rotate-90': isExpanded }]}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              width="12"
-              height="12"
-            >
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-          <ul
-            class="sidebar-section-links"
-            class:list={[{ 'collapsed': !isExpanded }, { 'expanded': isExpanded }]}
+          </span>
+          <svg
+            class="sidebar-chevron"
+            class:list={[{ 'rotate-90': isExpanded }]}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            width="12"
+            height="12"
           >
-            {section.links.map((link) => {
-              const isActive = currentPath === link.href || currentPath === link.href + '/';
-              return (
-                <li>
-                  <a
-                    href={link.href}
-                    class={`sidebar-link ${isActive ? 'sidebar-link--active' : ''}`}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      );
-    })
-  }
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+        <ul
+          class="sidebar-section-links"
+          class:list={[{ 'collapsed': !isExpanded }, { 'expanded': isExpanded }]}
+        >
+          {section.links.map((link) => {
+            const isActive = currentPath === link.href || currentPath === link.href + '/';
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  class={`sidebar-link ${isActive ? 'sidebar-link--active' : ''}`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  })}
 </nav>
 
 <style>

@@ -43,21 +43,21 @@
   }
 
   .light {
-    --bg-main: #f6f1e7;
-    --bg-secondary: #fbf7ef;
-    --surface: #ece4d4;
+    --bg-main: #f4efe3;
+    --bg-secondary: #faf6ec;
+    --surface: #e8e0cc;
     --violet: #4a5694;
     --violet-light: #5e6bb0;
     --magenta: #bf5848;
     --cyan: #0e7d8a;
     --cyan-dim: #0a6672;
-    --text-main: #23201a;
-    --text-secondary: #5b574c;
-    --accent-gold: #b07612;
+    --text-main: #1a1814;
+    --text-secondary: #4a463d;
+    --accent-gold: #9a680d;
     --alert: #a8392c;
-    --border-color: rgba(35, 32, 26, 0.14);
-    --glow-violet: rgba(74, 86, 148, 0.14);
-    --glow-cyan: rgba(14, 125, 138, 0.12);
+    --border-color: rgba(26, 24, 20, 0.22);
+    --glow-violet: rgba(74, 86, 148, 0.18);
+    --glow-cyan: rgba(14, 125, 138, 0.16);
     --gradient-hero: linear-gradient(
       120deg,
       var(--cyan) 0%,
@@ -66,8 +66,8 @@
     );
     --gradient-card: linear-gradient(
       135deg,
-      color-mix(in srgb, var(--violet) 5%, transparent),
-      color-mix(in srgb, var(--cyan) 3%, transparent)
+      color-mix(in srgb, var(--violet) 8%, transparent),
+      color-mix(in srgb, var(--cyan) 5%, transparent)
     );
     --gradient-border: linear-gradient(120deg, var(--violet), var(--cyan-dim));
     --wave-url: url('/waves-light.svg');
@@ -78,6 +78,10 @@
       Roboto, sans-serif;
     --font-display: 'Fraunces', Georgia, Cambria, 'Times New Roman', serif;
     --nav-h: 56px;
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-full: 9999px;
   }
 
   html {
@@ -132,7 +136,7 @@
 
 @layer components {
   .badge {
-    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border;
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium border;
   }
   .badge-cyan {
     background-color: color-mix(in srgb, var(--cyan) 12%, transparent);
@@ -153,6 +157,22 @@
     background-color: color-mix(in srgb, var(--alert) 12%, transparent);
     color: var(--alert);
     border-color: color-mix(in srgb, var(--alert) 25%, transparent);
+  }
+
+  /* Card utility with consistent border-radius */
+  .card {
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+  }
+
+  .card-hover {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card-hover:hover {
+    border-color: var(--violet);
+    box-shadow: 0 8px 24px var(--glow-violet);
+    transform: translateY(-2px);
   }
 
   /* Tap target helper - ensure minimum 44px touch targets on mobile */
