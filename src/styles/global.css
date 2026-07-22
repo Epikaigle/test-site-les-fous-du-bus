@@ -5,45 +5,37 @@
 @layer base {
   :root,
   .dark {
-    --bg-main: #07020a;
-    --bg-secondary: #160b27;
-    --surface: #22124a;
-    --violet: #6e3bbc;
-    --violet-light: #8b5fd4;
-    --magenta: #ad57a7;
-    --cyan: #4de7ff;
-    --cyan-dim: #2cb8d4;
-    --text-main: #fefbf8;
-    --text-secondary: #dde4ea;
-    --accent-gold: #f4b63f;
-    --alert: #9e3244;
-    --border-color: rgba(221, 228, 234, 0.1);
-    --glow-violet: rgba(110, 59, 188, 0.35);
-    --glow-cyan: rgba(77, 231, 255, 0.25);
-    --gradient-hero: linear-gradient(135deg, var(--cyan) 0%, var(--violet-light) 50%, var(--magenta) 100%);
-    --gradient-card: linear-gradient(135deg, rgba(110, 59, 188, 0.08), rgba(77, 231, 255, 0.04));
-    --gradient-border: linear-gradient(135deg, var(--violet), var(--cyan-dim));
+    --bg-main: #f8f5f0;
+    --bg-secondary: #f0e9dc;
+    --surface: #e8e0d3;
+    --accent: #5c6b5e;
+    --accent-light: #7d8f7f;
+    --gold: #b89c6f;
+    --text-main: #2c2522;
+    --text-secondary: #5a524c;
+    --alert: #8c5c52;
+    --border-color: rgba(44, 37, 34, 0.12);
+    --glow: rgba(92, 107, 94, 0.12);
+    --gradient-hero: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    --gradient-card: linear-gradient(145deg, rgba(92, 107, 94, 0.06), rgba(184, 156, 111, 0.04));
+    --gradient-border: linear-gradient(135deg, var(--accent), var(--gold));
   }
 
   .light {
-    --bg-main: #f5f6f8;
-    --bg-secondary: #ffffff;
-    --surface: #e2e5ea;
-    --violet: #5e2ea8;
-    --violet-light: #7c48d1;
-    --magenta: #9c3f96;
-    --cyan: #0c8599;
-    --cyan-dim: #0a7182;
-    --text-main: #1a1d21;
-    --text-secondary: #3d434a;
-    --accent-gold: #d98600;
-    --alert: #b51d1d;
-    --border-color: rgba(33, 37, 41, 0.18);
-    --glow-violet: rgba(94, 46, 168, 0.15);
-    --glow-cyan: rgba(12, 133, 153, 0.12);
-    --gradient-hero: linear-gradient(135deg, var(--cyan) 0%, var(--violet-light) 50%, var(--magenta) 100%);
-    --gradient-card: linear-gradient(135deg, rgba(94, 46, 168, 0.05), rgba(12, 133, 153, 0.03));
-    --gradient-border: linear-gradient(135deg, var(--violet), var(--cyan-dim));
+    --bg-main: #f8f5f0;
+    --bg-secondary: #f0e9dc;
+    --surface: #e8e0d3;
+    --accent: #5c6b5e;
+    --accent-light: #7d8f7f;
+    --gold: #b89c6f;
+    --text-main: #2c2522;
+    --text-secondary: #5a524c;
+    --alert: #8c5c52;
+    --border-color: rgba(44, 37, 34, 0.12);
+    --glow: rgba(92, 107, 94, 0.12);
+    --gradient-hero: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    --gradient-card: linear-gradient(145deg, rgba(92, 107, 94, 0.06), rgba(184, 156, 111, 0.04));
+    --gradient-border: linear-gradient(135deg, var(--accent), var(--gold));
   }
 
   html {
@@ -55,20 +47,14 @@
     @apply text-textMain font-sans antialiased;
     background-color: var(--bg-main);
     background-image:
-      radial-gradient(
-        ellipse 80% 50% at 50% -20%,
-        color-mix(in srgb, var(--violet) 15%, transparent),
-        transparent
-      ),
       linear-gradient(
         to bottom,
-        color-mix(in srgb, var(--bg-main) 80%, transparent),
-        color-mix(in srgb, var(--bg-main) 97%, transparent)
-      ),
-      url('/wallpaper.webp');
-    background-size: 100% 100%, cover, cover;
-    background-position: center top, center top, center top;
-    background-attachment: scroll, fixed, fixed;
+        color-mix(in srgb, var(--bg-main) 95%, transparent),
+        var(--bg-main)
+      );
+    background-size: cover;
+    background-position: center top;
+    background-attachment: scroll;
     box-sizing: border-box;
     margin: 0;
     min-height: 100vh;
