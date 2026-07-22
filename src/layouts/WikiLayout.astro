@@ -119,12 +119,13 @@ const { title, description, currentPath, headings } = Astro.props;
   <div
     id="toc-overlay"
     class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden"
-    style="top: 48px;"
+    style="top: var(--nav-h);"
   >
   </div>
   <div
     id="toc-drawer"
-    class="fixed top-[48px] right-0 bottom-0 w-[280px] bg-bgMain border-l border-borderColor z-40 overflow-y-auto hidden transform translate-x-full transition-transform duration-300 ease-in-out p-5"
+    class="fixed right-0 bottom-0 w-[280px] bg-bgMain border-l border-borderColor z-40 overflow-y-auto hidden transform translate-x-full transition-transform duration-300 ease-in-out p-5"
+    style="top: var(--nav-h);"
   >
     <SidebarToc headings={headings} />
   </div>
@@ -197,9 +198,9 @@ const { title, description, currentPath, headings } = Astro.props;
 
   .sidebar {
     padding: 32px 16px;
-    height: calc(100vh - 48px);
+    height: calc(100vh - var(--nav-h));
     position: sticky;
-    top: 48px;
+    top: var(--nav-h);
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--surface) transparent;
