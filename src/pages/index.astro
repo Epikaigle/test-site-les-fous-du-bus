@@ -8,6 +8,7 @@ import Footer from '@components/Footer.astro';
 
 <WikiLayout title="Accueil" currentPath="/">
   <div class="hero">
+    <div class="hero-sun" aria-hidden="true"></div>
     <div class="hero-badge">
       <span class="hero-badge__dot"></span>
       <span>La théorie</span>
@@ -15,6 +16,19 @@ import Footer from '@components/Footer.astro';
     <h1 class="hero-title">
       Le Siècle oublié<br /><span class="text-gradient">est le présent</span>
     </h1>
+    <svg
+      class="wave-rule hero-wave"
+      viewBox="0 0 240 12"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M0 6 Q15 1 30 6 T60 6 T90 6 T120 6 T150 6 T180 6 T210 6 T240 6"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.2"
+      />
+    </svg>
 
     <div class="hero-text">
       <p>
@@ -195,6 +209,33 @@ import Footer from '@components/Footer.astro';
   .hero {
     margin-bottom: 48px;
     position: relative;
+  }
+
+  .hero-sun {
+    position: absolute;
+    top: -70px;
+    right: -40px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--accent-gold) 20%, transparent),
+      transparent 68%
+    );
+    filter: blur(6px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero > *:not(.hero-sun) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-wave {
+    max-width: 300px;
+    margin: 6px 0 22px;
   }
 
   .hero-badge {

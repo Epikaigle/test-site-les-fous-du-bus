@@ -20,23 +20,34 @@ export default {
         borderColor: 'var(--border-color)'
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Inter', 'sans-serif']
+        sans: [
+          'Manrope',
+          'ui-sans-serif',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif'
+        ],
+        display: ['Fraunces', 'Georgia', 'Cambria', 'Times New Roman', 'serif']
       },
       borderRadius: {
-        DEFAULT: '6px',
-        sm: '4px',
-        md: '8px',
-        lg: '12px',
-        xl: '16px'
+        DEFAULT: '8px',
+        sm: '5px',
+        md: '10px',
+        lg: '14px',
+        xl: '20px'
       },
       boxShadow: {
-        glowViolet: '0 0 20px var(--glow-violet)',
-        glowCyan: '0 0 20px var(--glow-cyan)',
-        card: '0 4px 24px rgba(0, 0, 0, 0.15)',
-        cardHover: '0 8px 32px rgba(110, 59, 188, 0.2)'
+        glowViolet: '0 0 18px var(--glow-violet)',
+        glowCyan: '0 0 18px var(--glow-cyan)',
+        card: '0 6px 28px color-mix(in srgb, var(--bg-main) 45%, transparent)',
+        cardHover: '0 10px 36px color-mix(in srgb, var(--violet) 18%, transparent)'
+      },
+      letterSpacing: {
+        widest2: '0.18em'
       }
     }
   },
-  plugins: [],
+  plugins: []
 }

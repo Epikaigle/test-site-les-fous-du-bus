@@ -7,26 +7,74 @@ interface Props {
 
 const { certainty, lastUpdatedChapter, readingTime } = Astro.props;
 
-let badgeColor = 'bg-white/10 text-textSecondary border-white/20';
-if (certainty === 'Confirmée') badgeColor = 'bg-cyan/10 text-cyan border-cyan/20';
-else if (certainty === 'Haute')
-  badgeColor = 'bg-accentGold/10 text-accentGold border-accentGold/20';
-else if (certainty === 'Moyenne') badgeColor = 'bg-violet/10 text-[#D3B3FF] border-violet/30';
+let badgeClass = 'meta-badge--muted';
+if (certainty === 'Confirmée') badgeClass = 'meta-badge--cyan';
+else if (certainty === 'Haute') badgeClass = 'meta-badge--gold';
+else if (certainty === 'Moyenne') badgeClass = 'meta-badge--violet';
 ---
 
-<div
-  class="flex flex-wrap items-center gap-4 text-[13px] text-textSecondary py-3 border-y border-white/10 my-6"
->
-  <div class="flex items-center gap-2">
-    <span>Certitude:</span>
-    <span
-      class={`text-[11px] px-1.5 py-0.5 rounded-[3px] font-medium border uppercase tracking-[0.5px] ${badgeColor}`}
-    >
-      {certainty}
-    </span>
+<div class="meta-row">
+  <div class="meta-row__group">
+    <span>Certitude :</span>
+    <span class={`meta-badge ${badgeClass}`}>{certainty}</span>
   </div>
-  <span class="text-white/20">•</span>
+  <span class="meta-sep" aria-hidden="true">•</span>
   <div>MAJ Chapitre {lastUpdatedChapter}</div>
-  <span class="text-white/20">•</span>
+  <span class="meta-sep" aria-hidden="true">•</span>
   <div>{readingTime} de lecture</div>
 </div>
+
+<style>
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+  }
+  .meta-row__group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .meta-sep {
+    color: var(--text-secondary);
+    opacity: 0.45;
+  }
+  .meta-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .meta-badge--cyan {
+    background: color-mix(in srgb, var(--cyan) 12%, transparent);
+    color: var(--cyan);
+    border-color: color-mix(in srgb, var(--cyan) 28%, transparent);
+  }
+  .meta-badge--gold {
+    background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+    color: var(--accent-gold);
+    border-color: color-mix(in srgb, var(--accent-gold) 28%, transparent);
+  }
+  .meta-badge--violet {
+    background: color-mix(in srgb, var(--violet) 14%, transparent);
+    color: var(--violet-light);
+    border-color: color-mix(in srgb, var(--violet) 30%, transparent);
+  }
+  .meta-badge--muted {
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+  }
+</style>

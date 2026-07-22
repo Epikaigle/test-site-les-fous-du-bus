@@ -39,10 +39,10 @@ for (const a of published) {
 // Certainty colors
 function certaintyColor(c: string): string {
   switch (c) {
-    case 'central': return '#4de7ff';
-    case 'elevee': return '#f4b63f';
-    case 'moyenne': return '#ad57a7';
-    default: return '#dde4ea';
+    case 'central': return '#5fb9c2';
+    case 'elevee': return '#e0ab4e';
+    case 'moyenne': return '#d98b74';
+    default: return '#aeb7c2';
   }
 }
 ---
@@ -61,13 +61,13 @@ function certaintyColor(c: string): string {
   <div class="legend">
     <span class="legend-title">Certitude :</span>
     <span class="legend-item">
-      <span class="legend-dot" style="background:#4de7ff"></span> Centrale
+      <span class="legend-dot" style="background:#5fb9c2"></span> Centrale
     </span>
     <span class="legend-item">
-      <span class="legend-dot" style="background:#f4b63f"></span> Élevée
+      <span class="legend-dot" style="background:#e0ab4e"></span> Élevée
     </span>
     <span class="legend-item">
-      <span class="legend-dot" style="background:#ad57a7"></span> Moyenne
+      <span class="legend-dot" style="background:#d98b74"></span> Moyenne
     </span>
   </div>
 
@@ -123,42 +123,42 @@ function certaintyColor(c: string): string {
     {
       id: 'temps',
       label: '⏳ Mécanisme\ntemporel',
-      color: '#6e3bbc',
+      color: '#8091cf',
       angle: -90,
       dist: 240,
     },
     {
       id: 'identites',
       label: '🎭 Identités',
-      color: '#4de7ff',
+      color: '#5fb9c2',
       angle: -30,
       dist: 260,
     },
     {
       id: 'armes',
       label: '🔱 Armes\nantiques',
-      color: '#f4b63f',
+      color: '#e0ab4e',
       angle: 30,
       dist: 260,
     },
     {
       id: 'tech',
       label: '⚡ Technologie\n& transmission',
-      color: '#ad57a7',
+      color: '#d98b74',
       angle: 150,
       dist: 260,
     },
     {
       id: 'antagoniste',
       label: '🏛️ Antagoniste',
-      color: '#e03131',
+      color: '#c25b4f',
       angle: 210,
       dist: 240,
     },
     {
       id: 'fin',
       label: '⚔️ Guerre\nfinale',
-      color: '#f4b63f',
+      color: '#e0ab4e',
       angle: 90,
       dist: 240,
     },
@@ -213,10 +213,10 @@ function certaintyColor(c: string): string {
   ];
 
   const certaintyColors: Record<string, string> = {
-    central: '#4de7ff',
-    elevee: '#f4b63f',
-    moyenne: '#ad57a7',
-    hypothese: '#dde4ea',
+    central: '#5fb9c2',
+    elevee: '#e0ab4e',
+    moyenne: '#d98b74',
+    hypothese: '#aeb7c2',
   };
 
   // ─── Compute positions ───────────────────────────────────────
@@ -300,7 +300,7 @@ function certaintyColor(c: string): string {
     const np = nodePositions[a.slug];
     if (bp && np) {
       const bObj = branches.find(b => b.id === a.branch);
-      drawConnection(bp.x, bp.y, np.x, np.y, bObj?.color || '#666', false, 0.3);
+      drawConnection(bp.x, bp.y, np.x, np.y, bObj?.color || '#7c8794', false, 0.3);
     }
   }
 
@@ -309,7 +309,7 @@ function certaintyColor(c: string): string {
     const from = nodePositions[link.from];
     const to = nodePositions[link.to];
     if (from && to) {
-      drawConnection(from.x, from.y, to.x, to.y, '#666', true, 0.18);
+      drawConnection(from.x, from.y, to.x, to.y, '#7c8794', true, 0.18);
     }
   }
 
@@ -362,13 +362,13 @@ function certaintyColor(c: string): string {
     rect.setAttribute('width', '220');
     rect.setAttribute('height', '76');
     rect.setAttribute('rx', '16');
-    rect.setAttribute('fill', '#160b27');
-    rect.setAttribute('stroke', '#4de7ff');
+    rect.setAttribute('fill', '#13202e');
+    rect.setAttribute('stroke', '#5fb9c2');
     rect.setAttribute('stroke-width', '2.5');
     rect.setAttribute('filter', 'url(#glow)');
     g.appendChild(rect);
 
-    const texts = createTextNode('Le Siècle oublié\nest le présent', CX, CY, 14, '#4de7ff', true);
+    const texts = createTextNode('Le Siècle oublié\nest le présent', CX, CY, 14, '#5fb9c2', true);
     texts.forEach(t => g.appendChild(t));
 
     g.addEventListener('click', () => {
@@ -413,8 +413,8 @@ function certaintyColor(c: string): string {
     if (!np) continue;
 
     const bObj = branches.find(b => b.id === a.branch);
-    const color = bObj?.color || '#666';
-    const certColor = certaintyColors[a.certainty] || '#666';
+    const color = bObj?.color || '#7c8794';
+    const certColor = certaintyColors[a.certainty] || '#7c8794';
 
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.setAttribute('class', 'mindmap-node mindmap-article-node');
@@ -431,7 +431,7 @@ function certaintyColor(c: string): string {
     rect.setAttribute('width', String(w));
     rect.setAttribute('height', String(h));
     rect.setAttribute('rx', '6');
-    rect.setAttribute('fill', 'rgba(7,2,10,0.85)');
+    rect.setAttribute('fill', 'rgba(14,23,34,0.85)');
     rect.setAttribute('stroke', certColor);
     rect.setAttribute('stroke-width', '1.5');
     rect.setAttribute('stroke-opacity', '0.7');
@@ -446,19 +446,19 @@ function certaintyColor(c: string): string {
     g.appendChild(dot);
 
     // Text
-    const texts = createTextNode(a.title, np.x, np.y, 11, '#fefbf8', false);
+    const texts = createTextNode(a.title, np.x, np.y, 11, '#f3efe6', false);
     texts.forEach(t => g.appendChild(t));
 
     // Hover & click
     g.addEventListener('mouseenter', () => {
       rect.setAttribute('stroke-opacity', '1');
       rect.setAttribute('stroke-width', '2.5');
-      rect.setAttribute('fill', 'rgba(22,11,39,0.95)');
+      rect.setAttribute('fill', 'rgba(19,32,46,0.95)');
     });
     g.addEventListener('mouseleave', () => {
       rect.setAttribute('stroke-opacity', '0.7');
       rect.setAttribute('stroke-width', '1.5');
-      rect.setAttribute('fill', 'rgba(7,2,10,0.85)');
+      rect.setAttribute('fill', 'rgba(14,23,34,0.85)');
     });
     g.addEventListener('click', () => {
       window.location.href = `/theorie/${a.slug}`;

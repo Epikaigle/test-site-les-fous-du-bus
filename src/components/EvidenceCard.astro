@@ -9,39 +9,104 @@ interface Props {
 
 const { title, chapter, strength, quote, href } = Astro.props;
 
-let strengthColor = 'bg-white/10 text-textSecondary border-white/20';
-if (strength === 'Forte') strengthColor = 'bg-accentGold/10 text-accentGold border-accentGold/20';
-else if (strength === 'Modérée') strengthColor = 'bg-violet/10 text-[#D3B3FF] border-violet/30';
+let strengthClass = 'ev-badge--muted';
+if (strength === 'Forte') strengthClass = 'ev-badge--gold';
+else if (strength === 'Modérée') strengthClass = 'ev-badge--violet';
 ---
 
-<div class="bg-surface/50 border border-white/10 rounded p-4 my-4 flex flex-col gap-3">
-  <div class="flex justify-between items-start gap-4">
+<div class="ev-card">
+  <div class="ev-card__head">
     <div>
-      <h4 class="text-[14px] font-medium text-textMain mb-1">
+      <h4 class="ev-card__title">
         {
           href ? (
-            <a href={href} class="hover:text-cyan transition-colors">
-              {title}
-            </a>
+            <a href={href} class="ev-card__link">{title}</a>
           ) : (
             title
           )
         }
       </h4>
-      <div class="text-[12px] text-textSecondary">Chapitre {chapter}</div>
+      <div class="ev-card__chapter">Chapitre {chapter}</div>
     </div>
-    <span
-      class={`text-[11px] px-1.5 py-0.5 rounded-[3px] font-medium border uppercase tracking-[0.5px] shrink-0 ${strengthColor}`}
-    >
-      Preuve {strength}
-    </span>
+    <span class={`ev-badge ${strengthClass}`}>Preuve {strength}</span>
   </div>
 
   {
     quote && (
-      <blockquote class="text-[13px] text-textSecondary italic border-l-2 border-white/20 pl-3 m-0">
-        "{quote}"
-      </blockquote>
+      <blockquote class="ev-quote">"{quote}"</blockquote>
     )
   }
 </div>
+
+<style>
+  .ev-card {
+    background: color-mix(in srgb, var(--surface) 45%, transparent);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .ev-card__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .ev-card__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 2px;
+    font-family: var(--font-sans);
+  }
+  .ev-card__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .ev-card__link:hover {
+    color: var(--cyan);
+  }
+  .ev-card__chapter {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .ev-quote {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+    border-left: 2px solid var(--border-color);
+    padding-left: 0.75rem;
+    margin: 0;
+  }
+  .ev-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: 600;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ev-badge--gold {
+    background: color-mix(in srgb, var(--accent-gold) 12%, transparent);
+    color: var(--accent-gold);
+    border-color: color-mix(in srgb, var(--accent-gold) 28%, transparent);
+  }
+  .ev-badge--violet {
+    background: color-mix(in srgb, var(--violet) 14%, transparent);
+    color: var(--violet-light);
+    border-color: color-mix(in srgb, var(--violet) 30%, transparent);
+  }
+  .ev-badge--muted {
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+  }
+</style>
