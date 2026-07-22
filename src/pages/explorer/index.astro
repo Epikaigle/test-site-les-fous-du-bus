@@ -21,7 +21,7 @@ import Footer from '@components/Footer.astro';
       <div class="explorer-card__content">
         <h3>Carte mentale</h3>
         <p>Vue d'ensemble de la théorie et de ses connexions principales.</p>
-        <span class="explorer-card__status">V2</span>
+        <span class="explorer-card__status explorer-card__status--live">Disponible</span>
       </div>
     </a>
 
@@ -172,6 +172,12 @@ import Footer from '@components/Footer.astro';
     border-radius: 3px;
     background-color: var(--surface);
     color: var(--text-secondary);
+  }
+
+  .explorer-card__status--live {
+    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
+    color: var(--cyan);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
   }
 
   .info-box {
