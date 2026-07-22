@@ -38,7 +38,7 @@ const { chapter, title, effect, href } = Astro.props;
       color-mix(in srgb, var(--bg-secondary) 90%, var(--cyan-dim) 10%)
     );
     border: 1px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: var(--border-radius-lg);
     padding: 16px 20px;
     margin-bottom: 48px;
     text-decoration: none;
@@ -77,15 +77,13 @@ const { chapter, title, effect, href } = Astro.props;
   }
 
   .chapter-banner__badge-chapter {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium border;
     font-size: 11px;
-    padding: 3px 8px;
-    border-radius: 100px;
-    font-weight: 600;
-    border: 1px solid color-mix(in srgb, var(--cyan) 25%, transparent);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     background-color: color-mix(in srgb, var(--cyan) 12%, transparent);
     color: var(--cyan);
+    border-color: color-mix(in srgb, var(--cyan) 25%, transparent);
     white-space: nowrap;
   }
 
@@ -101,15 +99,13 @@ const { chapter, title, effect, href } = Astro.props;
   }
 
   .chapter-banner__badge-effect {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium border;
     font-size: 11px;
-    padding: 3px 8px;
-    border-radius: 100px;
-    font-weight: 500;
-    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     background-color: color-mix(in srgb, var(--violet) 12%, transparent);
     color: var(--violet-light);
+    border-color: color-mix(in srgb, var(--violet) 30%, transparent);
     white-space: nowrap;
   }
 

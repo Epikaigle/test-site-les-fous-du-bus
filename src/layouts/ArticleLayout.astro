@@ -7,6 +7,7 @@ import EvidenceSection from '@components/EvidenceSection.astro';
 import ChapterReferences from '@components/ChapterReferences.astro';
 import Footer from '@components/Footer.astro';
 import { certaintyToFrench } from '@utils/format';
+import { getCollection } from 'astro:content';
 
 const {
   title,
@@ -19,14 +20,66 @@ const {
 const certainty = certaintyToFrench(frontmatter.certainty);
 const lastUpdatedChapter = String(frontmatter.lastUpdatedChapter ?? '?');
 
+// Fetch related articles from the articles collection
+const allArticles = await getCollection('articles', ({ data }) => data.status === 'published');
+const currentSlug = currentPath.replace('/theorie/', '');
+const relatedArticleEntries = allArticles.filter((a) =>
+  frontmatter.related?.includes(a.id) && a.id !== currentSlug
+);
+const relatedArticles = relatedArticleEntries.map((entry) => ({
+  title: entry.data.title,
+  href: `/theorie/${entry.id}`,
+  category: entry.data.category,
+}));
+
+// Fetch evidence related to this article
+const evidenceEntries = await getCollection('evidence');
+const articleEvidence = evidenceEntries.filter((e) =>
+  e.data.articles?.includes(currentSlug)
+);
+
+// Fetch chapter references related to this article
+const chapterEntries = await getCollection('chapters');
+const articleChapters = chapterEntries.filter((c) =>
+  c.data.updatedArticles?.includes(currentSlug)
+);
+
 const breadcrumbItems = [
   { label: 'Accueil', href: '/' },
   { label: 'La théorie', href: '/theorie' },
   { label: title },
 ];
+
+// JSON-LD for Article
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  url: new URL(currentPath, Astro.site).toString(),
+  datePublished: frontmatter.lastUpdatedChapter ? new Date().toISOString() : undefined,
+  author: {
+    '@type': 'Organization',
+    name: 'Les Fous du Bus'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Les Fous du Bus',
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/favicon.svg', Astro.site).toString()
+    }
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': new URL(currentPath, Astro.site).toString()
+  }
+};
 ---
 
 <WikiLayout title={title} description={description} currentPath={currentPath} headings={headings}>
+  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+
   <Breadcrumb items={breadcrumbItems} />
 
   <article data-pagefind-body>
@@ -43,9 +96,9 @@ const breadcrumbItems = [
     </div>
   </article>
 
-  <EvidenceSection />
-  <ChapterReferences />
-  <RelatedArticles articles={[]} />
+  {articleEvidence.length > 0 && <EvidenceSection items={articleEvidence} />}
+  {articleChapters.length > 0 && <ChapterReferences items={articleChapters} />}
+  {relatedArticles.length > 0 && <RelatedArticles articles={relatedArticles} />}
 
   <Footer />
 </WikiLayout>

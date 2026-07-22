@@ -38,7 +38,7 @@ const { badge, badgeColor, title, category, chapter, href } = Astro.props;
     align-items: stretch;
     background-color: var(--bg-main);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     text-decoration: none;
     transition: all 0.25s ease;
     overflow: hidden;
@@ -81,11 +81,8 @@ const { badge, badgeColor, title, category, chapter, href } = Astro.props;
   }
 
   .article-item__badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-sm font-medium border;
     font-size: 11px;
-    padding: 3px 8px;
-    border-radius: 100px;
-    font-weight: 500;
-    border: 1px solid;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;

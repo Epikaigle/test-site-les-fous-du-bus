@@ -1,14 +1,18 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import WikiLayout from '@layouts/WikiLayout.astro';
 ---
 
-<BaseLayout title="Page non trouvée">
+<WikiLayout title="Page non trouvée" currentPath="/404">
   <div class="not-found">
     <h1>404</h1>
     <p>Page non trouvée</p>
-    <a href="/" class="btn">Retour à l'accueil</a>
+    <p class="not-found__hint">Cette page n'existe pas ou a été déplacée.</p>
+    <div class="not-found__actions">
+      <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+      <a href="/theorie/resume" class="btn btn-secondary">Lire le résumé</a>
+    </div>
   </div>
-</BaseLayout>
+</WikiLayout>
 
 <style>
   .not-found {
@@ -16,7 +20,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 60vh;
     text-align: center;
     padding: 24px;
   }
@@ -32,23 +36,69 @@ import BaseLayout from '@layouts/BaseLayout.astro';
   p {
     font-size: 1.5rem;
     color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .not-found__hint {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
     margin-bottom: 32px;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: var(--surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    color: var(--text-main);
-    font-weight: 500;
-    transition: all 0.15s ease;
+  .not-found__actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .btn:hover {
-    background-color: var(--bg-secondary);
-    border-color: var(--cyan);
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--gradient-border);
+    color: white;
+    box-shadow: 0 2px 12px var(--glow-violet);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 24px var(--glow-violet);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--cyan-dim);
     color: var(--cyan);
+    box-shadow: 0 0 16px var(--glow-cyan);
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 4rem;
+    }
+    .not-found__actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 280px;
+    }
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>
