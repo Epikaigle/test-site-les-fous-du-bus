@@ -212,19 +212,6 @@ const isActive = (href: string) =>
   style="top: var(--nav-h);"
 >
   <div class="p-5">
-    <div class="mb-5 pb-4 border-b border-borderColor">
-      <div class="flex flex-col gap-1">
-        {
-          nav.map((item) => (
-            <a
-              href={item.href}
-              class="text-[14px] text-textSecondary hover:text-textMain hover:bg-surface rounded px-3 py-2 transition-colors"
-              >{item.label}</a
-            >
-          ))
-        }
-      </div>
-    </div>
     <SidebarNav currentPath={Astro.url.pathname} />
   </div>
 </div>
@@ -460,6 +447,11 @@ const isActive = (href: string) =>
   }
 
   @media (max-width: 1023px) {
+    /* The hamburger owns mobile navigation; the desktop sidebar toggle would be redundant. */
+    .navbar-sidebar-toggle {
+      display: none;
+    }
+
     #mobile-menu-toggle {
       display: flex;
     }
