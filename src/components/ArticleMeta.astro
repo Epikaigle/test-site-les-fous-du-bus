@@ -1,13 +1,15 @@
 ---
 interface Props {
   lastUpdatedChapter: string;
+  editorialStatus?: string;
 }
 
-const { lastUpdatedChapter } = Astro.props;
+const { lastUpdatedChapter, editorialStatus } = Astro.props;
 ---
 
 <div class="meta-row">
-  <div>MAJ Chapitre {lastUpdatedChapter}</div>
+  <div>Mis à jour après le chapitre {lastUpdatedChapter}</div>
+  {editorialStatus && <div class="meta-status">{editorialStatus}</div>}
 </div>
 
 <style>
@@ -21,5 +23,11 @@ const { lastUpdatedChapter } = Astro.props;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
     margin: 1.5rem 0;
+  }
+
+  .meta-status {
+    margin-left: auto;
+    color: var(--cyan);
+    font-size: 12px;
   }
 </style>

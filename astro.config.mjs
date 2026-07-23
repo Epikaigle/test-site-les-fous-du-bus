@@ -4,8 +4,10 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
 
+const site = process.env.PUBLIC_SITE_URL || 'https://lesfousdubus.sbs';
+
 export default defineConfig({
-  site: 'https://test-site-les-fous-du-bus.epikaigle444.workers.dev',
+  site,
   output: 'static',
   prefetch: true,
   integrations: [
