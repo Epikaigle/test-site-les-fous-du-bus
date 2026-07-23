@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await render(entry);
+const { Content } = await render(entry);
 ---
 
 <WikiLayout title={`Chapitre ${entry.data.chapter} — ${entry.data.title}`} currentPath={`/chapitres/${entry.data.chapter}`}>

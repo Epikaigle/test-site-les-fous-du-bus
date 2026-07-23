@@ -1,25 +1,25 @@
 ---
+import { editorialStatusToFrench } from '../utils/format';
+
 interface Props {
   lastUpdatedChapter: string;
+  editorialStatus?: string;
 }
 
-const { lastUpdatedChapter } = Astro.props;
+const { lastUpdatedChapter, editorialStatus } = Astro.props;
+const status = editorialStatus ? editorialStatusToFrench(editorialStatus) : undefined;
 ---
 
-<div class="meta-row">
-  <div>MAJ Chapitre {lastUpdatedChapter}</div>
+<div class="meta-row" aria-label="Informations éditoriales">
+  <span>Mis à jour jusqu’au chapitre {lastUpdatedChapter}</span>
+  {status && <span class:list={['meta-badge', status.badgeClass]}>{status.label}</span>}
 </div>
 
 <style>
-  .meta-row {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 13.5px;
-    color: var(--text-secondary);
-    padding: 0.75rem 0;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
-    margin: 1.5rem 0;
-  }
+  .meta-row { display:flex; align-items:center; flex-wrap:wrap; gap:.75rem; font-size:13.5px; color:var(--text-secondary); padding:.75rem 0; border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color); margin:1.5rem 0; }
+  .meta-badge { border:1px solid; border-radius:var(--border-radius-full); padding:.2rem .55rem; font-size:12px; font-weight:600; }
+  .meta-badge--cyan { color:var(--cyan); border-color:color-mix(in srgb,var(--cyan) 35%,transparent); background:color-mix(in srgb,var(--cyan) 10%,transparent); }
+  .meta-badge--violet { color:var(--violet-light); border-color:color-mix(in srgb,var(--violet) 35%,transparent); background:color-mix(in srgb,var(--violet) 10%,transparent); }
+  .meta-badge--gold { color:var(--accent-gold); border-color:color-mix(in srgb,var(--accent-gold) 35%,transparent); background:color-mix(in srgb,var(--accent-gold) 10%,transparent); }
+  .meta-badge--muted { color:var(--text-secondary); border-color:var(--border-color); background:var(--surface); }
 </style>

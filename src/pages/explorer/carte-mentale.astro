@@ -7,28 +7,7 @@ const articles = await getCollection('articles');
 const published = articles.filter(a => a.data.status === 'published');
 
 // 12 articles principaux dans l'ordre de lecture
-const mainArticles = [
-  { slug: 'siecle-oublie-present', title: 'Le Siècle oublié est le présent', branch: 'center' },
-  { slug: 'laugh-tale', title: 'Laugh Tale = Lodestar', branch: 'temps' },
-  { slug: 'one-piece-histoire', title: 'Le One Piece est notre histoire', branch: 'temps' },
-  { slug: 'joy-boy', title: 'Joy Boy = Luffy', branch: 'identites' },
-  { slug: 'nika', title: 'Nika = Luffy', branch: 'identites' },
-  { slug: 'ponelyphes-futur', title: 'Les Ponéglyphes racontent le futur', branch: 'temps' },
-  { slug: 'poseidon', title: 'Poséidon = Shirahoshi', branch: 'armes' },
-  { slug: 'pluton', title: 'Pluton = Water Seven', branch: 'armes' },
-  { slug: 'uranus', title: 'Uranus', branch: 'armes' },
-  { slug: 'davy-jones', title: 'Davy Jones = Teach', branch: 'identites' },
-  { slug: 'vivi', title: 'Vivi = Lili', branch: 'identites' },
-  { slug: 'emeth-futur', title: 'Emeth = BF-39', branch: 'tech' },
-  { slug: 'mother-flame', title: 'Mother Flame', branch: 'tech' },
-  { slug: 'imu-nerona', title: 'Imu Nerona', branch: 'antagoniste' },
-  { slug: 'vingt-rois-chevaliers-divins', title: 'Les 20 Rois', branch: 'antagoniste' },
-  { slug: 'deluge-all-blue', title: 'Le Déluge & All Blue', branch: 'fin' },
-  { slug: 'dieux-one-piece', title: 'Les Dieux', branch: 'fin' },
-  { slug: 'volonte-heritee', title: 'Volonté héritée', branch: 'tech' },
-  { slug: 'ryuma', title: 'Ryuma = Zoro', branch: 'identites' },
-  { slug: 'kuma-foi-nika', title: 'Kuma & la foi en Nika', branch: 'identites' },
-];
+
 
 // Build article map
 const articleMap = new Map<string, typeof published[0]>();
@@ -37,14 +16,6 @@ for (const a of published) {
 }
 
 // Certainty colors
-function certaintyColor(c: string): string {
-  switch (c) {
-    case 'central': return '#5fb9c2';
-    case 'elevee': return '#e0ab4e';
-    case 'moyenne': return '#d98b74';
-    default: return '#aeb7c2';
-  }
-}
 ---
 
 <WikiLayout title="Carte mentale" currentPath="/explorer/carte-mentale">
@@ -299,9 +270,9 @@ function certaintyColor(c: string): string {
   }
 
   // ─── Render SVG ──────────────────────────────────────────────
-  const svg = document.getElementById('mindmap-svg') as SVGSVGElement;
-  const connectionsGroup = document.getElementById('connections') as SVGGElement;
-  const nodesGroup = document.getElementById('nodes') as SVGGElement;
+  const svg = document.getElementById('mindmap-svg') as unknown as SVGSVGElement;
+  const connectionsGroup = document.getElementById('connections') as unknown as SVGGElement;
+  const nodesGroup = document.getElementById('nodes') as unknown as SVGGElement;
 
   function drawConnection(
     x1: number, y1: number,
@@ -310,8 +281,6 @@ function certaintyColor(c: string): string {
     dashed: boolean = false,
     opacity: number = 0.35
   ) {
-    const mx = (x1 + x2) / 2;
-    const my = (y1 + y2) / 2;
     // Slight curve
     const dx = x2 - x1;
     const dy = y2 - y1;
@@ -341,9 +310,9 @@ function certaintyColor(c: string): string {
     if (a.branch === 'center') continue;
     const bp = branchPositions[a.branch];
     const np = nodePositions[a.slug];
+    const branch = branches.find((item) => item.id === a.branch);
     if (bp && np) {
-      const bObj = branches.find(b => b.id === a.branch);
-      drawConnection(bp.x, bp.y, np.x, np.y, bObj?.color || '#7c8794', false, 0.3);
+        drawConnection(bp.x, bp.y, np.x, np.y, branch?.color || '#7c8794', false, 0.3);
     }
   }
 
@@ -455,8 +424,6 @@ function certaintyColor(c: string): string {
     const np = nodePositions[a.slug];
     if (!np) continue;
 
-    const bObj = branches.find(b => b.id === a.branch);
-    const color = bObj?.color || '#7c8794';
     const certColor = certaintyColors[a.certainty] || '#7c8794';
 
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
