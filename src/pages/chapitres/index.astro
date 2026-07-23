@@ -13,8 +13,7 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     <div class="text-accentGold font-semibold tracking-widest uppercase text-sm mb-3">Suivi</div>
     <h1>Chapitres</h1>
     <p class="page-desc">
-      Suivez l'évolution de la théorie avec le manga. Chaque nouveau chapitre peut renforcer,
-      modifier ou contredire les hypothèses existantes.
+      Suivez l'évolution de la théorie au fil des chapitres de <em>One Piece</em>. Chaque analyse apporte de nouvelles pistes, des éclaircissements et des correspondances avec le récit.
     </p>
   </div>
 
@@ -39,7 +38,7 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
       <span class="nav-card__icon">🔮</span>
       <div>
         <h3>Prédictions</h3>
-        <p>Prédictions formulées par la théorie et leur statut actuel.</p>
+        <p>Prédictions formulées par la théorie et leur accompagnement.</p>
       </div>
     </a>
 
@@ -48,22 +47,6 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
       <div>
         <h3>Modifications</h3>
         <p>Modifications apportées aux articles suite aux nouveaux chapitres.</p>
-      </div>
-    </a>
-
-    <a href="/chapitres/contradictions" class="nav-card">
-      <span class="nav-card__icon">❌</span>
-      <div>
-        <h3>Contradictions</h3>
-        <p>Les éléments qui contredisent ou fragilisent la théorie.</p>
-      </div>
-    </a>
-
-    <a href="/chapitres/hypotheses-abandonnees" class="nav-card">
-      <span class="nav-card__icon">🗑️</span>
-      <div>
-        <h3>Hypothèses abandonnées</h3>
-        <p>Les pistes qui ont été réfutées ou abandonnées en cours de route.</p>
       </div>
     </a>
   </div>
@@ -78,7 +61,6 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
             <span class="badge-effect" class:list={[
               { 'badge-effect--violet': ch.data.effect === 'nouvelle-piste' },
               { 'badge-effect--gold': ch.data.effect === 'renforcement' || ch.data.effect === 'modification' },
-              { 'badge-effect--alert': ch.data.effect === 'contradiction' || ch.data.effect === 'refutation' },
             ]}>{effectLabel(ch.data.effect)}</span>
           </div>
           <h4>{ch.data.title}</h4>
@@ -86,24 +68,6 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
         </a>
       ))
     }
-  </div>
-
-  <div class="info-box">
-    <h3>📊 Statistiques</h3>
-    <div class="stats">
-      <div class="stat">
-        <span class="stat__value">{sortedChapters.length}</span>
-        <span class="stat__label">Chapitres analysés</span>
-      </div>
-      <div class="stat">
-        <span class="stat__value">{sortedChapters.filter((c) => c.data.effect === 'nouvelle-piste' || c.data.effect === 'renforcement').length}</span>
-        <span class="stat__label">Apports positifs</span>
-      </div>
-      <div class="stat">
-        <span class="stat__value">{sortedChapters.filter((c) => c.data.effect === 'contradiction' || c.data.effect === 'refutation').length}</span>
-        <span class="stat__label">Contradictions</span>
-      </div>
-    </div>
   </div>
 
   <Footer />
@@ -130,7 +94,7 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
 
   .nav-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 12px;
     margin-bottom: 48px;
   }
@@ -150,8 +114,7 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   .nav-card:hover {
     border-color: var(--violet);
     transform: translateY(-3px);
-    box-shadow: 0 10px 28px color-mix(in srgb, var(--bg-main) 40%, transparent),
-      0 0 18px var(--glow-violet);
+    box-shadow: 0 10px 28px color-mix(in srgb, var(--bg-main) 40%, transparent);
   }
 
   .nav-card__icon {
@@ -164,8 +127,8 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background: color-mix(in srgb, var(--accent-gold) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-gold) 15%, transparent);
+    background: color-mix(in srgb, var(--accent-gold) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
   }
 
   .nav-card h3 {
@@ -173,11 +136,6 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     font-weight: 600;
     color: var(--text-main);
     margin-bottom: 4px;
-    transition: color 0.2s;
-  }
-
-  .nav-card:hover h3 {
-    color: var(--cyan);
   }
 
   .nav-card p {
@@ -198,78 +156,63 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
   .chapter-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 40px;
+    gap: 12px;
+    margin-bottom: 48px;
   }
 
   .chapter-item {
     display: block;
-    padding: 16px 20px;
-    background-color: var(--bg-main);
+    padding: 18px 20px;
+    background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-lg);
     text-decoration: none;
-    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, transform 0.2s ease;
   }
 
   .chapter-item:hover {
-    border-color: var(--violet);
-    background-color: var(--bg-secondary);
+    border-color: var(--cyan);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px color-mix(in srgb, var(--bg-main) 40%, transparent);
   }
 
   .chapter-item__badges {
     display: flex;
+    align-items: center;
     gap: 8px;
     margin-bottom: 8px;
-    flex-wrap: wrap;
   }
 
   .badge-chapter {
-    font-size: 11.5px;
-    font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 6px;
-    background-color: color-mix(in srgb, var(--cyan) 10%, transparent);
-    color: var(--cyan);
-    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-gold);
+    background: color-mix(in srgb, var(--accent-gold) 10%, transparent);
+    padding: 2px 8px;
+    border-radius: 4px;
   }
 
   .badge-effect {
     font-size: 11.5px;
-    font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
   }
 
   .badge-effect--violet {
-    background-color: color-mix(in srgb, var(--violet) 10%, transparent);
+    background: color-mix(in srgb, var(--violet) 14%, transparent);
     color: var(--violet-light);
-    border: 1px solid color-mix(in srgb, var(--violet) 30%, transparent);
   }
 
   .badge-effect--gold {
-    background-color: color-mix(in srgb, var(--accent-gold) 10%, transparent);
-    color: var(--accent-gold);
-    border: 1px solid color-mix(in srgb, var(--accent-gold) 20%, transparent);
-  }
-
-  .badge-effect--alert {
-    background-color: color-mix(in srgb, var(--alert) 10%, transparent);
-    color: var(--alert);
-    border: 1px solid color-mix(in srgb, var(--alert) 30%, transparent);
+    background: color-mix(in srgb, var(--cyan) 12%, transparent);
+    color: var(--cyan);
   }
 
   .chapter-item h4 {
-    font-size: 15.5px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--text-main);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   .chapter-item__desc {
@@ -277,43 +220,5 @@ const sortedChapters = chapters.sort((a, b) => b.data.chapter - a.data.chapter);
     color: var(--text-secondary);
     line-height: 1.5;
     margin: 0;
-  }
-
-  .info-box {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    padding: 24px;
-    border-radius: var(--border-radius-lg);
-    margin-top: 48px;
-  }
-
-  .info-box h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .stats {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .stat__value {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--cyan);
-    line-height: 1;
-  }
-
-  .stat__label {
-    font-size: 12.5px;
-    color: var(--text-secondary);
-    margin-top: 4px;
   }
 </style>

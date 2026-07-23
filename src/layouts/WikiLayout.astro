@@ -289,17 +289,16 @@ const hasToc = !!(headings && headings.length > 0);
 </style>
 
 <script>
-
-  // Close TOC on resize to desktop
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 1200 && isTocOpen()) {
-      closeToc();
-    }
-  });
-
   // Left sidebar collapse / expand logic controlled by the single navbar button
   const navbarSidebarToggle = document.getElementById('navbar-sidebar-toggle');
   const sidebarContainer = document.getElementById('sidebar-left-container');
+
+  const updateAriaState = () => {
+    const isCollapsed = document.documentElement.classList.contains('sidebar-left-collapsed');
+    navbarSidebarToggle?.setAttribute('aria-expanded', String(!isCollapsed));
+  };
+
+  updateAriaState();
 
   const toggleSidebar = () => {
     const isCollapsed = !document.documentElement.classList.contains('sidebar-left-collapsed');
@@ -310,6 +309,7 @@ const hasToc = !!(headings && headings.length > 0);
       document.documentElement.classList.remove('sidebar-left-collapsed');
       sidebarContainer?.classList.remove('collapsed');
     }
+    updateAriaState();
     localStorage.setItem('sidebar-left-collapsed', String(isCollapsed));
   };
 

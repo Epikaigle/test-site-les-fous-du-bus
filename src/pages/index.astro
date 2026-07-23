@@ -8,7 +8,6 @@ import Footer from '@components/Footer.astro';
 
 <WikiLayout title="Accueil" currentPath="/">
   <div class="hero">
-    <div class="hero-sun" aria-hidden="true"></div>
     <div class="hero-badge">
       <span class="hero-badge__dot"></span>
       <span>La théorie</span>
@@ -234,24 +233,7 @@ import Footer from '@components/Footer.astro';
     pointer-events: none;
   }
 
-  .hero-sun {
-    position: absolute;
-    top: -70px;
-    right: -40px;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--accent-gold) 20%, transparent),
-      transparent 68%
-    );
-    filter: blur(6px);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .hero > *:not(.hero-sun) {
+  .hero > * {
     position: relative;
     z-index: 1;
     /* Staggered entrance */

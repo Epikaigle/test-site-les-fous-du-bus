@@ -108,7 +108,7 @@ navSections.push({
 });
 ---
 
-<nav>
+<nav data-pagefind-ignore>
   {navSections.map((section, index) => {
     const isExpanded = section.links.some(
       (link) => currentPath === link.href || currentPath === link.href + '/' || (link.href !== '/' && currentPath.startsWith(link.href)),

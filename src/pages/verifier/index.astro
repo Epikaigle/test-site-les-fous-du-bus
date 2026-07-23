@@ -5,12 +5,10 @@ import Footer from '@components/Footer.astro';
 
 <WikiLayout title="Vérifier" currentPath="/verifier">
   <div class="page-header">
-    <div class="text-alert font-semibold tracking-widest uppercase text-sm mb-3">Rigueur</div>
+    <div class="text-cyan font-semibold tracking-widest uppercase text-sm mb-3">Rigueur & Analyse</div>
     <h1>Vérifier</h1>
     <p class="page-desc">
-      Examiner la solidité de la théorie. Chaque élément peut être vérifié, contesté et
-      discuté. Les transcriptions elles-mêmes examinent des contre-arguments et distinguent les
-      certitudes des hypothèses.
+      Examiner la solidité de la théorie. Chaque élément est analysé en confrontant directement les faits du manga, les objections majeures et les points restants à expliquer.
     </p>
   </div>
 
@@ -19,7 +17,7 @@ import Footer from '@components/Footer.astro';
       <span class="nav-card__icon">🧩</span>
       <div>
         <h3>Preuves principales</h3>
-        <p>Les preuves les plus solides qui soutiennent le cœur de la théorie.</p>
+        <p>Les éléments probants qui soutiennent le cœur de la théorie.</p>
       </div>
     </a>
 
@@ -43,15 +41,7 @@ import Footer from '@components/Footer.astro';
       <span class="nav-card__icon">⚠️</span>
       <div>
         <h3>Objections</h3>
-        <p>Les arguments contre la théorie et les réponses apportées.</p>
-      </div>
-    </a>
-
-    <a href="/verifier/contradictions" class="nav-card">
-      <span class="nav-card__icon">❌</span>
-      <div>
-        <h3>Contradictions</h3>
-        <p>Les éléments du manga qui contredisent ou fragilisent la théorie.</p>
+        <p>Les arguments soulevés par le récit et les réponses apportées.</p>
       </div>
     </a>
 
@@ -59,14 +49,14 @@ import Footer from '@components/Footer.astro';
       <span class="nav-card__icon">❓</span>
       <div>
         <h3>Questions non résolues</h3>
-        <p>Les points de la théorie qui restent en suspens et nécessitent de nouveaux chapitres.</p>
+        <p>Les éléments encore non expliqués qui nécessitent les futurs chapitres.</p>
       </div>
     </a>
 
     <a href="/verifier/sources" class="nav-card">
       <span class="nav-card__icon">📚</span>
       <div>
-        <h3>Sources</h3>
+        <h3>Sources & Références</h3>
         <p>Méthodologie d'analyse et sources utilisées dans la théorie.</p>
       </div>
     </a>
@@ -79,7 +69,7 @@ import Footer from '@components/Footer.astro';
         <span class="principle__num">1</span>
         <div>
           <h4>Transparence</h4>
-          <p>Les contradictions, corrections et prédictions réfutées restent visibles.</p>
+          <p>Les objections et éléments encore à expliquer sont analysés ouvertement.</p>
         </div>
       </div>
       <div class="principle">
@@ -104,9 +94,7 @@ import Footer from '@components/Footer.astro';
   <div class="info-box">
     <h3>💡 À noter</h3>
     <p>
-      La théorie repose sur l'idée que Joy Boy ne doit pas être un second Luffy ancien, mais la
-      conséquence de huit siècles d'histoire. Chaque page de cette section examine cette idée à la
-      lumière des faits du manga.
+      Les éléments non encore expliqués constituent des questions ouvertes pour les futurs chapitres et ne remettent pas en cause la cohérence d'ensemble de la théorie.
     </p>
   </div>
 
@@ -162,8 +150,8 @@ import Footer from '@components/Footer.astro';
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background: color-mix(in srgb, var(--alert) 8%, transparent);
-    border: 1px solid color-mix(in srgb, var(--alert) 15%, transparent);
+    background: color-mix(in srgb, var(--cyan) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--cyan) 20%, transparent);
   }
   .nav-card h3 {
     font-size: 15px;
@@ -230,7 +218,7 @@ import Footer from '@components/Footer.astro';
   .info-box {
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-left: 3px solid var(--accent-gold);
+    border-left: 3px solid var(--cyan);
     padding: 20px 24px;
     border-radius: var(--border-radius-lg);
     margin-top: 48px;

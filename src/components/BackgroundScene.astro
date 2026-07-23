@@ -1,5 +1,7 @@
-<!-- Decorative, non-interactive layer: buses & hourglasses drift across the
-     background (a nod to "Les Fous du Bus" + the time-travel theory). -->
+<!-- Wallpaper background image hosted on Cloudflare R2 -->
+<div class="wallpaper-bg" aria-hidden="true"></div>
+
+<!-- Decorative, non-interactive layer: buses & hourglasses drift across the background -->
 <div class="scene" aria-hidden="true">
   <span class="scene-obj go-right bus" style="--top:14%; --size:120px; --dur:46s; --delay:-6s; --op:.07; color:var(--accent-gold)">
     <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="56" height="20" rx="4"/><line x1="4" y1="17" x2="60" y2="17"/><line x1="22" y1="7" x2="22" y2="17"/><line x1="42" y1="7" x2="42" y2="17"/><circle cx="18" cy="30" r="4"/><circle cx="46" cy="30" r="4"/></svg>
@@ -27,6 +29,20 @@
 </div>
 
 <style>
+  .wallpaper-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('/wallpaper.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.18;
+    mix-blend-mode: screen;
+    filter: contrast(1.1) brightness(0.85);
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .scene {
     position: fixed;
     inset: 0;

@@ -2,15 +2,11 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<footer class="footer" data-pagefind-ignore>
   <div class="footer__inner">
     <div class="footer__left">
       <div class="footer__brand">
-        <div class="footer__logo">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-cyan">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-        </div>
+        <img src="/logo.png" alt="Les Fous du Bus" class="footer__logo-img" width="28" height="28" />
         <span class="footer__copyright">© {currentYear} Les Fous du Bus</span>
       </div>
       <p class="footer__note">Projet fan-made non officiel. One Piece © Eiichiro Oda / Shueisha / Toei Animation.</p>
