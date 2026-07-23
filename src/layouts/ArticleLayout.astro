@@ -56,7 +56,6 @@ const articleJsonLd = {
   headline: title,
   description: description,
   url: new URL(currentPath, Astro.site).toString(),
-  datePublished: frontmatter.lastUpdatedChapter ? new Date().toISOString() : undefined,
   author: {
     '@type': 'Organization',
     name: 'Les Fous du Bus'
@@ -78,7 +77,7 @@ const articleJsonLd = {
 
 <WikiLayout title={title} description={description} currentPath={currentPath} headings={headings}>
   <ReadingProgressBar />
-  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
 
   <Breadcrumb items={breadcrumbItems} />
 

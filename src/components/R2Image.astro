@@ -4,9 +4,11 @@ interface Props {
   alt: string;
   class?: string;
   caption?: string;
+  width?: number;
+  height?: number;
 }
 
-const { src, alt, class: className = '', caption } = Astro.props;
+const { src, alt, class: className = '', caption, width, height } = Astro.props;
 
 // L'URL de base de votre bucket R2.
 // Si vous utilisez l'adresse .r2.dev, remplacez-la ci-dessous.
@@ -22,6 +24,8 @@ const fullUrl = `${R2_BASE_URL}${imagePath}`;
     src={fullUrl}
     alt={alt}
     class={`rounded-lg border border-borderColor shadow-lg object-cover w-full ${className}`}
+    width={width}
+    height={height}
     loading="lazy"
   />
   {

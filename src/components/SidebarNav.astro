@@ -256,7 +256,7 @@ navSections.push({
 
     if (!toggle || !links || !chevron) return;
 
-    const setExpanded = (expanded) => {
+    const setExpanded = (expanded: boolean) => {
       toggle.setAttribute('aria-expanded', String(expanded));
       chevron.classList.toggle('rotate-90', expanded);
       links.classList.toggle('expanded', expanded);

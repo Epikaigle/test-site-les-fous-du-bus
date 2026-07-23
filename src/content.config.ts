@@ -22,10 +22,13 @@ const articles = defineCollection({
     ]),
     status: z.enum(['draft', 'published']).default('draft'),
     certainty: z.enum(['central', 'elevee', 'moyenne', 'hypothese']).optional(),
-    spoilerChapter: z.number().optional(),
     lastUpdatedChapter: z.number().optional(),
     related: z.array(z.string()).default([]),
     order: z.number().default(0),
+    editorialStatus: z.enum([
+      'canon', 'fait-observe', 'interpretation', 'hypothese-centrale',
+      'hypothese-secondaire', 'nouvelle-piste', 'contredite', 'refutee',
+    ]).optional(),
   }),
 });
 
