@@ -14,7 +14,7 @@ const {
   image,
 } = Astro.props;
 const fullTitle = `${title} | Les Fous du Bus`;
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://lesfousdubus.sbs';
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || import.meta.env.PUBLIC_SITE_URL || 'https://lesfousdubus.sbs';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const ogImage = image || `${siteUrl}/og-default.png`;
 ---

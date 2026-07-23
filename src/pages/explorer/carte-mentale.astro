@@ -299,9 +299,9 @@ function certaintyColor(c: string): string {
   }
 
   // ─── Render SVG ──────────────────────────────────────────────
-  const svg = document.getElementById('mindmap-svg') as SVGSVGElement;
-  const connectionsGroup = document.getElementById('connections') as SVGGElement;
-  const nodesGroup = document.getElementById('nodes') as SVGGElement;
+  const svg = document.getElementById('mindmap-svg') as unknown as SVGSVGElement;
+  const connectionsGroup = document.getElementById('connections') as unknown as SVGGElement;
+  const nodesGroup = document.getElementById('nodes') as unknown as SVGGElement;
 
   function drawConnection(
     x1: number, y1: number,

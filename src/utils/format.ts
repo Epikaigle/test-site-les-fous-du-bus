@@ -7,6 +7,17 @@ export function formatChapter(chapter: number): string {
   return `Chapitre ${chapter}`;
 }
 
+/** Estimation simple du temps de lecture en français. */
+export function readingTime(text: string): string {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(words / 200))} min`;
+}
+
+/** Compatibilité avec les anciens contenus et tests éditoriaux. */
+export function certaintyToFrench(value: string): string {
+  return { central: 'Confirmée', elevee: 'Élevée', moyenne: 'Moyenne', hypothese: 'Basse' }[value] ?? value;
+}
+
 /**
  * Mappe le statut éditorial vers le libellé français et la classe de badge.
  */
