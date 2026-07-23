@@ -37,19 +37,11 @@ export async function getStaticPaths() {
       },
     },
     {
-      params: { page: 'contradictions' },
-      props: {
-        title: 'Contradictions & Tensions',
-        icon: '❌',
-        desc: 'Les éléments du manga qui fragilisent ou nuancent la théorie.',
-      },
-    },
-    {
       params: { page: 'questions' },
       props: {
-        title: 'Questions non résolues',
+        title: 'Questions en suspens',
         icon: '❓',
-        desc: 'Les points qui restent en suspens et nécessitent de nouveaux chapitres.',
+        desc: 'Les éléments dont le fonctionnement exact n\'est pas encore complètement expliqué dans la version actuelle de la théorie.',
       },
     },
     {
@@ -120,21 +112,21 @@ const detailedObjections = [
   },
 ];
 
-const detailedContradictions = [
+const detailedQuestions = [
   {
-    title: 'La recherche des Fruits du Démon depuis 800 ans',
-    argument: 'Plusieurs textes et récits indiquent que le Gouvernement cherche le Gomu Gomu no Mi depuis 800 ans.',
-    nuance: 'Cette ancienneté affirmée dans le manga nuance l\'hypothèse d\'une création uniquement récente des Fruits.',
+    title: 'La recherche du Fruit de Nika depuis huit cents ans',
+    argument: 'Le Gouvernement Mondial cherche le Hito Hito no Mi modèle Nika depuis 800 ans.',
+    explanation: 'Point nécessitant une explication plus complète : l\'interaction exacte entre les recherches séculaires de la Marine et le déclenchement de l\'Éveil au présent.',
   },
   {
-    title: 'L\'âge originel déclaré de Kozuki Toki',
-    argument: 'Toki affirme venir d\'une époque située 800 ans dans le passé.',
-    nuance: 'Cela implique l\'existence d\'un passé structuré avant son premier saut temporel.',
+    title: 'L\'origine déclarée de Kozuki Toki',
+    argument: 'Toki affirme venir d\'une époque située 800 ans dans le passé avant ses sauts temporels.',
+    explanation: 'Point nécessitant une explication plus complète : l\'articulation précise entre ses origines et son rôle exact dans l\'acheminement des prophéties.',
   },
   {
-    title: 'La nature physique des reliques (Emeth, Zunesha)',
-    argument: 'Le robot Emeth et l\'éléphant Zunesha portent des marques d\'usure séculaire et des souvenirs précis.',
-    nuance: 'Si seules les informations voyageaient dans le temps, la présence d\'entités physiques géantes constitue une tension à résoudre.',
+    title: 'La présence physique d\'Emeth et de Zunesha',
+    argument: 'Le robot géant Emeth et Zunesha portent les marques directes des événements survenus il y a 800 ans.',
+    explanation: 'Point nécessitant une explication plus complète : les mécanismes assurant leur longévité et leur rôle exact au cours du Siècle Oublié.',
   },
 ];
 ---
@@ -202,22 +194,22 @@ const detailedContradictions = [
     </div>
   )}
 
-  {page === 'contradictions' && (
+  {page === 'questions' && (
     <div class="verify-grid">
-      {detailedContradictions.map((c) => (
-        <div class="proof-card border-alert/30">
+      {detailedQuestions.map((q) => (
+        <div class="proof-card">
           <div class="proof-header">
-            <span class="proof-badge proof-badge--alert">Tension narrative</span>
+            <span class="proof-badge proof-badge--type">Point à expliciter</span>
           </div>
-          <h3 class="proof-title">{c.title}</h3>
+          <h3 class="proof-title">{q.title}</h3>
           <div class="proof-body">
             <div class="proof-section">
-              <span class="proof-label">Élément du manga :</span>
-              <p>{c.argument}</p>
+              <span class="proof-label">Élément du récit :</span>
+              <p>{q.argument}</p>
             </div>
-            <div class="proof-section">
-              <span class="proof-label proof-label--limit">Nuance pour la théorie :</span>
-              <p>{c.nuance}</p>
+            <div class="proof-section proof-section--limit">
+              <span class="proof-label proof-label--limit">Point nécessitant une explication plus complète :</span>
+              <p>{q.explanation}</p>
             </div>
           </div>
         </div>
@@ -225,11 +217,11 @@ const detailedContradictions = [
     </div>
   )}
 
-  {page !== 'preuves' && page !== 'objections' && page !== 'contradictions' && (
+  {page !== 'preuves' && page !== 'objections' && page !== 'questions' && (
     <div class="verify-box">
       <h3>📚 Dossier de vérification ({title})</h3>
       <p>
-        Cette section répertorie la rigueur d'analyse du projet : distinction claire entre faits observés dans le manga, interprétations narratives, contre-arguments et tensions scientifiques.
+        Cette section répertorie la rigueur d'analyse du projet : faits du manga, interprétations narratives et questions ouvertes.
       </p>
     </div>
   )}
