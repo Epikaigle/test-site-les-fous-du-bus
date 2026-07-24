@@ -43,21 +43,21 @@
   }
 
   .light {
-    --bg-main: #f4efe3;
-    --bg-secondary: #faf6ec;
-    --surface: #e8e0cc;
-    --violet: #4a5694;
-    --violet-light: #5e6bb0;
-    --magenta: #bf5848;
-    --cyan: #0e7d8a;
-    --cyan-dim: #0a6672;
-    --text-main: #1a1814;
-    --text-secondary: #4a463d;
-    --accent-gold: #9a680d;
-    --alert: #a8392c;
-    --border-color: rgba(26, 24, 20, 0.22);
-    --glow-violet: rgba(74, 86, 148, 0.18);
-    --glow-cyan: rgba(14, 125, 138, 0.16);
+    --bg-main: #f8f5ed;
+    --bg-secondary: #f1ede3;
+    --surface: #e6e0d0;
+    --violet: #3f4a7a;
+    --violet-light: #515f96;
+    --magenta: #b34f3f;
+    --cyan: #0c6e79;
+    --cyan-dim: #0a5e69;
+    --text-main: #1f1d18;
+    --text-secondary: #555047;
+    --accent-gold: #8a5f0f;
+    --alert: #a02f23;
+    --border-color: rgba(31, 29, 24, 0.18);
+    --glow-violet: rgba(63, 74, 122, 0.22);
+    --glow-cyan: rgba(12, 110, 121, 0.20);
     --gradient-hero: linear-gradient(
       120deg,
       var(--cyan) 0%,
@@ -66,8 +66,8 @@
     );
     --gradient-card: linear-gradient(
       135deg,
-      color-mix(in srgb, var(--violet) 8%, transparent),
-      color-mix(in srgb, var(--cyan) 5%, transparent)
+      color-mix(in srgb, var(--violet) 9%, transparent),
+      color-mix(in srgb, var(--cyan) 6%, transparent)
     );
     --gradient-border: linear-gradient(120deg, var(--violet), var(--cyan-dim));
     --wave-url: url('/waves-light.svg');
